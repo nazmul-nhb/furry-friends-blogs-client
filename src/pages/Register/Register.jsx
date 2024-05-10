@@ -1,5 +1,5 @@
 import banner from '../../assets/dog-register-custom.png';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash, FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -16,9 +16,23 @@ const Register = () => {
     const { createUser, logOut, googleLogin, facebookLogin, githubLogin } = useContext(AuthContext);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        if (errors.password) {
+            toast.error(errors.password.message)
+        }
+        if (errors.name) {
+            toast.error(errors.name.message)
+        }
+        if (errors.photo) {
+            toast.error(errors.photo.message)
+        }
+        if (errors.email) {
+            toast.error(errors.email.message)
+        }
+    }, [errors.email, errors.name, errors.password, errors.photo])
+
     const handleRegister = data => {
         const { name, photo, email, password } = data;
-
         createUser(email, password)
             .then(result => {
                 // update profile
@@ -67,7 +81,7 @@ const Register = () => {
             .catch(error => {
                 if (error.message === "Firebase: Error (auth/popup-closed-by-user).") {
                     Swal.fire({
-                        title: 'Warning!',
+                        title: 'Login Failed!',
                         text: "Popup Closed by User!",
                         icon: 'warning',
                         confirmButtonText: 'Close'
@@ -99,7 +113,7 @@ const Register = () => {
             .catch(error => {
                 if (error.message === "Firebase: Error (auth/popup-closed-by-user).") {
                     Swal.fire({
-                        title: 'Error!',
+                        title: 'Login Failed!',
                         text: "Popup Closed by User!",
                         icon: 'warning',
                         confirmButtonText: 'Close'
@@ -131,7 +145,7 @@ const Register = () => {
             .catch(error => {
                 if (error.message === "Firebase: Error (auth/popup-closed-by-user).") {
                     Swal.fire({
-                        title: 'Error!',
+                        title: 'Login Failed!',
                         text: "Popup Closed by User!",
                         icon: 'warning',
                         confirmButtonText: 'Close'
@@ -159,9 +173,9 @@ const Register = () => {
             <Helmet>
                 <title>Register - Furry Friends</title>
             </Helmet>
-            <div className='flex flex-col md:flex-row justify-between gap-6'>
-                <figure className='flex-1'>
-                    <h2 className="text-lg md:text-2xl font-semibold text-center">Please, Register</h2>
+            <div className='flex flex-col md:flex-row items-center md:items-start justify-between gap-6'>
+                <figure className='flex-1 w-1/2 md:w-full'>
+                    <h2 className="text-lg md:text-2xl font-semibold text-center mb-8">Please, Register</h2>
                     <img src={banner} alt="Banner" />
                 </figure>
                 <div className='flex-1'>
@@ -204,7 +218,7 @@ const Register = () => {
                             <input
                                 {...register("email", {
                                     required:
-                                        { value: true, message: "You must provide a valid email address." }
+                                        { value: true, message: "Provide a valid email address!" }
                                 })}
                                 className="p-2 rounded-lg bg-[#F3F3F3]" type="email" name="email" id="email" placeholder="Enter Your Email" />
                             {
@@ -216,7 +230,7 @@ const Register = () => {
                             <input
                                 {...register("photo", {
                                     required:
-                                        { value: true, message: "You must provide a valid photo URL." }
+                                        { value: true, message: "Provide a valid photo URL." }
                                 })}
                                 className="p-2 rounded-lg bg-[#F3F3F3]" type="text" name="photo" id="photo" placeholder="Enter Your Photo URL" />
                             {
@@ -232,20 +246,32 @@ const Register = () => {
                                             value: true, message: "You must choose a password."
                                         },
                                         minLength: {
-                                            value: 6, message: "Password should be at least 6 characters long!"
+                                            value: 6, message: "Password must contain 6 characters!"
                                         },
                                         validate: {
-                                            isUpper: (value) => {
+                                            isCapital: (value) => {
                                                 if (/(?=.*[A-Z])/.test(value)) {
                                                     return true;
                                                 }
-                                                return "Password must contain at least 1 upper case character!"
+                                                return "Password must contain capital letter!"
                                             },
-                                            isLower: (value) => {
-                                                if (/(?=.*[a-z])/.test(value)) {
+                                            // isLower: (value) => {
+                                            //     if (/(?=.*[a-z])/.test(value)) {
+                                            //         return true;
+                                            //     }
+                                            //     return "Password must contain small letter!"
+                                            // }
+                                            isNumeric: (value) => {
+                                                if (/(?=.*[0-9])/.test(value)) {
                                                     return true;
                                                 }
-                                                return "Password must contain at least 1 lower case character!"
+                                                return "Password must contain a number!"
+                                            },
+                                            isSpecialChar: (value) => {
+                                                if (/(?=.*[!@#$%^&*()_+\-~=[\]{};'`:"\\|,.<>/?])/.test(value)) {
+                                                    return true;
+                                                }
+                                                return "Password must contain a symbol!"
                                             }
                                         }
                                     })}
