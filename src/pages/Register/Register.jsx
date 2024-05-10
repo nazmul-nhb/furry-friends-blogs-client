@@ -18,16 +18,16 @@ const Register = () => {
 
     useEffect(() => {
         if (errors.password) {
-            toast.error(errors.password.message)
+            toast.error(errors.password.message, {duration: 2000})
         }
         if (errors.name) {
-            toast.error(errors.name.message)
+            toast.error(errors.name.message, {duration: 2000})
         }
         if (errors.photo) {
-            toast.error(errors.photo.message)
+            toast.error(errors.photo.message, {duration: 2000})
         }
         if (errors.email) {
-            toast.error(errors.email.message)
+            toast.error(errors.email.message, {duration: 2000})
         }
     }, [errors.email, errors.name, errors.password, errors.photo])
 
