@@ -226,7 +226,7 @@ const Register = () => {
                             }
                         </div>
                         <div className="flex flex-col gap-3">
-                            <label className="font-medium" htmlFor="photo">Your Photo URL *</label>
+                            <label className="font-medium" htmlFor="photo">Photo URL for Your Profile*</label>
                             <input
                                 {...register("photo", {
                                     required:

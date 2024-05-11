@@ -4,10 +4,13 @@ import Root from "../layouts/Root";
 import Home from "../pages/Home/Home";
 import AllBlogs from "../pages/AllBlogs/AllBlogs";
 import FeaturedBlogs from "../pages/FeaturedBlogs/FeaturedBlogs";
+import AddBlog from "../pages/AddBlog/AddBlog";
 import Wishlist from "../pages/Wishlist/Wishlist";
 import Contact from "../pages/Contact/Contact";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import BlogDetails from "../pages/BlogDetails/BlogDetails";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -29,11 +32,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/add-blog',
-                element: <FeaturedBlogs />
+                element: <PrivateRoute><AddBlog /></PrivateRoute>
+            },
+            {
+                path: '/blog-details',
+                element: <PrivateRoute><BlogDetails /></PrivateRoute>
             },
             {
                 path: '/wishlist',
-                element: <Wishlist />
+                element: <PrivateRoute><Wishlist /></PrivateRoute>
             },
             {
                 path: '/contact',
