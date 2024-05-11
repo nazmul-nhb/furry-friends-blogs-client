@@ -37,12 +37,13 @@ const Comments = ({ blog }) => {
 
     const handlePostComment = (e) => {
         e.preventDefault();
+        const newComment = e.target.comment.value;
+        if (newComment === "") return;
         if (user.email === blogger_email) {
             toast.error('Cannot comment on own blog!');
-            setHideTextArea(true);
+            setHideTextArea(!hideTextArea);
             return;
         }
-        const newComment = e.target.comment.value;
         const commentData = {
             comment_body: newComment,
             commenter_email: user.email,
@@ -74,20 +75,21 @@ const Comments = ({ blog }) => {
 
     return (
         <div>
-
+            <h3>Write Your Comment</h3>
+            {
+                hideTextArea
+                    ? <p className="text-red-700 font-semibold">Cannot Comment on Own Blog!</p>
+                    : <form className="flex flex-col items-start justify-center gap-4" onSubmit={handlePostComment}>
+                        <textarea className="border rounded-lg p-2" name="comment" id="comment" placeholder="Write Your Comment"></textarea>
+                        <Button buttonText={'Comment'} buttonType={'submit'} color={'midnightblue'} hoverBgColor={'transparent'} hoverColor={'white'} className={'border rounded-xl px-3 py-1 font-medium'}></Button>
+                    </form>
+            }
             <div className="">
                 {
                     comments?.map(comment => <Comment key={comment._id} comment={comment}></Comment>)
                 }
             </div>
 
-            <h3>Write Your Comment</h3>
-            <form className="flex flex-col items-start justify-center gap-4" onSubmit={handlePostComment}>
-                {hideTextArea ? <div>Cannot Comment on Own Blog!</div>
-                    : <textarea required className="border rounded-lg p-4" name="comment" id="comment" placeholder="Write Your Comment"></textarea>
-                }
-                <Button buttonText={'Comment'} buttonType={'submit'} color={'midnightblue'} hoverBgColor={'transparent'} hoverColor={'white'} className={'border rounded-xl px-3 py-1 font-medium'}></Button>
-            </form>
         </div>
     );
 };
