@@ -25,7 +25,7 @@ const AddBlog = () => {
     const handleAddBlog = (newBlog) => {
         // send data to the server
         const finalBlog = {
-            ...newBlog, posted_on: moment().format("YYYY-MM-DD"), posted_by: user.displayName, blogger_email: user.email
+            ...newBlog, posted_on: moment().format("YYYY-MM-DD HH:mm:ss"), posted_by: user.displayName, blogger_email: user.email
         }
         console.log(finalBlog);
         reset();
