@@ -6,6 +6,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 import Preview from "../../components/Preview/Preview";
 import moment from "moment";
 import useAuth from "../../hooks/useAuth";
+import axios from "axios";
 
 const AddBlog = () => {
     const { user } = useAuth();
@@ -27,7 +28,15 @@ const AddBlog = () => {
         const finalBlog = {
             ...newBlog, posted_on: moment().format("YYYY-MM-DD HH:mm:ss"), posted_by: user.displayName, blogger_email: user.email
         }
-        console.log(finalBlog);
+        // console.log(finalBlog);
+        axios.post(`http://localhost:5000/blogs`, { ...finalBlog })
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(error=>{
+                console.error(error);
+            })
+
         reset();
     }
 
