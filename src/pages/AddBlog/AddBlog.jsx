@@ -7,6 +7,7 @@ import Preview from "../../components/Preview/Preview";
 import moment from "moment";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const AddBlog = () => {
     const { user } = useAuth();
@@ -32,12 +33,27 @@ const AddBlog = () => {
         axios.post(`http://localhost:5000/blogs`, { ...finalBlog })
             .then(res => {
                 console.log(res.data);
-            })
-            .catch(error=>{
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        title: 'Congratulations!!',
+                        text: `"${newBlog.blog_title}" Added Successfully!`,
+                        icon: 'success',
+                        confirmButtonText: 'Close'
+                    })
+                    reset();
+                }
+                })
+            .catch(error => {
                 console.error(error);
+                if (error) {
+                    Swal.fire({
+                        title: 'Error!!',
+                        text: error,
+                        icon: 'error',
+                        confirmButtonText: 'Close'
+                    })
+                }
             })
-
-        reset();
     }
 
     return (
@@ -103,7 +119,7 @@ const AddBlog = () => {
                                 required: { value: true, message: "You must write something." },
                                 maxLength: { value: 120, message: "Short Description should not exceed 120 characters!" }
                             })}
-                            className="p-2 rounded-lg border border-[midnightblue] transition duration-500 focus:outline-0" type="text" name="short_description" id="short_description" placeholder="Write a Short Description of Your Blog (Max: 120 Characters)" />
+                            className="p-2 rounded-lg border border-[midnightblue] transition duration-500 focus:outline-0" type="text" name="short_description" id="short_description" placeholder="Write a Short Description for Your Blog (Max: 120 Characters)" />
                         {
                             errors.short_description && <p className="text-red-700">{errors.short_description.message}</p>
                         }
@@ -116,7 +132,7 @@ const AddBlog = () => {
                                 required:
                                     { value: true, message: "You must write something." }
                             })}
-                            className="p-2 rounded-lg border border-[midnightblue] transition duration-500 focus:outline-0" type="text" name="long_description" id="long_description" placeholder="Write a Short Description of the Art/Craft Item" />
+                            className="p-2 rounded-lg border border-[midnightblue] transition duration-500 focus:outline-0" type="text" name="long_description" id="long_description" placeholder="Write a Long Description for the Art/Craft Item" />
                         {
                             errors.long_description && <p className="text-red-700">{errors.long_description.message}</p>
                         }

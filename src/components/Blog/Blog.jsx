@@ -7,7 +7,7 @@ import moment from 'moment';
 const Blog = ({ blog }) => {
     const { blog_title, category, image, short_description, posted_on, posted_by, _id } = blog;
     const formattedDate = moment(posted_on).format('MMMM DD, YYYY [at] hh:mm A');
-    console.log(blog);
+    // console.log(blog);
     return (
         <div className='border rounded-xl p-4'>
             <figure className='relative'>

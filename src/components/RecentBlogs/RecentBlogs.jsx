@@ -14,7 +14,7 @@ const RecentBlogs = () => {
         }
     })
 
-    console.log(blogs);
+    // console.log(blogs);
 
     if (isPending) {
         return (
