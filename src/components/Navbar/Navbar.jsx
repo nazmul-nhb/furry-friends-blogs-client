@@ -2,14 +2,14 @@ import "./Navbar.css";
 import toast from "react-hot-toast";
 import defaultPP from '../../assets/user.png';
 import { Link, NavLink } from "react-router-dom";
-import { useContext, useEffect, useRef, useState } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
+import { useEffect, useRef, useState } from "react";
 import { MdMenuOpen, MdOutlineClose } from "react-icons/md";
 import { IoMdLogOut } from "react-icons/io";
 import { Tooltip } from "react-tooltip";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut } = useAuth();
     const [open, setOpen] = useState(false);
     const [userName, setUserName] = useState('');
     const [profilePicture, setProfilePicture] = useState('');

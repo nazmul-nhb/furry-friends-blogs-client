@@ -1,17 +1,17 @@
 import banner from '../../assets/cat-login-custom.png';
 import { Helmet } from "react-helmet-async";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { FaEye, FaEyeSlash, FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "../../providers/AuthProvider";
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
+import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { userLogin, googleLogin, facebookLogin, githubLogin } = useContext(AuthContext);
+    const { userLogin, googleLogin, facebookLogin, githubLogin } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
 

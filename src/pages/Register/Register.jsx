@@ -3,17 +3,16 @@ import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash, FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { Helmet } from 'react-helmet-async';
 import Swal from "sweetalert2";
 import toast from 'react-hot-toast';
+import useAuth from '../../hooks/useAuth';
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, logOut, googleLogin, facebookLogin, githubLogin } = useContext(AuthContext);
+    const { createUser, logOut, googleLogin, facebookLogin, githubLogin } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {

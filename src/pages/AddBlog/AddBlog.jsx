@@ -1,14 +1,14 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "../../providers/AuthProvider";
 import Button from "../../components/Button/Button";
 import { IoIosCloseCircle } from "react-icons/io";
 import Preview from "../../components/Preview/Preview";
 import moment from "moment";
+import useAuth from "../../hooks/useAuth";
 
 const AddBlog = () => {
-    const { user } = useContext(AuthContext);
+    const { user } = useAuth();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [showModal, setShowModal] = useState(false);
     const [previewBlog, setPreviewBlog] = useState("");
