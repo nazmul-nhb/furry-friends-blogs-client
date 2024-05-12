@@ -35,7 +35,6 @@ const Blog = ({ blog, wishlist, handleDeleteWishlist }) => {
                     {wishlist ?
                         <Button onClick={() => handleDeleteWishlist(_id)} className={'border px-6 py-2 rounded-3xl font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Remove Wishlist'}></Button>
                         : <Button onClick={handleAddToWishlist} className={'border px-6 py-2 rounded-3xl font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Wishlist'}></Button>
-
                     }
                 </div>
                 <h5 className='rounded-t-xl bg-[#819bcc9f] w-full p-2 absolute top-0 right-0'>{category}</h5>

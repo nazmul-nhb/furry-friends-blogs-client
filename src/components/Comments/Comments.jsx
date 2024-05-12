@@ -17,7 +17,6 @@ const Comments = ({ blog }) => {
     const { user } = useAuth();
     const { _id, blogger_email } = blog;
 
-    // Tanstack Query cannot Update new comments on UI instantly!
     const { isPending, isError, error, data: comments, refetch } = useQuery({
         queryKey: ['comments', _id],
         queryFn: async () => {
