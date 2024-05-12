@@ -6,10 +6,12 @@ import axios from "axios";
 import toast from "react-hot-toast";
 // import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
+import moment from "moment";
 
 const Comments = ({ blog }) => {
     const [comments, setComments] = useState([])
     const [hideTextArea, setHideTextArea] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const { user } = useAuth();
     const { _id, blogger_email } = blog;
@@ -24,9 +26,11 @@ const Comments = ({ blog }) => {
     // })
 
     useEffect(() => {
+        setLoading(true);
         axios.get(`http://localhost:5000/comments/${_id}`)
             .then(res => {
                 setComments(res.data)
+                setLoading(false);
             })
             .catch(error => {
                 console.error(error);
@@ -50,28 +54,43 @@ const Comments = ({ blog }) => {
             commenter_name: user.displayName,
             commenter_photo: user.photoURL,
             blog_id: _id,
+            commented_on: moment().format("YYYY-MM-DD HH:mm:ss")
         }
-
+        setLoading(true);
         axios.post(`http://localhost:5000/comments`, { ...commentData })
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {
+                    setComments(() => [commentData, ...comments]);
                     toast.success('Successfully Commented!')
                 }
+                setLoading(false);
             })
             .catch(error => {
                 console.error(error);
+                toast.error("Error Occurred!");
+                setLoading(false);
             })
 
+        setLoading(true);
         axios.get(`http://localhost:5000/comments/${_id}`)
             .then(res => {
-                setComments(res.data)
+                setComments(res.data);
+                setLoading(false);
             })
             .catch(error => {
                 console.error(error);
+                setLoading(false);
             })
     }
 
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center space-x-2">
+                .......
+            </div>
+        )
+    }
 
     return (
         <div>
@@ -79,8 +98,8 @@ const Comments = ({ blog }) => {
             {
                 hideTextArea
                     ? <p className="text-red-700 font-semibold">Cannot Comment on Own Blog!</p>
-                    : <form className="flex flex-col items-start justify-center gap-4" onSubmit={handlePostComment}>
-                        <textarea className="border rounded-lg p-2" name="comment" id="comment" placeholder="Write Your Comment"></textarea>
+                    : <form className="flex items-end gap-4" onSubmit={handlePostComment}>
+                        <textarea className="w-2/3 lg:w-1/3 border rounded-lg p-2" name="comment" id="comment" placeholder="Write Your Comment"></textarea>
                         <Button buttonText={'Comment'} buttonType={'submit'} color={'midnightblue'} hoverBgColor={'transparent'} hoverColor={'white'} className={'border rounded-xl px-3 py-1 font-medium'}></Button>
                     </form>
             }
@@ -89,7 +108,6 @@ const Comments = ({ blog }) => {
                     comments?.map(comment => <Comment key={comment._id} comment={comment}></Comment>)
                 }
             </div>
-
         </div>
     );
 };

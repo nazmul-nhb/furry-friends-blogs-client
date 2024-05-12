@@ -4,19 +4,23 @@ import { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import moment from 'moment';
 
 const Comment = ({ comment }) => {
     const { user } = useAuth();
     const [showReplyBox, setShowReplyBox] = useState(false);
     const [replies, setReplies] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-    const { _id, comment_body, commenter_email, commenter_name, commenter_photo } = comment;
-    // console.log(comment);
+    const { _id, comment_body, commenter_email, commenter_name, commenter_photo, commented_on } = comment;
+    const commentTime = moment(commented_on).format('MMMM DD, YYYY [at] hh:mm A');
 
     useEffect(() => {
+        setLoading(true);
         axios.get(`http://localhost:5000/replies/${_id}`)
             .then(res => {
-                setReplies(res.data)
+                setReplies(res.data);
+                setLoading(false)
             })
             .catch(error => {
                 console.error(error);
@@ -33,46 +37,63 @@ const Comment = ({ comment }) => {
             reply_person: user.displayName,
             reply_email: user.email,
             reply_photo: user.photoURL,
-            comment_id: _id
+            comment_id: _id,
+            replied_on: moment().format("YYYY-MM-DD HH:mm:ss")
         }
 
+        setLoading(true);
         axios.post(`http://localhost:5000/replies`, { ...replyData })
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {
-                    toast.success('Successfully Replied!')
+                    setReplies(() => [replyData, ...replies]);
+                    toast.success('Successfully Replied!');
+                    setShowReplyBox(false);
                 }
+                setLoading(false);
             })
             .catch(error => {
                 console.error(error);
                 toast.error("Error Occurred!");
             })
 
+        setLoading(true);
         axios.get(`http://localhost:5000/replies/${_id}`)
             .then(res => {
                 setReplies(res.data)
+                setLoading(false);
             })
             .catch(error => {
                 console.error(error);
             })
     }
 
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center space-x-2">
+                .......
+            </div>
+        )
+    }
+
     return (
         <div className='my-4'>
             {/* Comments */}
             <div className='flex items-center gap-1'>
-                <img src={commenter_photo} alt={commenter_name} className='w-8 rounded-full p-[2px] border' />
-                <p title={commenter_email}>{commenter_name} commented:</p>
+                <img src={commenter_photo} alt={commenter_name} className='w-9 rounded-full p-[2px] border' />
+                <h4 className='text-lg' title={commenter_email}><span className="font-semibold">{commenter_name}</span> commented:</h4>
             </div>
-            <div className="flex items-end gap-2">
-                <button className='ml-9 cursor-pointer border px-3 pb-1 rounded-2xl leading-none' onClick={() => setShowReplyBox(!showReplyBox)}>Reply</button>
-                <p className=''>{comment_body}</p>
+            <p className='ml-10 mb-2'>{comment_body}</p>
+            <div className="text-xs ml-10 flex items-center gap-2 mb-2">
+                <h5 className=''>{commentTime}</h5>
+                <button className='cursor-pointer' onClick={() => setShowReplyBox(!showReplyBox)}>Reply</button>
             </div>
-            <div className='ml-4'>
+            {/* Reply Box */}
+            <div className='ml-4 mb-2'>
                 {
-                    showReplyBox && <div className="ml-4">
+                    showReplyBox && <div className="ml-6 mb-2">
                         <form className="flex items-end gap-4" onSubmit={handlePostReply}>
-                            <textarea className="border rounded-lg p-2" name="reply" id="reply" placeholder={`Reply to ${commenter_name}'s Comment`}></textarea>
+                            <textarea className="w-[70%] lg:w-1/3 border rounded-lg p-2" name="reply" id="reply" placeholder={`Reply to ${commenter_name}'s Comment`}></textarea>
 
                             <Button buttonText={'Reply'} buttonType={'submit'} color={'midnightblue'} hoverBgColor={'transparent'} hoverColor={'white'} className={'text-sm border rounded-xl px-3 py-1 font-medium'}></Button>
                         </form>
@@ -81,15 +102,20 @@ const Comment = ({ comment }) => {
 
                 {/* Replies */}
                 {
-                    replies?.map(reply => <div className='ml-4' key={reply._id}>
+                    replies?.map(reply => <div className='ml-5' key={reply._id}>
                         <div className="flex items-center gap-1">
-                            <img src={reply.reply_photo} alt={reply.reply_person} className='w-8 rounded-full p-[2px] border' />
-                            <p title={reply.reply_email}>{reply.reply_person} replied:</p>
+                            <img src={reply.reply_photo} alt={reply.reply_person} className='w-9 rounded-full p-[2px] border' />
+                            <div className='flex flex-col gap-0 leading-4'>
+                                <h5 className='text-xs'>{moment(reply.replied_on).format('MMMM DD, YYYY [at] hh:mm A')}</h5>
+                                <p title={reply.reply_email}><span className="font-semibold">{reply.reply_person}</span> replied:</p>
+                            </div>
                         </div>
-                        <p className='ml-9'>{reply.reply_body}</p>
+                        <p className='ml-10'>{reply.reply_body}</p>
+                        <hr className='my-4' />
                     </div>)
                 }
             </div>
+            <hr />
         </div>
     );
 };
