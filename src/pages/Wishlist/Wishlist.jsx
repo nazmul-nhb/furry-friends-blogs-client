@@ -16,15 +16,10 @@ const Wishlist = () => {
         queryFn: async () => {
             const res = await axios.get(`http://localhost:5000/wishlist?email=${user.email}`);
             return res.data;
-        },
-        enabled: true,
+        }, enabled: true,
     });
 
-    console.log(wishlistBlogs);
-
-    // useEffect(() => {
-    //     refetch();
-    // }, [refetch]);
+    // console.log(wishlistBlogs);
 
     useEffect(() => {
         if (wishlistBlogs) {
@@ -56,9 +51,15 @@ const Wishlist = () => {
             if (result.isConfirmed) {
                 axios.delete(`http://localhost:5000/wishlist/${id}?email=${user.email}`)
                     .then(res => {
-                        console.log(res.data);
-                        refetch();
-                        toast.success('Successfully Removed from Wishlist!')
+                        if (res.data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire(
+                                'Deleted!',
+                                'Item has been Deleted!',
+                                'success'
+                            )
+                            toast.success('Successfully Removed from Wishlist!')
+                        }
                     })
                     .catch(error => {
                         console.error(error);

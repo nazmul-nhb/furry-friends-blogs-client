@@ -10,9 +10,7 @@ import moment from "moment";
 import catLoading from '../../assets/blue-cat.svg'
 
 const Comments = ({ blog }) => {
-    // const [comments, setComments] = useState([]);
     const [hideTextArea, setHideTextArea] = useState(false);
-    // const [loading, setLoading] = useState(false);
 
     const { user } = useAuth();
     const { _id, blogger_email } = blog;
@@ -22,21 +20,8 @@ const Comments = ({ blog }) => {
         queryFn: async () => {
             const res = await axios.get(`http://localhost:5000/comments/${_id}`);
             return res.data;
-        },
-        enabled: true,
+        }, enabled: true,
     })
-
-    // useEffect(() => {
-    //     setLoading(true);
-    //     axios.get(`http://localhost:5000/comments/${_id}`)
-    //         .then(res => {
-    //             setComments(res.data)
-    //             setLoading(false);
-    //         })
-    //         .catch(error => {
-    //             console.error(error);
-    //         })
-    // }, [_id])
 
     // console.log(comments);
 
@@ -57,34 +42,20 @@ const Comments = ({ blog }) => {
             blog_id: _id,
             commented_on: moment().format("YYYY-MM-DD HH:mm:ss")
         }
-        // setLoading(true);
+
         axios.post(`http://localhost:5000/comments`, { ...commentData })
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {
-                    // setComments(() => [commentData, ...comments]);
                     e.target.reset();
                     refetch();
                     toast.success('Successfully Commented!');
                 }
-                // setLoading(false);
             })
             .catch(error => {
                 console.error(error);
                 toast.error("Error Occurred!");
-                // setLoading(false);
             })
-
-        // setLoading(true);
-        // axios.get(`http://localhost:5000/comments/${_id}`)
-        //     .then(res => {
-        //         // setComments(res.data);
-        //         setLoading(false);
-        //     })
-        //     .catch(error => {
-        //         console.error(error);
-        //         setLoading(false);
-        //     })
     }
 
     if (isPending) {

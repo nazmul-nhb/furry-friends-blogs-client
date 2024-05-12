@@ -11,8 +11,6 @@ import { useQuery } from '@tanstack/react-query';
 const Comment = ({ comment }) => {
     const { user } = useAuth();
     const [showReplyBox, setShowReplyBox] = useState(false);
-    // const [replies, setReplies] = useState([]);
-    // const [loading, setLoading] = useState(false);
 
     const { _id, comment_body, commenter_email, commenter_name, commenter_photo, commented_on } = comment;
     const commentTime = moment(commented_on).format('MMMM DD, YYYY [at] hh:mm A');
@@ -22,21 +20,8 @@ const Comment = ({ comment }) => {
         queryFn: async () => {
             const res = await axios.get(`http://localhost:5000/replies/${_id}`);
             return res.data;
-        },
-        enabled: true,
+        }, enabled: true,
     })
-
-    // useEffect(() => {
-    //     setLoading(true);
-    //     axios.get(`http://localhost:5000/replies/${_id}`)
-    //         .then(res => {
-    //             setReplies(res.data);
-    //             setLoading(false)
-    //         })
-    //         .catch(error => {
-    //             console.error(error);
-    //         })
-    // }, [_id])
 
     const handlePostReply = (e) => {
         e.preventDefault();
@@ -52,33 +37,20 @@ const Comment = ({ comment }) => {
             replied_on: moment().format("YYYY-MM-DD HH:mm:ss")
         }
 
-        // setLoading(true);
         axios.post(`http://localhost:5000/replies`, { ...replyData })
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {
-                    // setReplies(() => [replyData, ...replies]);
                     e.target.reset();
                     refetch();
                     toast.success('Successfully Replied!');
                     setShowReplyBox(false);
                 }
-                // setLoading(false);
             })
             .catch(error => {
                 console.error(error);
                 toast.error("Error Occurred!");
             })
-
-        // setLoading(true);
-        // axios.get(`http://localhost:5000/replies/${_id}`)
-        //     .then(res => {
-        //         setReplies(res.data)
-        //         setLoading(false);
-        //     })
-        //     .catch(error => {
-        //         console.error(error);
-        //     })
     }
 
     if (isPending) {

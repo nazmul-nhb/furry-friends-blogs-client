@@ -10,10 +10,11 @@ const AllBlogs = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [blogCount, setBlogCount] = useState(0);
     const [category, setCategory] = useState('');
+    const [searchText, setSearchText] = useState('')
 
     const totalPages = Math.ceil(blogCount / itemsPerPage);
     const pages = [...Array(totalPages).keys()];
-    
+
     useEffect(() => {
         axios.get(`http://localhost:5000/blogs-count?category=${category}`)
             .then(res => {
@@ -23,18 +24,15 @@ const AllBlogs = () => {
                 console.log(error);
             })
     }, [category])
-
+    
     const { isPending, isError, error, data: blogs } = useQuery({
-        queryKey: ['blogs', currentPage, itemsPerPage, category],
+        queryKey: ['blogs', currentPage, itemsPerPage, category, searchText ],
         queryFn: async () => {
             const res = await
-                axios.get(`http://localhost:5000/blogs?sort=1&page=${currentPage - 1}&size=${itemsPerPage}&category=${category}`);
+                axios.get(`http://localhost:5000/blogs?sort=1&page=${currentPage - 1}&size=${itemsPerPage}&category=${category}&search=${searchText}`);
             return res.data;
         }
     })
-
-
-    console.log(blogCount);
 
     const handleItemsPerPage = (e) => {
         const pageValue = parseInt(e.target.value);
@@ -53,6 +51,13 @@ const AllBlogs = () => {
     const handleFilter = (e) => {
         e.preventDefault();
         setCategory(e.target.value);
+        setCurrentPage(1);
+    }
+
+    const handleSearchBlog = (e) => {
+        e.preventDefault();
+        setSearchText(e.target.search.value);
+        console.log(searchText);
     }
 
     if (isPending) {
@@ -77,11 +82,11 @@ const AllBlogs = () => {
                 <title>All Blogs - Furry Friends</title>
             </Helmet>
             All Blogs
-            <form className="my-8">
+            <form className="my-8 text-blue-900">
                 <select
                     onChange={handleFilter}
                     value={category}
-                    className="p-2 rounded-lg text-center outline outline-gray-700"
+                    className="p-2 rounded-lg outline outline-none border border-blue-900"
                     name="category" id="category">
                     <option value="">Filter by Category</option>
                     <option value="Cats">Cats</option>
@@ -90,6 +95,11 @@ const AllBlogs = () => {
                     <option value="Rabbits">Rabbits</option>
                     <option value="Others">Others</option>
                 </select>
+            </form>
+
+            <form onSubmit={handleSearchBlog} className="my-8 flex gap-2 items-center text-blue-900">
+                <input className="text-left p-2 rounded-lg outline outline-none border border-blue-900" placeholder="Search by Blog Title" type="text" name="search" id="search" />
+                <button className="border py-2 px-4 rounded-2xl border-blue-900" type="submit">Search</button>
             </form>
 
             <div className="grid lg:grid-cols-2 gap-6">
@@ -112,7 +122,7 @@ const AllBlogs = () => {
                             key={page}
                         >{page + 1}</button>)
                     }
-                    <button className={"px-3 border disabled:text-gray-500 disabled:border-gray-500 disabled:hover:text-gray-500 disabled:hover:bg-transparent text-blue-950 border-blue-950 hover:bg-blue-950 hover:text-white"} disabled={currentPage === pages.length} onClick={handleNextPage}>Next</button>
+                    <button className={"px-3 border disabled:text-gray-500 disabled:border-gray-500 disabled:hover:text-gray-500 disabled:hover:bg-transparent text-blue-950 border-blue-950 hover:bg-blue-950 hover:text-white"} disabled={currentPage === pages.length || totalPages === 0} onClick={handleNextPage}>Next</button>
                 </div>
                 <select className="border px-2 py-1 focus:text-orange-700 outline-orange-700 border-blue-900 text-blue-900" value={itemsPerPage} onChange={handleItemsPerPage} name="" id="">
                     <option value="6">Blogs Per Page: 6</option>

@@ -25,14 +25,14 @@ const AddBlog = () => {
     }
 
     const handleAddBlog = (newBlog) => {
-        // send data to the server
+        // send data to the server/database
         const finalBlog = {
-            ...newBlog, posted_on: moment().format("YYYY-MM-DD HH:mm:ss"), posted_by: user.displayName, blogger_email: user.email
+            ...newBlog, posted_on: moment().format("YYYY-MM-DD HH:mm:ss"), posted_by: user.displayName, blogger_email: user.email, blogger_photo: user.photoURL
         }
         // console.log(finalBlog);
+        
         axios.post(`http://localhost:5000/blogs`, { ...finalBlog })
             .then(res => {
-                console.log(res.data);
                 if (res.data.insertedId) {
                     Swal.fire({
                         title: 'Congratulations!!',
