@@ -28,9 +28,12 @@ const Comments = ({ blog }) => {
     const handlePostComment = (e) => {
         e.preventDefault();
         const newComment = e.target.comment.value;
-        if (newComment === "") return;
+        if (newComment === "") {
+            toast.error('Please, Write Something!', { duration: 1500 })
+            return;
+        }
         if (user.email === blogger_email) {
-            toast.error('Cannot comment on own blog!');
+            toast.error('Cannot comment on Own Blog!', { duration: 3000 });
             setHideTextArea(!hideTextArea);
             return;
         }
@@ -75,8 +78,8 @@ const Comments = ({ blog }) => {
     }
 
     return (
-        <div>
-            <h3>Write Your Comment</h3>
+        <div className="my-4">
+            <h3 className="font-semibold mb-2">Write Your Comment</h3>
             {
                 hideTextArea
                     ? <p className="text-red-700 font-semibold">Cannot Comment on Own Blog!</p>

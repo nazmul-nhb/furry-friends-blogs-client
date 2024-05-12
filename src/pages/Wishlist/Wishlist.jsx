@@ -24,10 +24,10 @@ const Wishlist = () => {
     useEffect(() => {
         if (wishlistBlogs) {
             const wishlistBlogIDs = wishlistBlogs?.map(wished => wished.blog_id);
-            console.log(wishlistBlogIDs);
+            // console.log(wishlistBlogIDs);
             axios.post(`http://localhost:5000/wishlist-blogs?`, [...wishlistBlogIDs])
                 .then(res => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     setBlogs(res.data);
                     refetch();
                 })
@@ -41,7 +41,7 @@ const Wishlist = () => {
     const handleDeleteWishlist = (id) => {
         Swal.fire({
             title: 'Are You Sure?',
-            text: `Do you want to remove it from Wishlist?`,
+            text: `Remove the Blog from Your Wishlist?`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#ff0000',
@@ -54,11 +54,11 @@ const Wishlist = () => {
                         if (res.data.deletedCount > 0) {
                             refetch();
                             Swal.fire(
-                                'Deleted!',
-                                'Item has been Deleted!',
+                                'Removed!',
+                                'Blog Removed from Wishlist!',
                                 'success'
                             )
-                            toast.success('Successfully Removed from Wishlist!')
+                            toast.success('Blog Removed from Wishlist!')
                         }
                     })
                     .catch(error => {
