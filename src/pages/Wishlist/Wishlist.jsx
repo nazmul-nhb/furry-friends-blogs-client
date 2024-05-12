@@ -5,6 +5,8 @@ import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
 import Blog from "../../components/Blog/Blog";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const Wishlist = () => {
     const { user } = useAuth();
@@ -15,14 +17,14 @@ const Wishlist = () => {
             const res = await axios.get(`http://localhost:5000/wishlist?email=${user.email}`);
             return res.data;
         },
-        enabled: true, 
+        enabled: true,
     });
 
     console.log(wishlistBlogs);
 
-    useEffect(() => {
-        refetch();
-    }, [refetch]);
+    // useEffect(() => {
+    //     refetch();
+    // }, [refetch]);
 
     useEffect(() => {
         if (wishlistBlogs) {
@@ -32,12 +34,38 @@ const Wishlist = () => {
                 .then(res => {
                     console.log(res.data);
                     setBlogs(res.data);
+                    refetch();
                 })
                 .catch(error => {
                     console.error(error);
                 })
         }
-    }, [wishlistBlogs])
+    }, [refetch, wishlistBlogs])
+
+    // Delete Wishlist Item one by one
+    const handleDeleteWishlist = (id) => {
+        Swal.fire({
+            title: 'Are You Sure?',
+            text: `Do you want to remove it from Wishlist?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#ff0000',
+            cancelButtonColor: '#2a7947',
+            confirmButtonText: 'Yes, Remove It!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:5000/wishlist/${id}?email=${user.email}`)
+                    .then(res => {
+                        console.log(res.data);
+                        refetch();
+                        toast.success('Successfully Removed from Wishlist!')
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    })
+            }
+        })
+    }
 
     if (isPending) {
         return (
@@ -67,6 +95,8 @@ const Wishlist = () => {
                     blogs?.map(blog => <Blog
                         key={blog._id}
                         blog={blog}
+                        wishlist={true}
+                        handleDeleteWishlist={handleDeleteWishlist}
                     ></Blog>)
                 }
             </div>

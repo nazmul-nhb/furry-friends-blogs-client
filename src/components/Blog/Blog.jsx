@@ -6,8 +6,8 @@ import moment from 'moment';
 import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
 
-const Blog = ({ blog }) => {
-    const {user} = useAuth();
+const Blog = ({ blog, wishlist, handleDeleteWishlist }) => {
+    const { user } = useAuth();
     const { blog_title, category, image, short_description, posted_on, posted_by, _id } = blog;
     const formattedDate = moment(posted_on).format('MMMM DD, YYYY [at] hh:mm A');
     // console.log(blog);
@@ -32,7 +32,11 @@ const Blog = ({ blog }) => {
                 <img className='aspect-[2/1] rounded-xl' src={image} alt={blog_title} />
                 <div className=" rounded-b-xl flex justify-between items-center absolute bottom-0 left-0 right-0 bg-[#819bcc9f] p-2">
                     <Link to={`/blog-details/${_id}`}><Button className={'border px-6 py-2 rounded-3xl font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Read Full Blog'}></Button></Link>
-                    <Button onClick={handleAddToWishlist} className={'border px-6 py-2 rounded-3xl font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Wishlist'}></Button>
+                    {wishlist ?
+                        <Button onClick={() => handleDeleteWishlist(_id)} className={'border px-6 py-2 rounded-3xl font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Remove Wishlist'}></Button>
+                        : <Button onClick={handleAddToWishlist} className={'border px-6 py-2 rounded-3xl font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Wishlist'}></Button>
+
+                    }
                 </div>
                 <h5 className='rounded-t-xl bg-[#819bcc9f] w-full p-2 absolute top-0 right-0'>{category}</h5>
             </figure>
@@ -45,6 +49,8 @@ const Blog = ({ blog }) => {
 
 Blog.propTypes = {
     blog: PropTypes.object,
+    wishlist: PropTypes.bool,
+    handleDeleteWishlist: PropTypes.func,
 }
 
 export default Blog;
