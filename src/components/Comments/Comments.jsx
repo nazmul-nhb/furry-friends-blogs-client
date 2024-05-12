@@ -4,38 +4,40 @@ import Comment from "./Comment";
 import Button from "../Button/Button";
 import axios from "axios";
 import toast from "react-hot-toast";
-// import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import moment from "moment";
+import catLoading from '../../assets/blue-cat.svg'
 
 const Comments = ({ blog }) => {
-    const [comments, setComments] = useState([])
+    // const [comments, setComments] = useState([]);
     const [hideTextArea, setHideTextArea] = useState(false);
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
 
     const { user } = useAuth();
     const { _id, blogger_email } = blog;
 
     // Tanstack Query cannot Update new comments on UI instantly!
-    // const { isPending, isError, error, data: comments } = useQuery({
-    //     queryKey: ['comments', _id],
-    //     queryFn: async () => {
-    //         const res = await axios.get(`http://localhost:5000/comments/${_id}`);
-    //         return res.data;
-    //     }
-    // })
+    const { isPending, isError, error, data: comments, refetch } = useQuery({
+        queryKey: ['comments', _id],
+        queryFn: async () => {
+            const res = await axios.get(`http://localhost:5000/comments/${_id}`);
+            return res.data;
+        },
+        enabled: true,
+    })
 
-    useEffect(() => {
-        setLoading(true);
-        axios.get(`http://localhost:5000/comments/${_id}`)
-            .then(res => {
-                setComments(res.data)
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error(error);
-            })
-    }, [_id])
+    // useEffect(() => {
+    //     setLoading(true);
+    //     axios.get(`http://localhost:5000/comments/${_id}`)
+    //         .then(res => {
+    //             setComments(res.data)
+    //             setLoading(false);
+    //         })
+    //         .catch(error => {
+    //             console.error(error);
+    //         })
+    // }, [_id])
 
     // console.log(comments);
 
@@ -56,38 +58,48 @@ const Comments = ({ blog }) => {
             blog_id: _id,
             commented_on: moment().format("YYYY-MM-DD HH:mm:ss")
         }
-        setLoading(true);
+        // setLoading(true);
         axios.post(`http://localhost:5000/comments`, { ...commentData })
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {
-                    setComments(() => [commentData, ...comments]);
-                    toast.success('Successfully Commented!')
+                    // setComments(() => [commentData, ...comments]);
+                    e.target.reset();
+                    refetch();
+                    toast.success('Successfully Commented!');
                 }
-                setLoading(false);
+                // setLoading(false);
             })
             .catch(error => {
                 console.error(error);
                 toast.error("Error Occurred!");
-                setLoading(false);
+                // setLoading(false);
             })
 
-        setLoading(true);
-        axios.get(`http://localhost:5000/comments/${_id}`)
-            .then(res => {
-                setComments(res.data);
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error(error);
-                setLoading(false);
-            })
+        // setLoading(true);
+        // axios.get(`http://localhost:5000/comments/${_id}`)
+        //     .then(res => {
+        //         // setComments(res.data);
+        //         setLoading(false);
+        //     })
+        //     .catch(error => {
+        //         console.error(error);
+        //         setLoading(false);
+        //     })
     }
 
-    if (loading) {
+    if (isPending) {
         return (
             <div className="flex items-center justify-center space-x-2">
-                .......
+                <img src={catLoading} alt="Loading..." />
+            </div>
+        )
+    }
+
+    if (isError) {
+        return (
+            <div className="flex items-center justify-center space-x-2">
+                <span>Error: {error.message}</span>
             </div>
         )
     }

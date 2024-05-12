@@ -1,31 +1,42 @@
 import PropTypes from 'prop-types';
 import Button from '../Button/Button';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import moment from 'moment';
+import catLoading from '../../assets/blue-cat.svg'
+import { useQuery } from '@tanstack/react-query';
 
 const Comment = ({ comment }) => {
     const { user } = useAuth();
     const [showReplyBox, setShowReplyBox] = useState(false);
-    const [replies, setReplies] = useState([]);
-    const [loading, setLoading] = useState(false);
+    // const [replies, setReplies] = useState([]);
+    // const [loading, setLoading] = useState(false);
 
     const { _id, comment_body, commenter_email, commenter_name, commenter_photo, commented_on } = comment;
     const commentTime = moment(commented_on).format('MMMM DD, YYYY [at] hh:mm A');
 
-    useEffect(() => {
-        setLoading(true);
-        axios.get(`http://localhost:5000/replies/${_id}`)
-            .then(res => {
-                setReplies(res.data);
-                setLoading(false)
-            })
-            .catch(error => {
-                console.error(error);
-            })
-    }, [_id])
+    const { isPending, isError, error, data: replies, refetch } = useQuery({
+        queryKey: ['replies', _id],
+        queryFn: async () => {
+            const res = await axios.get(`http://localhost:5000/replies/${_id}`);
+            return res.data;
+        },
+        enabled: true,
+    })
+
+    // useEffect(() => {
+    //     setLoading(true);
+    //     axios.get(`http://localhost:5000/replies/${_id}`)
+    //         .then(res => {
+    //             setReplies(res.data);
+    //             setLoading(false)
+    //         })
+    //         .catch(error => {
+    //             console.error(error);
+    //         })
+    // }, [_id])
 
     const handlePostReply = (e) => {
         e.preventDefault();
@@ -41,37 +52,47 @@ const Comment = ({ comment }) => {
             replied_on: moment().format("YYYY-MM-DD HH:mm:ss")
         }
 
-        setLoading(true);
+        // setLoading(true);
         axios.post(`http://localhost:5000/replies`, { ...replyData })
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {
-                    setReplies(() => [replyData, ...replies]);
+                    // setReplies(() => [replyData, ...replies]);
+                    e.target.reset();
+                    refetch();
                     toast.success('Successfully Replied!');
                     setShowReplyBox(false);
                 }
-                setLoading(false);
+                // setLoading(false);
             })
             .catch(error => {
                 console.error(error);
                 toast.error("Error Occurred!");
             })
 
-        setLoading(true);
-        axios.get(`http://localhost:5000/replies/${_id}`)
-            .then(res => {
-                setReplies(res.data)
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error(error);
-            })
+        // setLoading(true);
+        // axios.get(`http://localhost:5000/replies/${_id}`)
+        //     .then(res => {
+        //         setReplies(res.data)
+        //         setLoading(false);
+        //     })
+        //     .catch(error => {
+        //         console.error(error);
+        //     })
     }
 
-    if (loading) {
+    if (isPending) {
         return (
             <div className="flex items-center justify-center space-x-2">
-                .......
+                <img src={catLoading} alt="Loading..." />
+            </div>
+        )
+    }
+
+    if (isError) {
+        return (
+            <div className="flex items-center justify-center space-x-2">
+                <span>Error: {error.message}</span>
             </div>
         )
     }
