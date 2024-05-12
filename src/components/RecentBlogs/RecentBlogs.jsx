@@ -34,7 +34,7 @@ const RecentBlogs = () => {
 
     return (
         <section className="my-16 flex flex-col justify-center items-center gap-6">
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid lg:grid-cols-2 gap-6">
                 {
                     blogs?.map(blog => <Blog
                         key={blog._id}
