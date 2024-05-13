@@ -8,39 +8,51 @@ import moment from "moment";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useNavigate, useParams } from "react-router-dom";
+import catLoading from '../../assets/blue-cat.svg';
+import { useQuery } from "@tanstack/react-query";
 
-const AddBlog = () => {
+const UpdateBlog = () => {
+    const { id } = useParams();
     const { user } = useAuth();
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const [showModal, setShowModal] = useState(false);
     const [previewBlog, setPreviewBlog] = useState("");
+    const navigate = useNavigate();
+
+    const { isPending, isError, error, data: blog } = useQuery({
+        queryKey: ['blog', id],
+        queryFn: async () => {
+            const res = await axios.get(`http://localhost:5000/blogs/${id}`);
+            return res.data;
+        },
+    })
 
     const closeModal = () => {
         setShowModal(false);
     };
 
-    const handlePreview = (newBlog) => {
-        setPreviewBlog(newBlog);
+    const handlePreview = (modifiedBlog) => {
+        setPreviewBlog(modifiedBlog);
         setShowModal(true);
     }
 
-    const handleAddBlog = (newBlog) => {
-        // send data to the server/database
-        const finalBlog = {
-            ...newBlog, posted_on: moment().format("YYYY-MM-DD HH:mm:ss"), posted_by: user.displayName, blogger_email: user.email, blogger_photo: user.photoURL
+    const handleUpdateBlog = (modifiedBlog) => {
+        const updatedBlog = {
+            ...modifiedBlog, updated_on: moment().format("YYYY-MM-DD HH:mm:ss"), blogger_photo: user.photoURL
         }
-        // console.log(finalBlog);
 
-        axios.post(`http://localhost:5000/blogs`, { ...finalBlog })
+        axios.patch(`http://localhost:5000/blogs/${id}`, { ...updatedBlog })
             .then(res => {
-                if (res.data.insertedId) {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
                     Swal.fire({
                         title: 'Congratulations!',
-                        text: `"${newBlog.blog_title}" Added Successfully!`,
+                        text: `"${modifiedBlog.blog_title}" Updated Successfully!`,
                         icon: 'success',
-                        confirmButtonText: 'Close'
+                        confirmButtonText: 'Okay'
                     })
-                    reset();
+                    navigate(`/blog-details/${id}`);
                 }
             })
             .catch(error => {
@@ -56,19 +68,38 @@ const AddBlog = () => {
             })
     }
 
+    if (isPending) {
+        return (
+            <div className="flex items-center justify-center space-x-2">
+                <img src={catLoading} alt="Loading..." />
+            </div>
+        )
+    }
+
+    if (isError) {
+        return (
+            <div className="flex items-center justify-center space-x-2">
+                <span>Error: {error.message}</span>
+            </div>
+        )
+    }
+
+    const { blog_title, category, image, short_description, long_description } = blog;
+
     return (
         <section className="mx-2 md:mx-8 my-2 md:my-8 p-2 md:px-4">
             <Helmet>
-                <title>Add Blog - Furry Friends</title>
+                <title>Update {blog_title} - Furry Friends</title>
             </Helmet>
-            <h2 className="text-lg md:text-2xl font-semibold text-center mb-8 md:mb-12">Hello, {user.displayName}, Add A Blog Post</h2>
+            <h2 className="text-lg md:text-2xl font-semibold text-center mb-8 md:mb-12">Hello, {user.displayName}, Update &ldquo;{blog_title}&rdquo;</h2>
 
-            <form onSubmit={handleSubmit(handleAddBlog)} className="flex flex-col gap-6 mx-auto px-4 lg:px-20 py-6 lg:py-10 shadow-[#363538] border rounded-lg">
+            <form onSubmit={handleSubmit(handleUpdateBlog)} className="flex flex-col gap-6 mx-auto px-4 lg:px-20 py-6 lg:py-10 shadow-[#363538] border rounded-lg">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     {/* Blog Title */}
                     <div className="lg:col-span-2 w-full flex flex-col gap-3">
-                        <label className="font-medium" htmlFor="blog_title">Blog Title*</label>
+                        <label className="font-medium" htmlFor="blog_title">Update Blog Title*</label>
                         <input
+                            defaultValue={blog_title}
                             {...register("blog_title", {
                                 required:
                                     { value: true, message: "You must provide a valid Title for Your Blog." }
@@ -80,8 +111,9 @@ const AddBlog = () => {
                     </div>
                     {/* Photo URL for Blog */}
                     <div className="w-full flex flex-col gap-3">
-                        <label className="font-medium" htmlFor="image">Link for Blog Image*</label>
+                        <label className="font-medium" htmlFor="image">Update Link for Blog Image*</label>
                         <input
+                            defaultValue={image}
                             {...register("image", {
                                 required:
                                     { value: true, message: "You must provide a valid link." }
@@ -93,8 +125,9 @@ const AddBlog = () => {
                     </div>
                     {/* Blog Category */}
                     <div className="w-full flex flex-col gap-3">
-                        <label className="font-medium" htmlFor="category">Blog Category*</label>
+                        <label className="font-medium" htmlFor="category">Update Blog Category*</label>
                         <select
+                            defaultValue={category}
                             {...register("category", {
                                 required:
                                     { value: true, message: "You must select a Category." }
@@ -113,8 +146,9 @@ const AddBlog = () => {
                     </div>
                     {/* Short Description */}
                     <div className="lg:col-span-2 w-full flex flex-col gap-3">
-                        <label className="font-medium" htmlFor="short_description">Short Description*</label>
+                        <label className="font-medium" htmlFor="short_description">Update Short Description*</label>
                         <input
+                            defaultValue={short_description}
                             {...register("short_description", {
                                 required: { value: true, message: "You must write something." },
                                 maxLength: { value: 120, message: "Short Description should not exceed 120 characters!" }
@@ -126,8 +160,9 @@ const AddBlog = () => {
                     </div>
                     {/* Long Description */}
                     <div className="lg:col-span-2 w-full flex flex-col gap-3">
-                        <label className="font-medium" htmlFor="long_description">Long Description*</label>
+                        <label className="font-medium" htmlFor="long_description">Update Long Description*</label>
                         <textarea
+                            defaultValue={long_description}
                             {...register("long_description", {
                                 required:
                                     { value: true, message: "You must write something." }
@@ -139,7 +174,7 @@ const AddBlog = () => {
                     </div>
                 </div>
                 <Button onClick={handleSubmit(handlePreview)} buttonType={'button'} className={'border w-full text-xl font-semibold p-2 rounded-3xl'} color={'red'} hoverColor={'white'} hoverBgColor={'transparent'} buttonText={'Preview Your Post'}></Button>
-                <Button buttonType={'submit'} className={'border w-full text-xl font-semibold p-2 rounded-3xl'} buttonText={'Submit'} color={'midnightblue'} hoverColor={'white'} hoverBgColor={'transparent'}></Button>
+                <Button buttonType={'submit'} className={'border w-full text-xl font-semibold p-2 rounded-3xl'} buttonText={'Update Blog'} color={'midnightblue'} hoverColor={'white'} hoverBgColor={'transparent'}></Button>
             </form>
             {
                 showModal && (
@@ -153,4 +188,4 @@ const AddBlog = () => {
     );
 };
 
-export default AddBlog;
+export default UpdateBlog;

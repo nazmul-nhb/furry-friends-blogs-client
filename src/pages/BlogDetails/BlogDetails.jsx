@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import moment from 'moment';
 import Comments from "../../components/Comments/Comments";
 import { Helmet } from "react-helmet-async";
@@ -19,10 +19,6 @@ const BlogDetails = () => {
             return res.data;
         },
     })
-
-    const handleUpdateBlog = (id) => {
-        console.log(id);
-    }
 
     if (isPending) {
         return (
@@ -66,10 +62,10 @@ const BlogDetails = () => {
             <p>{long_description}</p>
             <hr className="mt-6" />
             {
-                user.email === blogger_email && <Button onClick={() => handleUpdateBlog(id)}
+                user.email === blogger_email && <Link to={`/update-blog/${id}`}><Button
                     buttonText={'Update Blog'} hoverBgColor={'transparent'} hoverColor={'white'} color={'midnightblue'}
                     className={'my-2 border rounded-3xl px-4 py-1 font-bold text-xl'}
-                ></Button>
+                ></Button></Link>
             }
             <Comments blog={blog}></Comments>
         </section>
