@@ -1,18 +1,32 @@
 import PropTypes from 'prop-types';
 import Button from '../Button/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import moment from 'moment';
 import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
+import { useState } from 'react';
 
 const Blog = ({ blog, wishlist, handleDeleteWishlist }) => {
     const { user } = useAuth();
+    const navigate = useNavigate();
+    const [countClick, setCountClick] = useState(0);
+
     const { blog_title, category, image, short_description, posted_on, posted_by, _id } = blog;
     const formattedDate = moment(posted_on).format('MMMM DD, YYYY [at] hh:mm A');
     // console.log(blog);
 
     const handleAddToWishlist = () => {
+        // if user isn't logged in show toast & after 2 clicks redirect to login page
+        if (!user) {
+            toast.error('You should login first!');
+            setCountClick(count => count + 1);
+            if (countClick === 2) {
+                navigate('/login');
+            }
+            return;
+        }
+
         axios.post('http://localhost:5000/wishlist', { blog_id: _id, user_email: user.email, time_added: moment().format("YYYY-MM-DD HH:mm:ss") })
             .then(res => {
                 console.log(res.data);

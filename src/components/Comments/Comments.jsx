@@ -90,7 +90,13 @@ const Comments = ({ blog }) => {
             }
             <div className="">
                 {
-                    comments?.map(comment => <Comment key={comment._id} comment={comment}></Comment>)
+                    comments?.map(comment => (<>
+                        <Comment key={comment._id} comment={comment}></Comment>
+                        {
+                            comments.indexOf(comment) !== comments.length - 1 && <hr className='my-4' />
+                        }
+                    </>
+                    ))
                 }
             </div>
         </div>

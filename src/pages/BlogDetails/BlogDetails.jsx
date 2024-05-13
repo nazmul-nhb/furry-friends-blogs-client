@@ -63,6 +63,7 @@ const BlogDetails = () => {
             <h3>{category}</h3>
             <h3>{short_description}</h3>
             <p>{long_description}</p>
+            <hr className="mt-6" />
             {
                 user.email === blogger_email && <Button onClick={() => handleUpdateBlog(id)}
                     buttonText={'Update Blog'} hoverBgColor={'transparent'} hoverColor={'white'} color={'midnightblue'}

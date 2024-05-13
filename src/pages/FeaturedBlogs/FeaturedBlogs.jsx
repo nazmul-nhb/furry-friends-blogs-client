@@ -40,9 +40,7 @@ const FeaturedBlogs = () => {
                 return <img src={cell.row.original.blogger_photo} style={{width:'64px', borderRadius:'100%'}} alt="Profile" />;
             }
         },
-
     ]
-    console.log(featuredBlogs);
 
     if (isPending) {
         return (
