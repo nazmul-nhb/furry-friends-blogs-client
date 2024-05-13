@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import catLoading from '../../assets/blue-cat.svg';
 import TableFeatured from "../../components/TableFeatured/TableFeatured";
 import { useMemo } from 'react';
+import { Link } from "react-router-dom";
 const FeaturedBlogs = () => {
     const { isPending, isError, error, data: featuredBlogs } = useQuery({
         queryKey: ['featuredBlogs'],
@@ -18,11 +19,14 @@ const FeaturedBlogs = () => {
     const columns = [
         {
             header: 'Serial',
-            accessorKey: '_id'
+            accessorKey: 'serial'
         },
         {
             header: 'Blog Title',
-            accessorKey: 'blog_title'
+            accessorKey: 'blog_title',
+            cell: (cell) =>{
+                return <Link className="hover:text-[midnightblue] font-semibold" to={`../blog-details/${cell.row.original._id}`}>{cell.row.original.blog_title}</Link>
+            }
         },
         {
             header: 'Blog Owner',
@@ -30,7 +34,11 @@ const FeaturedBlogs = () => {
         },
         {
             header: 'Profile Picture',
-            accessorKey: 'blogger_photo'
+            accessorKey: 'blogger_photo',
+            cell: (cell) => {
+                console.log(cell);
+                return <img src={cell.row.original.blogger_photo} style={{width:'64px', borderRadius:'100%'}} alt="Profile" />;
+            }
         },
 
     ]

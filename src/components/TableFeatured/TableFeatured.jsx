@@ -43,7 +43,7 @@ const TableFeatured = ({ data, columns }) => {
                             {
                                 row.getVisibleCells().map(cell => (
                                     <td key={cell.id}>
-                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                        {(flexRender(cell.column.columnDef.cell, cell.getContext()))}
                                     </td>
                                 ))
                             }
