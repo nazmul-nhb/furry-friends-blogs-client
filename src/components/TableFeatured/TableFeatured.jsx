@@ -4,9 +4,7 @@ import './TableFeatured.css';
 import { useState } from 'react';
 
 const TableFeatured = ({ data, columns }) => {
-    // const { blog_title, blogger_photo, posted_by } = blog;
     const [sortBlog, setSortBlog] = useState([]);
-
 
     const table = useReactTable({
         data, columns,
@@ -16,12 +14,10 @@ const TableFeatured = ({ data, columns }) => {
         onSortingChange: setSortBlog
     });
 
-
     return (
         <div className='featured-container'>
-            {/* <img src={blogger_photo} alt="" /> */}
-            <table className='featured-table'>
-                <thead>
+            <table className='featured-table overflow-x-auto'>
+                <thead className='overflow-x-auto'>
                     {table.getHeaderGroups().map(headerGroup => (
                         <tr key={headerGroup.id}>
                             {

@@ -13,8 +13,9 @@ const FeaturedBlogs = () => {
             return res.data;
         }
     })
+
     const data = useMemo(() => featuredBlogs, [featuredBlogs]);
-    console.log(data);
+
     /** @type import('@tanstack/react-table').ColumnDef<any> */
     const columns = [
         {
@@ -24,21 +25,24 @@ const FeaturedBlogs = () => {
         {
             header: 'Blog Title',
             accessorKey: 'blog_title',
-            cell: (cell) =>{
+            cell: (cell) => {
                 return <Link className="hover:text-[midnightblue] font-semibold" to={`../blog-details/${cell.row.original._id}`}>{cell.row.original.blog_title}</Link>
             }
         },
         {
-            header: 'Blog Owner',
-            accessorKey: 'posted_by'
+            header: 'Words',
+            accessorKey: 'word_count'
         },
         {
             header: 'Profile Picture',
             accessorKey: 'blogger_photo',
             cell: (cell) => {
-                console.log(cell);
-                return <img src={cell.row.original.blogger_photo} style={{width:'64px', borderRadius:'100%'}} alt="Profile" />;
+                return <img src={cell.row.original.blogger_photo} style={{ width: '64px', borderRadius: '100%' }} alt={cell.row.original.posted_by} />;
             }
+        },
+        {
+            header: 'Blog Owner',
+            accessorKey: 'posted_by'
         },
     ]
 
@@ -65,10 +69,7 @@ const FeaturedBlogs = () => {
             </Helmet>
             Featured Blogs
 
-
-            <TableFeatured data={data} columns={columns}
-            ></TableFeatured>
-
+            <TableFeatured data={data} columns={columns}></TableFeatured>
 
         </section>
     );

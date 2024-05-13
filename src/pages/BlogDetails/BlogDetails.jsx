@@ -6,6 +6,7 @@ import Comments from "../../components/Comments/Comments";
 import { Helmet } from "react-helmet-async";
 import Button from "../../components/Button/Button";
 import useAuth from "../../hooks/useAuth";
+import catLoading from '../../assets/blue-cat.svg';
 
 const BlogDetails = () => {
     const { id } = useParams();
@@ -26,7 +27,7 @@ const BlogDetails = () => {
     if (isPending) {
         return (
             <div className="flex items-center justify-center space-x-2">
-                .......
+                <img src={catLoading} alt="Loading..." />
             </div>
         )
     }
