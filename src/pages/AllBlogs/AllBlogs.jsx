@@ -27,7 +27,7 @@ const AllBlogs = () => {
     }, [category, searchText])
 
     const { isPending, isError, error, data: blogs } = useQuery({
-        queryKey: ['blogs', currentPage, itemsPerPage, blogCount, category, searchText],
+        queryKey: ['blogs', currentPage, itemsPerPage, category, searchText],
         queryFn: async () => {
             const res = await
                 axios.get(`http://localhost:5000/blogs?sort=1&page=${currentPage - 1}&size=${itemsPerPage}&category=${category}&search=${searchText}`);

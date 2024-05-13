@@ -48,7 +48,7 @@ const Register = () => {
                             confirmButtonText: 'Close'
                         });
                     })
-                toast.success("Registration Successful! Please, Login Now!");
+                toast.success("Successful! Please, Login Now!");
                 logOut();
                 navigate('/login');
             })

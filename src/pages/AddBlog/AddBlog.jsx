@@ -38,7 +38,7 @@ const AddBlog = () => {
                         title: 'Congratulations!',
                         text: `"${newBlog.blog_title}" Added Successfully!`,
                         icon: 'success',
-                        confirmButtonText: 'Close'
+                        confirmButtonText: 'Okay!'
                     })
                     reset();
                 }

@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
 import catLoading from '../../assets/blue-cat.svg';
 import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 const UpdateBlog = () => {
     const { id } = useParams();
@@ -38,19 +39,23 @@ const UpdateBlog = () => {
     }
 
     const handleUpdateBlog = (modifiedBlog) => {
+        if (user.email !== blog.blogger_email){
+            toast.error("You cannot update this blog!");
+            navigate(`/blog-details/${id}`)
+            return;
+        }
         const updatedBlog = {
             ...modifiedBlog, updated_on: moment().format("YYYY-MM-DD HH:mm:ss"), blogger_photo: user.photoURL
         }
 
         axios.patch(`http://localhost:5000/blogs/${id}`, { ...updatedBlog })
             .then(res => {
-                console.log(res.data);
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
                         title: 'Congratulations!',
                         text: `"${modifiedBlog.blog_title}" Updated Successfully!`,
                         icon: 'success',
-                        confirmButtonText: 'Okay'
+                        confirmButtonText: 'Okay!'
                     })
                     navigate(`/blog-details/${id}`);
                 }
@@ -104,7 +109,7 @@ const UpdateBlog = () => {
                                 required:
                                     { value: true, message: "You must provide a valid Title for Your Blog." }
                             })}
-                            className="p-2 rounded-lg border border-[midnightblue] transition duration-500 focus:outline-0" type="text" name="blog_title" id="blog_title" placeholder=" Title for Your Blog" />
+                            className="p-2 rounded-lg border border-[midnightblue] transition duration-500 focus:outline-0" type="text" name="blog_title" id="blog_title" placeholder="Update Title for Your Blog" />
                         {
                             errors.blog_title && <p className="text-red-700">{errors.blog_title.message}</p>
                         }
