@@ -73,7 +73,7 @@ const Comment = ({ comment }) => {
         <div className='my-4'>
             {/* Comments */}
             <div className='flex items-center gap-1'>
-                <img src={commenter_photo} alt={commenter_name} className='w-9 rounded-full p-[2px] border' />
+                <img src={commenter_photo} alt={commenter_name} className='w-11 h-11 rounded-full p-[2px] border' />
                 <h4 className='text-lg' title={commenter_email}><span className="font-semibold">{commenter_name}</span> commented:</h4>
             </div>
             <p className='ml-10 mb-2'>{comment_body}</p>
@@ -97,7 +97,7 @@ const Comment = ({ comment }) => {
                 {
                     replies?.map(reply => <div className='ml-5' key={reply._id}>
                         <div className="flex items-center gap-1">
-                            <img src={reply.reply_photo} alt={reply.reply_person} className='w-9 rounded-full p-[2px] border' />
+                            <img src={reply.reply_photo} alt={reply.reply_person} className='w-10 h-10 rounded-full p-[2px] border' />
                             <div className='flex flex-col gap-0 leading-4'>
                                 <h5 className='text-xs'>{moment(reply.replied_on).format('MMMM DD, YYYY [at] hh:mm A')}</h5>
                                 <p title={reply.reply_email}><span className="font-semibold">{reply.reply_person}</span> replied:</p>

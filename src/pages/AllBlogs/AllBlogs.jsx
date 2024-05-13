@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
 import catLoading from '../../assets/blue-cat.svg';
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Blog from "../../components/Blog/Blog";
 
 const AllBlogs = () => {
@@ -10,23 +10,24 @@ const AllBlogs = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [blogCount, setBlogCount] = useState(0);
     const [category, setCategory] = useState('');
-    const [searchText, setSearchText] = useState('')
+    const [searchText, setSearchText] = useState('');
+    const inputRef = useRef(null);
 
     const totalPages = Math.ceil(blogCount / itemsPerPage);
     const pages = [...Array(totalPages).keys()];
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/blogs-count?category=${category}`)
+        axios.get(`http://localhost:5000/blogs-count?category=${category}&search=${searchText}`)
             .then(res => {
                 setBlogCount(res.data.count);
             })
             .catch(error => {
                 console.log(error);
             })
-    }, [category])
-    
+    }, [category, searchText])
+
     const { isPending, isError, error, data: blogs } = useQuery({
-        queryKey: ['blogs', currentPage, itemsPerPage, category, searchText ],
+        queryKey: ['blogs', currentPage, itemsPerPage, blogCount, category, searchText],
         queryFn: async () => {
             const res = await
                 axios.get(`http://localhost:5000/blogs?sort=1&page=${currentPage - 1}&size=${itemsPerPage}&category=${category}&search=${searchText}`);
@@ -57,7 +58,14 @@ const AllBlogs = () => {
     const handleSearchBlog = (e) => {
         e.preventDefault();
         setSearchText(e.target.search.value);
-        console.log(searchText);
+        setCurrentPage(1);
+        // console.log(searchText);
+        // e.target.reset();
+    }
+
+    const clearSearchText = () => {
+        setSearchText('');
+        inputRef.current.value = '';
     }
 
     if (isPending) {
@@ -98,7 +106,12 @@ const AllBlogs = () => {
             </form>
 
             <form onSubmit={handleSearchBlog} className="my-8 flex gap-2 items-center text-blue-900">
-                <input className="text-left p-2 rounded-lg outline outline-none border border-blue-900" placeholder="Search by Blog Title" type="text" name="search" id="search" />
+                <div className="flex gap-2 items-center relative">
+                    <input ref={inputRef} defaultValue={searchText} className="text-left p-2 rounded-lg outline outline-none border border-blue-900" placeholder="Search by Blog Title" type="text" name="search" id="search" />
+                    {
+                        searchText !== '' && <button title="Clear Search Field" onClick={clearSearchText} className="absolute right-2">X</button>
+                    }
+                </div>
                 <button className="border py-2 px-4 rounded-2xl border-blue-900" type="submit">Search</button>
             </form>
 

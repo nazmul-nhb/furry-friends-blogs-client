@@ -50,7 +50,7 @@ const BlogDetails = () => {
 
             <h3 className="text-3xl font-bold mb-2">{blog_title}</h3>
             <figure className="flex gap-2 items-center mb-2">
-                <img className="w-10 h-10 rounded-full" src={blogger_photo} alt={posted_by} />
+                <img className="w-12 h-12 rounded-full p-[2px] border" src={blogger_photo} alt={posted_by} />
                 <div className="leading-4">
                     <p>Posted by {posted_by}</p>
                     <p>{formattedDate}</p>
