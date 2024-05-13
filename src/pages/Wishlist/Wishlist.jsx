@@ -7,14 +7,17 @@ import { useEffect, useState } from "react";
 import Blog from "../../components/Blog/Blog";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Wishlist = () => {
     const { user } = useAuth();
     const [blogs, setBlogs] = useState([]);
+    const axiosSecure = useAxiosSecure();
+
     const { isPending, isError, error, data: wishlistBlogs, refetch } = useQuery({
         queryKey: ['wishlistBlogs'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/wishlist?email=${user.email}`);
+            const res = await axiosSecure.get(`/wishlist?email=${user.email}`);
             return res.data;
         }, enabled: true,
     });
@@ -83,7 +86,6 @@ const Wishlist = () => {
             </div>
         )
     }
-
 
     return (
         <section className="mx-2 md:mx-8 my-2 md:my-8 p-2 md:px-4">

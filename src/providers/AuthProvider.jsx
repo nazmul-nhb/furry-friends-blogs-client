@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useState, createContext, useEffect } from "react";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, GithubAuthProvider } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
+import axios from 'axios';
 
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
@@ -52,13 +53,30 @@ const AuthProvider = ({ children }) => {
     // Observer Function
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            const userEmail = currentUser?.email || user?.email;
+            const loggedUser = { email: userEmail };
             setUser(currentUser);
             setUserLoading(false);
+
+            if (currentUser) {
+                axios.post('http://localhost:5000/jwt', loggedUser, { withCredentials: true })
+                    .then(() => { })
+                    .catch(error => {
+                        console.error(error);
+                    })
+            } else {
+                axios.post('http://localhost:5000/logout', loggedUser, { withCredentials: true })
+                    .then(() => { })
+                    .catch(error => {
+                        console.error(error);
+                    })
+            }
         });
+
         return () => {
             unsubscribe();
         }
-    }, [])
+    }, [user])
 
     const authInfo = { user, createUser, userLogin, googleLogin, facebookLogin, githubLogin, logOut, userLoading, setUserLoading };
 
