@@ -65,24 +65,24 @@ const Navbar = () => {
 
     return (
         <nav className="max-w-[1920px] flex items-center gap-0 md:gap-4 mx-auto shadow-md px-3 py-4 md:px-10 xl:px-20 sticky top-0 bg-gradient-to-l from-[#7b89b8f8] to-[#6883ddfa] bg-opacity-100 z-20 text-[#1e4080]">
-            <div ref={sidebarRef} className="min-[1170px]:hidden text-5xl cursor-pointer" onClick={() => setOpen(!open)}>
+            <div ref={sidebarRef} className="min-[1170px]:hidden max-[430px]:text-4xl text-5xl cursor-pointer" onClick={() => setOpen(!open)}>
                 {
                     open
-                        ? <MdOutlineClose className="text-[#fff] hover:text-[#1e40ad] transform transition-all duration-1000"></MdOutlineClose>
-                        : <MdMenuOpen className="text-[#1e40ad] hover:text-[#fff] transform transition-all duration-1000"></MdMenuOpen>
+                        ? <MdOutlineClose className="text-[#fff] hover:text-[#1e40ad] transform transition-all duration-2000"></MdOutlineClose>
+                        : <MdMenuOpen className="text-[#1e40ad] hover:text-[#fff] transform transition-all duration-2000"></MdMenuOpen>
                 }
             </div>
             <div className="flex justify-between items-center w-full">
                 <div className="flex items-center gap-1" title="Furry Friends">
                     <Link to="/">
-                        <div className="flex gap-1 items-center">
+                        <div className="flex gap-1.5 items-center">
                             <img className="max-[430px]:w-5 w-7 md:w-10" src={logo} alt="Logo" />
                             <h3 className="font-jokeyOneSans max-[430px]:text-lg text-2xl md:text-4xl font-semibold tracking-wider text-[#1e40ad]">Furry Friends <span className="text-white">Blogs</span></h3>
                         </div></Link>
                 </div>
                 {/* Navbar Items/NavLinks/Routes */}
                 <div className="text-sm xl:text-base">
-                    <ul className={`w-1/2 min-[1170px]:w-full flex flex-col min-[1170px]:flex-row justify-start min-[1170px]:justify-center gap-2 text-lg font-semibold duration-500 absolute min-[1170px]:static shadow-lg shadow-slate-700 min-[1170px]:shadow-none h-screen min-[1170px]:h-auto p-4 min-[1170px]:p-0 ${open ? 'left-0 top-20 bg-gradient-to-t from-[#7b89b8f8] to-[#6883ddfa] bg-opacity-100 flex z-10' : '-left-full top-20'}`}>
+                    <ul className={`w-1/2 min-[1170px]:w-full flex flex-col min-[1170px]:flex-row justify-start min-[1170px]:justify-center gap-2 text-lg md:text-xl font-semibold duration-500 absolute min-[1170px]:static shadow-lg shadow-slate-700 min-[1170px]:shadow-none h-screen min-[1170px]:h-auto p-4 min-[1170px]:p-0 ${open ? 'left-0 top-[68px] bg-gradient-to-t from-[#7b89b8f8] to-[#6883ddfa] bg-opacity-100 flex z-10' : '-left-full top-[68px]'}`}>
                         {navItems}
                     </ul>
                 </div>
@@ -93,7 +93,7 @@ const Navbar = () => {
                             <Tooltip anchorSelect=".nameIcon" place="bottom">
                                 {userName}
                             </Tooltip>
-                            <Link to={'/profile'}><img className="nameIcon w-9 md:w-14 h-9 md:h-14 rounded-full border-2 p-[2px] border-[#0e1d42e8] hover:opacity-70 transition-all duration-1000" src={profilePicture} alt={userName} /></Link>
+                            <Link to={'/profile'}><img className="nameIcon w-9 md:w-14 h-9 md:h-14 rounded-full border-2 p-[2px] border-[#1e40ad] hover:opacity-70 transition-all duration-1000" src={profilePicture} alt={userName} /></Link>
                             <Tooltip anchorSelect=".logOutIcon" place="bottom">
                                 Log out
                             </Tooltip>
@@ -101,7 +101,7 @@ const Navbar = () => {
                                 <FaSignOutAlt />
                             </div>
                         </div>
-                        : <ul className="font-jokeyOneSans flex items-center gap-1 md:gap-3 text-base xl:text-lg font-medium md:pt-0 pt-1">
+                        : <ul className="font-jokeyOneSans flex items-center gap-1 md:gap-3 text-base md:text-xl font-medium md:pt-0 pt-1">
                             <NavLink to={'/login'}>Login</NavLink>
                             <NavLink to={'/register'}>Register</NavLink>
                         </ul>
