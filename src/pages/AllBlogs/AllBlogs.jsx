@@ -131,7 +131,8 @@ const AllBlogs = () => {
                     ></Blog>)
                 }
             </div>
-            <div className="flex flex-col gap-4 justify-center items-center font-semibold">
+            {/* Pagination */}
+            <div className="flex flex-col gap-4 justify-center items-center font-semibold my-8 lg:my-16">
                 <p className="text-blue-950">Page: {currentPage} of {totalPages}</p>
                 <div className="flex gap-3">
                     <button className={"px-3 border disabled:text-gray-500 disabled:border-gray-500 disabled:hover:text-gray-500 disabled:hover:bg-transparent text-blue-950 border-blue-950 hover:bg-blue-950 hover:text-white"} disabled={currentPage === 1} onClick={handlePreviousPage}>Previous</button>
