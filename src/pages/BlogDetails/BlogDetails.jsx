@@ -56,7 +56,7 @@ const BlogDetails = () => {
                         <p className="text-gray-500">{formattedDate}</p>
                     </div>
                 </figure>
-                <h3 className="text-[#1e40ad] text-xl font-semibold"><span className="text-black">Posted in Category: </span>{category}</h3>
+                <h3 className="text-furry text-xl font-semibold"><span className="text-black">Posted in Category: </span>{category}</h3>
             </div>
             <hr className="mb-6 mt-2" />
             {/* Blog Image & Short Description */}

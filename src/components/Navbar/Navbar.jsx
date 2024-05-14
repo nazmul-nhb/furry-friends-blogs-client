@@ -68,8 +68,8 @@ const Navbar = () => {
             <div ref={sidebarRef} className="min-[1170px]:hidden max-[430px]:text-4xl text-5xl cursor-pointer" onClick={() => setOpen(!open)}>
                 {
                     open
-                        ? <MdOutlineClose className="text-[#fff] hover:text-[#1e40ad] transform transition-all duration-2000"></MdOutlineClose>
-                        : <MdMenuOpen className="text-[#1e40ad] hover:text-[#fff] transform transition-all duration-2000"></MdMenuOpen>
+                        ? <MdOutlineClose className="text-[#fff] hover:text-furry transform transition-all duration-2000"></MdOutlineClose>
+                        : <MdMenuOpen className="text-furry hover:text-[#fff] transform transition-all duration-2000"></MdMenuOpen>
                 }
             </div>
             <div className="flex justify-between items-center w-full">
@@ -77,7 +77,7 @@ const Navbar = () => {
                     <Link to="/">
                         <div className="flex gap-1.5 items-center">
                             <img className="max-[430px]:w-5 w-7 md:w-10" src={logo} alt="Logo" />
-                            <h3 className="font-jokeyOneSans max-[430px]:text-lg text-2xl md:text-4xl font-semibold tracking-wider text-[#1e40ad]">Furry Friends <span className="text-white">Blogs</span></h3>
+                            <h3 className="font-jokeyOneSans max-[430px]:text-lg text-2xl md:text-4xl font-semibold tracking-wider text-furry">Furry Friends <span className="text-white">Blogs</span></h3>
                         </div></Link>
                 </div>
                 {/* Navbar Items/NavLinks/Routes */}
@@ -93,11 +93,11 @@ const Navbar = () => {
                             <Tooltip anchorSelect=".nameIcon" place="bottom">
                                 {userName}
                             </Tooltip>
-                            <Link to={'/profile'}><img className="nameIcon w-9 md:w-14 h-9 md:h-14 rounded-full border-2 p-[2px] border-[#1e40ad] hover:opacity-70 transition-all duration-1000" src={profilePicture} alt={userName} /></Link>
+                            <Link to={'/profile'}><img className="nameIcon w-9 md:w-14 h-9 md:h-14 rounded-full border-2 p-[2px] border-furry hover:opacity-70 transition-all duration-1000" src={profilePicture} alt={userName} /></Link>
                             <Tooltip anchorSelect=".logOutIcon" place="bottom">
                                 Log out
                             </Tooltip>
-                            <div className="logOutIcon font-bold flex items-center justify-center w-9 md:w-14 h-9 md:h-14 rounded-full border-2 border-[#1e40ad] pl-1 md:pl-1 cursor-pointer text-2xl md:text-3xl hover:text-[28px] hover:md:text-4xl bg-[#1e40ad] text-[#ffffff] hover:text-[#1e40ad] hover:bg-transparent transform transition-all duration-1000" onClick={handleLogout}>
+                            <div className="logOutIcon font-bold flex items-center justify-center w-9 md:w-14 h-9 md:h-14 rounded-full border-2 border-furry pl-1 md:pl-1 cursor-pointer text-2xl md:text-3xl hover:text-[28px] hover:md:text-4xl bg-furry text-[#ffffff] hover:text-furry hover:bg-transparent transform transition-all duration-1000" onClick={handleLogout}>
                                 <FaSignOutAlt />
                             </div>
                         </div>

@@ -203,7 +203,7 @@ const Login = () => {
                         </div>
 
                         <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-lg px-5 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Log into Your Account</button>
-                        <p className="text-center text-sm md:text-base font-medium">New to this site? <Link className="hover:pl-4 text-[#3c5cc3] font-bold hover:text-[#1e40ad] transition-all duration-500" to={'/register'}>Register Here!</Link></p>
+                        <p className="text-center text-sm md:text-base font-medium">New to this site? <Link className="hover:pl-4 text-[#3c5cc3] font-bold hover:text-furry transition-all duration-500" to={'/register'}>Register Here!</Link></p>
                     </form>
                 </div>
             </div>

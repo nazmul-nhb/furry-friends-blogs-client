@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useQuery } from "@tanstack/react-query";
+import { Link } from 'react-router-dom';
 import axios from "axios";
 import catLoading from '../../assets/blue-cat.svg';
 
@@ -13,8 +14,6 @@ import 'swiper/css/thumbs';
 import './Slider.css';
 
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
-import { Link } from 'react-router-dom';
-import Button from '../Button/Button';
 
 const Slider = () => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -59,11 +58,9 @@ const Slider = () => {
                 {blogs?.map(blog => <SwiperSlide key={blog._id}>
                     <div className="flex relative">
                         <img className='w-full aspect-[3/1.4]' src={blog.image} />
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full bg-gradient-to-l from-[#2b39667d] to-[#4b6ee27d] h-full py-4 flex flex-col gap-4 items-center justify-center">
-                            <h3 className="font-kreonSerif text-2xl md:text-3xl lg:text-4xl font-black leading-snug text-white px-8">{blog.blog_title}</h3>
-                            <Link to={`/blog-details/${blog._id}`}>
-                                <Button className={'border !border-[#1e40ad] rounded-3xl px-4 py-2 text-lg md:text-2xl font-bold !bg-[#ffffffaf] hover:!bg-transparent'} color={'white'} hoverBgColor={'transparent'} hoverColor={'#1e40ad'} buttonText={'Read Full Blog'}></Button>
-                            </Link>
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full bg-gradient-to-l from-[#2b39667d] to-[#4b6ee27d] h-full py-4 flex flex-col gap-4 items-center justify-around">
+                            <h3 className="font-kreonSerif max-[430px]:text-base text-2xl md:text-3xl lg:text-4xl font-black leading-snug text-white px-8">{blog.blog_title}</h3>
+                            <Link className='border border-furry rounded-3xl px-3 py-1 md:py-2 md:px-4 text-lg md:text-2xl font-bold hover:bg-[#ffffff68] bg-furry hover:text-furry text-white transition-all duration-500' to={`/blog-details/${blog._id}`}>Read Full Blog</Link>
                         </div>
                     </div>
                 </SwiperSlide>

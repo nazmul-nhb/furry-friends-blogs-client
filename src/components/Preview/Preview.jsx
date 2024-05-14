@@ -7,7 +7,7 @@ const Preview = ({ previewBlog }) => {
         <section className="mx-2 md:mx-8 my-2 md:my-8 p-2 md:px-4">
             <h3 className="font-kreonSerif text-2xl md:text-4xl font-black leading-snug mb-2">{blog_title}</h3>
             {/* Blogger Info */}
-                <h3 className="text-[#1e40ad] text-xl font-semibold"><span className="text-black">Category: </span>{category}</h3>
+            <h3 className="text-furry text-xl font-semibold"><span className="text-black">Category: </span>{category}</h3>
             <hr className="mb-6 mt-2" />
             {/* Blog Image & Short Description */}
             <div className="flex flex-col gap-6 mb-6">

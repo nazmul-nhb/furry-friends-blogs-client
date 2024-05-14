@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        'furry': '#1e40ad',
+      },
       fontFamily: {
         sourceSans: '"Source Sans 3", sans-serif;',
         kreonSerif: '"Kreon", serif;',
