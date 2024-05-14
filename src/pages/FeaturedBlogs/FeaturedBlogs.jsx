@@ -20,7 +20,7 @@ const FeaturedBlogs = () => {
     const columns = [
         {
             header: 'Serial',
-            accessorKey: 'serial'
+            accessorKey: 'total_characters'
         },
         {
             header: 'Blog Title',

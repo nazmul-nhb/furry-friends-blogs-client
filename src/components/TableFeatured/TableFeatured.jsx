@@ -34,12 +34,13 @@ const TableFeatured = ({ data, columns }) => {
                     ))}
                 </thead>
                 <tbody>
-                    {table.getRowModel().rows.map(row => (
+                    {table.getRowModel().rows.map((row, index) => (
                         <tr key={row.id}>
                             {
                                 row.getVisibleCells().map(cell => (
                                     <td key={cell.id}>
-                                        {(flexRender(cell.column.columnDef.cell, cell.getContext()))}
+                                        {cell.column.columnDef.accessorKey === 'total_characters' ? (index + 1)
+                                            : (flexRender(cell.column.columnDef.cell, cell.getContext()))}
                                     </td>
                                 ))
                             }

@@ -54,15 +54,15 @@ const Slider = () => {
                 navigation={true}
                 thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
                 modules={[FreeMode, Navigation, Thumbs]}
-                className="mySwiper2"
+                className="mySwiper2 aspect-[3/1.4]"
             >
                 {blogs?.map(blog => <SwiperSlide key={blog._id}>
                     <div className="flex relative">
-                        <img className='w-full' src={blog.image} />
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full bg-[#0000ff52]">
+                        <img className='w-full aspect-[3/1.4]' src={blog.image} />
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full bg-[#1e3fad7d] py-4 flex flex-col gap-4 items-center justify-center">
                             <h3 className="font-kreonSerif text-4xl font-black leading-snug text-white px-8">{blog.blog_title}</h3>
-                            <Link className="" to={`/blog-details/${blog._id}`}>
-                                <Button buttonText={'Read Full Blog'}></Button>
+                            <Link to={`/blog-details/${blog._id}`}>
+                                <Button className={'border rounded-3xl px-4 py-2 text-2xl font-bold !bg-[#ffffffaf] hover:!bg-transparent'} color={'white'} hoverBgColor={'transparent'} hoverColor={'#1e40ad'} buttonText={'Read Full Blog'}></Button>
                             </Link>
                         </div>
                     </div>
