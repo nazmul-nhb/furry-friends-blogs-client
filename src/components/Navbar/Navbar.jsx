@@ -98,7 +98,7 @@ const Navbar = () => {
                             <Tooltip anchorSelect=".logOutIcon" place="bottom">
                                 Log out
                             </Tooltip>
-                            <div className="logOutIcon font-bold flex items-center justify-center w-9 md:w-14 h-9 md:h-14 rounded-full border-2 border-[#1e40ad] pl-1 cursor-pointer text-2xl md:text-4xl hover:text-3xl hover:md:text-5xl bg-[#1e40ad] text-[#ffffff] hover:text-[#1e40ad] hover:bg-transparent transform transition-all duration-1000" onClick={handleLogout}>
+                            <div className="logOutIcon font-bold flex items-center justify-center w-9 md:w-14 h-9 md:h-14 rounded-full border-2 border-[#1e40ad] pl-1 md:pl-1 cursor-pointer text-2xl md:text-3xl hover:text-[28px] hover:md:text-4xl bg-[#1e40ad] text-[#ffffff] hover:text-[#1e40ad] hover:bg-transparent transform transition-all duration-1000" onClick={handleLogout}>
                                 <FaSignOutAlt />
                             </div>
                         </div>

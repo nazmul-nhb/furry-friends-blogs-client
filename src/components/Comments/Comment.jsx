@@ -86,7 +86,7 @@ const Comment = ({ comment }) => {
                 {
                     showReplyBox && <div className="ml-6 mb-2">
                         <form className="flex items-end gap-4" onSubmit={handlePostReply}>
-                            <textarea className="w-[70%] lg:w-1/3 border rounded-lg p-2" name="reply" id="reply" placeholder={`Reply to ${commenter_name}'s Comment`}></textarea>
+                            <textarea className="w-[70%] lg:w-1/3 border rounded-lg p-2 outline-none focus:border-2" name="reply" id="reply" placeholder={`Reply to ${commenter_name}'s Comment`}></textarea>
 
                             <Button buttonText={'Reply'} buttonType={'submit'} color={'midnightblue'} hoverBgColor={'transparent'} hoverColor={'white'} className={'text-sm border rounded-xl px-3 py-1 font-medium'}></Button>
                         </form>

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import moment from 'moment';
 import Comments from "../../components/Comments/Comments";
 import { Helmet } from "react-helmet-async";
@@ -11,6 +11,7 @@ import catLoading from '../../assets/blue-cat.svg';
 const BlogDetails = () => {
     const { id } = useParams();
     const { user } = useAuth();
+    const navigate = useNavigate();
 
     const { isPending, isError, error, data: blog } = useQuery({
         queryKey: ['blog', id],
@@ -46,29 +47,42 @@ const BlogDetails = () => {
             </Helmet>
 
             <h3 className="font-kreonSerif text-4xl font-black leading-snug mb-2">{blog_title}</h3>
-            <figure className="flex gap-2 items-center mb-2">
-                <img className="w-12 h-12 rounded-full p-[2px] border" src={blogger_photo} alt={posted_by} />
-                <div className="leading-4">
-                    <p>Posted by {posted_by}</p>
-                    <p>{formattedDate}</p>
-                </div>
-            </figure>
+            {/* Blogger Info */}
+            <div className="flex justify-between items-center">
+                <figure className="flex gap-2 items-center mb-2">
+                    <img className="w-12 h-12 rounded-full p-[2px] border" src={blogger_photo} alt={posted_by} />
+                    <div className="leading-4">
+                        <p>Posted by {posted_by}</p>
+                        <p>{formattedDate}</p>
+                    </div>
+                </figure>
+                <h3 className="text-[#1e40ad] text-xl font-semibold"><span className="">Posted in Category: </span>{category}</h3>
+            </div>
 
-            <figure>
-                <img className="w-96" src={image} alt={blog_title} />
-            </figure>
-            <h3>{category}</h3>
-            <h3>{short_description}</h3>
-            <p>{long_description}</p>
-            <hr className="mt-6" />
-            {
-                user.email === blogger_email && <Link to={`/update-blog/${id}`}><Button
-                    buttonText={'Update Blog'} hoverBgColor={'transparent'} hoverColor={'white'} color={'midnightblue'}
-                    className={'my-2 border rounded-3xl px-4 py-1 font-bold text-xl'}
-                ></Button></Link>
-            }
+            {/* Blog Details */}
+            <div className="flex flex-col lg:flex-row gap-6">
+                <img className="w-full lg:w-[640px] p-2 border" src={image} alt={blog_title} />
+                <div className="flex flex-col gap-6">
+                    <h3 className="text-xl font-kreonSerif text-justify">{short_description}</h3>
+                    <div className="flex justify-between">
+                        <Button onClick={() => navigate(-1)}
+                            buttonText={'Go Back'} hoverBgColor={'transparent'} hoverColor={'white'} color={'midnightblue'}
+                            className={'my-2 border px-4 py-1 font-bold text-xl'}
+                        ></Button>
+                        {
+                            user.email === blogger_email && <Link to={`/update-blog/${id}`}><Button
+                                buttonText={'Update Blog'} hoverBgColor={'transparent'} hoverColor={'white'} color={'midnightblue'}
+                                className={'my-2 border px-4 py-1 font-bold text-xl'}
+                            ></Button></Link>
+                        }
+                    </div>
+                </div>
+            </div >
+
+            <p className="text-lg first-letter:text-6xl first-letter:font-bold f first-letter:mr-3 first-letter:float-left first-letter:font-kreonSerif text-justify">{long_description}</p>
+            <hr className="my-6" />
             <Comments blog={blog}></Comments>
-        </section>
+        </section >
     );
 };
 
