@@ -140,7 +140,7 @@ const Login = () => {
     return (
         <section className="mx-2 md:mx-8 my-2 md:my-8 p-2 md:px-4">
             <Helmet>
-                <title>Login - Furry Friends</title>
+                <title>Login - Furry Friends Blogs</title>
             </Helmet>
 
             <div className="flex flex-col md:flex-row-reverse items-center md:items-start justify-between gap-6">

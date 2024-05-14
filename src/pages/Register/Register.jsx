@@ -17,16 +17,16 @@ const Register = () => {
 
     useEffect(() => {
         if (errors.password) {
-            toast.error(errors.password.message, {duration: 2000})
+            toast.error(errors.password.message, { duration: 2000 })
         }
         if (errors.name) {
-            toast.error(errors.name.message, {duration: 2000})
+            toast.error(errors.name.message, { duration: 2000 })
         }
         if (errors.photo) {
-            toast.error(errors.photo.message, {duration: 2000})
+            toast.error(errors.photo.message, { duration: 2000 })
         }
         if (errors.email) {
-            toast.error(errors.email.message, {duration: 2000})
+            toast.error(errors.email.message, { duration: 2000 })
         }
     }, [errors.email, errors.name, errors.password, errors.photo])
 
@@ -170,7 +170,7 @@ const Register = () => {
     return (
         <section className="mx-2 md:mx-8 my-2 md:my-8 p-2 md:px-4">
             <Helmet>
-                <title>Register - Furry Friends</title>
+                <title>Register - Furry Friends Blogs</title>
             </Helmet>
             <div className='flex flex-col md:flex-row items-center md:items-start justify-between gap-6'>
                 <figure className='flex-1 w-1/2 md:w-full'>

@@ -8,7 +8,7 @@ const Profile = () => {
     return (
         <section className="mx-2 md:mx-8 my-2 md:my-8 p-2 md:px-4 space-y-6 flex flex-col justify-center items-center">
             <Helmet>
-                <title>Profile: {user.displayName} - Furry Friends</title>
+                <title>Profile: {user.displayName} - Furry Friends Blogs</title>
             </Helmet>
             <div className="bg-gradient-to-r from-[#4259a457] to-[#324b9eb4] rounded-lg flex flex-col items-center gap-6 w-[96%] md:w-4/5 lg:w-3/4 mx-auto px-4 lg:px-20 py-6 lg:py-10 shadow-lg shadow-[#3c3939]">
                 <div className="flex flex-col gap-3 items-center my-4">

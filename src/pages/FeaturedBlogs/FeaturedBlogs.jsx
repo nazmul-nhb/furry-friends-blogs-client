@@ -67,7 +67,7 @@ const FeaturedBlogs = () => {
     return (
         <section className="mx-2 md:mx-8 my-2 md:my-8 p-2 md:px-4">
             <Helmet>
-                <title>Featured Blogs - Furry Friends</title>
+                <title>Featured Blogs - Furry Friends Blogs</title>
             </Helmet>
             <h3 className="text-center font-bold text-3xl mb-8">Featured Blogs</h3>
             <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-8">Our Top 10 Blogs! The Threshold is Based on Words Count for each Blog post.</p>

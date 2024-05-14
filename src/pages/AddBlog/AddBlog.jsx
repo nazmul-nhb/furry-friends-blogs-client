@@ -59,7 +59,7 @@ const AddBlog = () => {
     return (
         <section className="mx-2 md:mx-8 my-2 md:my-8 p-2 md:px-4">
             <Helmet>
-                <title>Add Blog - Furry Friends</title>
+                <title>Add Blog - Furry Friends Blogs</title>
             </Helmet>
             <h2 className="text-lg md:text-2xl font-semibold text-center mb-8 md:mb-12">Hello, {user.displayName}, Add A Blog Post</h2>
 

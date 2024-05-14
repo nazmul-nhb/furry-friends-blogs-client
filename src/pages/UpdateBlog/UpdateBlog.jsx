@@ -94,7 +94,7 @@ const UpdateBlog = () => {
     return (
         <section className="mx-2 md:mx-8 my-2 md:my-8 p-2 md:px-4">
             <Helmet>
-                <title>Update {blog_title} - Furry Friends</title>
+                <title>Update {blog_title} - Furry Friends Blogs</title>
             </Helmet>
             <h2 className="text-lg md:text-2xl font-semibold text-center mb-8 md:mb-12">Hello, {user.displayName}, Update &ldquo;{blog_title}&rdquo;</h2>
 

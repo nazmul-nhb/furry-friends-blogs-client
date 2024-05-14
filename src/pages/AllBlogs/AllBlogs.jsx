@@ -86,7 +86,7 @@ const AllBlogs = () => {
     return (
         <section className="mx-2 md:mx-8 my-2 md:my-8 p-2 md:px-4">
             <Helmet>
-                <title>All Blogs - Furry Friends</title>
+                <title>All Blogs - Furry Friends Blogs</title>
             </Helmet>
             <h3 className="text-center font-bold text-3xl mb-8">All Blogs</h3>
             <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold">Explore All the Blogs about Your Favorite Pets</p>
@@ -112,7 +112,7 @@ const AllBlogs = () => {
                     <div className="flex gap-2 items-center relative">
                         <input ref={inputRef} defaultValue={searchText} className="text-left p-2 rounded-lg outline outline-none border border-blue-900" placeholder="Search by Blog Title" type="text" name="search" id="search" />
                         {
-                            searchText !== '' && <button title="Clear Search Field" onClick={clearSearchText} className="absolute right-2 text-3xl hover:text-red-900"><FaDeleteLeft/></button>
+                            searchText !== '' && <button title="Clear Search Field" onClick={clearSearchText} className="absolute right-2 text-3xl hover:text-red-900"><FaDeleteLeft /></button>
                         }
                     </div>
                     <button className="border py-2 px-4 rounded-2xl border-blue-900" type="submit">Search</button>

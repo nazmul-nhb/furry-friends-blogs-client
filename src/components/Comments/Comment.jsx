@@ -100,7 +100,7 @@ const Comment = ({ comment }) => {
                             <img src={reply.reply_photo} alt={reply.reply_person} className='w-10 h-10 rounded-full p-[2px] border' />
                             <div className='flex flex-col gap-0 leading-4'>
                                 <h5 className='text-xs'>{moment(reply.replied_on).format('MMMM DD, YYYY [at] hh:mm A')}</h5>
-                                <p title={reply.reply_email}><span className="font-semibold">{reply.reply_person}</span> replied:</p>
+                                <h4 className='font-normal' title={reply.reply_email}><span className="font-bold">{reply.reply_person}</span> replied:</h4>
                             </div>
                         </div>
                         <p className='ml-11'>{reply.reply_body}</p>

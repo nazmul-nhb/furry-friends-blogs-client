@@ -43,7 +43,7 @@ const BlogDetails = () => {
     return (
         <section className="mx-2 md:mx-8 my-2 md:my-8 p-2 md:px-4">
             <Helmet>
-                <title>{blog_title} - Furry Friends</title>
+                <title>{blog_title} - Furry Friends Blogs</title>
             </Helmet>
 
             <h3 className="font-kreonSerif text-2xl md:text-4xl font-black leading-snug mb-2">{blog_title}</h3>
