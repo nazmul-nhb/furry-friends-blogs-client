@@ -41,21 +41,21 @@ const Blog = ({ blog, wishlist, handleDeleteWishlist }) => {
     }
 
     return (
-        <div className='border rounded-xl p-4'>
+        <div className='border rounded-xl p-4 flex flex-col'>
             <figure className=''>
                 <img className='aspect-[2/1] rounded-t-xl' src={image} alt={blog_title} />
             </figure>
             <hr className="my-4" />
             <h3 className="font-kreonSerif text-xl md:text-2xl">{blog_title}</h3>
             <p className='text-gray-500'>Posted by {posted_by} in Category : <span className="text-blue-900">{category}</span></p>
-            <p className="text-gray-700">{short_description}</p>
+            <p className="text-gray-700 flex-grow my-2">{short_description}</p>
             <p className='text-gray-500'>Published on: {formattedDate}</p>
             <hr className="my-4" />
             <div className=" rounded-b-xl flex justify-between items-center p-2">
-                <Link to={`/blog-details/${_id}`}><Button className={'border px-6 py-2 rounded-3xl font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Read Details'}></Button></Link>
+                <Link to={`/blog-details/${_id}`}><Button className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Read Details'}></Button></Link>
                 {wishlist ?
-                    <Button onClick={() => handleDeleteWishlist(_id)} className={'border px-6 py-2 rounded-3xl font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Remove from Wishlist'}></Button>
-                    : <Button onClick={handleAddToWishlist} className={'border px-6 py-2 rounded-3xl font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Add to Wishlist'}></Button>
+                    <Button onClick={() => handleDeleteWishlist(_id)} className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Remove'}></Button>
+                    : <Button onClick={handleAddToWishlist} className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Add to Wishlist'}></Button>
                 }
             </div>
         </div>
