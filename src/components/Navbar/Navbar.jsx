@@ -78,7 +78,8 @@ const Navbar = () => {
                         <div className="flex gap-1.5 items-center">
                             <img className="max-[430px]:w-5 w-7 md:w-10" src={logo} alt="Logo" />
                             <h3 className="font-jokeyOneSans max-[430px]:text-lg text-2xl md:text-4xl font-semibold tracking-wider text-furry">Furry Friends <span className="text-white">Blogs</span></h3>
-                        </div></Link>
+                        </div>
+                    </Link>
                 </div>
                 {/* Navbar Items/NavLinks/Routes */}
                 <div className="text-sm xl:text-base">

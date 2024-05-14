@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import RecentBlogs from "../../components/RecentBlogs/RecentBlogs";
 import Slider from "../../components/Slider/Slider";
+import Newsletter from "../../components/Newsletter/Newsletter";
 
 const Home = () => {
     return (
@@ -8,10 +9,11 @@ const Home = () => {
             <Helmet>
                 <title>Home - Furry Friends Blogs</title>
             </Helmet>
-            <h3 className="text-center text-furry font-bold text-3xl md:text-6xl">Welcome to Furry Friends Blogs</h3>
-            <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold my-4 md:mb-8 md:mt-6 text-lg md:text-2xl">The Home of Pet Lovers who enjoy writing & reading blogs about pets!</p>
+            <h3 className="text-center text-furry font-bold max-[430px]:text-lg text-2xl md:text-6xl">Welcome to Furry Friends Blogs</h3>
+            <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-6 md:mt-6 max-[430px]:text-sm text-lg md:text-2xl">The Home of Pet Lovers who enjoy writing and reading blogs about pets!</p>
             <Slider />
             <RecentBlogs />
+            <Newsletter/>
         </section>
     );
 };
