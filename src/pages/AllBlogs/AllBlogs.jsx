@@ -5,6 +5,7 @@ import catLoading from '../../assets/blue-cat.svg';
 import { useEffect, useRef, useState } from "react";
 import Blog from "../../components/Blog/Blog";
 import { FaDeleteLeft } from "react-icons/fa6";
+import toast from "react-hot-toast";
 
 const AllBlogs = () => {
     const [itemsPerPage, setItemsPerPage] = useState(6);
@@ -58,6 +59,9 @@ const AllBlogs = () => {
 
     const handleSearchBlog = (e) => {
         e.preventDefault();
+        if (e.target.search.value === '') {
+            return toast.error('Please, Search with a Keyword!');
+        }
         setSearchText(e.target.search.value);
         setCurrentPage(1);
     }

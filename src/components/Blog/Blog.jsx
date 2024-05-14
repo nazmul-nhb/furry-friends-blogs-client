@@ -41,7 +41,7 @@ const Blog = ({ blog, wishlist, handleDeleteWishlist }) => {
     }
 
     return (
-        <div className='border rounded-xl p-4 flex flex-col'>
+        <div className='border rounded-xl p-4 flex flex-col shadow-md shadow-blue-950'>
             <figure className=''>
                 <img className='aspect-[2/1] rounded-t-xl' src={image} alt={blog_title} />
             </figure>
