@@ -172,27 +172,29 @@ const Register = () => {
             <Helmet>
                 <title>Register - Furry Friends Blogs</title>
             </Helmet>
-            <div className='flex flex-col md:flex-row items-center md:items-start justify-between gap-6'>
-                <figure className='flex-1 w-1/2 md:w-full'>
-                    <h2 className="text-lg md:text-2xl font-semibold text-center mb-8 font-kreonSerif">Please, Register</h2>
-                    <img src={banner} alt="Banner" />
+            <h2 className="text-2xl md:text-4xl font-semibold text-center mb-8 font-kreonSerif">Please, Register</h2>
+            <div className='flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-8'>
+                <figure className='flex-1 w-1/2 lg:w-full'>
+                    <img src={banner} alt="Register Degister Banner" />
                 </figure>
                 {/* Social Media Login */}
                 <div className='flex-1'>
-                    <h3 className='text-lg md:text-xl font-medium text-center mb-6 font-kreonSerif'>Register with Social Media</h3>
-                    <div className="flex gap-4 text-xl font-bold tracking-wider">
-                        <button onClick={handleGoogleLogin} aria-label="Login with Google" type="button" className="flex items-center justify-center w-full p-2 space-x-4 border rounded-md border-[#dc3c2a] bg-[#dc3c2a] text-[#fff] hover:text-[#dc3c2a] hover:bg-transparent transition-all duration-500">
-                            <FaGoogle />
-                            <p>Google</p>
-                        </button>
-                        <button onClick={handleGithubLogin} aria-label="Login with GitHub" role="button" className="flex items-center justify-center w-full p-2 space-x-4 border rounded-md border-[#010409] bg-[#010409] text-[#fff] hover:text-[#010409] hover:bg-transparent transition-all duration-500">
-                            <FaGithub />
-                            <p>GitHub</p>
-                        </button>
-                        <button onClick={handleFacebookLogin} aria-label="Login with Facebook" role="button" className="flex items-center justify-center w-full p-2 space-x-4 border rounded-md border-[#0866ff] bg-[#0866ff] text-[#fff] hover:text-[#0866ff] hover:bg-transparent transition-all duration-500">
-                            <FaFacebook />
-                            <p>Facebook</p>
-                        </button>
+                    <div className="text-blue-950">
+                        <h3 className='text-lg md:text-xl font-medium text-center mb-6 font-kreonSerif'>Register & Login with Social Media</h3>
+                        <div className="flex flex-col md:flex-row md:items-center gap-4 text-xl font-bold tracking-wider">
+                            <button onClick={handleGoogleLogin} aria-label="Login with Google" type="button" className="flex items-center justify-center w-full p-2 space-x-4 border rounded-md border-[#dc3c2a] bg-[#dc3c2a] text-[#fff] hover:text-[#dc3c2a] hover:bg-transparent transition-all duration-500">
+                                <FaGoogle />
+                                <p>Google</p>
+                            </button>
+                            <button onClick={handleGithubLogin} aria-label="Login with GitHub" role="button" className="flex items-center justify-center w-full p-2 space-x-4 border rounded-md border-[#010409] bg-[#010409] text-[#fff] hover:text-[#010409] hover:bg-transparent transition-all duration-500">
+                                <FaGithub />
+                                <p>GitHub</p>
+                            </button>
+                            <button onClick={handleFacebookLogin} aria-label="Login with Facebook" role="button" className="flex items-center justify-center w-full p-2 space-x-4 border rounded-md border-[#0866ff] bg-[#0866ff] text-[#fff] hover:text-[#0866ff] hover:bg-transparent transition-all duration-500">
+                                <FaFacebook />
+                                <p>Facebook</p>
+                            </button>
+                        </div>
                     </div>
                     <div className="flex items-center w-full my-4">
                         <hr className="w-full dark:text-gray-600" />
@@ -200,7 +202,7 @@ const Register = () => {
                         <hr className="w-full dark:text-gray-600" />
                     </div>
                     {/* Email Password Login */}
-                    <form onSubmit={handleSubmit(handleRegister)} className="flex flex-col gap-6 px-4 lg:px-20 py-4 lg:py-10 shadow-lg shadow-[#333335] border border-[#d3d0d0] rounded-md">
+                    <form onSubmit={handleSubmit(handleRegister)} className="w-full flex flex-col gap-6 px-4 lg:px-8 py-4 lg:py-6 shadow-lg shadow-[#333335] border border-[#d3d0d0] rounded-md">
                         <h3 className='text-lg md:text-xl font-medium text-center'>Register with Email & Password</h3>
                         <div className="flex flex-col gap-3">
                             <label className="font-medium" htmlFor="name">Your Name *</label>
