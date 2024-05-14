@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useReactTable, getCoreRowModel, flexRender, getSortedRowModel } from '@tanstack/react-table';
 import './TableFeatured.css';
 import { useState } from 'react';
+import { RiSortAsc, RiSortDesc } from 'react-icons/ri';
 
 const TableFeatured = ({ data, columns }) => {
     const [sortBlog, setSortBlog] = useState([]);
@@ -21,10 +22,10 @@ const TableFeatured = ({ data, columns }) => {
                     {table.getHeaderGroups().map(headerGroup => (
                         <tr key={headerGroup.id}>
                             {
-                                headerGroup.headers.map(header => <th key={header.id} onClick={header.column.getToggleSortingHandler()}>
+                                headerGroup.headers.map(header => <th className='text-blue-900 font-semibold' key={header.id} onClick={header.column.getToggleSortingHandler()}>
                                     {flexRender(header.column.columnDef.header, header.getContext())}
                                     {
-                                        { asc: '🔼', desc: '🔽' }[
+                                        { asc: <RiSortAsc className='inline ml-2' />, desc: <RiSortDesc className='inline ml-2' /> }[
                                         header.column.getIsSorted() ?? null
                                         ]
                                     }

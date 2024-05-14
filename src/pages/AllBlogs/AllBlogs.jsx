@@ -89,7 +89,7 @@ const AllBlogs = () => {
                 <title>All Blogs - Furry Friends</title>
             </Helmet>
             <h3 className="text-center font-bold text-3xl mb-8">All Blogs</h3>
-            <p className="text-center font-semibold">Explore All the Blogs about Your Favorite Pets</p>
+            <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold">Explore All the Blogs about Your Favorite Pets</p>
             {/* Filter & Search */}
             <div className="my-8 flex flex-col md:flex-row justify-start md:justify-center items-center gap-3 md:gap-6">
                 {/* Filter */}

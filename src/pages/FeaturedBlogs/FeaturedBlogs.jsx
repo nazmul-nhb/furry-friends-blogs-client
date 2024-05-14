@@ -20,13 +20,14 @@ const FeaturedBlogs = () => {
     const columns = [
         {
             header: 'Serial',
-            accessorKey: 'total_characters'
+            accessorKey: 'total_characters',
+            enableSorting: false
         },
         {
             header: 'Blog Title',
             accessorKey: 'blog_title',
             cell: (cell) => {
-                return <Link className="hover:text-[midnightblue] font-semibold" to={`../blog-details/${cell.row.original._id}`}>{cell.row.original.blog_title}</Link>
+                return <Link className="hover:text-[midnightblue] font-semibold font-kreonSerif" to={`../blog-details/${cell.row.original._id}`}>{cell.row.original.blog_title}</Link>
             }
         },
         {
@@ -38,7 +39,8 @@ const FeaturedBlogs = () => {
             accessorKey: 'blogger_photo',
             cell: (cell) => {
                 return <img src={cell.row.original.blogger_photo} style={{ width: '64px', borderRadius: '100%' }} alt={cell.row.original.posted_by} />;
-            }
+            },
+            enableSorting: false
         },
         {
             header: 'Blog Owner',
@@ -67,10 +69,9 @@ const FeaturedBlogs = () => {
             <Helmet>
                 <title>Featured Blogs - Furry Friends</title>
             </Helmet>
-            Featured Blogs
-
+            <h3 className="text-center font-bold text-3xl mb-8">Featured Blogs</h3>
+            <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-8">Our Top 10 Blogs! The Threshold is Based on Words Count for each Blog post.</p>
             <TableFeatured data={data} columns={columns}></TableFeatured>
-
         </section>
     );
 };
