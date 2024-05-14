@@ -79,7 +79,7 @@ const BlogDetails = () => {
                 </div>
             </div >
             {/* Blog Post/Long Description */}
-            <p className="text-lg first-letter:text-6xl first-letter:font-bold f first-letter:mr-3 first-letter:float-left first-letter:font-kreonSerif text-justify">{long_description}</p>
+            <p className="text-lg first-letter:text-6xl first-letter:font-bold f first-letter:mr-2 first-letter:float-left first-letter:font-kreonSerif text-justify">{long_description}</p>
             <hr className="my-6" />
             <Comments blog={blog}></Comments>
         </section >

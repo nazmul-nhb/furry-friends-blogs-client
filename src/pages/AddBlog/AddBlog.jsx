@@ -144,7 +144,7 @@ const AddBlog = () => {
             {
                 showModal && (
                     <dialog open className="w-full xl:w-auto h-full bg-gradient-to-b from-[#7076a0ed] to-[#8078a4fb] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg z-20 overflow-y-auto">
-                        <Preview previewItem={previewBlog}></Preview>
+                        <Preview previewBlog={previewBlog}></Preview>
                         <button onClick={closeModal} className='absolute top-1 right-1 text-5xl text-red-900 hover:text-red-700 hover:opacity-80 transition-all duration-500' title='Close'><IoIosCloseCircle /></button>
                     </dialog>
                 )
