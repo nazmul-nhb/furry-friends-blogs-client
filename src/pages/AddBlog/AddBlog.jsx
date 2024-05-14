@@ -31,7 +31,7 @@ const AddBlog = () => {
         }
         // console.log(finalBlog);
 
-        axios.post(`http://localhost:5000/blogs`, { ...finalBlog })
+        axios.post(`https://furry-friends-server-nhb.vercel.app/blogs`, { ...finalBlog })
             .then(res => {
                 if (res.data.insertedId) {
                     Swal.fire({

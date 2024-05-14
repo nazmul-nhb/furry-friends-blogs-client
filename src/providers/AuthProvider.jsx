@@ -59,13 +59,13 @@ const AuthProvider = ({ children }) => {
             setUserLoading(false);
 
             if (currentUser) {
-                axios.post('http://localhost:5000/jwt', loggedUser, { withCredentials: true })
+                axios.post('https://furry-friends-server-nhb.vercel.app/jwt', loggedUser, { withCredentials: true })
                     .then(() => { })
                     .catch(error => {
                         console.error(error);
                     })
             } else {
-                axios.post('http://localhost:5000/logout', loggedUser, { withCredentials: true })
+                axios.post('https://furry-friends-server-nhb.vercel.app/logout', loggedUser, { withCredentials: true })
                     .then(() => { })
                     .catch(error => {
                         console.error(error);

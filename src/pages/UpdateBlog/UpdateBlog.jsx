@@ -24,7 +24,7 @@ const UpdateBlog = () => {
     const { isPending, isError, error, data: blog } = useQuery({
         queryKey: ['blog', id],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/blogs/${id}`);
+            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/blogs/${id}`);
             return res.data;
         },
     })
@@ -39,7 +39,7 @@ const UpdateBlog = () => {
     }
 
     const handleUpdateBlog = (modifiedBlog) => {
-        if (user.email !== blog.blogger_email){
+        if (user.email !== blog.blogger_email) {
             toast.error("You cannot update this blog!");
             navigate(`/blog-details/${id}`)
             return;
@@ -48,7 +48,7 @@ const UpdateBlog = () => {
             ...modifiedBlog, updated_on: moment().format("YYYY-MM-DD HH:mm:ss"), blogger_photo: user.photoURL
         }
 
-        axios.patch(`http://localhost:5000/blogs/${id}`, { ...updatedBlog })
+        axios.patch(`https://furry-friends-server-nhb.vercel.app/blogs/${id}`, { ...updatedBlog })
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({

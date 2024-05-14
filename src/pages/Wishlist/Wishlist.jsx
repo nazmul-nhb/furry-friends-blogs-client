@@ -28,7 +28,7 @@ const Wishlist = () => {
         if (wishlistBlogs) {
             const wishlistBlogIDs = wishlistBlogs?.map(wished => wished.blog_id);
             // console.log(wishlistBlogIDs);
-            axios.post(`http://localhost:5000/wishlist-blogs?`, [...wishlistBlogIDs])
+            axios.post(`https://furry-friends-server-nhb.vercel.app/wishlist-blogs?`, [...wishlistBlogIDs])
                 .then(res => {
                     // console.log(res.data);
                     setBlogs(res.data);
@@ -52,7 +52,7 @@ const Wishlist = () => {
             confirmButtonText: 'Yes, Remove It!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/wishlist/${id}?email=${user.email}`)
+                axios.delete(`https://furry-friends-server-nhb.vercel.app/wishlist/${id}?email=${user.email}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             refetch();

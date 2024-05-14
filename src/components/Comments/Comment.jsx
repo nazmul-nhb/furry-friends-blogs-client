@@ -18,7 +18,7 @@ const Comment = ({ comment }) => {
     const { isPending, isError, error, data: replies, refetch } = useQuery({
         queryKey: ['replies', _id],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/replies/${_id}`);
+            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/replies/${_id}`);
             return res.data;
         }, enabled: true,
     })
@@ -37,7 +37,7 @@ const Comment = ({ comment }) => {
             replied_on: moment().format("YYYY-MM-DD HH:mm:ss")
         }
 
-        axios.post(`http://localhost:5000/replies`, { ...replyData })
+        axios.post(`https://furry-friends-server-nhb.vercel.app/replies`, { ...replyData })
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {

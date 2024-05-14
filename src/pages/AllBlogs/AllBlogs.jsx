@@ -17,7 +17,7 @@ const AllBlogs = () => {
     const pages = [...Array(totalPages).keys()];
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/blogs-count?category=${category}&search=${searchText}`)
+        axios.get(`https://furry-friends-server-nhb.vercel.app/blogs-count?category=${category}&search=${searchText}`)
             .then(res => {
                 setBlogCount(res.data.count);
             })
@@ -30,7 +30,7 @@ const AllBlogs = () => {
         queryKey: ['blogs', currentPage, itemsPerPage, category, searchText],
         queryFn: async () => {
             const res = await
-                axios.get(`http://localhost:5000/blogs?sort=1&page=${currentPage - 1}&size=${itemsPerPage}&category=${category}&search=${searchText}`);
+                axios.get(`https://furry-friends-server-nhb.vercel.app/blogs?sort=1&page=${currentPage - 1}&size=${itemsPerPage}&category=${category}&search=${searchText}`);
             return res.data;
         }
     })

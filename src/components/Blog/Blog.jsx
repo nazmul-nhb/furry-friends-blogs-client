@@ -27,7 +27,7 @@ const Blog = ({ blog, wishlist, handleDeleteWishlist }) => {
             return;
         }
 
-        axios.post('http://localhost:5000/wishlist', { blog_id: _id, user_email: user.email, time_added: moment().format("YYYY-MM-DD HH:mm:ss") })
+        axios.post('https://furry-friends-server-nhb.vercel.app/wishlist', { blog_id: _id, user_email: user.email, time_added: moment().format("YYYY-MM-DD HH:mm:ss") })
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {

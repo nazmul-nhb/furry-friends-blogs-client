@@ -9,7 +9,7 @@ const FeaturedBlogs = () => {
     const { isPending, isError, error, data: featuredBlogs } = useQuery({
         queryKey: ['featuredBlogs'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/featured-blogs`);
+            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/featured-blogs`);
             return res.data;
         }
     })
