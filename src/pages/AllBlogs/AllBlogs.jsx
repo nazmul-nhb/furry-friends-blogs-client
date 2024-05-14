@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import catLoading from '../../assets/blue-cat.svg';
 import { useEffect, useRef, useState } from "react";
 import Blog from "../../components/Blog/Blog";
+import { FaDeleteLeft } from "react-icons/fa6";
 
 const AllBlogs = () => {
     const [itemsPerPage, setItemsPerPage] = useState(6);
@@ -59,8 +60,6 @@ const AllBlogs = () => {
         e.preventDefault();
         setSearchText(e.target.search.value);
         setCurrentPage(1);
-        // console.log(searchText);
-        // e.target.reset();
     }
 
     const clearSearchText = () => {
@@ -89,31 +88,36 @@ const AllBlogs = () => {
             <Helmet>
                 <title>All Blogs - Furry Friends</title>
             </Helmet>
-            All Blogs
-            <form className="my-8 text-blue-900">
-                <select
-                    onChange={handleFilter}
-                    value={category}
-                    className="p-2 rounded-lg outline outline-none border border-blue-900"
-                    name="category" id="category">
-                    <option value="">Filter by Category</option>
-                    <option value="Cats">Cats</option>
-                    <option value="Dogs">Dogs</option>
-                    <option value="Birds">Birds</option>
-                    <option value="Rabbits">Rabbits</option>
-                    <option value="Others">Others</option>
-                </select>
-            </form>
-
-            <form onSubmit={handleSearchBlog} className="my-8 flex gap-2 items-center text-blue-900">
-                <div className="flex gap-2 items-center relative">
-                    <input ref={inputRef} defaultValue={searchText} className="text-left p-2 rounded-lg outline outline-none border border-blue-900" placeholder="Search by Blog Title" type="text" name="search" id="search" />
-                    {
-                        searchText !== '' && <button title="Clear Search Field" onClick={clearSearchText} className="absolute right-2">X</button>
-                    }
-                </div>
-                <button className="border py-2 px-4 rounded-2xl border-blue-900" type="submit">Search</button>
-            </form>
+            <h3 className="text-center font-bold text-3xl mb-8">All Blogs</h3>
+            <p className="text-center font-semibold">Explore All the Blogs about Your Favorite Pets</p>
+            {/* Filter & Search */}
+            <div className="my-8 flex flex-col md:flex-row justify-start md:justify-center items-center gap-3 md:gap-6">
+                {/* Filter */}
+                <form className="text-blue-900">
+                    <select
+                        onChange={handleFilter}
+                        value={category}
+                        className="p-2 rounded-lg outline outline-none border border-blue-900"
+                        name="category" id="category">
+                        <option value="">Filter by Category</option>
+                        <option value="Cats">Cats</option>
+                        <option value="Dogs">Dogs</option>
+                        <option value="Birds">Birds</option>
+                        <option value="Rabbits">Rabbits</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </form>
+                {/* Search */}
+                <form onSubmit={handleSearchBlog} className="flex gap-2 items-center text-blue-900">
+                    <div className="flex gap-2 items-center relative">
+                        <input ref={inputRef} defaultValue={searchText} className="text-left p-2 rounded-lg outline outline-none border border-blue-900" placeholder="Search by Blog Title" type="text" name="search" id="search" />
+                        {
+                            searchText !== '' && <button title="Clear Search Field" onClick={clearSearchText} className="absolute right-2 text-3xl hover:text-red-900"><FaDeleteLeft/></button>
+                        }
+                    </div>
+                    <button className="border py-2 px-4 rounded-2xl border-blue-900" type="submit">Search</button>
+                </form>
+            </div>
 
             <div className="grid lg:grid-cols-2 gap-6">
                 {
