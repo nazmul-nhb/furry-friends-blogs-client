@@ -7,6 +7,7 @@ import { MdMenuOpen, MdOutlineClose } from "react-icons/md";
 import { IoMdLogOut } from "react-icons/io";
 import { Tooltip } from "react-tooltip";
 import useAuth from "../../hooks/useAuth";
+import logo from '../../assets/paw.png'
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
@@ -68,15 +69,16 @@ const Navbar = () => {
             <div ref={sidebarRef} className="min-[1170px]:hidden text-5xl cursor-pointer" onClick={() => setOpen(!open)}>
                 {
                     open
-                        ? <MdOutlineClose className="text-[#ea0c0c] hover:text-[midnightblue] transform transition-all duration-1000"></MdOutlineClose>
-                        : <MdMenuOpen className="text-[midnightblue] hover:text-[#ea0c0c] transform transition-all duration-1000"></MdMenuOpen>
+                        ? <MdOutlineClose className="text-[#ea0c0c] hover:text-[#1e40ad] transform transition-all duration-1000"></MdOutlineClose>
+                        : <MdMenuOpen className="text-[#1e40ad] hover:text-[#ea0c0c] transform transition-all duration-1000"></MdMenuOpen>
                 }
             </div>
             <div className="flex justify-between items-center w-full">
                 <div className="flex items-center gap-1" title="Furry Friends">
                     <Link to="/">
-                        <div className="flex flex-col">
-                            <h3 className="text-base md:text-2xl font-semibold text-[midnightblue]">Furry Friends</h3>
+                        <div className="flex gap-1 items-center">
+                            <img className="w-8 md:w-10" src={logo} alt="Logo" />
+                            <h3 className="text-3xl md:text-5xl font-semibold text-[#1e40ad]">Furry Friends</h3>
                         </div></Link>
                 </div>
                 {/* Navbar Items/NavLinks/Routes */}
@@ -96,7 +98,7 @@ const Navbar = () => {
                             <Tooltip anchorSelect=".logOutIcon" place="bottom">
                                 Log out
                             </Tooltip>
-                            <div className="logOutIcon flex items-center justify-center w-9 md:w-14 h-9 md:h-14 rounded-full border-2 border-[midnightblue] p-[2px] cursor-pointer text-2xl md:text-4xl hover:text-3xl hover:md:text-5xl bg-[midnightblue] text-[#ffffff] hover:text-[#ea0c0c] hover:bg-[#e0d5d5] hover:border-[#ea0c0c] transform transition-all duration-1000" onClick={handleLogout}>
+                            <div className="logOutIcon flex items-center justify-center w-9 md:w-14 h-9 md:h-14 rounded-full border-2 border-[#1e40ad] p-[2px] cursor-pointer text-2xl md:text-4xl hover:text-3xl hover:md:text-5xl bg-[#1e40ad] text-[#ffffff] hover:text-[#ea0c0c] hover:bg-[#e0d5d5] hover:border-[#ea0c0c] transform transition-all duration-1000" onClick={handleLogout}>
                                 <IoMdLogOut />
                             </div>
                         </div>

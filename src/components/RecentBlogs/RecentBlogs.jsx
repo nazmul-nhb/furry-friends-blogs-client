@@ -42,7 +42,7 @@ const RecentBlogs = () => {
                     ></Blog>)
                 }
             </div>
-            <Link to={'/all-blogs'}><Button className={'border px-6 py-2 rounded-3xl font-bold text-2xl'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Show All Blogs'}></Button></Link>
+            <Link to={'/all-blogs'}><Button className={'border px-6 py-2 rounded-3xl font-bold text-2xl'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Show All Blogs'}></Button></Link>
         </section>
     );
 };
