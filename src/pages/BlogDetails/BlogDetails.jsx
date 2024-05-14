@@ -45,7 +45,7 @@ const BlogDetails = () => {
                 <title>{blog_title} - Furry Friends</title>
             </Helmet>
 
-            <h3 className="text-3xl font-bold mb-2">{blog_title}</h3>
+            <h3 className="font-kreonSerif text-4xl font-black leading-snug mb-2">{blog_title}</h3>
             <figure className="flex gap-2 items-center mb-2">
                 <img className="w-12 h-12 rounded-full p-[2px] border" src={blogger_photo} alt={posted_by} />
                 <div className="leading-4">

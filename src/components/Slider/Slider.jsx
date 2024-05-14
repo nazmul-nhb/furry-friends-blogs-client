@@ -60,7 +60,7 @@ const Slider = () => {
                     <div className="flex relative">
                         <img className='w-full' src={blog.image} />
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full bg-[#0000ff52]">
-                            <h3 className="text-3xl font-bold leading-snug text-white px-8">{blog.blog_title}</h3>
+                            <h3 className="font-kreonSerif text-4xl font-black leading-snug text-white px-8">{blog.blog_title}</h3>
                             <Link className="" to={`/blog-details/${blog._id}`}>
                                 <Button buttonText={'Read Full Blog'}></Button>
                             </Link>

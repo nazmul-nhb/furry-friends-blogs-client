@@ -4,10 +4,10 @@ import defaultPP from '../../assets/user.png';
 import { Link, NavLink } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { MdMenuOpen, MdOutlineClose } from "react-icons/md";
-import { IoMdLogOut } from "react-icons/io";
 import { Tooltip } from "react-tooltip";
 import useAuth from "../../hooks/useAuth";
 import logo from '../../assets/paw.png'
+import { FaSignOutAlt } from "react-icons/fa";
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
@@ -65,25 +65,25 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="max-w-[1920px] flex items-center gap-0 md:gap-4 mx-auto shadow-md px-3 py-3 md:px-10 xl:px-20 sticky top-0 bg-gradient-to-l from-[#a0a4beed] to-[#7466b4f6] bg-opacity-100 z-20">
+        <nav className="max-w-[1920px] flex items-center gap-0 md:gap-4 mx-auto shadow-md px-3 py-4 md:px-10 xl:px-20 sticky top-0 bg-gradient-to-l from-[#7b89b8f8] to-[#6883ddfa] bg-opacity-100 z-20 text-[#1e4080]">
             <div ref={sidebarRef} className="min-[1170px]:hidden text-5xl cursor-pointer" onClick={() => setOpen(!open)}>
                 {
                     open
-                        ? <MdOutlineClose className="text-[#ea0c0c] hover:text-[#1e40ad] transform transition-all duration-1000"></MdOutlineClose>
-                        : <MdMenuOpen className="text-[#1e40ad] hover:text-[#ea0c0c] transform transition-all duration-1000"></MdMenuOpen>
+                        ? <MdOutlineClose className="text-[#fff] hover:text-[#1e40ad] transform transition-all duration-1000"></MdOutlineClose>
+                        : <MdMenuOpen className="text-[#1e40ad] hover:text-[#fff] transform transition-all duration-1000"></MdMenuOpen>
                 }
             </div>
             <div className="flex justify-between items-center w-full">
                 <div className="flex items-center gap-1" title="Furry Friends">
                     <Link to="/">
                         <div className="flex gap-1 items-center">
-                            <img className="w-8 md:w-10" src={logo} alt="Logo" />
-                            <h3 className="text-3xl md:text-5xl font-semibold text-[#1e40ad]">Furry Friends</h3>
+                            <img className="max-[430px]:w-5 w-7 md:w-10" src={logo} alt="Logo" />
+                            <h3 className="font-jokeyOneSans max-[430px]:text-lg text-2xl md:text-4xl font-semibold tracking-wider text-[#1e40ad]">Furry Friends <span className="text-white">Blogs</span></h3>
                         </div></Link>
                 </div>
                 {/* Navbar Items/NavLinks/Routes */}
                 <div className="text-sm xl:text-base">
-                    <ul className={`w-1/2 min-[1170px]:w-full flex flex-col min-[1170px]:flex-row justify-start min-[1170px]:justify-center gap-2 font-medium duration-500 absolute min-[1170px]:static shadow-lg shadow-slate-700 min-[1170px]:shadow-none h-screen min-[1170px]:h-auto p-4 min-[1170px]:p-0 ${open ? 'left-0 top-[72px] bg-gradient-to-t from-[#a0a4beed] to-[#6b5caffb] bg-opacity-100 flex z-10' : '-left-full top-[72px]'}`}>
+                    <ul className={`w-1/2 min-[1170px]:w-full flex flex-col min-[1170px]:flex-row justify-start min-[1170px]:justify-center gap-2 text-lg font-semibold duration-500 absolute min-[1170px]:static shadow-lg shadow-slate-700 min-[1170px]:shadow-none h-screen min-[1170px]:h-auto p-4 min-[1170px]:p-0 ${open ? 'left-0 top-20 bg-gradient-to-t from-[#7b89b8f8] to-[#6883ddfa] bg-opacity-100 flex z-10' : '-left-full top-20'}`}>
                         {navItems}
                     </ul>
                 </div>
@@ -98,11 +98,11 @@ const Navbar = () => {
                             <Tooltip anchorSelect=".logOutIcon" place="bottom">
                                 Log out
                             </Tooltip>
-                            <div className="logOutIcon flex items-center justify-center w-9 md:w-14 h-9 md:h-14 rounded-full border-2 border-[#1e40ad] p-[2px] cursor-pointer text-2xl md:text-4xl hover:text-3xl hover:md:text-5xl bg-[#1e40ad] text-[#ffffff] hover:text-[#ea0c0c] hover:bg-[#e0d5d5] hover:border-[#ea0c0c] transform transition-all duration-1000" onClick={handleLogout}>
-                                <IoMdLogOut />
+                            <div className="logOutIcon font-bold flex items-center justify-center w-9 md:w-14 h-9 md:h-14 rounded-full border-2 border-[#1e40ad] pl-1 cursor-pointer text-2xl md:text-4xl hover:text-3xl hover:md:text-5xl bg-[#1e40ad] text-[#ffffff] hover:text-[#1e40ad] hover:bg-transparent transform transition-all duration-1000" onClick={handleLogout}>
+                                <FaSignOutAlt />
                             </div>
                         </div>
-                        : <ul className="flex items-center gap-1 md:gap-3 text-sm xl:text-base font-medium">
+                        : <ul className="font-jokeyOneSans flex items-center gap-1 md:gap-3 text-base xl:text-lg font-medium md:pt-0 pt-1">
                             <NavLink to={'/login'}>Login</NavLink>
                             <NavLink to={'/register'}>Register</NavLink>
                         </ul>

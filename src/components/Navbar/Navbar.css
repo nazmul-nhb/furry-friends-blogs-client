@@ -1,25 +1,25 @@
 ul a.active {
     transition: 1s;
-    border-bottom: 1px solid midnightblue;
-    color: midnightblue !important;
+    border-bottom: 2px solid white;
+    color: white !important;
 }
 
 ul a.pending {
     transition: 1s;
-    border-bottom: 1px solid midnightblue !important;
-    background-color: midnightblue !important;
+    border-bottom: 2px solid #1e40ad !important;
+    background-color: #1e40ad !important;
     color: white !important;
 }
 
 ul a:hover {
-    border-bottom: 1px solid midnightblue !important;
-    background-color: midnightblue !important;
+    border-bottom: 2px solid #1e40ad !important;
+    background-color: #1e40ad !important;
     color: white !important;
 }
 
 ul a {
-    border-bottom: 1px solid transparent;
-    padding: 6px 8px;
+    border-bottom: 2px solid transparent;
+    padding: 4px;
     border-radius: 2px;
     transition: all ease-in-out 0.3s;
 }
