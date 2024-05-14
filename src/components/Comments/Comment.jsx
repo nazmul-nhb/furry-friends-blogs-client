@@ -74,7 +74,7 @@ const Comment = ({ comment }) => {
             {/* Comments */}
             <div className='flex items-center gap-1'>
                 <img src={commenter_photo} alt={commenter_name} className='w-11 h-11 rounded-full p-[2px] border' />
-                <h4 className='text-lg' title={commenter_email}><span className="font-semibold">{commenter_name}</span> commented:</h4>
+                <h4 className='text-lg font-normal' title={commenter_email}><span className="font-bold">{commenter_name}</span> commented:</h4>
             </div>
             <p className='ml-12 mb-2'>{comment_body}</p>
             <div className="text-xs ml-12 flex items-center gap-2 mb-2">

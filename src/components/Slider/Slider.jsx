@@ -59,17 +59,17 @@ const Slider = () => {
                 {blogs?.map(blog => <SwiperSlide key={blog._id}>
                     <div className="flex relative">
                         <img className='w-full aspect-[3/1.4]' src={blog.image} />
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full bg-[#1e3fad7d] py-4 flex flex-col gap-4 items-center justify-center">
-                            <h3 className="font-kreonSerif text-4xl font-black leading-snug text-white px-8">{blog.blog_title}</h3>
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full bg-gradient-to-l from-[#2b39667d] to-[#4b6ee27d] h-full py-4 flex flex-col gap-4 items-center justify-center">
+                            <h3 className="font-kreonSerif text-2xl md:text-3xl lg:text-4xl font-black leading-snug text-white px-8">{blog.blog_title}</h3>
                             <Link to={`/blog-details/${blog._id}`}>
-                                <Button className={'border rounded-3xl px-4 py-2 text-2xl font-bold !bg-[#ffffffaf] hover:!bg-transparent'} color={'white'} hoverBgColor={'transparent'} hoverColor={'#1e40ad'} buttonText={'Read Full Blog'}></Button>
+                                <Button className={'border !border-[#1e40ad] rounded-3xl px-4 py-2 text-lg md:text-2xl font-bold !bg-[#ffffffaf] hover:!bg-transparent'} color={'white'} hoverBgColor={'transparent'} hoverColor={'#1e40ad'} buttonText={'Read Full Blog'}></Button>
                             </Link>
                         </div>
                     </div>
                 </SwiperSlide>
                 )}
             </Swiper>
-            {/* Thumnails for Banner Images */}
+            {/* Thumbnails for Banner Images */}
             <Swiper
                 onSwiper={setThumbsSwiper}
                 loop={true}
@@ -78,7 +78,7 @@ const Slider = () => {
                 freeMode={true}
                 watchSlidesProgress={true}
                 modules={[FreeMode, Navigation, Thumbs]}
-                className="mySwiper mt-4"
+                className="mySwiper mt-2"
             >
                 {blogs?.map(blog => <SwiperSlide key={blog._id}>
                     <img className='w-full' src={blog.image} />
