@@ -51,7 +51,6 @@ const Navbar = () => {
                 <NavLink to={'/wishlist'}>Wishlist</NavLink>
             </>
         }
-        <NavLink to={'/contact'}>Contact</NavLink>
     </>
 
     const handleLogout = () => {

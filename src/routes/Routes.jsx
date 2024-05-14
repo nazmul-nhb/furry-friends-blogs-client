@@ -6,7 +6,6 @@ import AllBlogs from "../pages/AllBlogs/AllBlogs";
 import FeaturedBlogs from "../pages/FeaturedBlogs/FeaturedBlogs";
 import AddBlog from "../pages/AddBlog/AddBlog";
 import Wishlist from "../pages/Wishlist/Wishlist";
-import Contact from "../pages/Contact/Contact";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import BlogDetails from "../pages/BlogDetails/BlogDetails";
@@ -47,10 +46,6 @@ export const router = createBrowserRouter([
             {
                 path: '/update-blog/:id',
                 element: <PrivateRoute><UpdateBlog /></PrivateRoute>
-            },
-            {
-                path: '/contact',
-                element: <Contact />
             },
             {
                 path: '/profile',

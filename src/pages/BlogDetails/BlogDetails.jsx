@@ -46,23 +46,23 @@ const BlogDetails = () => {
                 <title>{blog_title} - Furry Friends</title>
             </Helmet>
 
-            <h3 className="font-kreonSerif text-4xl font-black leading-snug mb-2">{blog_title}</h3>
+            <h3 className="font-kreonSerif text-2xl md:text-4xl font-black leading-snug mb-2">{blog_title}</h3>
             {/* Blogger Info */}
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between md:items-center md:flex-row flex-col">
                 <figure className="flex gap-2 items-center mb-2">
                     <img className="w-12 h-12 rounded-full p-[2px] border" src={blogger_photo} alt={posted_by} />
                     <div className="leading-4">
                         <p>Posted by {posted_by}</p>
-                        <p>{formattedDate}</p>
+                        <p className="text-gray-500">{formattedDate}</p>
                     </div>
                 </figure>
-                <h3 className="text-[#1e40ad] text-xl font-semibold"><span className="">Posted in Category: </span>{category}</h3>
+                <h3 className="text-[#1e40ad] text-xl font-semibold"><span className="text-black">Posted in Category: </span>{category}</h3>
             </div>
-
+            <hr className="mb-6 mt-2" />
             {/* Blog Details */}
-            <div className="flex flex-col lg:flex-row gap-6">
+            <div className="flex flex-col lg:flex-row gap-6 mb-6">
                 <img className="w-full lg:w-[640px] p-2 border" src={image} alt={blog_title} />
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-1 md:gap-6">
                     <h3 className="text-xl font-kreonSerif text-justify">{short_description}</h3>
                     <div className="flex justify-between">
                         <Button onClick={() => navigate(-1)}

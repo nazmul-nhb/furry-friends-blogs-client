@@ -78,8 +78,8 @@ const Comment = ({ comment }) => {
             </div>
             <p className='ml-12 mb-2'>{comment_body}</p>
             <div className="text-xs ml-12 flex items-center gap-2 mb-2">
-                <h5 className=''>{commentTime}</h5>
-                <button className='cursor-pointer' onClick={() => setShowReplyBox(!showReplyBox)}>Reply</button>
+                <h5 className="text-gray-500">{commentTime}</h5>
+                <button className='cursor-pointer text-blue-950 hover:text-blue-600' onClick={() => setShowReplyBox(!showReplyBox)}>Reply</button>
             </div>
             {/* Reply Box */}
             <div className='ml-4 mb-2'>
