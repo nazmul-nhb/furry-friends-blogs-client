@@ -123,7 +123,7 @@ const AllBlogs = () => {
                 </form>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {
                     blogs?.map(blog => <Blog
                         key={blog._id}

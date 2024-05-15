@@ -94,7 +94,7 @@ const Wishlist = () => {
             </Helmet>
             <h3 className="text-center text-furry font-bold text-3xl mb-8">{user.displayName}&rsquo;s Wishlist </h3>
             <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-8">Read the Blogs You kept in your Wishlist for Reading Later.</p>
-            <div className="grid lg:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {
                     blogs?.map(blog => <Blog
                         key={blog._id}
