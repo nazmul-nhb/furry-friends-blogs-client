@@ -4,7 +4,6 @@ import logo from '../../assets/paw.png'
 
 const Footer = () => {
 
-
     return (
         <footer className="max-w-[1920px] mx-auto bg-gradient-to-l to-[#7b93e1fa] from-[#4c69c6fa] mt-8 md:mt-20">
             <div className="px-6 py-8 md:py-12 md:px-20">
