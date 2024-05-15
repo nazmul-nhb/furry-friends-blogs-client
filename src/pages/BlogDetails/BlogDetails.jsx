@@ -7,6 +7,8 @@ import { Helmet } from "react-helmet-async";
 import Button from "../../components/Button/Button";
 import useAuth from "../../hooks/useAuth";
 import catLoading from '../../assets/blue-cat.svg';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const BlogDetails = () => {
     const { id } = useParams();
@@ -61,7 +63,11 @@ const BlogDetails = () => {
             <hr className="mb-6 mt-2" />
             {/* Blog Image & Short Description */}
             <div className="flex flex-col xl:flex-row gap-6 mb-6">
-                <img className="w-full xl:w-[640px] p-2 border" src={image} alt={blog_title} />
+                <PhotoProvider>
+                    <PhotoView src={image}>
+                        <img className="cursor-pointer w-full xl:w-[640px] p-2 border" src={image} alt={blog_title} />
+                    </PhotoView>
+                </PhotoProvider>
                 <div className="flex flex-col gap-1 md:gap-6">
                     <h3 className="text-xl font-kreonSerif text-justify">{short_description}</h3>
                     <div className="flex justify-between">
