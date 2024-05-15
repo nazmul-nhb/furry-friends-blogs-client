@@ -16,17 +16,21 @@ const Register = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (errors.password) {
-            toast.error(errors.password.message, { duration: 2000 })
-        }
         if (errors.name) {
             toast.error(errors.name.message, { duration: 2000 })
+            return;
         }
         if (errors.photo) {
             toast.error(errors.photo.message, { duration: 2000 })
+            return;
         }
         if (errors.email) {
             toast.error(errors.email.message, { duration: 2000 })
+            return;
+        }
+        if (errors.password) {
+            toast.error(errors.password.message, { duration: 2000 })
+            return;
         }
     }, [errors.email, errors.name, errors.password, errors.photo])
 

@@ -3,11 +3,14 @@ import toast from "react-hot-toast";
 import defaultPP from '../../assets/user.png';
 import { Link, NavLink } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { MdMenuOpen, MdOutlineClose } from "react-icons/md";
+import {  MdMenuOpen, MdOutlineClose, MdOutlinePostAdd } from "react-icons/md";
 import { Tooltip } from "react-tooltip";
 import useAuth from "../../hooks/useAuth";
 import logo from '../../assets/paw.png'
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaPaw, FaSignOutAlt } from "react-icons/fa";
+import { IoHome } from "react-icons/io5";
+import { FaBookBookmark } from "react-icons/fa6";
+import { BsListStars } from "react-icons/bs";
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
@@ -41,18 +44,6 @@ const Navbar = () => {
         };
     }, [sidebarRef]);
 
-    const navItems = <>
-        <NavLink to={'/'}>Home</NavLink>
-        <NavLink to={'/all-blogs'}>All Blogs</NavLink>
-        <NavLink to={'/featured-blogs'}>Featured Blogs</NavLink>
-        {
-            user && <>
-                <NavLink to={'/add-blog'}>Add Blog</NavLink>
-                <NavLink to={'/wishlist'}>Wishlist</NavLink>
-            </>
-        }
-    </>
-
     const handleLogout = () => {
         logOut()
             .then(() => {
@@ -64,8 +55,8 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="max-w-[1920px] flex items-center gap-0 md:gap-4 mx-auto shadow-md px-3 py-4 md:px-10 xl:px-20 sticky top-0 bg-gradient-to-l from-[#7b89b8f8] to-[#6883ddfa] bg-opacity-100 z-20 text-[#1e4080]">
-            <div ref={sidebarRef} className="min-[1170px]:hidden max-[430px]:text-4xl text-5xl cursor-pointer" onClick={() => setOpen(!open)}>
+        <nav className="max-w-[1920px] flex items-center gap-0 md:gap-4 mx-auto shadow-md px-3 py-4 md:px-10 xl:px-20 sticky top-0 bg-gradient-to-l from-[#829ae8fa] to-[#7690e5fa] bg-opacity-100 z-20 text-[#1e4080]">
+            <div ref={sidebarRef} className="min-[1170px]:hidden max-[430px]:text-3xl text-5xl cursor-pointer" onClick={() => setOpen(!open)}>
                 {
                     open
                         ? <MdOutlineClose className="text-[#fff] hover:text-furry transform transition-all duration-2000"></MdOutlineClose>
@@ -83,8 +74,16 @@ const Navbar = () => {
                 </div>
                 {/* Navbar Items/NavLinks/Routes */}
                 <div className="text-sm xl:text-base">
-                    <ul className={`w-1/2 min-[1170px]:w-full flex flex-col min-[1170px]:flex-row justify-start min-[1170px]:justify-center gap-2 text-lg md:text-xl font-semibold duration-500 absolute min-[1170px]:static shadow-lg shadow-slate-700 min-[1170px]:shadow-none h-screen min-[1170px]:h-auto p-4 min-[1170px]:p-0 ${open ? 'left-0 top-[68px] bg-gradient-to-t from-[#7b89b8f8] to-[#6883ddfa] bg-opacity-100 flex z-10' : '-left-full top-[68px]'}`}>
-                        {navItems}
+                    <ul className={`w-3/5 min-[1170px]:w-full flex flex-col min-[1170px]:flex-row justify-start min-[1170px]:justify-center gap-2 text-lg md:text-xl font-semibold duration-500 absolute min-[1170px]:static shadow-lg shadow-slate-700 min-[1170px]:shadow-none h-screen min-[1170px]:h-auto p-4 min-[1170px]:p-0 ${open ? 'left-0 top-20 bg-gradient-to-t from-[#7690e5fa] to-[#829ae8fa] bg-opacity-100 flex z-10' : '-left-full top-20'}`}>
+                        <NavLink className={'flex gap-0.5 items-center'} to={'/'}><IoHome className="pb-[2px] text-xl" /> Home</NavLink>
+                        <NavLink className={'flex gap-0.5 items-center'} to={'/all-blogs'}><FaPaw className="pb-[2px] text-xl" /> All Blogs</NavLink>
+                        <NavLink className={'flex gap-0.5 items-center'} to={'/featured-blogs'}><BsListStars className="text-xl" />Featured Blogs</NavLink>
+                        {
+                            user && <>
+                                <NavLink className={'flex gap-0.5 items-center'} to={'/add-blog'}><MdOutlinePostAdd className="pb-[2px] text-2xl" />Add Blog</NavLink>
+                                <NavLink className={'flex gap-0.5 items-center'} to={'/wishlist'}><FaBookBookmark  className="pb-[2px] text-xl" />Wishlist</NavLink>
+                            </>
+                        }
                     </ul>
                 </div>
 

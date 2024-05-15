@@ -6,15 +6,15 @@ const Footer = () => {
 
 
     return (
-        <footer className="max-w-[1920px] mx-auto bg-gradient-to-l to-[#6883ddfa] from-[#405bb6fa] mt-8 md:mt-20">
+        <footer className="max-w-[1920px] mx-auto bg-gradient-to-l to-[#7b93e1fa] from-[#4c69c6fa] mt-8 md:mt-20">
             <div className="px-6 py-8 md:py-12 md:px-20">
                 <div className="flex gap-4 lg:gap-0 flex-col lg:flex-row justify-center lg:items-center lg:justify-between">
                     <div className="flex gap-1.5 flex-col items-center justify-center mx-auto">
-                        <img className="max-[430px]:w-5 w-7 md:w-10" src={logo} alt="Logo" />
+                        <img className="w-10 md:w-16" src={logo} alt="Logo" />
                         <h3 className="font-jokeyOneSans max-[430px]:text-lg text-2xl md:text-4xl font-semibold tracking-wider text-furry">Furry Friends <span className="text-white">Blogs</span></h3>
                     </div>
                 </div>
-                <hr className="border border-dotted border-[#12132D40] my-8" />
+                <hr className="text-white my-8" />
                 <div className="flex flex-col justify-center items-center gap-4 text-[#d8d8dc]">
                     <div className="flex-1 text-center">
                         <h3><a href="#">Terms & Conditions</a></h3>
@@ -25,7 +25,7 @@ const Footer = () => {
                     <div className="flex-1 flex flex-row gap-8 justify-center text-2xl">
                         <a href="https://x.com/nhb42" target="_blank" className="hover:text-furry">
                             <FaXTwitter></FaXTwitter></a>
-                        <a href="https://fb.com/nazmul.batchu" target="_blank" className="hover:text-[#0866ff]">
+                        <a href="https://fb.com/nazmul.batchu" target="_blank" className="hover:text-furry">
                             <FaFacebookF></FaFacebookF></a>
                         <a href="https://www.instagram.com/nazmulbatchu" target="_blank" className="hover:text-[darkred]">
                             <FaInstagram></FaInstagram></a>

@@ -35,7 +35,7 @@ const RecentBlogs = () => {
     return (
         <section className="my-16 flex flex-col justify-center items-center gap-6">
             <h3 className="text-center font-bold text-3xl md:text-4xl">Recent Blog Posts</h3>
-            <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-6 text-lg">6 Recent Blog Posts about Pets. To Learn more click on Read Details. You can also add it to your Wishlist for Reading Later! Click &ldquo;Show All Blogs&rdquo; to Explore all the blog posts! </p>
+            <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-6 text-lg">Explore our recent blogs about pets. You can add it to your Wishlist for reading it later! <br /> Click &ldquo;Show All Blogs&rdquo; to Explore all the blogs! </p>
             <div className="grid lg:grid-cols-2 gap-6">
                 {
                     blogs?.map(blog => <Blog
