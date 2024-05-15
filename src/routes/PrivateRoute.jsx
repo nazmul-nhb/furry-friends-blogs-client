@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from '../hooks/useAuth';
-import catLoading from '../assets/blue-cat.svg';
+import blocks from '../assets/blocks.svg';
 
 const PrivateRoute = ({ children }) => {
     const location = useLocation();
@@ -9,8 +9,8 @@ const PrivateRoute = ({ children }) => {
 
     if (userLoading) {
         return (
-            <div className="flex items-center justify-center space-x-2">
-                <img src={catLoading} alt="userLoading..." />
+            <div className="flex items-center justify-center space-x-2 z-[60]">
+                <img src={blocks} alt="Loading User..." />
             </div>
         )
     }

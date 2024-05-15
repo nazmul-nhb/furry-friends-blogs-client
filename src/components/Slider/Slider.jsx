@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useQuery } from "@tanstack/react-query";
 import { Link } from 'react-router-dom';
 import axios from "axios";
-import catLoading from '../../assets/blue-cat.svg';
+import blocks from '../../assets/blocks.svg';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -28,7 +28,7 @@ const Slider = () => {
     if (isPending) {
         return (
             <div className="flex items-center justify-center space-x-2">
-                <img src={catLoading} alt="Loading..." />
+                <img src={blocks} alt="Loading..." />
             </div>
         )
     }
