@@ -23,9 +23,8 @@ const Newsletter = () => {
             <motion.div
                 style={{
                     scaleY: scrollYProgress
-                }}
-                className="">
-                <h3 className=" text-furry font-bold max-[430px]:text-lg text-2xl md:text-4xl mb-4">Subscribe to Our Newsletter</h3>
+                }}>
+                <h3 className="text-furry font-bold max-[430px]:text-lg text-2xl md:text-4xl mb-4">Subscribe to Our Newsletter</h3>
                 <h4 className="text-furry md:text-xl mb-2 font-kreonSerif">Join Our Furry Friends Family</h4>
                 <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-6 max-[430px]:text-sm md:text-lg">Subscribe to our newsletter today and unlock a world of exclusive pet content, personalized recommendations, and community engagement. Get early access to our latest blogs!</p>
             </motion.div>

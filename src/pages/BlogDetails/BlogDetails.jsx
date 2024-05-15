@@ -52,9 +52,13 @@ const BlogDetails = () => {
             {/* Blogger Info */}
             <div className="flex justify-between md:items-center md:flex-row flex-col">
                 <figure className="flex gap-2 items-center mb-2">
-                    <img className="w-12 h-12 rounded-full p-[2px] border" src={blogger_photo} alt={posted_by} />
+                    <img className="w-12 h-12 rounded-full p-[2px] border" title={blogger_email} src={blogger_photo} alt={posted_by} />
                     <div className="leading-4 flex flex-col gap-1">
-                        <p className="font-kreonSerif">Posted by <span className="font-semibold text-blue-950">{posted_by}</span></p>
+                        <p className="font-kreonSerif">Posted by <span className="font-semibold text-blue-950">
+                            {
+                                user.email === blogger_email ? 'You' : posted_by
+                            }
+                        </span></p>
                         <p className="text-gray-500">{formattedDate}</p>
                     </div>
                 </figure>
