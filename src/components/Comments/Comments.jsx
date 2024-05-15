@@ -90,18 +90,18 @@ const Comments = ({ blog }) => {
                 hideCommentBox
                     ? <p className="text-red-700 font-semibold">Cannot Comment on Own Blog!</p>
                     : <form className="flex flex-col items-start gap-4" onSubmit={handlePostComment}>
-                        <textarea className="w-full h-32 border border-furry rounded-lg p-2 outline-none focus:border-2" name="comment" id="comment" placeholder="Write Your Comment"></textarea>
+                        <textarea className="w-full lg:w-3/5 h-32 border border-furry rounded-lg p-2 outline-none focus:border-2" name="comment" id="comment" placeholder="Write Your Comment"></textarea>
                         <Button buttonText={'Comment'} buttonType={'submit'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} className={'border rounded-xl px-3 py-1 font-medium'}></Button>
                     </form>
             }
-            <div className="">
+            <div className="my-4 border-t">
                 {
-                    comments?.map(comment => (<>
-                        <Comment key={comment._id} comment={comment}></Comment>
+                    comments?.map(comment => (<div key={comment._id}>
+                        <Comment comment={comment}></Comment>
                         {
                             comments.indexOf(comment) !== comments.length - 1 && <hr className='my-4' />
                         }
-                    </>
+                    </div>
                     ))
                 }
             </div>
