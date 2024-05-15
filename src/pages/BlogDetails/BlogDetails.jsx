@@ -66,12 +66,12 @@ const BlogDetails = () => {
                     <h3 className="text-xl font-kreonSerif text-justify">{short_description}</h3>
                     <div className="flex justify-between">
                         <Button onClick={() => navigate(-1)}
-                            buttonText={'Go Back'} hoverBgColor={'transparent'} hoverColor={'white'} color={'midnightblue'}
+                            buttonText={'Go Back'} hoverBgColor={'transparent'} hoverColor={'white'} color={'#1e40ad'}
                             className={'my-2 border px-4 py-1 font-bold text-xl'}
                         ></Button>
                         {
                             user.email === blogger_email && <Link to={`/update-blog/${id}`}><Button
-                                buttonText={'Update Blog'} hoverBgColor={'transparent'} hoverColor={'white'} color={'midnightblue'}
+                                buttonText={'Update Blog'} hoverBgColor={'transparent'} hoverColor={'white'} color={'#1e40ad'}
                                 className={'my-2 border px-4 py-1 font-bold text-xl'}
                             ></Button></Link>
                         }
