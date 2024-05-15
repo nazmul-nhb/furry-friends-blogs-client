@@ -19,7 +19,6 @@ const Footer = () => {
                     <div className="flex-1 text-center">
                         <h3><a href="#">Terms & Conditions</a></h3>
                         <h3><a href="#">Privacy Policy</a></h3>
-                        <h3><a href="#">Frequently Asked Questions</a></h3>
                     </div>
                     {/* Social Media */}
                     <div className="flex-1 flex flex-row gap-8 justify-center text-2xl">

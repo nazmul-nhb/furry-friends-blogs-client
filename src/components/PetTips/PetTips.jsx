@@ -7,6 +7,8 @@ import holiday from '../../assets/tips/holiday.jpeg';
 import health from '../../assets/tips/health.jpeg';
 import behave from '../../assets/tips/behave.jpeg';
 import nutrition from '../../assets/tips/nutrition.jpeg';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const PetTips = () => {
     const [tabIndex, setTabIndex] = useState(0);
@@ -32,7 +34,11 @@ const PetTips = () => {
                     </p>
                     <div className="flex flex-col lg:flex-row-reverse justify-between gap-6">
                         <figure className="w-full lg:w-1/2 flex justify-end">
-                            <img className='p-2 border' src={health} alt="Health Tips" />
+                            <PhotoProvider>
+                                <PhotoView src={health}>
+                                    <img className='p-2 border' src={health} alt="Health Tips" />
+                                </PhotoView>
+                            </PhotoProvider>
                         </figure>
                         <ul className='w-4/5 lg:w-1/2 ml-10 flex flex-col gap-6 md:text-xl'>
                             <li className='list-disc'>Daily Exercise Routines: Tailor exercise regimens to suit the needs of dogs, cats, and small pets, promoting physical fitness and mental stimulation.</li>
@@ -44,15 +50,18 @@ const PetTips = () => {
                         </ul>
                     </div>
                 </TabPanel>
-                    {/* Behavior */}
+                {/* Behavior */}
                 <TabPanel>
                     <p className="text-gray-600 w-4/5 my-4 ml-2 text-sm md:text-lg">
                         Understanding and addressing your pet&rsquo;s behavior is key to fostering a harmonious relationship. Explore effective training techniques and strategies to tackle common behavioral issues:
-
                     </p>
                     <div className="flex flex-col lg:flex-row-reverse justify-between gap-6">
                         <figure className="w-full lg:w-1/2 flex justify-end">
-                            <img src={behave} alt="Behavior Tips" />
+                            <PhotoProvider>
+                                <PhotoView src={behave}>
+                                    <img src={behave} alt="Behavior Tips" />
+                                </PhotoView>
+                            </PhotoProvider>
                         </figure>
                         <ul className='w-4/5 lg:w-1/2 ml-10 flex flex-col gap-6 md:text-xl'>
                             <li className='list-disc'>Training Techniques: From basic commands to house and leash training, equip yourself with the knowledge to instill good behavior habits in your pet.
@@ -69,7 +78,11 @@ const PetTips = () => {
                     </p>
                     <div className="flex flex-col lg:flex-row-reverse justify-between gap-6">
                         <figure className="w-full lg:w-1/2 flex justify-end">
-                            <img src={nutrition} alt="Nutrition" />
+                            <PhotoProvider>
+                                <PhotoView src={nutrition}>
+                                    <img src={nutrition} alt="Nutrition" />
+                                </PhotoView>
+                            </PhotoProvider>
                         </figure>
                         <ul className='w-4/5 lg:w-1/2 ml-10 flex flex-col gap-6 md:text-xl'>
                             <li className='list-disc'>Healthy Treat Recipes: Whip up simple yet nutritious homemade treats to indulge your pet while promoting their health.</li>
@@ -83,10 +96,13 @@ const PetTips = () => {
                     <p className="text-gray-600 w-4/5 my-4 ml-2 text-sm md:text-lg">
                         With the sun shining bright and temperatures soaring, here&rsquo;s how you can keep your pets cool and comfortable during the summer months:
                     </p>
-
                     <div className="flex flex-col lg:flex-row-reverse justify-between gap-6">
                         <figure className="w-full lg:w-1/2 flex justify-end">
-                            <img src={summer} alt="Summer Care" />
+                            <PhotoProvider>
+                                <PhotoView src={summer}>
+                                    <img src={summer} alt="Summer Care" />
+                                </PhotoView>
+                            </PhotoProvider>
                         </figure>
                         <ul className='w-4/5 lg:w-1/2 ml-10 flex flex-col gap-6 md:text-xl'>
                             <li className='list-disc'>Keeping Pets Cool: Provide shade and ample fresh water to prevent overheating, and consider using cooling mats or vests for added relief.</li>
@@ -100,10 +116,13 @@ const PetTips = () => {
                     <p className="text-gray-600 w-4/5 my-4 ml-2 text-sm md:text-lg">
                         When the cold weather sets in, it&rsquo;s important to protect your pets from the chill and potential hazards of the season:
                     </p>
-
                     <div className="flex flex-col lg:flex-row-reverse justify-between gap-6">
                         <figure className="w-full lg:w-1/2 flex justify-end">
-                            <img src={winter} alt="Winter Care" />
+                            <PhotoProvider>
+                                <PhotoView src={winter}>
+                                    <img src={winter} alt="Winter Care" />
+                                </PhotoView>
+                            </PhotoProvider>
                         </figure>
                         <ul className='w-4/5 lg:w-1/2 ml-10 flex flex-col gap-6 md:text-xl'>
                             <li className='list-disc'>Protecting Pets from the Cold: Provide warm bedding indoors and limit outdoor exposure during freezing temperatures, especially for short-haired or elderly pets.</li>
@@ -119,7 +138,11 @@ const PetTips = () => {
                     </p>
                     <div className="flex flex-col lg:flex-row-reverse justify-between gap-6">
                         <figure className="w-full lg:w-1/2 flex justify-end">
-                            <img src={holiday} alt="Holiday Safety" />
+                            <PhotoProvider>
+                                <PhotoView src={holiday}>
+                                    <img src={holiday} alt="Holiday Safety" />
+                                </PhotoView>
+                            </PhotoProvider>
                         </figure>
                         <ul className='w-4/5 lg:w-1/2 ml-10 flex flex-col gap-6 md:text-xl'>
                             <li className='list-disc'>Handling Fireworks: Keep pets indoors during fireworks displays to prevent stress and potential escape, and create a calm and safe environment with familiar toys and blankets.</li>
