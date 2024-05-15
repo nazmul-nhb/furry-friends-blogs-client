@@ -92,16 +92,16 @@ const AllBlogs = () => {
             <Helmet>
                 <title>All Blogs - Furry Friends Blogs</title>
             </Helmet>
-            <h3 className="text-center font-bold text-3xl mb-8">All Blogs</h3>
+            <h3 className="text-center text-furry font-bold text-3xl mb-8">All Blogs</h3>
             <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold">Explore All the Blogs about Your Favorite Pets</p>
             {/* Filter & Search */}
             <div className="my-8 flex flex-col md:flex-row justify-start md:justify-center items-center gap-3 md:gap-6">
                 {/* Filter */}
-                <form className="text-blue-900">
+                <form className="text-furry">
                     <select
                         onChange={handleFilter}
                         value={category}
-                        className="p-2 rounded-lg outline outline-none border border-blue-900"
+                        className="focus:bg-[#dce1f5] p-2 rounded-lg outline outline-none border border-furry"
                         name="category" id="category">
                         <option value="">Filter by Category</option>
                         <option value="Cats">Cats</option>
@@ -112,14 +112,14 @@ const AllBlogs = () => {
                     </select>
                 </form>
                 {/* Search */}
-                <form onSubmit={handleSearchBlog} className="flex gap-2 items-center text-blue-900">
+                <form onSubmit={handleSearchBlog} className="flex gap-2 items-center text-furry">
                     <div className="flex gap-2 items-center relative">
-                        <input ref={inputRef} defaultValue={searchText} className="text-left p-2 rounded-lg outline outline-none border border-blue-900" placeholder="Search by Blog Title" type="text" name="search" id="search" />
+                        <input ref={inputRef} defaultValue={searchText} className="text-left p-2 rounded-lg outline outline-none border focus:bg-[#dce1f5] text-furry border-furry" placeholder="Search by Blog Title" type="text" name="search" id="search" />
                         {
                             searchText !== '' && <button title="Clear Search Field" onClick={clearSearchText} className="absolute right-2 text-3xl hover:text-red-900"><FaDeleteLeft /></button>
                         }
                     </div>
-                    <button className="border py-2 px-4 rounded-2xl border-blue-900" type="submit">Search</button>
+                    <button className="border py-2 px-4 rounded-lg font-bold tracking-wider border-furry bg-furry text-white hover:bg-transparent hover:text-furry transition-all duration-700" type="submit">Search</button>
                 </form>
             </div>
 
@@ -146,7 +146,7 @@ const AllBlogs = () => {
                     }
                     <button className={"px-3 border disabled:text-gray-500 disabled:border-gray-500 disabled:hover:text-gray-500 disabled:hover:bg-transparent text-blue-950 border-blue-950 hover:bg-blue-950 hover:text-white"} disabled={currentPage === pages.length || totalPages === 0} onClick={handleNextPage}>Next</button>
                 </div>
-                <select className="border px-2 py-1 focus:text-orange-700 outline-orange-700 border-blue-900 text-blue-900" value={itemsPerPage} onChange={handleItemsPerPage} name="" id="">
+                <select className="border px-2 py-1 focus:text-orange-700 outline-orange-700 border-furry text-furry" value={itemsPerPage} onChange={handleItemsPerPage} name="" id="">
                     <option value="6">Blogs Per Page: 6</option>
                     <option value="12">Blogs Per Page: 12</option>
                     <option value="24">Blogs Per Page: 24</option>

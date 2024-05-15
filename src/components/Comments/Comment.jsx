@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import Button from '../Button/Button';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -11,6 +11,7 @@ import { useQuery } from '@tanstack/react-query';
 const Comment = ({ comment }) => {
     const { user } = useAuth();
     const [showReplyBox, setShowReplyBox] = useState(false);
+    const replyRef = useRef(null);
 
     const { _id, comment_body, commenter_email, commenter_name, commenter_photo, commented_on } = comment;
     const commentTime = moment(commented_on).format('MMMM DD, YYYY [at] hh:mm A');
@@ -53,6 +54,13 @@ const Comment = ({ comment }) => {
             })
     }
 
+    // Focus Reply Box
+    useEffect(() => {
+        if (showReplyBox && replyRef.current) {
+            replyRef.current.focus();
+        }
+    }, [showReplyBox]);
+
     if (isPending) {
         return (
             <div className="flex items-center justify-center space-x-2">
@@ -79,14 +87,14 @@ const Comment = ({ comment }) => {
             <p className='ml-12 mb-2'>{comment_body}</p>
             <div className="text-xs ml-12 flex items-center gap-2 mb-2">
                 <h5 className="text-gray-500">{commentTime}</h5>
-                <button className='cursor-pointer text-blue-950 hover:text-blue-600' onClick={() => setShowReplyBox(!showReplyBox)}>Reply</button>
+                <button className='cursor-pointer text-blue-950 hover:text-blue-600' onClick={() => setShowReplyBox(showReplyBox => !showReplyBox)}>Reply</button>
             </div>
             {/* Reply Box */}
             <div className='ml-4 mb-2'>
                 {
                     showReplyBox && <div className="ml-6 mb-2">
                         <form className="flex items-end gap-4" onSubmit={handlePostReply}>
-                            <textarea className="w-[70%] lg:w-1/3 border rounded-lg p-2 outline-none focus:border-2" name="reply" id="reply" placeholder={`Reply to ${commenter_name}'s Comment`}></textarea>
+                            <textarea ref={replyRef} className="w-[70%] lg:w-1/3 border rounded-lg p-2 outline-none focus:border-2" name="reply" id="reply" placeholder={`Reply to ${commenter_name}'s Comment`}></textarea>
 
                             <Button buttonText={'Reply'} buttonType={'submit'} color={'midnightblue'} hoverBgColor={'transparent'} hoverColor={'white'} className={'text-sm border rounded-xl px-3 py-1 font-medium'}></Button>
                         </form>
