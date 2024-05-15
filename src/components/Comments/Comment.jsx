@@ -28,7 +28,7 @@ const Comment = ({ comment }) => {
         e.preventDefault();
         const replyText = e.target.reply.value;
         if (replyText === "") return;
-        console.log(replyText);
+        // console.log(replyText);
         const replyData = {
             reply_body: replyText,
             reply_person: user.displayName,
@@ -40,7 +40,7 @@ const Comment = ({ comment }) => {
 
         axios.post(`https://furry-friends-server-nhb.vercel.app/replies`, { ...replyData })
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data.insertedId) {
                     e.target.reset();
                     refetch();
@@ -93,8 +93,8 @@ const Comment = ({ comment }) => {
             <div className='ml-4 mb-2'>
                 {
                     showReplyBox && <div className="ml-6 mb-2">
-                        <form className="flex items-end gap-4" onSubmit={handlePostReply}>
-                            <textarea ref={replyRef} className="w-[70%] lg:w-1/3 border rounded-lg p-2 outline-none focus:border-2" name="reply" id="reply" placeholder={`Reply to ${commenter_name}'s Comment`}></textarea>
+                        <form className="flex items-start flex-col gap-4" onSubmit={handlePostReply}>
+                            <textarea ref={replyRef} className="w-full lg:w-2/5 h-28 border border-furry rounded-lg p-2 outline-none focus:border-2" name="reply" id="reply" placeholder={`Reply to ${commenter_name}'s Comment`}></textarea>
 
                             <Button buttonText={'Reply'} buttonType={'submit'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} className={'text-sm border rounded-xl px-3 py-1 font-medium'}></Button>
                         </form>

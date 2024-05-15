@@ -10,7 +10,7 @@ import moment from "moment";
 import catLoading from '../../assets/blue-cat.svg'
 
 const Comments = ({ blog }) => {
-    const [hideTextArea, setHideTextArea] = useState(false);
+    const [hideCommentBox, setHideCommentBox] = useState(false);
 
     const { user } = useAuth();
     const { _id, blogger_email } = blog;
@@ -34,7 +34,7 @@ const Comments = ({ blog }) => {
         }
         if (user.email === blogger_email) {
             toast.error('Cannot comment on Own Blog!', { duration: 3000 });
-            setHideTextArea(!hideTextArea);
+            setHideCommentBox(!hideCommentBox);
             return;
         }
         const commentData = {
@@ -48,7 +48,7 @@ const Comments = ({ blog }) => {
 
         axios.post(`https://furry-friends-server-nhb.vercel.app/comments`, { ...commentData })
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data.insertedId) {
                     e.target.reset();
                     refetch();
@@ -81,10 +81,10 @@ const Comments = ({ blog }) => {
         <div className="my-4">
             <h3 className="font-semibold mb-2">Write Your Comment</h3>
             {
-                hideTextArea
+                hideCommentBox
                     ? <p className="text-red-700 font-semibold">Cannot Comment on Own Blog!</p>
-                    : <form className="flex items-end gap-4" onSubmit={handlePostComment}>
-                        <textarea className="w-2/3 lg:w-1/3 border rounded-lg p-2 outline-none focus:border-2" name="comment" id="comment" placeholder="Write Your Comment"></textarea>
+                    : <form className="flex flex-col items-start gap-4" onSubmit={handlePostComment}>
+                        <textarea className="w-full h-32 border border-furry rounded-lg p-2 outline-none focus:border-2" name="comment" id="comment" placeholder="Write Your Comment"></textarea>
                         <Button buttonText={'Comment'} buttonType={'submit'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} className={'border rounded-xl px-3 py-1 font-medium'}></Button>
                     </form>
             }

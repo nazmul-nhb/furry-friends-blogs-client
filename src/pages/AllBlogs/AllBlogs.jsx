@@ -24,7 +24,7 @@ const AllBlogs = () => {
                 setBlogCount(res.data.count);
             })
             .catch(error => {
-                console.log(error);
+                console.error(error);
             })
     }, [category, searchText])
 
