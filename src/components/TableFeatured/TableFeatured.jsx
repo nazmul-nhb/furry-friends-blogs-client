@@ -16,13 +16,13 @@ const TableFeatured = ({ data, columns }) => {
     });
 
     return (
-        <div className='featured-container'>
-            <table className='featured-table overflow-x-auto'>
-                <thead className='overflow-x-auto'>
+        <div className='featured-container container overflow-x-auto'>
+            <table className='featured-table table'>
+                <thead>
                     {table.getHeaderGroups().map(headerGroup => (
                         <tr key={headerGroup.id}>
                             {
-                                headerGroup.headers.map(header => <th className='text-blue-900 font-semibold' key={header.id} onClick={header.column.getToggleSortingHandler()}>
+                                headerGroup.headers.map(header => <th className='text-white bg-furry text-lg font-semibold' key={header.id} onClick={header.column.getToggleSortingHandler()}>
                                     {flexRender(header.column.columnDef.header, header.getContext())}
                                     {
                                         { asc: <RiSortAsc className='inline ml-2' />, desc: <RiSortDesc className='inline ml-2' /> }[

@@ -27,25 +27,28 @@ const FeaturedBlogs = () => {
             header: 'Blog Title',
             accessorKey: 'blog_title',
             cell: (cell) => {
-                return <Link className="hover:text-[midnightblue] font-semibold font-kreonSerif" to={`../blog-details/${cell.row.original._id}`}>{cell.row.original.blog_title}</Link>
+                return <Link className="hover:text-furry font-semibold font-kreonSerif" to={`../blog-details/${cell.row.original._id}`}>{cell.row.original.blog_title}</Link>
             }
         },
         {
-            header: 'Words',
-            accessorKey: 'word_count'
-        },
-        {
-            header: 'Profile Picture',
-            accessorKey: 'blogger_photo',
+            header: 'Word Count',
+            accessorKey: 'word_count',
             cell: (cell) => {
-                return <img src={cell.row.original.blogger_photo} style={{ width: '64px', borderRadius: '100%' }} alt={cell.row.original.posted_by} />;
-            },
-            enableSorting: false
+                return <div className="text-center">{cell.row.original.word_count}</div>
+            }
         },
         {
             header: 'Blog Owner',
             accessorKey: 'posted_by'
         },
+        {
+            header: 'Profile Picture',
+            accessorKey: 'blogger_photo',
+            cell: (cell) => {
+                return <img className="w-16 rounded-full p-[2px] border border-furry mx-auto" src={cell.row.original.blogger_photo} title={cell.row.original.blogger_email} alt={cell.row.original.posted_by} />;
+            },
+            // enableSorting: false
+        }
     ]
 
     if (isPending) {
@@ -69,8 +72,8 @@ const FeaturedBlogs = () => {
             <Helmet>
                 <title>Featured Blogs - Furry Friends Blogs</title>
             </Helmet>
-            <h3 className="text-center font-bold text-3xl mb-8">Featured Blogs</h3>
-            <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-8">Our Top 10 Blogs! The Threshold is Based on Words Count for each Blog post.</p>
+            <h3 className="text-center text-furry font-bold text-3xl mb-8">Featured Blogs</h3>
+            <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-8">Our Top 10 Blogs! The Threshold is Based on Word Count for each Blog post.</p>
             <TableFeatured data={data} columns={columns}></TableFeatured>
         </section>
     );
