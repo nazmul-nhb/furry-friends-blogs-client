@@ -4,6 +4,7 @@ import Slider from "../../components/Slider/Slider";
 import Newsletter from "../../components/Newsletter/Newsletter";
 
 const Home = () => {
+
     return (
         <section className="mx-2 md:mx-8 my-2 md:my-8 p-2 md:px-4">
             <Helmet>
@@ -13,7 +14,7 @@ const Home = () => {
             <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-6 md:mt-6 max-[430px]:text-sm text-lg md:text-2xl">The Home of Pet Lovers who enjoy writing and reading blogs about pets!</p>
             <Slider />
             <RecentBlogs />
-            <Newsletter/>
+            <Newsletter />
         </section>
     );
 };

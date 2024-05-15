@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import moment from "moment";
 import catLoading from '../../assets/blue-cat.svg'
+import { useTypewriter } from "react-simple-typewriter";
 
 const Comments = ({ blog }) => {
     const [hideCommentBox, setHideCommentBox] = useState(false);
@@ -61,6 +62,11 @@ const Comments = ({ blog }) => {
             })
     }
 
+    const [text] = useTypewriter({
+        words: [`Write Your Comment`],
+        loop: true,
+    })
+
     if (isPending) {
         return (
             <div className="flex items-center justify-center space-x-2">
@@ -79,7 +85,7 @@ const Comments = ({ blog }) => {
 
     return (
         <div className="my-4">
-            <h3 className="font-semibold mb-2">Write Your Comment</h3>
+            <h3 className="font-semibold mb-2 text-furry text-xl">{user.displayName}, {text}</h3>
             {
                 hideCommentBox
                     ? <p className="text-red-700 font-semibold">Cannot Comment on Own Blog!</p>

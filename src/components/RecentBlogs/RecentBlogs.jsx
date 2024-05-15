@@ -36,14 +36,15 @@ const RecentBlogs = () => {
         <section className="my-16 flex flex-col justify-center items-center gap-6">
             <h3 className="text-center font-bold text-3xl md:text-4xl">Recent Blog Posts</h3>
             <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-6 text-lg">Explore our recent blogs about pets. You can add it to your Wishlist for reading it later! <br /> Click &ldquo;Show All Blogs&rdquo; to Explore all the blogs! </p>
+
             <div className="grid lg:grid-cols-2 gap-6">
                 {
-                    blogs?.map(blog => <Blog
-                        key={blog._id}
-                        blog={blog}
-                    ></Blog>)
+                    blogs?.map(blog => (
+                        <Blog key={blog._id} blog={blog} />
+                    ))
                 }
             </div>
+
             <Link to={'/all-blogs'}><Button className={'border px-6 py-2 rounded-3xl font-bold text-2xl'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Show All Blogs'}></Button></Link>
         </section>
     );

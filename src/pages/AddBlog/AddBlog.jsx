@@ -8,14 +8,12 @@ import moment from "moment";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 
 const AddBlog = () => {
     const { user } = useAuth();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [showModal, setShowModal] = useState(false);
     const [previewBlog, setPreviewBlog] = useState("");
-    const navigate = useNavigate();
 
     const closeModal = () => {
         setShowModal(false);
@@ -63,9 +61,7 @@ const AddBlog = () => {
             <Helmet>
                 <title>Add Blog - Furry Friends Blogs</title>
             </Helmet>
-            <h2 className="text-lg md:text-2xl text-furry font-semibold text-center mb-6">Hello, {user.displayName}, Add A Blog Post</h2>
-            <Button onClick={() => navigate(-1)} className={'border mx-auto block mb-8 text-xl font-bold py-2 px-4 rounded-3xl'} buttonText={'Go Back'} color={'black'} hoverColor={'white'} hoverBgColor={'transparent'}></Button>
-
+            <h2 className="text-lg md:text-3xl text-furry font-bold text-center mb-8">Hi, {user.displayName}, Write A Blog</h2>
             {/* Form */}
             <form onSubmit={handleSubmit(handleAddBlog)} className="flex flex-col gap-6 mx-auto px-4 lg:px-16 py-6 lg:py-10 shadow-[#363538] border rounded-lg">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
