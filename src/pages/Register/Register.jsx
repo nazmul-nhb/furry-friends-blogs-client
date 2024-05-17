@@ -257,7 +257,7 @@ const Register = () => {
                                             value: true, message: "You must choose a password."
                                         },
                                         minLength: {
-                                            value: 6, message: "Password must contain 6 characters!"
+                                            value: 8, message: "Password must contain 6 characters!"
                                         },
                                         validate: {
                                             isCapital: (value) => {
@@ -266,12 +266,12 @@ const Register = () => {
                                                 }
                                                 return "Password must contain capital letter!"
                                             },
-                                            // isLower: (value) => {
-                                            //     if (/(?=.*[a-z])/.test(value)) {
-                                            //         return true;
-                                            //     }
-                                            //     return "Password must contain small letter!"
-                                            // }
+                                            isLower: (value) => {
+                                                if (/(?=.*[a-z])/.test(value)) {
+                                                    return true;
+                                                }
+                                                return "Password must contain small letter!"
+                                            },
                                             isNumeric: (value) => {
                                                 if (/(?=.*[0-9])/.test(value)) {
                                                     return true;
