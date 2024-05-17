@@ -20,7 +20,7 @@ const Slider = () => {
     const { isPending, isError, error, data: bannerBlogs } = useQuery({
         queryKey: ['bannerBlogs'],
         queryFn: async () => {
-            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/blogs?size=12&sort=1`);
+            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/featured-blogs`);
             return res.data;
         }
     })
@@ -81,7 +81,7 @@ const Slider = () => {
                 }}
                 loop={true}
                 spaceBetween={10}
-                slidesPerView={6}
+                slidesPerView={5}
                 freeMode={true}
                 watchSlidesProgress={true}
                 modules={[Autoplay, FreeMode, Navigation, Thumbs]}

@@ -257,7 +257,7 @@ const Register = () => {
                                             value: true, message: "You must choose a password."
                                         },
                                         minLength: {
-                                            value: 8, message: "Password must contain 6 characters!"
+                                            value: 8, message: "Password must contain 8 characters!"
                                         },
                                         validate: {
                                             isCapital: (value) => {
