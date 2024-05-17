@@ -67,6 +67,13 @@ const AllBlogs = () => {
         setCurrentPage(1);
     }
 
+    // Show Toast with Search Count
+    useEffect(() => {
+        if (searchText && blogs.length > 0) {
+            toast.success(`${blogs.length} ${blogs.length === 1 ? 'Match' : 'Matches'} Found!`);
+        }
+    }, [blogs, searchText]);
+
     const clearSearchText = () => {
         setSearchText('');
         inputRef.current.value = '';
@@ -123,7 +130,12 @@ const AllBlogs = () => {
                     <button className="border py-2 px-4 rounded-lg font-bold tracking-wider border-furry bg-furry text-white hover:bg-transparent hover:text-furry transition-all duration-700" type="submit">Search</button>
                 </form>
             </div>
-
+            {/* Show Search Count */}
+            {
+                searchText && blogs.length > 0 && (<div className="mb-8 text-furry font-kreonSerif text-2xl">
+                    <p>{blogs.length} {blogs.length === 1 ? 'Match' : 'Matches'} Found</p>
+                </div>)
+            }
             {
                 blogs.length === 0 ? <div className="flex flex-col items-center justify-center text-furry font-jokeyOneSans text-4xl">
                     <img src={rain} alt="Raining..." />

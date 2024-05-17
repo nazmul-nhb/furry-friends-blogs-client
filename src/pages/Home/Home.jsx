@@ -4,15 +4,21 @@ import Slider from "../../components/Slider/Slider";
 import Newsletter from "../../components/Newsletter/Newsletter";
 import FAQs from "../../components/FAQs/FAQs";
 import PetTips from "../../components/PetTips/PetTips";
+import { useTypewriter } from "react-simple-typewriter";
 
 const Home = () => {
+
+    const [text] = useTypewriter({
+        words: [`Welcome to Furry Friends Blogs`],
+        loop: 1,
+    })
 
     return (
         <section className="mx-2 md:mx-8 my-2 md:my-8 p-2 md:px-4">
             <Helmet>
                 <title>Home - Furry Friends Blogs</title>
             </Helmet>
-            <h3 className="text-center text-furry font-bold max-[430px]:text-xl text-2xl md:text-6xl">Welcome to Furry Friends Blogs</h3>
+            <h3 className="text-center text-furry font-bold max-[430px]:text-xl text-2xl md:text-6xl">{text}</h3>
             <p className="text-gray-600 mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-6 md:mt-6 md:text-xl">The Home of Pet Lovers who enjoy writing and reading about pets!</p>
             <Slider />
             <RecentBlogs />

@@ -50,7 +50,7 @@ const Slider = () => {
                 }}
                 loop={true}
                 autoplay={{
-                    delay: 3000,
+                    delay: 4000,
                     pauseOnMouseEnter: false,
                     disableOnInteraction: false,
                 }}
@@ -62,7 +62,7 @@ const Slider = () => {
             >
                 {bannerBlogs?.map(blog => <SwiperSlide key={blog._id}>
                     <div className="flex relative">
-                        <img className='w-full aspect-[3/1.4]' src={blog.image} />
+                        <img className='w-full aspect-[3/1.5]' src={blog.image} />
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full bg-gradient-to-l from-[#2b396660] to-[#4b6ee277] h-full py-4 flex flex-col gap-4 items-center justify-around">
                             <h3 className="font-kreonSerif max-[430px]:text-base text-2xl md:text-3xl lg:text-6xl font-black !leading-snug text-white px-8">{blog.blog_title}</h3>
                             <Link className='border border-furry rounded-3xl px-3 py-1 md:py-2 md:px-4 text-lg md:text-2xl font-bold hover:bg-[#ffffff68] bg-[#1e3fada3] hover:text-furry text-white transition-all duration-500' to={`/blog-details/${blog._id}`}>Read Full Blog</Link>
@@ -75,7 +75,7 @@ const Slider = () => {
             <Swiper
                 onSwiper={setThumbsSwiper}
                 autoplay={{
-                    delay: 3000,
+                    delay: 4000,
                     pauseOnMouseEnter: false,
                     disableOnInteraction: false,
                 }}
