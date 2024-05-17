@@ -106,6 +106,7 @@ const Wishlist = () => {
                                 key={blog._id}
                                 blog={blog}
                                 wishlist={true}
+                                refetch={refetch}
                                 handleDeleteWishlist={handleDeleteWishlist}
                             ></Blog>)
                         }

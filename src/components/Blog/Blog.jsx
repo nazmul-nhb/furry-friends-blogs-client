@@ -10,7 +10,7 @@ import { MdAccessTime, MdPets } from 'react-icons/md';
 import { PiBirdFill, PiCatFill, PiDogFill, PiRabbitFill } from 'react-icons/pi';
 import { GiFrog } from 'react-icons/gi';
 
-const Blog = ({ blog, wishlist, profile, handleDeleteWishlist }) => {
+const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, refetch }) => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const [countClick, setCountClick] = useState(0);
@@ -35,6 +35,7 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist }) => {
                 // console.log(res.data);
                 if (res.data.insertedId) {
                     toast.success('Blog Added to Wishlist');
+                    refetch();
                 }
             })
             .catch(error => {
@@ -83,6 +84,7 @@ Blog.propTypes = {
     wishlist: PropTypes.bool,
     profile: PropTypes.bool,
     handleDeleteWishlist: PropTypes.func,
+    refetch: PropTypes.func,
 }
 
 export default Blog;
