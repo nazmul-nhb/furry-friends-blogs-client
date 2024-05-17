@@ -1,6 +1,6 @@
 import banner from '../../assets/cat-login-custom.png';
 import { Helmet } from "react-helmet-async";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash, FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -18,6 +18,17 @@ const Login = () => {
     if(user){
         navigate(location?.state ? location.state : '/');
     }
+
+    useEffect(() => {
+        if (errors.email) {
+            toast.error(errors.email.message, { duration: 2000 })
+            return;
+        }
+        if (errors.password) {
+            toast.error(errors.password.message, { duration: 2000 })
+            return;
+        }
+    }, [errors.email, errors.password])
 
     const handleLogin = data => {
         const { email, password } = data;
@@ -183,7 +194,7 @@ const Login = () => {
                             <input
                                 {...register("email", {
                                     required:
-                                        { value: true, message: "You must provide your email address." }
+                                        { value: true, message: "Provide your email address." }
                                 })}
                                 className="p-2 rounded-lg bg-[#F3F3F3]" type="email" name="email" id="email" placeholder="Your Email" />
                             {
@@ -196,7 +207,7 @@ const Login = () => {
                                 <input
                                     {...register("password", {
                                         required:
-                                            { value: true, message: "You must provide a valid password." }
+                                            { value: true, message: "Provide a valid password." }
                                     })}
                                     className="p-2 rounded-lg w-full bg-[#F3F3F3]" type={showPassword ? "text" : "password"} name="password" id="password" placeholder="Your Password" />
                                 {

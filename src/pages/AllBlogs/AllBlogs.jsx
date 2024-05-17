@@ -137,7 +137,7 @@ const AllBlogs = () => {
                 </div>)
             }
             {
-                blogs?.length === 0 ? <div className="flex flex-col items-center justify-center text-furry font-jokeyOneSans text-4xl">
+                blogs?.length <= 0 ? <div className="flex flex-col items-center justify-center text-furry font-jokeyOneSans text-4xl">
                     <img src={rain} alt="Raining..." />
                     <p>No Blogs Found!</p>
                 </div>

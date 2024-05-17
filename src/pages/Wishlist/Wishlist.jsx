@@ -8,6 +8,7 @@ import Blog from "../../components/Blog/Blog";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import rain from '../../assets/rain.svg';
 
 const Wishlist = () => {
     const { user } = useAuth();
@@ -94,16 +95,22 @@ const Wishlist = () => {
             </Helmet>
             <h3 className="text-center text-furry font-bold text-3xl mb-8">{user.displayName}&rsquo;s Wishlist </h3>
             <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-8">Read the Blogs You kept in your Wishlist for Reading Later.</p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {
-                    blogs?.map(blog => <Blog
-                        key={blog._id}
-                        blog={blog}
-                        wishlist={true}
-                        handleDeleteWishlist={handleDeleteWishlist}
-                    ></Blog>)
-                }
-            </div>
+            {
+                blogs?.length <= 0 ? <div className="flex flex-col items-center justify-center text-furry font-jokeyOneSans text-2xl md:text-4xl gap-4">
+                    <img src={rain} alt="Raining..." />
+                    <p>Your Wishlist is Empty!</p>
+                </div>
+                    : <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {
+                            blogs?.map(blog => <Blog
+                                key={blog._id}
+                                blog={blog}
+                                wishlist={true}
+                                handleDeleteWishlist={handleDeleteWishlist}
+                            ></Blog>)
+                        }
+                    </div>
+            }
         </section>
     );
 };

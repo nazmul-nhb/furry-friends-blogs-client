@@ -10,7 +10,7 @@ import { MdAccessTime, MdPets } from 'react-icons/md';
 import { PiBirdFill, PiCatFill, PiDogFill, PiRabbitFill } from 'react-icons/pi';
 import { GiFrog } from 'react-icons/gi';
 
-const Blog = ({ blog, wishlist, handleDeleteWishlist }) => {
+const Blog = ({ blog, wishlist, profile, handleDeleteWishlist }) => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const [countClick, setCountClick] = useState(0);
@@ -60,13 +60,17 @@ const Blog = ({ blog, wishlist, handleDeleteWishlist }) => {
             <h3 className="font-kreonSerif text-xl md:text-2xl">{blog_title}</h3>
             <p className='text-gray-500'>Posted by <span className="text-furry font-semibold">{posted_by}</span></p>
             <p className="text-gray-700 flex-grow my-2">{short_description}</p>
-            <p className='text-gray-500 text-sm flex items-center gap-1'><MdAccessTime/> {formattedDate}</p>
+            <p className='text-gray-500 text-sm flex items-center gap-1'><MdAccessTime /> {formattedDate}</p>
             <hr className="my-4" />
             <div className=" rounded-b-xl flex justify-between items-center">
                 <Link to={`/blog-details/${_id}`}><Button className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Read Details'}></Button></Link>
                 {wishlist ?
                     <Button onClick={() => handleDeleteWishlist(_id)} className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Remove'}></Button>
-                    : <Button onClick={handleAddToWishlist} className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Add to Wishlist'}></Button>
+                    : profile ? <Link to={`/update-blog/${_id}`}><Button
+                        buttonText={'Update Blog'} hoverBgColor={'transparent'} hoverColor={'white'} color={'#1e40ad'}
+                        className={'my-2 border px-4 py-1 font-bold text-xl rounded-3xl'}
+                    ></Button></Link>
+                        : <Button onClick={handleAddToWishlist} className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Add to Wishlist'}></Button>
                 }
             </div>
         </div>
@@ -77,6 +81,7 @@ const Blog = ({ blog, wishlist, handleDeleteWishlist }) => {
 Blog.propTypes = {
     blog: PropTypes.object,
     wishlist: PropTypes.bool,
+    profile: PropTypes.bool,
     handleDeleteWishlist: PropTypes.func,
 }
 

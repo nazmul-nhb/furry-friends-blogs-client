@@ -41,7 +41,8 @@ const UpdateBlog = () => {
     const handleUpdateBlog = (modifiedBlog) => {
         if (user.email !== blog.blogger_email) {
             toast.error("You cannot update this blog!");
-            navigate(`/blog-details/${id}`)
+            // navigate(`/blog-details/${id}`);
+            navigate(-1);
             return;
         }
         const updatedBlog = {
@@ -57,7 +58,8 @@ const UpdateBlog = () => {
                         icon: 'success',
                         confirmButtonText: 'Okay!'
                     })
-                    navigate(`/blog-details/${id}`);
+                    // navigate(`/blog-details/${id}`);
+                    navigate(-1);
                 }
             })
             .catch(error => {
