@@ -113,7 +113,7 @@ const Comment = ({ comment }) => {
                         </div>
                         <p className='ml-11'>{reply.reply_body}</p>
                         {
-                            replies.indexOf(reply) !== replies.length - 1 && <hr className='my-4' />
+                            replies.indexOf(reply) !== replies?.length - 1 && <hr className='my-4' />
                         }
                     </div>)
                 }

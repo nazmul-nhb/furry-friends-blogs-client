@@ -99,7 +99,7 @@ const Comments = ({ blog }) => {
                     comments?.map(comment => (<div key={comment._id}>
                         <Comment comment={comment}></Comment>
                         {
-                            comments.indexOf(comment) !== comments.length - 1 && <hr className='my-4' />
+                            comments.indexOf(comment) !== comments?.length - 1 && <hr className='my-4' />
                         }
                     </div>
                     ))

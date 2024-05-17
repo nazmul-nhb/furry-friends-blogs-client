@@ -49,7 +49,7 @@ const AllBlogs = () => {
     }
 
     const handleNextPage = () => {
-        currentPage < pages.length && setCurrentPage(currentPage + 1);
+        currentPage < pages?.length && setCurrentPage(currentPage + 1);
     }
 
     const handleFilter = (e) => {
@@ -69,8 +69,8 @@ const AllBlogs = () => {
 
     // Show Toast with Search Count
     useEffect(() => {
-        if (searchText && blogs.length > 0) {
-            toast.success(`${blogs.length} ${blogs.length === 1 ? 'Match' : 'Matches'} Found!`);
+        if (searchText && blogs?.length > 0) {
+            toast.success(`${blogs?.length} ${blogs?.length === 1 ? 'Match' : 'Matches'} Found!`);
         }
     }, [blogs, searchText]);
 
@@ -132,12 +132,12 @@ const AllBlogs = () => {
             </div>
             {/* Show Search Count */}
             {
-                searchText && blogs.length > 0 && (<div className="mb-8 text-furry font-kreonSerif text-2xl">
-                    <p>{blogs.length} {blogs.length === 1 ? 'Match' : 'Matches'} Found</p>
+                searchText && blogs?.length > 0 && (<div className="mb-8 text-furry font-kreonSerif text-2xl">
+                    <p>{blogs?.length} {blogs?.length === 1 ? 'Match' : 'Matches'} Found</p>
                 </div>)
             }
             {
-                blogs.length === 0 ? <div className="flex flex-col items-center justify-center text-furry font-jokeyOneSans text-4xl">
+                blogs?.length === 0 ? <div className="flex flex-col items-center justify-center text-furry font-jokeyOneSans text-4xl">
                     <img src={rain} alt="Raining..." />
                     <p>No Blogs Found!</p>
                 </div>
@@ -158,13 +158,13 @@ const AllBlogs = () => {
                     <button className={"px-3 border disabled:text-gray-500 disabled:border-gray-500 disabled:hover:text-gray-500 disabled:hover:bg-transparent text-furry border-furry hover:bg-furry hover:text-white"} disabled={currentPage === 1} onClick={handlePreviousPage}>Previous</button>
 
                     {
-                        pages.map(page => <button
+                        pages?.map(page => <button
                             className={`px-3 border ${currentPage === page + 1 ? 'bg-furry border-furry text-white hover:bg-transparent hover:text-furry' : ' text-furry border-furry hover:bg-furry hover:text-white'}`}
                             onClick={() => setCurrentPage(page + 1)}
                             key={page}
                         >{page + 1}</button>)
                     }
-                    <button className={"px-3 border disabled:text-gray-500 disabled:border-gray-500 disabled:hover:text-gray-500 disabled:hover:bg-transparent text-furry border-furry hover:bg-furry hover:text-white"} disabled={currentPage === pages.length || totalPages === 0} onClick={handleNextPage}>Next</button>
+                    <button className={"px-3 border disabled:text-gray-500 disabled:border-gray-500 disabled:hover:text-gray-500 disabled:hover:bg-transparent text-furry border-furry hover:bg-furry hover:text-white"} disabled={currentPage === pages?.length || totalPages === 0} onClick={handleNextPage}>Next</button>
                 </div>
                 <select className="border px-2 py-1 focus:text-furry outline-furry border-furry text-furry focus:bg-[#1e3fad26]" value={itemsPerPage} onChange={handleItemsPerPage} name="" id="">
                     <option value="6">Blogs Per Page: 6</option>
