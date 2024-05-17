@@ -10,7 +10,7 @@ const Footer = () => {
                 <div className="flex gap-4 lg:gap-0 flex-col lg:flex-row justify-center lg:items-center lg:justify-between">
                     <div className="flex gap-1.5 flex-col items-center justify-center mx-auto">
                         <img className="w-10 md:w-16" src={logo} alt="Logo" />
-                        <h3 className="font-jokeyOneSans max-[430px]:text-lg text-2xl md:text-4xl font-semibold tracking-wider text-furry">Furry Friends <span className="text-white">Blogs</span></h3>
+                        <h3 className="font-jokeyOneSans text-2xl md:text-4xl font-semibold tracking-wider text-furry">Furry Friends <span className="text-white">Blogs</span></h3>
                     </div>
                 </div>
                 <hr className="text-white my-8" />

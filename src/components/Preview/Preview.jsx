@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
+import 'animate.css';
 
 const Preview = ({ previewBlog }) => {
     const { blog_title, category, image, short_description, long_description } = previewBlog;
 
     return (
-        <section className="m-4 p-2 pb-10 md:px-4 bg-gradient-to-b from-[#93a9f0fa] to-[#839bebfa] rounded-lg">
+        <section className="animate__animated animate__fadeInDown m-4 p-2 pb-10 md:px-4 bg-gradient-to-b from-[#93a9f0fa] to-[#839bebfa] rounded-lg">
             <h3 className="font-kreonSerif text-2xl md:text-4xl font-black leading-snug mb-2">{blog_title}</h3>
             {/* Blogger Info */}
             <h3 className="text-furry text-xl font-semibold"><span className="text-black">Category: </span>{category}</h3>

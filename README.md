@@ -21,6 +21,7 @@
 - [react-hook-form](https://react-hook-form.com/) for Handling Forms
 - [react-simple-typewriter](https://www.npmjs.com/package/react-simple-typewriter) in blog details page for comment heading
 - [swiper](https://swiperjs.com/) for Slider/Swiper on Homepage Banner
+- [animate.css](https://animate.style/) for Animation Effects on Preview Blogs from Add & Update Page
 - [react-tooltip](https://react-tooltip.com/) on Navbar Profile Picture & Logout Button
 - [react-helmet-async](https://www.npmjs.com/package/react-helmet-async) for Dynamic Page Titles
 - [react-icons](https://react-icons.github.io/react-icons/) for showing icons throughout the site
@@ -35,7 +36,7 @@
 - On Add Blog page, you can add/post blogs, you can preview your blog before posting to see how it will look after posting
 - On **Blog Details**, you can click on **Go Back** button to navigate to the page you came from to this page
 - You can comment and reply on blog details page
-- I you are the blog owner, you cannot comment but reply to others' comments
+- If you are the blog owner, you cannot comment but reply to others' comments
 - If you click **Update** button, it will open a new page where you can update the blog that you added, you can preview before clicking update button
 - On **All Blogs** page, you'll find all the blogs posted by all users
 - You can filter blogs by category or search for a particular blog title

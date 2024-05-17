@@ -9,6 +9,7 @@ import useAuth from "../../hooks/useAuth";
 import catLoading from '../../assets/blue-cat.svg';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
+import { MdPets } from "react-icons/md";
 
 const BlogDetails = () => {
     const { id } = useParams();
@@ -54,7 +55,7 @@ const BlogDetails = () => {
                 <figure className="flex gap-2 items-center mb-2">
                     <img className="w-12 h-12 rounded-full p-[2px] border" title={blogger_email} src={blogger_photo} alt={posted_by} />
                     <div className="leading-4 flex flex-col gap-1">
-                        <p className="font-kreonSerif">Posted by <span className="font-semibold text-blue-950">
+                        <p className="font-kreonSerif">Posted by <span className="font-semibold text-furry">
                             {
                                 user.email === blogger_email ? 'You' : posted_by
                             }
@@ -62,7 +63,7 @@ const BlogDetails = () => {
                         <p className="text-gray-500">{formattedDate}</p>
                     </div>
                 </figure>
-                <h3 className="text-furry text-xl font-semibold"><span className="text-black">Posted in Category: </span>{category}</h3>
+                <h3 className="text-black text-xl font-semibold flex items-center gap-1">Posted in Category:  <span className="flex text-furry font-jokeyOneSans tracking-wider items-center gap-1"><MdPets />{category}</span></h3>
             </div>
             <hr className="mb-6 mt-2" />
             {/* Blog Image & Short Description */}

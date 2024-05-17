@@ -133,20 +133,20 @@ const AllBlogs = () => {
             </div>
             {/* Pagination */}
             <div className="flex flex-col gap-4 justify-center items-center font-semibold my-8 lg:my-16">
-                <p className="text-blue-950">Page: {currentPage} of {totalPages}</p>
+                <p className="text-furry">Page: {currentPage} of {totalPages}</p>
                 <div className="flex gap-3">
-                    <button className={"px-3 border disabled:text-gray-500 disabled:border-gray-500 disabled:hover:text-gray-500 disabled:hover:bg-transparent text-blue-950 border-blue-950 hover:bg-blue-950 hover:text-white"} disabled={currentPage === 1} onClick={handlePreviousPage}>Previous</button>
+                    <button className={"px-3 border disabled:text-gray-500 disabled:border-gray-500 disabled:hover:text-gray-500 disabled:hover:bg-transparent text-furry border-furry hover:bg-furry hover:text-white"} disabled={currentPage === 1} onClick={handlePreviousPage}>Previous</button>
 
                     {
                         pages.map(page => <button
-                            className={`px-3 border ${currentPage === page + 1 ? 'bg-orange-600 border-orange-600 text-white hover:bg-transparent hover:text-orange-600' : ' text-blue-950 border-blue-950 hover:bg-blue-950 hover:text-white'}`}
+                            className={`px-3 border ${currentPage === page + 1 ? 'bg-furry border-furry text-white hover:bg-transparent hover:text-furry' : ' text-furry border-furry hover:bg-furry hover:text-white'}`}
                             onClick={() => setCurrentPage(page + 1)}
                             key={page}
                         >{page + 1}</button>)
                     }
-                    <button className={"px-3 border disabled:text-gray-500 disabled:border-gray-500 disabled:hover:text-gray-500 disabled:hover:bg-transparent text-blue-950 border-blue-950 hover:bg-blue-950 hover:text-white"} disabled={currentPage === pages.length || totalPages === 0} onClick={handleNextPage}>Next</button>
+                    <button className={"px-3 border disabled:text-gray-500 disabled:border-gray-500 disabled:hover:text-gray-500 disabled:hover:bg-transparent text-furry border-furry hover:bg-furry hover:text-white"} disabled={currentPage === pages.length || totalPages === 0} onClick={handleNextPage}>Next</button>
                 </div>
-                <select className="border px-2 py-1 focus:text-orange-700 outline-orange-700 border-furry text-furry" value={itemsPerPage} onChange={handleItemsPerPage} name="" id="">
+                <select className="border px-2 py-1 focus:text-furry outline-furry border-furry text-furry focus:bg-[#1e3fad26]" value={itemsPerPage} onChange={handleItemsPerPage} name="" id="">
                     <option value="6">Blogs Per Page: 6</option>
                     <option value="12">Blogs Per Page: 12</option>
                     <option value="24">Blogs Per Page: 24</option>

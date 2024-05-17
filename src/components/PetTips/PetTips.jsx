@@ -29,14 +29,14 @@ const PetTips = () => {
                 </div>
                 {/* Health */}
                 <TabPanel>
-                    <p className="text-gray-600 w-4/5 my-4 ml-2 text-sm md:text-lg">
+                    <p className="text-gray-600 w-4/5 my-4 ml-2 text-lg md:text-xl">
                         Maintaining your pet&rsquo;s health is vital for their overall well-being. From daily exercise routines to preventative care measures, here&rsquo;s how you can ensure your pet stays in top shape:
                     </p>
                     <div className="flex flex-col lg:flex-row-reverse justify-between gap-6">
                         <figure className="w-full lg:w-1/2 flex justify-end">
                             <PhotoProvider>
                                 <PhotoView src={health}>
-                                    <img className='p-2 border' src={health} alt="Health Tips" />
+                                    <img className='p-2 border cursor-pointer' src={health} alt="Health Tips" />
                                 </PhotoView>
                             </PhotoProvider>
                         </figure>
@@ -52,14 +52,14 @@ const PetTips = () => {
                 </TabPanel>
                 {/* Behavior */}
                 <TabPanel>
-                    <p className="text-gray-600 w-4/5 my-4 ml-2 text-sm md:text-lg">
+                    <p className="text-gray-600 w-4/5 my-4 ml-2 text-lg md:text-xl">
                         Understanding and addressing your pet&rsquo;s behavior is key to fostering a harmonious relationship. Explore effective training techniques and strategies to tackle common behavioral issues:
                     </p>
                     <div className="flex flex-col lg:flex-row-reverse justify-between gap-6">
                         <figure className="w-full lg:w-1/2 flex justify-end">
                             <PhotoProvider>
                                 <PhotoView src={behave}>
-                                    <img src={behave} alt="Behavior Tips" />
+                                    <img className='p-2 border cursor-pointer' src={behave} alt="Behavior Tips" />
                                 </PhotoView>
                             </PhotoProvider>
                         </figure>
@@ -73,14 +73,14 @@ const PetTips = () => {
                 </TabPanel>
                 {/* Nutrition */}
                 <TabPanel>
-                    <p className="text-gray-600 w-4/5 my-4 ml-2 text-sm md:text-lg">
+                    <p className="text-gray-600 w-4/5 my-4 ml-2 text-lg md:text-xl">
                         Proper nutrition is the cornerstone of a healthy lifestyle for your pet. Delve into expert advice on feeding practices and dietary management:
                     </p>
                     <div className="flex flex-col lg:flex-row-reverse justify-between gap-6">
                         <figure className="w-full lg:w-1/2 flex justify-end">
                             <PhotoProvider>
                                 <PhotoView src={nutrition}>
-                                    <img src={nutrition} alt="Nutrition" />
+                                    <img className='p-2 border cursor-pointer' src={nutrition} alt="Nutrition" />
                                 </PhotoView>
                             </PhotoProvider>
                         </figure>
@@ -93,14 +93,14 @@ const PetTips = () => {
                 </TabPanel>
                 {/* Summer Care */}
                 <TabPanel>
-                    <p className="text-gray-600 w-4/5 my-4 ml-2 text-sm md:text-lg">
+                    <p className="text-gray-600 w-4/5 my-4 ml-2 text-lg md:text-xl">
                         With the sun shining bright and temperatures soaring, here&rsquo;s how you can keep your pets cool and comfortable during the summer months:
                     </p>
                     <div className="flex flex-col lg:flex-row-reverse justify-between gap-6">
                         <figure className="w-full lg:w-1/2 flex justify-end">
                             <PhotoProvider>
                                 <PhotoView src={summer}>
-                                    <img src={summer} alt="Summer Care" />
+                                    <img className='p-2 border cursor-pointer' src={summer} alt="Summer Care" />
                                 </PhotoView>
                             </PhotoProvider>
                         </figure>
@@ -113,14 +113,14 @@ const PetTips = () => {
                 </TabPanel>
                 {/* Winter Care */}
                 <TabPanel>
-                    <p className="text-gray-600 w-4/5 my-4 ml-2 text-sm md:text-lg">
+                    <p className="text-gray-600 w-4/5 my-4 ml-2 text-lg md:text-xl">
                         When the cold weather sets in, it&rsquo;s important to protect your pets from the chill and potential hazards of the season:
                     </p>
                     <div className="flex flex-col lg:flex-row-reverse justify-between gap-6">
                         <figure className="w-full lg:w-1/2 flex justify-end">
                             <PhotoProvider>
                                 <PhotoView src={winter}>
-                                    <img src={winter} alt="Winter Care" />
+                                    <img className='p-2 border cursor-pointer' src={winter} alt="Winter Care" />
                                 </PhotoView>
                             </PhotoProvider>
                         </figure>
@@ -133,14 +133,14 @@ const PetTips = () => {
                 </TabPanel>
                 { }
                 <TabPanel>
-                    <p className="text-gray-600 w-4/5 my-4 ml-2 text-sm md:text-lg">
+                    <p className="text-gray-600 w-4/5 my-4 ml-2 text-lg md:text-xl">
                         As festivities abound, be mindful of the potential dangers that holidays can pose to your pets:
                     </p>
                     <div className="flex flex-col lg:flex-row-reverse justify-between gap-6">
                         <figure className="w-full lg:w-1/2 flex justify-end">
                             <PhotoProvider>
                                 <PhotoView src={holiday}>
-                                    <img src={holiday} alt="Holiday Safety" />
+                                    <img className='p-2 border cursor-pointer' src={holiday} alt="Holiday Safety" />
                                 </PhotoView>
                             </PhotoProvider>
                         </figure>
