@@ -10,6 +10,8 @@ import catLoading from '../../assets/blue-cat.svg';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { MdPets } from "react-icons/md";
+import { PiBirdFill, PiCatFill, PiDogFill, PiRabbitFill } from "react-icons/pi";
+import { GiFrog } from "react-icons/gi";
 
 const BlogDetails = () => {
     const { id } = useParams();
@@ -63,7 +65,13 @@ const BlogDetails = () => {
                         <p className="text-gray-500">{formattedDate}</p>
                     </div>
                 </figure>
-                <h3 className="text-black text-xl font-semibold flex items-center gap-1">Posted in Category:  <span className="flex text-furry font-jokeyOneSans tracking-wider items-center gap-1"><MdPets />{category}</span></h3>
+                <h3 className="text-black text-xl font-semibold flex items-center gap-1">Posted in <MdPets />Category:  <span className="flex text-furry font-jokeyOneSans tracking-wider items-center gap-1">{
+                    category === "Cats" ? <span className='flex items-center gap-1'><PiCatFill />{category}</span>
+                        : category === "Dogs" ? <span className='flex items-center gap-1'><PiDogFill /> {category}</span>
+                            : category === "Birds" ? <span className='flex items-center gap-1'><PiBirdFill />{category}</span>
+                                : category === "Rabbits" ? <span className='flex items-center gap-1'><PiRabbitFill /> {category}</span>
+                                    : <span className='flex items-center gap-1'><GiFrog /> {category}</span>
+                }</span></h3>
             </div>
             <hr className="mb-6 mt-2" />
             {/* Blog Image & Short Description */}

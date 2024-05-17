@@ -12,8 +12,12 @@ import useAuth from '../../hooks/useAuth';
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, logOut, googleLogin, facebookLogin, githubLogin } = useAuth();
+    const { user, createUser, logOut, googleLogin, facebookLogin, githubLogin } = useAuth();
     const navigate = useNavigate();
+    
+    if(user){
+        navigate(location?.state ? location.state : '/');
+    }
 
     useEffect(() => {
         if (errors.name) {

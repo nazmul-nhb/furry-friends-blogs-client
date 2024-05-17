@@ -6,7 +6,9 @@ import moment from 'moment';
 import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
 import { useState } from 'react';
-import { MdPets } from 'react-icons/md';
+import { MdAccessTime, MdPets } from 'react-icons/md';
+import { PiBirdFill, PiCatFill, PiDogFill, PiRabbitFill } from 'react-icons/pi';
+import { GiFrog } from 'react-icons/gi';
 
 const Blog = ({ blog, wishlist, handleDeleteWishlist }) => {
     const { user } = useAuth();
@@ -46,13 +48,19 @@ const Blog = ({ blog, wishlist, handleDeleteWishlist }) => {
         <div className='border p-3 flex flex-col shadow-md shadow-blue-950'>
             <figure className='relative border p-1 mb-2'>
                 <img className='aspect-[2/1]' src={image} alt={blog_title} />
-                <h3 className="absolute bottom-1 left-1 pb-1 pt-[2px] pl-2 w-full bg-gradient-to-r from-furry via-[#1e3fada3] to-[#1e3fad01] font-jokeyOneSans tracking-wider text-lg flex items-center gap-1 text-white"><MdPets /> Category: <span>{category}</span></h3>
+                <h3 className="absolute bottom-1 left-1 pb-1 pt-[2px] pl-2 w-full bg-gradient-to-r from-furry via-[#1e3fada3] to-[#1e3fad01] font-jokeyOneSans tracking-wider text-lg flex items-center gap-1 text-white"><MdPets /> Category: {
+                    category === "Cats" ? <span className='flex items-center gap-1'><PiCatFill />{category}</span>
+                        : category === "Dogs" ? <span className='flex items-center gap-1'><PiDogFill /> {category}</span>
+                            : category === "Birds" ? <span className='flex items-center gap-1'><PiBirdFill />{category}</span>
+                                : category === "Rabbits" ? <span className='flex items-center gap-1'><PiRabbitFill /> {category}</span>
+                                    : <span className='flex items-center gap-1'><GiFrog /> {category}</span>
+                }</h3>
             </figure>
             {/* <hr className="my-2" /> */}
             <h3 className="font-kreonSerif text-xl md:text-2xl">{blog_title}</h3>
             <p className='text-gray-500'>Posted by <span className="text-furry font-semibold">{posted_by}</span></p>
             <p className="text-gray-700 flex-grow my-2">{short_description}</p>
-            <p className='text-gray-500 text-sm'>Posted on: {formattedDate}</p>
+            <p className='text-gray-500 text-sm flex items-center gap-1'><MdAccessTime/> {formattedDate}</p>
             <hr className="my-4" />
             <div className=" rounded-b-xl flex justify-between items-center">
                 <Link to={`/blog-details/${_id}`}><Button className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Read Details'}></Button></Link>

@@ -11,9 +11,13 @@ import useAuth from '../../hooks/useAuth';
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { userLogin, googleLogin, facebookLogin, githubLogin } = useAuth();
+    const { user, userLogin, googleLogin, facebookLogin, githubLogin } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+
+    if(user){
+        navigate(location?.state ? location.state : '/');
+    }
 
     const handleLogin = data => {
         const { email, password } = data;

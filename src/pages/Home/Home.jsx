@@ -12,8 +12,8 @@ const Home = () => {
             <Helmet>
                 <title>Home - Furry Friends Blogs</title>
             </Helmet>
-            <h3 className="text-center text-furry font-bold max-[430px]:text-lg text-2xl md:text-6xl">Welcome to Furry Friends Blogs</h3>
-            <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-6 md:mt-6 max-[430px]:text-sm text-lg md:text-2xl">The Home of Pet Lovers who enjoy writing and reading blogs about pets!</p>
+            <h3 className="text-center text-furry font-bold max-[430px]:text-xl text-2xl md:text-6xl">Welcome to Furry Friends Blogs</h3>
+            <p className="text-gray-600 mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-6 md:mt-6 md:text-xl">The Home of Pet Lovers who enjoy writing and reading about pets!</p>
             <Slider />
             <RecentBlogs />
             <hr />

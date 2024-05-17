@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
-import catLoading from '../../assets/blue-cat.svg';
+import searchLoading from '../../assets/search-blue.svg';
+import rain from '../../assets/rain.svg';
 import { useEffect, useRef, useState } from "react";
 import Blog from "../../components/Blog/Blog";
 import { FaDeleteLeft } from "react-icons/fa6";
@@ -74,7 +75,7 @@ const AllBlogs = () => {
     if (isPending) {
         return (
             <div className="flex items-center justify-center space-x-2">
-                <img src={catLoading} alt="Loading..." />
+                <img className="w-48 h-48" src={searchLoading} alt="Loading..." />
             </div>
         )
     }
@@ -123,14 +124,21 @@ const AllBlogs = () => {
                 </form>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {
-                    blogs?.map(blog => <Blog
-                        key={blog._id}
-                        blog={blog}
-                    ></Blog>)
-                }
-            </div>
+            {
+                blogs.length === 0 ? <div className="flex flex-col items-center justify-center text-furry font-jokeyOneSans text-4xl">
+                    <img src={rain} alt="Raining..." />
+                    <p>No Blogs Found!</p>
+                </div>
+                    : <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {
+                            blogs?.map(blog => <Blog
+                                key={blog._id}
+                                blog={blog}
+                            ></Blog>)
+                        }
+                    </div>
+            }
+
             {/* Pagination */}
             <div className="flex flex-col gap-4 justify-center items-center font-semibold my-8 lg:my-16">
                 <p className="text-furry">Page: {currentPage} of {totalPages}</p>
