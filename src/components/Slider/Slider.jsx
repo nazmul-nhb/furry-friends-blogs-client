@@ -13,14 +13,14 @@ import 'swiper/css/thumbs';
 
 import './Slider.css';
 
-import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
 const Slider = () => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    const { isPending, isError, error, data: blogs } = useQuery({
-        queryKey: ['blogs'],
+    const { isPending, isError, error, data: bannerBlogs } = useQuery({
+        queryKey: ['bannerBlogs'],
         queryFn: async () => {
-            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/blogs?size=6&sort=-1`);
+            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/blogs?size=12&sort=1`);
             return res.data;
         }
     })
@@ -49,13 +49,18 @@ const Slider = () => {
                     '--swiper-pagination-color': '#fff',
                 }}
                 loop={true}
+                autoplay={{
+                    delay: 3000,
+                    pauseOnMouseEnter: false,
+                    disableOnInteraction: false,
+                }}
                 spaceBetween={10}
                 navigation={true}
                 thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
-                modules={[FreeMode, Navigation, Thumbs]}
+                modules={[Autoplay, FreeMode, Navigation, Thumbs]}
                 className="mySwiper2 aspect-[3/1.4]"
             >
-                {blogs?.map(blog => <SwiperSlide key={blog._id}>
+                {bannerBlogs?.map(blog => <SwiperSlide key={blog._id}>
                     <div className="flex relative">
                         <img className='w-full aspect-[3/1.4]' src={blog.image} />
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full bg-gradient-to-l from-[#2b396660] to-[#4b6ee277] h-full py-4 flex flex-col gap-4 items-center justify-around">
@@ -69,16 +74,21 @@ const Slider = () => {
             {/* Thumbnails for Banner Images */}
             <Swiper
                 onSwiper={setThumbsSwiper}
+                autoplay={{
+                    delay: 3000,
+                    pauseOnMouseEnter: false,
+                    disableOnInteraction: false,
+                }}
                 loop={true}
                 spaceBetween={10}
-                slidesPerView={4}
+                slidesPerView={6}
                 freeMode={true}
                 watchSlidesProgress={true}
-                modules={[FreeMode, Navigation, Thumbs]}
+                modules={[Autoplay, FreeMode, Navigation, Thumbs]}
                 className="mySwiper mt-2"
             >
-                {blogs?.map(blog => <SwiperSlide key={blog._id}>
-                    <img className='w-full' src={blog.image} />
+                {bannerBlogs?.map(blog => <SwiperSlide key={blog._id}>
+                    <img className='w-full aspect-[3/1.6]' src={blog.image} />
                 </SwiperSlide>
                 )}
             </Swiper>
