@@ -26,7 +26,7 @@ const Newsletter = () => {
                 }}>
                 <h3 className="text-furry font-bold max-[430px]:text-xl text-2xl md:text-4xl mb-4">Subscribe to Our Newsletter</h3>
                 <h4 className="text-furry md:text-xl mb-2 font-kreonSerif">Join Our Furry Friends Family</h4>
-                <p className="text-gray-600 mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-6 max-[430px]:text-base md:text-lg">Subscribe to our newsletter today and unlock a world of exclusive pet content, personalized recommendations, and community engagement. Get early access to our latest blogs!</p>
+                <p className="text-gray-600 mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-6 max-[430px]:text-base md:text-lg">Subscribe to our newsletter today and unlock a world of exclusive pet content, personalized recommendations, and get early access to our latest blogs!</p>
             </motion.div>
             <figure>
                 <img className="w-4/5 md:w-1/4 block mx-auto" src={newsletter} alt="Newsletter" />
