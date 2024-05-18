@@ -20,7 +20,7 @@ const AllBlogs = () => {
     const pages = [...Array(totalPages).keys()];
 
     useEffect(() => {
-        axios.get(`https://furry-friends-server-nhb.vercel.app/blogs-count?category=${category}&search=${searchText}`)
+        axios.get(`https://furry-friends-server-nhb.vercel.app/blogs-count?category=${category === "All" ? " " : category}&search=${searchText}`)
             .then(res => {
                 setBlogCount(res.data.count);
             })
@@ -33,7 +33,7 @@ const AllBlogs = () => {
         queryKey: ['blogs', currentPage, itemsPerPage, category, searchText],
         queryFn: async () => {
             const res = await
-                axios.get(`https://furry-friends-server-nhb.vercel.app/blogs?sort=1&page=${currentPage - 1}&size=${itemsPerPage}&category=${category}&search=${searchText}`);
+                axios.get(`https://furry-friends-server-nhb.vercel.app/blogs?sort=1&page=${currentPage - 1}&size=${itemsPerPage}&category=${category === "All" ? " " : category}&search=${searchText}`);
             return res.data;
         }
     })
@@ -100,7 +100,7 @@ const AllBlogs = () => {
             <Helmet>
                 <title>All Blogs - Furry Friends Blogs</title>
             </Helmet>
-            <h3 className="text-center text-furry font-bold text-3xl mb-8">All Blogs</h3>
+            <h3 className="text-center text-furry font-bold text-3xl mb-4 md:mb-8">All Blogs</h3>
             <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold">Explore All the Blogs about Your Favorite Pets</p>
             {/* Filter & Search */}
             <div className="my-8 flex flex-col md:flex-row justify-start md:justify-center items-center gap-3 md:gap-6">
@@ -112,6 +112,7 @@ const AllBlogs = () => {
                         className="focus:bg-[#dce1f5] p-2 rounded-lg outline outline-none border border-furry"
                         name="category" id="category">
                         <option value="">Filter by Category</option>
+                        <option value="All">All</option>
                         <option value="Cats">Cats</option>
                         <option value="Dogs">Dogs</option>
                         <option value="Birds">Birds</option>
@@ -130,10 +131,11 @@ const AllBlogs = () => {
                     <button className="border py-2 px-4 rounded-lg font-bold tracking-wider border-furry bg-furry text-white hover:bg-transparent hover:text-furry transition-all duration-700" type="submit">Search</button>
                 </form>
             </div>
+            {blogCount > 0 && !searchText && <h3 className="text-furry font-jokeyOneSans text-3xl mb-8 flex items-center justify-center">{blogCount} {blogCount > 0 ? 'Blogs' : 'Blog'}</h3>}
             {/* Show Search Count */}
             {
-                searchText && blogs?.length > 0 && (<div className="mb-8 text-furry font-kreonSerif text-2xl">
-                    <p>{blogs?.length} {blogs?.length === 1 ? 'Match' : 'Matches'} Found</p>
+                searchText && blogs?.length > 0 && (<div className="mb-8 flex items-center justify-center text-furry font-kreonSerif text-2xl">
+                    {blogs?.length} {blogs?.length === 1 ? 'Match' : 'Matches'} Found!
                 </div>)
             }
             {
@@ -141,7 +143,7 @@ const AllBlogs = () => {
                     <img src={rain} alt="Raining..." />
                     <p>No Blogs Found!</p>
                 </div>
-                    : <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    : <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {
                             blogs?.map(blog => <Blog
                                 key={blog._id}

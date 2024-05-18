@@ -72,7 +72,7 @@ const FeaturedBlogs = () => {
             <Helmet>
                 <title>Featured Blogs - Furry Friends Blogs</title>
             </Helmet>
-            <h3 className="text-center text-furry font-bold text-3xl mb-8">Featured Blogs</h3>
+            <h3 className="text-center text-furry font-bold text-3xl mb-4 md:mb-8">Featured Blogs</h3>
             <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-8">Our Top 10 Blogs! The Threshold is Based on Word Count for each Blog post.</p>
             <TableFeatured data={data} columns={columns}></TableFeatured>
         </section>

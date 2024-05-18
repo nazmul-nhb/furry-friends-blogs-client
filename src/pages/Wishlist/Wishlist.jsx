@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import catLoading from '../../assets/blue-cat.svg';
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+// import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
 import Blog from "../../components/Blog/Blog";
@@ -57,7 +57,8 @@ const Wishlist = () => {
             confirmButtonText: 'Yes, Remove It!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`https://furry-friends-server-nhb.vercel.app/wishlist/${id}?email=${user.email}`)
+                setLoadingData(true);
+                axiosSecure.delete(`/wishlist/${id}?email=${user.email}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             refetch();
@@ -66,7 +67,8 @@ const Wishlist = () => {
                                 'Blog Removed from Wishlist!',
                                 'success'
                             )
-                            toast.success('Blog Removed from Wishlist!')
+                            toast.success('Blog Removed from Wishlist!');
+                            setLoadingData(false);
                         }
                     })
                     .catch(error => {
@@ -97,7 +99,7 @@ const Wishlist = () => {
             <Helmet>
                 <title>Wishlist - Furry Friends Blogs</title>
             </Helmet>
-            <h3 className="text-center text-furry font-bold text-3xl mb-8">{user.displayName}&rsquo;s Wishlist </h3>
+            <h3 className="text-center text-furry font-bold text-3xl mb-4 md:mb-8">{user.displayName}&rsquo;s Wishlist </h3>
             <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-8">Read the Blogs You kept in your Wishlist for Reading Later.</p>
             {loadingData ?
                 < div className="flex items-center justify-center space-x-2">
@@ -107,7 +109,7 @@ const Wishlist = () => {
                     <img src={rain} alt="Raining..." />
                     <p>Your Wishlist is Empty!</p>
                 </div>
-                    : <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    : <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {
                             blogs?.map(blog => <Blog
                                 key={blog._id}

@@ -10,16 +10,63 @@ import { Link } from "react-router-dom";
 import { MdVerified } from "react-icons/md";
 import { VscUnverified } from "react-icons/vsc";
 import Button from "../../components/Button/Button";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import cloud from "../../assets/cloud.svg"
+import { useState } from "react";
 
 const Profile = () => {
     const { user } = useAuth();
-    const { isPending, isError, error, data: usersBlogs } = useQuery({
+    const [deleting, setDeleting] = useState(false);
+    const axiosSecure = useAxiosSecure();
+
+    const { isPending, isError, error, data: usersBlogs, refetch } = useQuery({
         queryKey: ['usersBlogs', user],
         queryFn: async () => {
-            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/blogs?currentUser=${user.email}`);
+            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/blogs?currentUser=${user.email}&sort=-1`);
             return res.data;
-        }
+        }, enabled: true,
     })
+
+    const handleDeleteBlog = (id) => {
+        Swal.fire({
+            title: 'Are You Sure?',
+            text: `Delete the Blog Permanently?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#ff0000',
+            cancelButtonColor: '#2a7947',
+            confirmButtonText: 'Yes, Delete It!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setDeleting(true);
+                axiosSecure.delete(`/blog/${id}?email=${user.email}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire(
+                                'Removed!',
+                                'Permanently Deleted the Blog!',
+                                'success'
+                            )
+                            toast.success('Permanently Deleted the Blog!');
+                            setDeleting(false);
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    })
+            }
+        })
+    }
+
+    if (deleting) {
+        return (<div className="flex items-center justify-center space-x-2">
+            <img src={cloud} alt="Deleting..." />
+        </div>
+        )
+    }
 
     if (isPending) {
         return (
@@ -42,7 +89,7 @@ const Profile = () => {
             <Helmet>
                 <title>Profile : {user.displayName} - Furry Friends Blogs</title>
             </Helmet>
-            <div className="flex flex-col lg:flex-row justify-between gap-10 items-center mb-8 lg:mb-16">
+            <div className="flex flex-col xl:flex-row justify-between gap-10 items-center mb-8 xl:mb-16">
                 <div className="w-full lg:w-2/3 flex-1 bg-gradient-to-l from-[#829ae8fa] to-[#7690e5fa] flex flex-col gap-6 p-6 shadow-lg shadow-[#3c3939]">
                     <div className="flex flex-col lg:flex-row gap-2 items-center md:justify-start justify-center my-4">
                         <img className="border p-1 border-furry w-24 md:w-36 h-24 md:h-36" src={user.photoURL} alt={user.displayName} title={user.displayName} />
@@ -74,12 +121,13 @@ const Profile = () => {
                 </div>
                     : <div>
                         <h3 className="text-furry font-jokeyOneSans text-3xl mb-6">Your Blogs:</h3>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             {
                                 usersBlogs?.map(blog => <Blog
                                     key={blog._id}
                                     blog={blog}
                                     profile={true}
+                                    handleDeleteBlog={handleDeleteBlog}
                                 ></Blog>)
                             }
                         </div>
