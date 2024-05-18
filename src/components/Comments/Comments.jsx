@@ -2,7 +2,7 @@ import useAuth from "../../hooks/useAuth";
 import PropTypes from 'prop-types';
 import Comment from "./Comment";
 import Button from "../Button/Button";
-// import axios from "axios";
+import axios from "axios";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
@@ -49,7 +49,7 @@ const Comments = ({ blog }) => {
             commented_on: moment().format("YYYY-MM-DD HH:mm:ss")
         }
 
-        axiosSecure.post(`/comments`, { ...commentData })
+        axios.post(`https://furry-friends-server-nhb.vercel.app/comments`, { ...commentData })
             .then(res => {
                 // console.log(res.data);
                 if (res.data.insertedId) {

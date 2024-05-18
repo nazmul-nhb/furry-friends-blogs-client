@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import catLoading from '../../assets/blue-cat.svg';
 import { useQuery } from "@tanstack/react-query";
-// import axios from "axios";
+import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
 import Blog from "../../components/Blog/Blog";
@@ -57,7 +57,7 @@ const Wishlist = () => {
             confirmButtonText: 'Yes, Remove It!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`/wishlist/${id}?email=${user.email}`)
+                axios.delete(`https://furry-friends-server-nhb.vercel.app/wishlist/${id}?email=${user.email}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             refetch();
@@ -113,7 +113,6 @@ const Wishlist = () => {
                                 key={blog._id}
                                 blog={blog}
                                 wishlist={true}
-                                refetch={refetch}
                                 handleDeleteWishlist={handleDeleteWishlist}
                             ></Blog>)
                         }

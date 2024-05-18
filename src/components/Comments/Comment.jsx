@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Button from '../Button/Button';
 import { useEffect, useRef, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
-// import axios from 'axios';
+import axios from 'axios';
 import toast from 'react-hot-toast';
 import moment from 'moment';
 import catLoading from '../../assets/blue-cat.svg'
@@ -40,7 +40,7 @@ const Comment = ({ comment }) => {
             replied_on: moment().format("YYYY-MM-DD HH:mm:ss")
         }
 
-        axiosSecure.post(`/replies`, { ...replyData })
+        axios.post(`https://furry-friends-server-nhb.vercel.app/replies`, { ...replyData })
             .then(res => {
                 // console.log(res.data);
                 if (res.data.insertedId) {

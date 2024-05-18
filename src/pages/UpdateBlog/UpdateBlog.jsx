@@ -6,7 +6,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 import Preview from "../../components/Preview/Preview";
 import moment from "moment";
 import useAuth from "../../hooks/useAuth";
-// import axios from "axios";
+import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
 import catLoading from '../../assets/blue-cat.svg';
@@ -51,7 +51,7 @@ const UpdateBlog = () => {
             ...modifiedBlog, updated_on: moment().format("YYYY-MM-DD HH:mm:ss"), blogger_photo: user.photoURL
         }
 
-        axiosSecure.patch(`/blog/${id}`, { ...updatedBlog })
+        axios.patch(`https://furry-friends-server-nhb.vercel.app/blog/${id}`, { ...updatedBlog })
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
