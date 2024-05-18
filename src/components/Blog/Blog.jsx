@@ -64,14 +64,14 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, refetch }) => {
             <p className='text-gray-500 text-sm flex items-center gap-1'><MdAccessTime /> {formattedDate}</p>
             <hr className="my-4" />
             <div className=" rounded-b-xl flex justify-between items-center">
-                <Link to={`/blog-details/${_id}`}><Button className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Read Details'}></Button></Link>
+                <Link to={`/blog-details/${_id}`}><Button className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Read Details'}></Button></Link>
                 {wishlist ?
-                    <Button onClick={() => handleDeleteWishlist(_id)} className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Remove'}></Button>
+                    <Button onClick={() => handleDeleteWishlist(_id)} className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Remove'}></Button>
                     : profile ? <Link to={`/update-blog/${_id}`}><Button
                         buttonText={'Update Blog'} hoverBgColor={'transparent'} hoverColor={'white'} color={'#1e40ad'}
-                        className={'my-2 border px-4 py-1 font-bold text-xl rounded-3xl'}
+                        className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'}
                     ></Button></Link>
-                        : <Button onClick={handleAddToWishlist} className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'rgb(30 64 175)'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Add to Wishlist'}></Button>
+                        : <Button onClick={handleAddToWishlist} className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Add to Wishlist'}></Button>
                 }
             </div>
         </div>

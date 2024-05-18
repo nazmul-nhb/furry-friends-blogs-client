@@ -11,9 +11,9 @@ import { FaPaw, FaSignOutAlt } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
 import { FaBookBookmark } from "react-icons/fa6";
 import { BsListStars } from "react-icons/bs";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
-import catLoading from '../../assets/blue-cat.svg';
+// import useAxiosSecure from "../../hooks/useAxiosSecure";
+// import { useQuery } from "@tanstack/react-query";
+// import catLoading from '../../assets/blue-cat.svg';
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
@@ -21,15 +21,16 @@ const Navbar = () => {
     const [userName, setUserName] = useState('');
     const [profilePicture, setProfilePicture] = useState('');
 
-    const axiosSecure = useAxiosSecure();
+    // const axiosSecure = useAxiosSecure();
 
-    const { isPending, isError, error, data: wishlistBlogs } = useQuery({
-        queryKey: ['wishlistBlogs'],
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/wishlist?email=${user.email}`);
-            return res.data;
-        }
-    });
+    // const { isPending, isError, error, data: wishlistBlogs } = useQuery({
+    //     queryKey: ['wishlistBlogs'],
+    //     queryFn: async () => {
+    //         const res = await axiosSecure.get(`/wishlist?email=${user?.email}`);
+    //         return res.data;
+    //     },
+    //     enabled: !!user,
+    // });
 
     const sidebarRef = useRef(null);
 
@@ -67,21 +68,21 @@ const Navbar = () => {
             })
     }
 
-    if (isPending) {
-        return (
-            <div className="flex items-center justify-center space-x-2">
-                <img src={catLoading} alt="Loading..." />
-            </div>
-        )
-    }
+    // if (user && isPending) {
+    //     return (
+    //         <div className="flex items-center justify-center space-x-2">
+    //             <img src={catLoading} alt="Loading..." />
+    //         </div>
+    //     )
+    // }
 
-    if (isError) {
-        return (
-            <div className="flex items-center justify-center space-x-2">
-                <span>Error: {error.message}</span>
-            </div>
-        )
-    }
+    // if (user && isError) {
+    //     return (
+    //         <div className="flex items-center justify-center space-x-2">
+    //             <span>Error: {error.message}</span>
+    //         </div>
+    //     )
+    // }
 
     return (
         <nav className="max-w-[1920px] flex items-center gap-0 md:gap-4 mx-auto shadow-md px-3 py-4 md:px-10 xl:px-20 sticky top-0 bg-gradient-to-l from-[#829ae8fa] to-[#7690e5fa] bg-opacity-100 z-50 text-[#1e4080]">
@@ -110,7 +111,8 @@ const Navbar = () => {
                         {
                             user && <>
                                 <NavLink className={'flex gap-0.5 items-center'} to={'/add-blog'}><MdOutlinePostAdd className="pb-[2px] text-2xl" />Add Blog</NavLink>
-                                <NavLink className={'flex gap-0.5 items-center'} to={'/wishlist'}><FaBookBookmark className="pb-[2px] text-xl" />Wishlist<sup>{wishlistBlogs?.length > 0 && wishlistBlogs?.length}</sup></NavLink>
+                                <NavLink className={'flex gap-0.5 items-center'} to={'/wishlist'}><FaBookBookmark className="pb-[2px] text-xl" />Wishlist</NavLink>
+                                {/* <sup>{wishlistBlogs?.length > 0 && wishlistBlogs?.length}</sup> */}
                             </>
                         }
                     </ul>

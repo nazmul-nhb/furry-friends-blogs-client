@@ -42,13 +42,13 @@ const Profile = () => {
             <Helmet>
                 <title>Profile : {user.displayName} - Furry Friends Blogs</title>
             </Helmet>
-            <div className="flex flex-col lg:flex-row justify-between gap-6 items-center mb-8 lg:mb-16">
+            <div className="flex flex-col lg:flex-row justify-between gap-10 items-center mb-8 lg:mb-16">
                 <div className="w-full lg:w-2/3 flex-1 bg-gradient-to-l from-[#829ae8fa] to-[#7690e5fa] flex flex-col gap-6 p-6 shadow-lg shadow-[#3c3939]">
                     <div className="flex flex-col lg:flex-row gap-2 items-center md:justify-start justify-center my-4">
                         <img className="border p-1 border-furry w-24 md:w-36 h-24 md:h-36" src={user.photoURL} alt={user.displayName} title={user.displayName} />
                         <div className="flex flex-col justify-center items-center md:items-start md:justify-start gap-3">
                             <h4 className="text-lg md:text-2xl font-bold">{user.displayName}</h4>
-                            <h4 className="font-semibold flex items-center">{user.email} {user.emailVerified ? <MdVerified className="text-green-800" title="Verified!" /> : <VscUnverified className="text-red-800" title="Not Verified!" />}</h4>
+                            <h4 className="font-semibold flex items-center gap-1">{user.email} {user.emailVerified ? <MdVerified className="text-furry" title="Verified!" /> : <VscUnverified className="text-red-700" title="Not Verified!" />}</h4>
                             <div className="flex flex-col items-center md:flex-row gap-1 md:text-xl">
                                 <h4 className="font-semibold">Account Created on:</h4>
                                 <h4>{moment(user.metadata.creationTime).format('MMMM DD, YYYY [at] hh:mm:ss A')}</h4>
@@ -73,7 +73,7 @@ const Profile = () => {
                     <Link to={`/add-blog`}><Button buttonText={'Add A Blog'} hoverBgColor={'transparent'} hoverColor={'white'} color={'#1e40ad'} className={'my-2 border px-4 py-1 font-bold text-xl'}></Button></Link>
                 </div>
                     : <div>
-                        <h3 className="text-furry font-jokeyOneSans text-3xl">Your Blogs:</h3>
+                        <h3 className="text-furry font-jokeyOneSans text-3xl mb-6">Your Blogs:</h3>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {
                                 usersBlogs?.map(blog => <Blog

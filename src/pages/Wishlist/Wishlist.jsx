@@ -9,11 +9,13 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import rain from '../../assets/rain.svg';
+import interwind from '../../assets/interwind-blue.svg';
 
 const Wishlist = () => {
     const { user } = useAuth();
     const [blogs, setBlogs] = useState([]);
     const axiosSecure = useAxiosSecure();
+    const [loadingData, setLoadingData] = useState(false);
 
     const { isPending, isError, error, data: wishlistBlogs, refetch } = useQuery({
         queryKey: ['wishlistBlogs'],
@@ -29,11 +31,13 @@ const Wishlist = () => {
         if (wishlistBlogs) {
             const wishlistBlogIDs = wishlistBlogs?.map(wished => wished.blog_id);
             // console.log(wishlistBlogIDs);
+            setLoadingData(true);
             axios.post(`https://furry-friends-server-nhb.vercel.app/wishlist-blogs?`, [...wishlistBlogIDs])
                 .then(res => {
                     // console.log(res.data);
                     setBlogs(res.data);
                     refetch();
+                    setLoadingData(false);
                 })
                 .catch(error => {
                     console.error(error);
@@ -95,8 +99,11 @@ const Wishlist = () => {
             </Helmet>
             <h3 className="text-center text-furry font-bold text-3xl mb-8">{user.displayName}&rsquo;s Wishlist </h3>
             <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-8">Read the Blogs You kept in your Wishlist for Reading Later.</p>
-            {
-                blogs?.length <= 0 ? <div className="flex flex-col items-center justify-center text-furry font-jokeyOneSans text-2xl md:text-4xl gap-4">
+            {loadingData ?
+                < div className="flex items-center justify-center space-x-2">
+                    <img src={interwind} alt="Loading..." />
+                </div>
+                : wishlistBlogs?.length <= 0 ? <div className="flex flex-col items-center justify-center text-furry font-jokeyOneSans text-2xl md:text-4xl gap-4">
                     <img src={rain} alt="Raining..." />
                     <p>Your Wishlist is Empty!</p>
                 </div>
