@@ -3,17 +3,19 @@ import Button from '../Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import moment from 'moment';
-import axios from 'axios';
+// import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
 import { useState } from 'react';
 import { MdAccessTime, MdPets } from 'react-icons/md';
 import { PiBirdFill, PiCatFill, PiDogFill, PiRabbitFill } from 'react-icons/pi';
 import { GiFrog } from 'react-icons/gi';
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, refetch }) => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const [countClick, setCountClick] = useState(0);
+    const axiosSecure = useAxiosSecure();
 
     const { blog_title, category, image, short_description, posted_on, posted_by, _id } = blog;
     const formattedDate = moment(posted_on).format('MMMM DD, YYYY [at] hh:mm A');
@@ -30,7 +32,7 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, refetch }) => {
             return;
         }
 
-        axios.post('https://furry-friends-server-nhb.vercel.app/wishlist', { blog_id: _id, user_email: user.email, time_added: moment().format("YYYY-MM-DD HH:mm:ss") })
+        axiosSecure.post('/wishlist', { blog_id: _id, user_email: user.email, time_added: moment().format("YYYY-MM-DD HH:mm:ss") })
             .then(res => {
                 // console.log(res.data);
                 if (res.data.insertedId) {

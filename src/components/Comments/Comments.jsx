@@ -2,24 +2,26 @@ import useAuth from "../../hooks/useAuth";
 import PropTypes from 'prop-types';
 import Comment from "./Comment";
 import Button from "../Button/Button";
-import axios from "axios";
+// import axios from "axios";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import moment from "moment";
 import catLoading from '../../assets/blue-cat.svg'
 import { useTypewriter } from "react-simple-typewriter";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Comments = ({ blog }) => {
     const [hideCommentBox, setHideCommentBox] = useState(false);
 
     const { user } = useAuth();
     const { _id, blogger_email } = blog;
+    const axiosSecure = useAxiosSecure();
 
     const { isPending, isError, error, data: comments, refetch } = useQuery({
         queryKey: ['comments', _id],
         queryFn: async () => {
-            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/comments/${_id}`);
+            const res = await axiosSecure.get(`/comments/${_id}`);
             return res.data;
         }, enabled: true,
     })
@@ -47,7 +49,7 @@ const Comments = ({ blog }) => {
             commented_on: moment().format("YYYY-MM-DD HH:mm:ss")
         }
 
-        axios.post(`https://furry-friends-server-nhb.vercel.app/comments`, { ...commentData })
+        axiosSecure.post(`/comments`, { ...commentData })
             .then(res => {
                 // console.log(res.data);
                 if (res.data.insertedId) {

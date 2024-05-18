@@ -6,12 +6,13 @@ import { IoIosCloseCircle } from "react-icons/io";
 import Preview from "../../components/Preview/Preview";
 import moment from "moment";
 import useAuth from "../../hooks/useAuth";
-import axios from "axios";
+// import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
 import catLoading from '../../assets/blue-cat.svg';
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const UpdateBlog = () => {
     const { id } = useParams();
@@ -20,11 +21,12 @@ const UpdateBlog = () => {
     const [showModal, setShowModal] = useState(false);
     const [previewBlog, setPreviewBlog] = useState("");
     const navigate = useNavigate();
+    const axiosSecure = useAxiosSecure();
 
     const { isPending, isError, error, data: blog } = useQuery({
         queryKey: ['blog', id],
         queryFn: async () => {
-            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/blogs/${id}`);
+            const res = await axiosSecure.get(`/blog/${id}`);
             return res.data;
         },
     })
@@ -49,7 +51,7 @@ const UpdateBlog = () => {
             ...modifiedBlog, updated_on: moment().format("YYYY-MM-DD HH:mm:ss"), blogger_photo: user.photoURL
         }
 
-        axios.patch(`https://furry-friends-server-nhb.vercel.app/blogs/${id}`, { ...updatedBlog })
+        axiosSecure.patch(`/blog/${id}`, { ...updatedBlog })
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({

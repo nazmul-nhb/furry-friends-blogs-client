@@ -2,16 +2,18 @@ import PropTypes from 'prop-types';
 import Button from '../Button/Button';
 import { useEffect, useRef, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
-import axios from 'axios';
+// import axios from 'axios';
 import toast from 'react-hot-toast';
 import moment from 'moment';
 import catLoading from '../../assets/blue-cat.svg'
 import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Comment = ({ comment }) => {
     const { user } = useAuth();
     const [showReplyBox, setShowReplyBox] = useState(false);
     const replyRef = useRef(null);
+    const axiosSecure = useAxiosSecure();
 
     const { _id, comment_body, commenter_email, commenter_name, commenter_photo, commented_on } = comment;
     const commentTime = moment(commented_on).format('MMMM DD, YYYY [at] hh:mm A');
@@ -19,7 +21,7 @@ const Comment = ({ comment }) => {
     const { isPending, isError, error, data: replies, refetch } = useQuery({
         queryKey: ['replies', _id],
         queryFn: async () => {
-            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/replies/${_id}`);
+            const res = await axiosSecure.get(`/replies/${_id}`);
             return res.data;
         }, enabled: true,
     })
@@ -38,7 +40,7 @@ const Comment = ({ comment }) => {
             replied_on: moment().format("YYYY-MM-DD HH:mm:ss")
         }
 
-        axios.post(`https://furry-friends-server-nhb.vercel.app/replies`, { ...replyData })
+        axiosSecure.post(`/replies`, { ...replyData })
             .then(res => {
                 // console.log(res.data);
                 if (res.data.insertedId) {

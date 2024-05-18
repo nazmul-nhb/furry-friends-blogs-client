@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import catLoading from '../../assets/blue-cat.svg';
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+// import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
 import Blog from "../../components/Blog/Blog";
@@ -32,7 +32,7 @@ const Wishlist = () => {
             const wishlistBlogIDs = wishlistBlogs?.map(wished => wished.blog_id);
             // console.log(wishlistBlogIDs);
             setLoadingData(true);
-            axios.post(`https://furry-friends-server-nhb.vercel.app/wishlist-blogs?`, [...wishlistBlogIDs])
+            axiosSecure.post(`/wishlist-blogs?`, [...wishlistBlogIDs])
                 .then(res => {
                     // console.log(res.data);
                     setBlogs(res.data);
@@ -43,7 +43,7 @@ const Wishlist = () => {
                     console.error(error);
                 })
         }
-    }, [refetch, wishlistBlogs])
+    }, [axiosSecure, refetch, wishlistBlogs])
 
     // Delete Wishlist Item one by one
     const handleDeleteWishlist = (id) => {
@@ -57,7 +57,7 @@ const Wishlist = () => {
             confirmButtonText: 'Yes, Remove It!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`https://furry-friends-server-nhb.vercel.app/wishlist/${id}?email=${user.email}`)
+                axiosSecure.delete(`/wishlist/${id}?email=${user.email}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             refetch();

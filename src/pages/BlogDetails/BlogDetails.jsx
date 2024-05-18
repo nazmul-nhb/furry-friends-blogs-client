@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+// import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import moment from 'moment';
 import Comments from "../../components/Comments/Comments";
@@ -12,18 +12,20 @@ import 'react-photo-view/dist/react-photo-view.css';
 import { MdPets } from "react-icons/md";
 import { PiBirdFill, PiCatFill, PiDogFill, PiRabbitFill } from "react-icons/pi";
 import { GiFrog } from "react-icons/gi";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const BlogDetails = () => {
     const { id } = useParams();
     const { user } = useAuth();
     const navigate = useNavigate();
+    const axiosSecure = useAxiosSecure();
 
     const { isPending, isError, error, data: blog } = useQuery({
         queryKey: ['blog', id],
         queryFn: async () => {
-            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/blogs/${id}`);
+            const res = await axiosSecure.get(`/blog/${id}`);
             return res.data;
-        },
+        }
     })
 
     if (isPending) {
