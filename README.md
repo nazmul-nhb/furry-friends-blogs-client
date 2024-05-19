@@ -32,31 +32,65 @@
 
 ### Notable Features of the Website
 
-- On **Home**, you'll notice a a slider with thumbnails in hero section
-- On Add Blog page, you can add/post blogs, you can preview your blog before posting to see how it will look after posting
-- On **Blog Details**, you can click on **Go Back** button to navigate to the page you came from to this page
-- You can comment and reply on blog details page
-- Users can *delete* their own comments & replies
-- If you are the blog owner, you cannot comment but can reply to others' comments
-- If you click **Update** button, it will open a new page where you can update the blog that you added, you can preview before clicking update button
-- On **All Blogs** page, you'll find all the blogs posted by all users
-- You can filter blogs by category or search for a particular blog title
-- You can also select blogs per page to view on this page
-- On **Featured Blogs** page, you'll find 10 posts which contain more words in an interactive table
-- You can tap/click on a column header to sort the column alphabetically
-- In **Recent Blogs** section, you'll see 6 recent blog posts, you can either read the full blog on clicking read details button or add to your wishlist (if you're a logged in user)
-- On **Wishlist** Page, you can find the blogs you have added for reading later, you can remove any blog from your wishlist
-- On **Navbar** beside your profile picture, you can see a logout icon. You can simply log out by clicking this icon
+#### Homepage
+
+- A slider with thumbnails in the hero section
+- In Recent Blogs section, there are 6 recent blog posts, users can either read the full blog on clicking read blog button or add to your wishlist (if you're a logged in user)
+- Pet Tips & Advice section provides some tips & advice about pets
+- FAQs section has Accordion to expand/collapse questions & answers
+- Then there is our Newsletter section where users can subscribe to our latest updates via email
+
+#### All Blogs Page
+
+- On All Blogs page, users will find all the blogs posted by all users
+- Users can filter blogs by category or search for a particular blog title
+- User can also control pagination
+
+#### Featured Blogs Page
+
+- Showcase top 10 posts which contain more words in an interactive table
+- Users can tap/click on a column header to sort the column alphabetically
+
+#### Blog Details Page
+
+- On Blog Details, users can click on Go Back button to navigate to the page they came from
+- Users can comment and reply on blog details page
+- Users can delete their comments & replies
+- If a user is the blog author, s/he cannot comment but can reply to others' comments
+- If a user is the blog author s/he can click Update button, it will open a new page where s/he can update the blog that s/he added, they can preview the blog before clicking update button
+
+#### User Profile Page
+
 - Users can update/delete their blogs from their profile page
-- Below that you'll find **Pet Tips & Advice** section where you can learn some tips & advice about pets
-- Under that section, you'll find **Frequently Asked Questions (FAQs)** section to know some basic things about our blog site
-- **FAQs** section has Accordion to expand/collapse questions & answers
-- Then You'll find our Newsletter section where you can subscribe to our latest updates via your email
-- You will notice animation effect this section
-- On **Login** page, you can login using your email and password or with *Google*, *Facebook* or *Github* account. There is also a redirect link to navigate you to the **Register** page if you need a new account
-- After successful login, you'll see a toast
-- If your password and email do not match, you'll see an error message as toast. if there is other errors during login, you'll also see those as toast
-- On **Register** page, you must fill in all the fields. Your password must be 8 characters long and must contain at least an upper case and lower letter, a number and a symbol. If you don't follow these, you'll notice error messages below the input fields and toasts
-- After successful registration, you'll see a toast and you'll be redirected to login page to login
-- If you click on the profile picture on the navbar it will take you to you *profile details* page. You can see your information there, i.e. your name, email, whether your email is verified or not, last log in time and account creation date.
+
+#### Wishlist Page
+
+- On Wishlist Page, a user can find the blogs s/he has added for reading later, users can remove any blog from their wishlist
+
+#### Add Blog Page
+
+- On Add Blog page, a user can add/post blogs, s/he can preview her/his blog before posting to see how it will look after posting
+
+#### Register Page
+
+- On Register page, a user must fill in all the fields to create a new account. Password must be 8 characters long and must contain at least an upper case and lower letter, a number and a symbol. If users don't follow these, they will notice error messages below the input fields and toasts
+- After successful registration, they will see a toast and will be redirected to login page to login
+
+#### Login Page
+
+- On Login page, users can login using email and password or with Google, Facebook or Github account. - There is also a redirect link to navigate to the Register page if users need a new account
+- After successful login, a toast will popup
+- If the password and email do not match, users will see an error message as toast
+
+#### Others
+
+- On **Navbar** beside your profile picture, you can see a logout icon. You can simply log out by clicking this icon
 - If you enter any invalid URL suffix, you'll see a **404 Error Page**. This page has special animation effects
+
+### Technologies used in this Project
+
+- ReactJS
+- Javascript
+- TailwindCSS
+- MongoDB (Server Side)
+- Express.js (Server Side)
