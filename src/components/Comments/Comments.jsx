@@ -123,7 +123,7 @@ const Comments = ({ blog }) => {
             <h3 className="font-semibold mb-2 text-furry text-xl">{user.displayName}, {text}</h3>
             {
                 hideCommentBox
-                    ? <p className="text-red-700 font-semibold">Cannot Comment on Own Blog!</p>
+                    ? <p className="text-red-700 font-semibold">You Cannot Comment on Your Own Blog!</p>
                     : <form className="flex flex-col items-start gap-4" onSubmit={handlePostComment}>
                         <textarea className="w-full lg:w-3/5 h-32 border border-furry rounded-lg p-2 outline-none focus:border-2" name="comment" id="comment" placeholder="Write Your Comment"></textarea>
                         <Button buttonText={'Comment'} buttonType={'submit'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} className={'border rounded-xl px-3 py-1 font-medium'}></Button>

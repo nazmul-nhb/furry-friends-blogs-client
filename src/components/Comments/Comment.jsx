@@ -117,9 +117,9 @@ const Comment = ({ comment, handleDeleteComment }) => {
             {/* Comments */}
             <div className='flex items-center gap-1'>
                 <img src={commenter_photo} alt={commenter_name} className='w-11 h-11 rounded-full p-[2px] border' />
-                <div className='flex flex-col justify-center gap-0 items-start leading-none'>
+                <div className='flex flex-col justify-around gap-0 items-start leading-none'>
                     <h5 className="text-gray-500 text-sm">{commentTime}</h5>
-                    <h4 className='font-normal' title={commenter_email}><span className="font-bold text-furry">{commenter_name}</span> commented:</h4>
+                    <h4 className='font-normal text-base' title={commenter_email}><span className="font-bold text-furry">{commenter_name}</span> commented:</h4>
                 </div>
             </div>
             <p className='ml-12 mb-2'>{comment_body}</p>
@@ -130,7 +130,7 @@ const Comment = ({ comment, handleDeleteComment }) => {
                 <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => setShowReplyBox(showReplyBox => !showReplyBox)}>Reply</button>
             </div>
             {/* Reply Box */}
-            <div className='ml-4 mb-2'>
+            <div className='ml-4 mb-1'>
                 {
                     showReplyBox && <div className="ml-6 mb-2">
                         <form className="flex items-start flex-col gap-4" onSubmit={handlePostReply}>
@@ -151,7 +151,7 @@ const Comment = ({ comment, handleDeleteComment }) => {
                                 <h4 className='font-normal' title={reply.reply_email}><span className="font-bold text-furry">{reply.reply_person}</span> replied:</h4>
                             </div>
                         </div>
-                        <p className='ml-11'>{reply.reply_body}</p>
+                        <p className='ml-11 mb-1'>{reply.reply_body}</p>
                         <div className="text-xs ml-11 flex items-center gap-2 mb-2 font-semibold">
                             {
                                 user.email === reply.reply_email && <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => handleDeleteReply(reply._id)}>Delete</button>
