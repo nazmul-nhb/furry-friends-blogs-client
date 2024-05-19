@@ -5,11 +5,12 @@ import useAuth from '../../hooks/useAuth';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import moment from 'moment';
-import catLoading from '../../assets/blue-cat.svg'
+import interwind from '../../assets/interwind-blue.svg'
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from 'sweetalert2';
 
-const Comment = ({ comment }) => {
+const Comment = ({ comment, handleDeleteComment }) => {
     const { user } = useAuth();
     const [showReplyBox, setShowReplyBox] = useState(false);
     const replyRef = useRef(null);
@@ -56,6 +57,38 @@ const Comment = ({ comment }) => {
             })
     }
 
+    const handleDeleteReply = (id) => {
+        Swal.fire({
+            title: 'Are You Sure?',
+            text: `Delete Your Reply Permanently?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#ff0000',
+            cancelButtonColor: '#2a7947',
+            confirmButtonText: 'Yes, Delete It!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // setDeleting(true);
+                axiosSecure.delete(`/reply/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire(
+                                'Removed!',
+                                'Reply Deleted!',
+                                'success'
+                            )
+                            toast.success('Reply Deleted!');
+                            // setDeleting(false);
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    })
+            }
+        })
+    }
+
     // Focus Reply Box
     useEffect(() => {
         if (showReplyBox && replyRef.current) {
@@ -66,7 +99,7 @@ const Comment = ({ comment }) => {
     if (isPending) {
         return (
             <div className="flex items-center justify-center space-x-2">
-                <img src={catLoading} alt="Loading..." />
+                <img src={interwind} alt="Loading..." />
             </div>
         )
     }
@@ -84,12 +117,17 @@ const Comment = ({ comment }) => {
             {/* Comments */}
             <div className='flex items-center gap-1'>
                 <img src={commenter_photo} alt={commenter_name} className='w-11 h-11 rounded-full p-[2px] border' />
-                <h4 className='text-lg font-normal' title={commenter_email}><span className="font-bold text-furry">{commenter_name}</span> commented:</h4>
+                <div className='flex flex-col justify-center gap-0 items-start leading-none'>
+                    <h5 className="text-gray-500 text-sm">{commentTime}</h5>
+                    <h4 className='font-normal' title={commenter_email}><span className="font-bold text-furry">{commenter_name}</span> commented:</h4>
+                </div>
             </div>
             <p className='ml-12 mb-2'>{comment_body}</p>
-            <div className="text-xs ml-12 flex items-center gap-2 mb-2">
-                <h5 className="text-gray-500">{commentTime}</h5>
-                <button className='cursor-pointer text-blue-950 hover:text-blue-600' onClick={() => setShowReplyBox(showReplyBox => !showReplyBox)}>Reply</button>
+            <div className="text-xs ml-12 flex items-center gap-2 mb-2 font-semibold">
+                {
+                    user.email === commenter_email && <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => handleDeleteComment(_id)}>Delete</button>
+                }
+                <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => setShowReplyBox(showReplyBox => !showReplyBox)}>Reply</button>
             </div>
             {/* Reply Box */}
             <div className='ml-4 mb-2'>
@@ -114,6 +152,12 @@ const Comment = ({ comment }) => {
                             </div>
                         </div>
                         <p className='ml-11'>{reply.reply_body}</p>
+                        <div className="text-xs ml-11 flex items-center gap-2 mb-2 font-semibold">
+                            {
+                                user.email === reply.reply_email && <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => handleDeleteReply(reply._id)}>Delete</button>
+                            }
+                            <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => setShowReplyBox(showReplyBox => !showReplyBox)}>Reply</button>
+                        </div>
                         {
                             replies.indexOf(reply) !== replies?.length - 1 && <hr className='my-4' />
                         }
@@ -126,6 +170,7 @@ const Comment = ({ comment }) => {
 
 Comment.propTypes = {
     comment: PropTypes.object,
+    handleDeleteComment: PropTypes.func,
 }
 
 export default Comment;

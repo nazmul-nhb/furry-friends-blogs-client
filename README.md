@@ -36,6 +36,7 @@
 - On Add Blog page, you can add/post blogs, you can preview your blog before posting to see how it will look after posting
 - On **Blog Details**, you can click on **Go Back** button to navigate to the page you came from to this page
 - You can comment and reply on blog details page
+- Users can *delete* their own comments & replies
 - If you are the blog owner, you cannot comment but can reply to others' comments
 - If you click **Update** button, it will open a new page where you can update the blog that you added, you can preview before clicking update button
 - On **All Blogs** page, you'll find all the blogs posted by all users
@@ -45,6 +46,8 @@
 - You can tap/click on a column header to sort the column alphabetically
 - In **Recent Blogs** section, you'll see 6 recent blog posts, you can either read the full blog on clicking read details button or add to your wishlist (if you're a logged in user)
 - On **Wishlist** Page, you can find the blogs you have added for reading later, you can remove any blog from your wishlist
+- On **Navbar** beside your profile picture, you can see a logout icon. You can simply log out by clicking this icon
+- Users can update/delete their blogs from their profile page
 - Below that you'll find **Pet Tips & Advice** section where you can learn some tips & advice about pets
 - Under that section, you'll find **Frequently Asked Questions (FAQs)** section to know some basic things about our blog site
 - **FAQs** section has Accordion to expand/collapse questions & answers
@@ -56,5 +59,4 @@
 - On **Register** page, you must fill in all the fields. Your password must be 8 characters long and must contain at least an upper case and lower letter, a number and a symbol. If you don't follow these, you'll notice error messages below the input fields and toasts
 - After successful registration, you'll see a toast and you'll be redirected to login page to login
 - If you click on the profile picture on the navbar it will take you to you *profile details* page. You can see your information there, i.e. your name, email, whether your email is verified or not, last log in time and account creation date.
-- On **Navbar** beside your profile picture, you can see a logout icon. You can simply log out by clicking this icon
 - If you enter any invalid URL suffix, you'll see a **404 Error Page**. This page has special animation effects

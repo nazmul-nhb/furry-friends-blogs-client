@@ -10,6 +10,7 @@ import moment from "moment";
 import catLoading from '../../assets/blue-cat.svg'
 import { useTypewriter } from "react-simple-typewriter";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const Comments = ({ blog }) => {
     const [hideCommentBox, setHideCommentBox] = useState(false);
@@ -64,6 +65,38 @@ const Comments = ({ blog }) => {
             })
     }
 
+    const handleDeleteComment = (id) => {
+        Swal.fire({
+            title: 'Are You Sure?',
+            text: `Delete Your Comment Permanently?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#ff0000',
+            cancelButtonColor: '#2a7947',
+            confirmButtonText: 'Yes, Delete It!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // setDeleting(true);
+                axiosSecure.delete(`/comment/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire(
+                                'Removed!',
+                                'Comment Deleted!',
+                                'success'
+                            )
+                            toast.success('Comment Deleted!');
+                            // setDeleting(false);
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    })
+            }
+        })
+    }
+
     const [text] = useTypewriter({
         words: [`Write Your Comment`],
         loop: true,
@@ -99,7 +132,7 @@ const Comments = ({ blog }) => {
             <div className="my-4 border-t">
                 {
                     comments?.map(comment => (<div key={comment._id}>
-                        <Comment comment={comment}></Comment>
+                        <Comment comment={comment} handleDeleteComment={handleDeleteComment}></Comment>
                         {
                             comments.indexOf(comment) !== comments?.length - 1 && <hr className='my-4' />
                         }
