@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import Blog from "../../components/Blog/Blog";
 import { FaDeleteLeft } from "react-icons/fa6";
 import toast from "react-hot-toast";
+import loadingRipple from "../../assets/ripple-blue-thick.svg";
 
 const AllBlogs = () => {
     const [itemsPerPage, setItemsPerPage] = useState(6);
@@ -79,10 +80,16 @@ const AllBlogs = () => {
         inputRef.current.value = '';
     }
 
-    if (isPending) {
+    if (isPending && searchText) {
         return (
             <div className="flex items-center justify-center space-x-2">
                 <img className="w-48 h-48" src={searchLoading} alt="Loading..." />
+            </div>
+        )
+    } else if (isPending) {
+        return (
+            <div className="flex items-center justify-center space-x-2">
+                <img className="w-48 h-48" src={loadingRipple} alt="Loading..." />
             </div>
         )
     }

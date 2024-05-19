@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
-import catLoading from '../../assets/blue-cat.svg';
+import loadingRipple from "../../assets/ripple-blue-thick.svg";
 import TableFeatured from "../../components/TableFeatured/TableFeatured";
 import { useMemo } from 'react';
 import { Link } from "react-router-dom";
@@ -54,7 +54,7 @@ const FeaturedBlogs = () => {
     if (isPending) {
         return (
             <div className="flex items-center justify-center space-x-2">
-                <img src={catLoading} alt="Loading..." />
+                <img src={loadingRipple} alt="Loading..." />
             </div>
         )
     }

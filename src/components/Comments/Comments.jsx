@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import moment from "moment";
-import catLoading from '../../assets/blue-cat.svg'
+import loadingRipple from "../../assets/ripple-blue-thick.svg";
 import { useTypewriter } from "react-simple-typewriter";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
@@ -105,7 +105,7 @@ const Comments = ({ blog }) => {
     if (isPending) {
         return (
             <div className="flex items-center justify-center space-x-2">
-                <img src={catLoading} alt="Loading..." />
+                <img src={loadingRipple} alt="Loading..." />
             </div>
         )
     }

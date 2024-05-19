@@ -1,7 +1,7 @@
 import useAuth from "../../hooks/useAuth";
 import { Helmet } from 'react-helmet-async';
 import moment from 'moment';
-import catLoading from '../../assets/blue-cat.svg';
+import loadingRipple from "../../assets/ripple-blue-thick.svg";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Blog from "../../components/Blog/Blog";
@@ -13,7 +13,7 @@ import Button from "../../components/Button/Button";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import cloud from "../../assets/cloud.svg"
+import cloud from "../../assets/cloud.svg";
 import { useState } from "react";
 
 const Profile = () => {
@@ -71,7 +71,7 @@ const Profile = () => {
     if (isPending) {
         return (
             <div className="flex items-center justify-center space-x-2">
-                <img src={catLoading} alt="Loading..." />
+                <img src={loadingRipple} alt="Loading..." />
             </div>
         )
     }

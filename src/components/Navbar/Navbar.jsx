@@ -11,12 +11,12 @@ import { FaPaw, FaSignOutAlt } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
 import { FaBookBookmark } from "react-icons/fa6";
 import { BsListStars } from "react-icons/bs";
+import loadingRipple from "../../assets/ripple-blue-thick.svg";
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
 // import { useQuery } from "@tanstack/react-query";
-// import catLoading from '../../assets/blue-cat.svg';
 
 const Navbar = () => {
-    const { user, logOut } = useAuth();
+    const { user, userLoading, logOut } = useAuth();
     const [open, setOpen] = useState(false);
     const [userName, setUserName] = useState('');
     const [profilePicture, setProfilePicture] = useState('');
@@ -71,7 +71,7 @@ const Navbar = () => {
     // if (user && isPending) {
     //     return (
     //         <div className="flex items-center justify-center space-x-2">
-    //             <img src={catLoading} alt="Loading..." />
+    //             <img src={loadingRipple} alt="Loading..." />
     //         </div>
     //     )
     // }
@@ -118,8 +118,10 @@ const Navbar = () => {
                     </ul>
                 </div>
 
-                {
-                    user
+                {userLoading ? <div className="flex items-center justify-center space-x-2">
+                    <img className="w-9 md:w-14 h-9 md:h-14" src={loadingRipple} alt="User Loading..." />
+                </div>
+                    : user
                         ? <div className="flex items-center gap-2 md:gap-3">
                             <Tooltip anchorSelect=".nameIcon" place="bottom">
                                 {userName}

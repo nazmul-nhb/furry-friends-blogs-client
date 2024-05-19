@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import catLoading from '../../assets/blue-cat.svg';
+import loadingRipple from "../../assets/ripple-blue-thick.svg";
 import { useQuery } from "@tanstack/react-query";
 // import axios from "axios";
 import useAuth from "../../hooks/useAuth";
@@ -81,7 +81,7 @@ const Wishlist = () => {
     if (isPending) {
         return (
             <div className="flex items-center justify-center space-x-2">
-                <img src={catLoading} alt="Loading..." />
+                <img src={loadingRipple} alt="Loading..." />
             </div>
         )
     }

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import catLoading from '../../assets/blue-cat.svg';
+import loadingRipple from "../../assets/ripple-blue-thick.svg";
 import Blog from "../Blog/Blog";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
@@ -19,7 +19,7 @@ const RecentBlogs = () => {
     if (isPending) {
         return (
             <div className="flex items-center justify-center space-x-2">
-                <img src={catLoading} alt="Loading..." />
+                <img className="w-24 md:w-36 h-24 md:h-36" src={loadingRipple} alt="Loading..." />
             </div>
         )
     }

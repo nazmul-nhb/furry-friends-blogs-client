@@ -73,7 +73,7 @@
 
 #### Register Page
 
-- On Register page, a user must fill in all the fields to create a new account. Password must be 8 characters long and must contain at least an upper case and lower letter, a number and a symbol. If users don't follow these, they will notice error messages below the input fields and toasts
+- On Register page, a user must fill in all the fields to create a new account. Password must be 8 characters long and must contain at least an upper case and lower case letter, a number and a symbol. If users don't follow these, they will notice error messages below the input fields and as toasts
 - After successful registration, they will see a toast and will be redirected to login page to login
 
 #### Login Page

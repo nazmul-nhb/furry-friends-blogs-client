@@ -6,7 +6,7 @@ import Comments from "../../components/Comments/Comments";
 import { Helmet } from "react-helmet-async";
 import Button from "../../components/Button/Button";
 import useAuth from "../../hooks/useAuth";
-import catLoading from '../../assets/blue-cat.svg';
+import loadingRipple from "../../assets/ripple-blue-thick.svg";
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { MdPets } from "react-icons/md";
@@ -31,7 +31,7 @@ const BlogDetails = () => {
     if (isPending) {
         return (
             <div className="flex items-center justify-center space-x-2">
-                <img src={catLoading} alt="Loading..." />
+                <img src={loadingRipple} alt="Loading..." />
             </div>
         )
     }
