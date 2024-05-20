@@ -12,16 +12,14 @@ import { IoHome } from "react-icons/io5";
 import { FaBookBookmark } from "react-icons/fa6";
 import { BsListStars } from "react-icons/bs";
 import loadingRipple from "../../assets/ripple-blue-thick.svg";
-// import useWishlist from "../../hooks/useWishlist";
-// import useAxiosSecure from "../../hooks/useAxiosSecure";
-// import { useQuery } from "@tanstack/react-query";
+import useWishlist from "../../hooks/useWishlist";
 
 const Navbar = () => {
     const { user, userLoading, logOut } = useAuth();
     const [open, setOpen] = useState(false);
     const [userName, setUserName] = useState('');
     const [profilePicture, setProfilePicture] = useState('');
-    // const { wishlistBlogs } = useWishlist();
+    const { wishlistBlogs } = useWishlist();
 
     const sidebarRef = useRef(null);
 
@@ -84,10 +82,11 @@ const Navbar = () => {
                         <NavLink className={'flex gap-0.5 items-center'} to={'/all-blogs'}><FaPaw className="pb-[2px] text-xl" /> All Blogs</NavLink>
                         <NavLink className={'flex gap-0.5 items-center'} to={'/featured-blogs'}><BsListStars className="text-xl" />Featured Blogs</NavLink>
                         {
-                            user && <>
+                            user?.email && <>
                                 <NavLink className={'flex gap-0.5 items-center'} to={'/add-blog'}><MdOutlinePostAdd className="pb-[2px] text-2xl" />Add Blog</NavLink>
-                                <NavLink className={'flex gap-0.5 items-center'} to={'/wishlist'}><FaBookBookmark className="pb-[2px] text-xl" />Wishlist
-                                {/* <sup>{wishlistBlogs?.length > 0 && wishlistBlogs?.length}</sup> */}
+                                <NavLink className={'flex gap-0.5 items-center'} to={'/wishlist'}>
+                                    <FaBookBookmark className="pb-[2px] text-xl" />Wishlist
+                                    <sup>{wishlistBlogs?.length > 0 && wishlistBlogs?.length}</sup>
                                 </NavLink>
                             </>
                         }

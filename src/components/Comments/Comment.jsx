@@ -5,7 +5,8 @@ import useAuth from '../../hooks/useAuth';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import moment from 'moment';
-import interwind from '../../assets/interwind-blue.svg'
+import interwind from '../../assets/interwind-blue.svg';
+import pacman from '../../assets/red-pacman.svg';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from 'sweetalert2';
@@ -98,7 +99,7 @@ const Comment = ({ comment, handleDeleteComment }) => {
 
     if (isPending) {
         return (
-            <div className="flex items-center justify-center space-x-2">
+            <div className="flex items-center justify-center">
                 <img src={interwind} alt="Loading..." />
             </div>
         )
@@ -106,8 +107,9 @@ const Comment = ({ comment, handleDeleteComment }) => {
 
     if (isError) {
         return (
-            <div className="flex items-center justify-center space-x-2">
-                <span>Error: {error.message}</span>
+            <div className="flex flex-col items-center justify-center mt-8 gap-2">
+                <span className="text-red-700">{error.message}</span>
+                <img src={pacman} alt="Error!" />
             </div>
         )
     }

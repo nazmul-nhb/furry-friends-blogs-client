@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Blog from "../../components/Blog/Blog";
 import rain from '../../assets/rain.svg';
+import pacman from '../../assets/red-pacman.svg';
 import { Link } from "react-router-dom";
 import { MdVerified } from "react-icons/md";
 import { VscUnverified } from "react-icons/vsc";
@@ -62,7 +63,7 @@ const Profile = () => {
     }
 
     if (deleting) {
-        return (<div className="flex items-center justify-center space-x-2">
+        return (<div className="flex items-center justify-center">
             <img src={cloud} alt="Deleting..." />
         </div>
         )
@@ -70,7 +71,7 @@ const Profile = () => {
 
     if (isPending) {
         return (
-            <div className="flex items-center justify-center space-x-2">
+            <div className="flex items-center justify-center">
                 <img src={loadingRipple} alt="Loading..." />
             </div>
         )
@@ -78,8 +79,9 @@ const Profile = () => {
 
     if (isError) {
         return (
-            <div className="flex items-center justify-center space-x-2">
-                <span>Error: {error.message}</span>
+            <div className="flex flex-col items-center justify-center mt-8 gap-2">
+                <span className="text-red-700">{error.message}</span>
+                <img src={pacman} alt="Error!" />
             </div>
         )
     }

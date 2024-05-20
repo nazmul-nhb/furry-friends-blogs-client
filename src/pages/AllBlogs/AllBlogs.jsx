@@ -8,6 +8,7 @@ import Blog from "../../components/Blog/Blog";
 import { FaDeleteLeft } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import loadingRipple from "../../assets/ripple-blue-thick.svg";
+import pacman from '../../assets/red-pacman.svg';
 
 const AllBlogs = () => {
     const [itemsPerPage, setItemsPerPage] = useState(6);
@@ -82,13 +83,13 @@ const AllBlogs = () => {
 
     if (isPending && searchText) {
         return (
-            <div className="flex items-center justify-center space-x-2">
+            <div className="flex items-center justify-center">
                 <img className="w-48 h-48" src={searchLoading} alt="Loading..." />
             </div>
         )
     } else if (isPending) {
         return (
-            <div className="flex items-center justify-center space-x-2">
+            <div className="flex items-center justify-center">
                 <img className="w-48 h-48" src={loadingRipple} alt="Loading..." />
             </div>
         )
@@ -96,8 +97,9 @@ const AllBlogs = () => {
 
     if (isError) {
         return (
-            <div className="flex items-center justify-center space-x-2">
-                <span>Error: {error.message}</span>
+            <div className="flex flex-col items-center justify-center mt-8 gap-2">
+                <span className="text-red-700">{error.message}</span>
+                <img src={pacman} alt="Error!" />
             </div>
         )
     }

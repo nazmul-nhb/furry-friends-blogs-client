@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import blocks from '../../assets/blocks.svg';
+import pacman from '../../assets/red-pacman.svg';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -27,7 +28,7 @@ const Slider = () => {
 
     if (isPending) {
         return (
-            <div className="flex items-center justify-center space-x-2">
+            <div className="flex items-center justify-center">
                 <img src={blocks} alt="Loading..." />
             </div>
         )
@@ -35,8 +36,9 @@ const Slider = () => {
 
     if (isError) {
         return (
-            <div className="flex items-center justify-center space-x-2">
-                <span>Error: {error.message}</span>
+            <div className="flex flex-col items-center justify-center mt-8 gap-2">
+                <span className="text-red-700">{error.message}</span>
+                <img src={pacman} alt="Error!" />
             </div>
         )
     }

@@ -10,6 +10,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
 import loadingRipple from "../../assets/ripple-blue-thick.svg";
+import pacman from '../../assets/red-pacman.svg';
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -79,7 +80,7 @@ const UpdateBlog = () => {
 
     if (isPending) {
         return (
-            <div className="flex items-center justify-center space-x-2">
+            <div className="flex items-center justify-center">
                 <img src={loadingRipple} alt="Loading..." />
             </div>
         )
@@ -87,8 +88,9 @@ const UpdateBlog = () => {
 
     if (isError) {
         return (
-            <div className="flex items-center justify-center space-x-2">
-                <span>Error: {error.message}</span>
+            <div className="flex flex-col items-center justify-center mt-8 gap-2">
+                <span className="text-red-700">{error.message}</span>
+                <img src={pacman} alt="Error!" />
             </div>
         )
     }

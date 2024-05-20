@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import Button from '../Button/Button';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import moment from 'moment';
 // import axios from 'axios';
@@ -8,7 +8,7 @@ import useAuth from '../../hooks/useAuth';
 import { MdAccessTime, MdPets } from 'react-icons/md';
 import { PiBirdFill, PiCatFill, PiDogFill, PiRabbitFill } from 'react-icons/pi';
 import { GiFrog } from 'react-icons/gi';
-// import useWishlist from '../../hooks/useWishlist';
+import useWishlist from '../../hooks/useWishlist';
 import Swal from 'sweetalert2';
 // import { useState } from 'react';
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -16,10 +16,10 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog }) => {
     const { user } = useAuth();
     const navigate = useNavigate();
-    const location = useLocation();
+    // const location = useLocation();
     // const [countClick, setCountClick] = useState(0);
     const axiosSecure = useAxiosSecure();
-    // const { refetch } = useWishlist();
+    const { refetch } = useWishlist();
 
     const { blog_title, category, image, short_description, posted_on, posted_by, _id } = blog;
     const formattedDate = moment(posted_on).format('MMMM DD, YYYY [at] hh:mm A');
@@ -31,13 +31,15 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
                 .then(res => {
                     // console.log(res.data);
                     if (res.data.insertedId) {
-                        toast.success('Blog Added to Wishlist');
+                        toast.success('Blog Added to Wishlist!');
+                    } else {
+                        toast.error(res.data?.message);
                     }
-                    // refetch();
+                    refetch();
                 })
                 .catch(error => {
-                    // console.log(error?.response);
-                    toast.error(error?.response?.data?.message);
+                    // console.log(error);
+                    console.error(error.response);
                 })
         } else {
             toast.error('You should login first!');
@@ -47,7 +49,7 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
             // }
             // return;
             Swal.fire({
-                title: "You're Not Logged in!",
+                title: "Oops! You're Not Logged in!",
                 text: "Do You Want to Log in Now?",
                 icon: "warning",
                 showCancelButton: true,
@@ -56,7 +58,7 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
                 confirmButtonText: "Yes, Log Me in!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    navigate("/login", { state: { from: location?.pathname } });
+                    navigate("/login");
                 }
             })
         }
@@ -75,8 +77,8 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
                                     : category === "Rabbits" ? <span className='flex items-center gap-1'><PiRabbitFill /> {category}</span>
                                         : <span className='flex items-center gap-1'><GiFrog /> {category}</span>
                     }</h3>
-                </figure></Link>
-
+                </figure>
+            </Link>
             {/* <hr className="my-2" /> */}
             <Link to={`/blog-details/${_id}`}><h3 className="font-kreonSerif hover:text-furry transition-all duration-700 text-xl md:text-2xl">{blog_title}</h3></Link>
             <p className='text-gray-500'>Posted by <span className="text-furry font-semibold">{posted_by}</span></p>
@@ -90,7 +92,7 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
                         : <Link to={`/blog-details/${_id}`}><Button className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Read Blog'}></Button></Link>
                 }
                 {wishlist
-                    ? <Button onClick={() => handleDeleteWishlist(_id)} className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Remove'}></Button>
+                    ? <Button onClick={() => handleDeleteWishlist(_id, blog_title)} className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Remove'}></Button>
                     : profile ? <Link to={`/update-blog/${_id}`}><Button
                         buttonText={'Update Blog'} hoverBgColor={'transparent'} hoverColor={'white'} color={'#1e40ad'}
                         className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'}

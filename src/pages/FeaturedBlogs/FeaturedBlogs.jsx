@@ -2,9 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
 import loadingRipple from "../../assets/ripple-blue-thick.svg";
+import pacman from '../../assets/red-pacman.svg';
 import TableFeatured from "../../components/TableFeatured/TableFeatured";
 import { useMemo } from 'react';
 import { Link } from "react-router-dom";
+
 const FeaturedBlogs = () => {
     const { isPending, isError, error, data: featuredBlogs } = useQuery({
         queryKey: ['featuredBlogs'],
@@ -47,13 +49,12 @@ const FeaturedBlogs = () => {
             cell: (cell) => {
                 return <img className="w-16 rounded-full p-[2px] border border-furry mx-auto" src={cell.row.original.blogger_photo} title={cell.row.original.blogger_email} alt={cell.row.original.posted_by} />;
             },
-            // enableSorting: false
         }
     ]
 
     if (isPending) {
         return (
-            <div className="flex items-center justify-center space-x-2">
+            <div className="flex items-center justify-center">
                 <img src={loadingRipple} alt="Loading..." />
             </div>
         )
@@ -61,8 +62,9 @@ const FeaturedBlogs = () => {
 
     if (isError) {
         return (
-            <div className="flex items-center justify-center space-x-2">
-                <span>Error: {error.message}</span>
+            <div className="flex flex-col items-center justify-center mt-8 gap-2">
+                <span className="text-red-700">{error.message}</span>
+                <img src={pacman} alt="Error!" />
             </div>
         )
     }

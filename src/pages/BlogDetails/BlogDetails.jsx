@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet-async";
 import Button from "../../components/Button/Button";
 import useAuth from "../../hooks/useAuth";
 import loadingRipple from "../../assets/ripple-blue-thick.svg";
+import pacman from '../../assets/red-pacman.svg';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { MdPets } from "react-icons/md";
@@ -30,7 +31,7 @@ const BlogDetails = () => {
 
     if (isPending) {
         return (
-            <div className="flex items-center justify-center space-x-2">
+            <div className="flex items-center justify-center">
                 <img src={loadingRipple} alt="Loading..." />
             </div>
         )
@@ -38,8 +39,9 @@ const BlogDetails = () => {
 
     if (isError) {
         return (
-            <div className="flex items-center justify-center space-x-2">
-                <span>Error: {error.message}</span>
+            <div className="flex flex-col items-center justify-center mt-8 gap-2">
+                <span className="text-red-700">{error.message}</span>
+                <img src={pacman} alt="Error!" />
             </div>
         )
     }

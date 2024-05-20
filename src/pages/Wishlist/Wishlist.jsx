@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import rain from '../../assets/rain.svg';
+import pacman from '../../assets/red-pacman.svg';
 import interwind from '../../assets/interwind-blue.svg';
 import useWishlist from "../../hooks/useWishlist";
 
@@ -49,10 +50,10 @@ const Wishlist = () => {
     }, [axiosSecure, refetch, wishlistBlogs])
 
     // Delete Wishlist Item one by one
-    const handleDeleteWishlist = (id) => {
+    const handleDeleteWishlist = (id, blog_title) => {
         Swal.fire({
             title: 'Are You Sure?',
-            text: `Remove the Blog from Your Wishlist?`,
+            text: `Remove "${blog_title}" from Your Wishlist?`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#ff0000',
@@ -67,10 +68,10 @@ const Wishlist = () => {
                             refetch();
                             Swal.fire(
                                 'Removed!',
-                                'Blog Removed from Wishlist!',
+                                `"${blog_title}" Removed from Your Wishlist!`,
                                 'success'
                             )
-                            toast.success('Blog Removed from Wishlist!');
+                            toast.success(`Blog Removed from Wishlist!`);
                             setLoadingData(false);
                         }
                     })
@@ -83,7 +84,7 @@ const Wishlist = () => {
 
     if (isPending) {
         return (
-            <div className="flex items-center justify-center space-x-2">
+            <div className="flex items-center justify-center">
                 <img src={loadingRipple} alt="Loading..." />
             </div>
         )
@@ -91,8 +92,9 @@ const Wishlist = () => {
 
     if (isError) {
         return (
-            <div className="flex items-center justify-center space-x-2">
-                <span>Error: {error.message}</span>
+            <div className="flex flex-col items-center justify-center mt-8 gap-2">
+                <span className="text-red-700">{error.message}</span>
+                <img src={pacman} alt="Error!" />
             </div>
         )
     }
@@ -105,7 +107,7 @@ const Wishlist = () => {
             <h3 className="text-center text-furry font-bold text-3xl mb-4 md:mb-8">{user.displayName}&rsquo;s Wishlist </h3>
             <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-8">Read the Blogs You kept in your Wishlist for Reading Later.</p>
             {loadingData ?
-                < div className="flex items-center justify-center space-x-2">
+                < div className="flex items-center justify-center">
                     <img src={interwind} alt="Loading..." />
                 </div>
                 : wishlistBlogs?.length <= 0 ? <div className="flex flex-col items-center justify-center text-furry font-jokeyOneSans text-2xl md:text-4xl gap-4">

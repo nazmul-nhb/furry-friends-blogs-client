@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import loadingRipple from "../../assets/ripple-blue-thick.svg";
+import pacman from '../../assets/red-pacman.svg';
 import Blog from "../Blog/Blog";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
@@ -18,7 +19,7 @@ const RecentBlogs = () => {
 
     if (isPending) {
         return (
-            <div className="flex items-center justify-center space-x-2">
+            <div className="flex items-center justify-center">
                 <img className="w-24 md:w-36 h-24 md:h-36" src={loadingRipple} alt="Loading..." />
             </div>
         )
@@ -26,8 +27,9 @@ const RecentBlogs = () => {
 
     if (isError) {
         return (
-            <div className="flex items-center justify-center space-x-2">
-                <span>Error: {error.message}</span>
+            <div className="flex flex-col items-center justify-center mt-8 gap-2">
+                <span className="text-red-700">{error.message}</span>
+                <img src={pacman} alt="Error!" />
             </div>
         )
     }

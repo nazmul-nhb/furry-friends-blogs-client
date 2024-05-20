@@ -4,14 +4,14 @@ import useAuth from "./useAuth";
 
 const useWishlist = () => {
     const axiosSecure = useAxiosSecure();
-    const { user } = useAuth();
+    const { user, userLoading } = useAuth();
 
     const { isPending, isError, error, data: wishlistBlogs, refetch } = useQuery({
-        queryKey: ['wishlistBlogs', user?.email],
+        queryKey: ['wishlistBlogs', user?.email, userLoading],
         queryFn: async () => {
             const res = await axiosSecure.get(`/wishlist?email=${user?.email}`);
             return res.data;
-        }, enabled: !!user,
+        }, enabled: !!user?.email && !userLoading,
     });
 
     return { isPending, isError, error, wishlistBlogs, refetch }
