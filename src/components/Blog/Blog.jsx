@@ -8,7 +8,7 @@ import useAuth from '../../hooks/useAuth';
 import { MdAccessTime, MdPets } from 'react-icons/md';
 import { PiBirdFill, PiCatFill, PiDogFill, PiRabbitFill } from 'react-icons/pi';
 import { GiFrog } from 'react-icons/gi';
-import useWishlist from '../../hooks/useWishlist';
+// import useWishlist from '../../hooks/useWishlist';
 import Swal from 'sweetalert2';
 // import { useState } from 'react';
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -19,7 +19,7 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
     // const location = useLocation();
     // const [countClick, setCountClick] = useState(0);
     const axiosSecure = useAxiosSecure();
-    const { refetch } = useWishlist();
+    // const { refetch } = useWishlist();
 
     const { blog_title, category, image, short_description, posted_on, posted_by, _id } = blog;
     const formattedDate = moment(posted_on).format('MMMM DD, YYYY [at] hh:mm A');
@@ -35,7 +35,7 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
                     } else {
                         toast.error(res.data?.message);
                     }
-                    refetch();
+                    // refetch();
                 })
                 .catch(error => {
                     // console.log(error);
