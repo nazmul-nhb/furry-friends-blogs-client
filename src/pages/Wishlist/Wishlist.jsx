@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import loadingRipple from "../../assets/ripple-blue-thick.svg";
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 // import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import rain from '../../assets/rain.svg';
 import interwind from '../../assets/interwind-blue.svg';
+import useWishlist from "../../hooks/useWishlist";
 
 const Wishlist = () => {
     const { user } = useAuth();
@@ -17,13 +18,15 @@ const Wishlist = () => {
     const axiosSecure = useAxiosSecure();
     const [loadingData, setLoadingData] = useState(false);
 
-    const { isPending, isError, error, data: wishlistBlogs, refetch } = useQuery({
-        queryKey: ['wishlistBlogs'],
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/wishlist?email=${user.email}`);
-            return res.data;
-        }, enabled: true,
-    });
+    // const { isPending, isError, error, data: wishlistBlogs, refetch } = useQuery({
+    //     queryKey: ['wishlistBlogs'],
+    //     queryFn: async () => {
+    //         const res = await axiosSecure.get(`/wishlist?email=${user.email}`);
+    //         return res.data;
+    //     }, enabled: true,
+    // });
+
+    const { isPending, isError, error, wishlistBlogs, refetch } = useWishlist();
 
     // console.log(wishlistBlogs);
 

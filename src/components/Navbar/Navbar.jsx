@@ -12,6 +12,7 @@ import { IoHome } from "react-icons/io5";
 import { FaBookBookmark } from "react-icons/fa6";
 import { BsListStars } from "react-icons/bs";
 import loadingRipple from "../../assets/ripple-blue-thick.svg";
+// import useWishlist from "../../hooks/useWishlist";
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
 // import { useQuery } from "@tanstack/react-query";
 
@@ -20,17 +21,7 @@ const Navbar = () => {
     const [open, setOpen] = useState(false);
     const [userName, setUserName] = useState('');
     const [profilePicture, setProfilePicture] = useState('');
-
-    // const axiosSecure = useAxiosSecure();
-
-    // const { isPending, isError, error, data: wishlistBlogs } = useQuery({
-    //     queryKey: ['wishlistBlogs'],
-    //     queryFn: async () => {
-    //         const res = await axiosSecure.get(`/wishlist?email=${user?.email}`);
-    //         return res.data;
-    //     },
-    //     enabled: !!user,
-    // });
+    // const { wishlistBlogs } = useWishlist();
 
     const sidebarRef = useRef(null);
 
@@ -68,22 +59,6 @@ const Navbar = () => {
             })
     }
 
-    // if (user && isPending) {
-    //     return (
-    //         <div className="flex items-center justify-center space-x-2">
-    //             <img src={loadingRipple} alt="Loading..." />
-    //         </div>
-    //     )
-    // }
-
-    // if (user && isError) {
-    //     return (
-    //         <div className="flex items-center justify-center space-x-2">
-    //             <span>Error: {error.message}</span>
-    //         </div>
-    //     )
-    // }
-
     return (
         <nav className="max-w-[1920px] flex items-center gap-0 md:gap-4 mx-auto shadow-md px-3 py-4 md:px-10 xl:px-20 sticky top-0 bg-gradient-to-l from-[#829ae8fa] to-[#7690e5fa] bg-opacity-100 z-50 text-[#1e4080]">
             <div ref={sidebarRef} className="min-[1170px]:hidden max-[430px]:text-3xl text-5xl cursor-pointer" onClick={() => setOpen(!open)}>
@@ -111,8 +86,9 @@ const Navbar = () => {
                         {
                             user && <>
                                 <NavLink className={'flex gap-0.5 items-center'} to={'/add-blog'}><MdOutlinePostAdd className="pb-[2px] text-2xl" />Add Blog</NavLink>
-                                <NavLink className={'flex gap-0.5 items-center'} to={'/wishlist'}><FaBookBookmark className="pb-[2px] text-xl" />Wishlist</NavLink>
+                                <NavLink className={'flex gap-0.5 items-center'} to={'/wishlist'}><FaBookBookmark className="pb-[2px] text-xl" />Wishlist
                                 {/* <sup>{wishlistBlogs?.length > 0 && wishlistBlogs?.length}</sup> */}
+                                </NavLink>
                             </>
                         }
                     </ul>

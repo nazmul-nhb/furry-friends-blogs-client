@@ -1,48 +1,65 @@
 import PropTypes from 'prop-types';
 import Button from '../Button/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import moment from 'moment';
-import axios from 'axios';
+// import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
-import { useState } from 'react';
 import { MdAccessTime, MdPets } from 'react-icons/md';
 import { PiBirdFill, PiCatFill, PiDogFill, PiRabbitFill } from 'react-icons/pi';
 import { GiFrog } from 'react-icons/gi';
-// import useAxiosSecure from "../../hooks/useAxiosSecure";
+// import useWishlist from '../../hooks/useWishlist';
+import Swal from 'sweetalert2';
+// import { useState } from 'react';
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog }) => {
     const { user } = useAuth();
     const navigate = useNavigate();
-    const [countClick, setCountClick] = useState(0);
-    // const axiosSecure = useAxiosSecure();
+    const location = useLocation();
+    // const [countClick, setCountClick] = useState(0);
+    const axiosSecure = useAxiosSecure();
+    // const { refetch } = useWishlist();
 
     const { blog_title, category, image, short_description, posted_on, posted_by, _id } = blog;
     const formattedDate = moment(posted_on).format('MMMM DD, YYYY [at] hh:mm A');
     // console.log(blog);
 
     const handleAddToWishlist = () => {
-        // if user isn't logged in show toast & after 2 clicks redirect to login page
-        if (!user) {
+        if (user && user?.email) {
+            axiosSecure.post('/wishlist', { blog_id: _id, user_email: user.email, time_added: moment().format("YYYY-MM-DD HH:mm:ss") })
+                .then(res => {
+                    // console.log(res.data);
+                    if (res.data.insertedId) {
+                        toast.success('Blog Added to Wishlist');
+                    }
+                    // refetch();
+                })
+                .catch(error => {
+                    // console.log(error?.response);
+                    toast.error(error?.response?.data?.message);
+                })
+        } else {
             toast.error('You should login first!');
-            setCountClick(count => count + 1);
-            if (countClick === 2) {
-                navigate('/login');
-            }
-            return;
-        }
-
-        axios.post('https://furry-friends-server-nhb.vercel.app/wishlist', { blog_id: _id, user_email: user.email, time_added: moment().format("YYYY-MM-DD HH:mm:ss") })
-            .then(res => {
-                // console.log(res.data);
-                if (res.data.insertedId) {
-                    toast.success('Blog Added to Wishlist');
+            // setCountClick(count => count + 1);
+            // if (countClick === 2) {
+            //     navigate('/login');
+            // }
+            // return;
+            Swal.fire({
+                title: "You're Not Logged in!",
+                text: "Do You Want to Log in Now?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Log Me in!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate("/login", { state: { from: location?.pathname } });
                 }
             })
-            .catch(error => {
-                // console.log(error?.response);
-                toast.error(error?.response?.data?.message);
-            })
+        }
     }
 
     return (
