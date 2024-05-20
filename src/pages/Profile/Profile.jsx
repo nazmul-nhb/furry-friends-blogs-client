@@ -110,7 +110,7 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className="w-full lg:w-1/3 border lg:border-0 border-furry p-2 lg:text-left justify-between flex flex-col items-center gap-2">
-                    <h3 className="text-furry font-jokeyOneSans text-3xl">You have Posted {usersBlogs?.length} {usersBlogs?.length > 0 ? 'Blogs' : 'Blog'}!</h3>
+                    <h3 className="text-furry font-jokeyOneSans text-3xl">You have Posted {usersBlogs?.length} {usersBlogs?.length > 1 ? 'Blogs' : 'Blog'}!</h3>
                     <Link to={`/add-blog`}><Button buttonText={'Add A New Blog'} hoverBgColor={'transparent'} hoverColor={'white'} color={'#1e40ad'} className={'my-2 border px-4 py-1 font-bold text-xl'}></Button></Link>
                 </div>
             </div>
