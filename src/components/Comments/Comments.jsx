@@ -122,7 +122,7 @@ const Comments = ({ blog }) => {
 
     return (
         <div className="my-4">
-            <h3 className="font-semibold mb-2 text-furry text-xl">{user.displayName}, {text}</h3>
+            <h3 className="font-semibold mb-2 text-furry md:text-xl">{user.displayName}, {text}</h3>
             {
                 hideCommentBox
                     ? <p className="text-red-700 font-semibold">You Cannot Comment on Your Own Blog!</p>
@@ -132,9 +132,13 @@ const Comments = ({ blog }) => {
                     </form>
             }
             <div className="my-4 border-t">
+                {/* Comments */}
                 {
                     comments?.map(comment => (<div key={comment._id}>
-                        <Comment comment={comment} handleDeleteComment={handleDeleteComment} refetch={refetch}></Comment>
+                        <Comment
+                            comment={comment}
+                            handleDeleteComment={handleDeleteComment}
+                            commentsRefetch={refetch}></Comment>
                         {
                             comments.indexOf(comment) !== comments?.length - 1 && <hr className='my-4' />
                         }

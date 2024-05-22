@@ -11,12 +11,13 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from 'sweetalert2';
 import { Tooltip } from 'react-tooltip';
+import Reply from './Reply';
 
-const Comment = ({ comment, handleDeleteComment, refetch: commentsRefetch }) => {
+const Comment = ({ comment, handleDeleteComment, commentsRefetch }) => {
     const { user } = useAuth();
     const [showReplyBox, setShowReplyBox] = useState(false);
-    const [editable, setEditable] = useState(false);
-    const [showUpdateTime, setShowUpdateTime] = useState(false);
+    const [editableComment, setEditableComment] = useState(false);
+    const [showCommentUpdateTime, setShowCommentUpdateTime] = useState(false);
     const replyRef = useRef(null);
     const axiosSecure = useAxiosSecure();
 
@@ -34,7 +35,10 @@ const Comment = ({ comment, handleDeleteComment, refetch: commentsRefetch }) => 
     const handlePostReply = (e) => {
         e.preventDefault();
         const replyText = e.target.reply.value;
-        if (replyText === "") return;
+        if (replyText === "") {
+            toast.error('Please, Write Something!', { duration: 1500 })
+            return;
+        }
         // console.log(replyText);
         const replyData = {
             reply_body: replyText,
@@ -109,10 +113,9 @@ const Comment = ({ comment, handleDeleteComment, refetch: commentsRefetch }) => 
             .then(res => {
                 // console.log(res.data);
                 if (res.data.modifiedCount > 0) {
-                    e.target.reset();
                     commentsRefetch();
                     toast.success('Comment Updated!');
-                    setEditable(false);
+                    setEditableComment(false);
                 }
             })
             .catch(error => {
@@ -147,7 +150,7 @@ const Comment = ({ comment, handleDeleteComment, refetch: commentsRefetch }) => 
 
     return (
         <div className='my-4'>
-            {/* Comments */}
+            {/* Comment */}
             <div className='flex items-center gap-1'>
                 <img src={commenter_photo} alt={commenter_name} className='w-11 h-11 rounded-full p-[2px] border' />
                 <div className='flex flex-col justify-around gap-0 items-start leading-none'>
@@ -157,7 +160,7 @@ const Comment = ({ comment, handleDeleteComment, refetch: commentsRefetch }) => 
             </div>
             {/* Edit Comment */}
             {
-                editable ? <form className="ml-12 mb-2 flex flex-col items-start gap-4" onSubmit={handleEditComment}>
+                editableComment ? <form className="ml-12 mb-2 flex flex-col items-start gap-4" onSubmit={handleEditComment}>
                     <textarea defaultValue={comment_body} className="w-full lg:w-3/5 h-32 border border-furry rounded-lg p-2 outline-none focus:border-2" name="edit_comment" id="edit_comment" placeholder="Edit Your Comment"></textarea>
                     <Button buttonText={'Comment'} buttonType={'submit'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} className={'border rounded-xl px-3 py-1 font-medium'}></Button>
                 </form>
@@ -167,52 +170,44 @@ const Comment = ({ comment, handleDeleteComment, refetch: commentsRefetch }) => 
                 {/* Edit & Delete Buttons */}
                 {
                     user.email === commenter_email && <div className='flex gap-2'>
-                        <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => setEditable(!editable)}>Edit</button>
+                        <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => setEditableComment(!editableComment)}>Edit</button>
                         <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => handleDeleteComment(_id)}>Delete</button>
-                        <Tooltip anchorSelect=".comment-time" place="top">
-                            Edited on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm A')}
-                        </Tooltip>
-                        {updated_on && <button className='comment-time cursor-pointer text-blue-950 hover:text-furry' onClick={() => setShowUpdateTime(!showUpdateTime)}>Edited</button>}
                     </div>
                 }
+                <Tooltip anchorSelect=".comment-edit-time" place="top">
+                    Edited on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm A')}
+                </Tooltip>
+                {updated_on && <button className='comment-edit-time cursor-pointer text-blue-950 hover:text-furry' onClick={() => setShowCommentUpdateTime(!showCommentUpdateTime)}>Edited</button>}
                 <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => setShowReplyBox(showReplyBox => !showReplyBox)}>Reply</button>
             </div>
             {
-                showUpdateTime && <h5 className="ml-12 text-gray-500 text-sm">Edited on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm A')}</h5>
+                showCommentUpdateTime && <h5 className="ml-12 text-gray-500 text-sm">Edited on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm A')}</h5>
             }
             {/* Reply Box */}
             <div className='ml-4 mb-1'>
                 {
-                    showReplyBox && <div className="ml-6 mb-2">
-                        <form className="flex items-start flex-col gap-4" onSubmit={handlePostReply}>
-                            <textarea ref={replyRef} className="w-full lg:w-2/5 h-28 border border-furry rounded-lg p-2 outline-none focus:border-2" name="reply" id="reply" placeholder={`Reply to ${commenter_name}'s Comment`}></textarea>
+                    showReplyBox && <form className="ml-6 mb-2 flex items-start flex-col gap-4" onSubmit={handlePostReply}>
+                        <textarea ref={replyRef} className="w-full lg:w-2/5 h-28 border border-furry rounded-lg p-2 outline-none focus:border-2" name="reply" id="reply" placeholder={`Reply to ${commenter_name}'s Comment`}></textarea>
 
-                            <Button buttonText={'Reply'} buttonType={'submit'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} className={'text-sm border rounded-xl px-3 py-1 font-medium'}></Button>
-                        </form>
-                    </div>
+                        <Button buttonText={'Reply'} buttonType={'submit'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} className={'text-sm border rounded-xl px-3 py-1 font-medium'}></Button>
+                    </form>
                 }
 
                 {/* Replies */}
                 {
-                    replies?.map(reply => <div className='ml-8' key={reply._id}>
-                        <div className="flex items-center gap-1">
-                            <img src={reply.reply_photo} alt={reply.reply_person} className='w-10 h-10 rounded-full p-[2px] border' />
-                            <div className='flex flex-col gap-0 leading-4'>
-                                <h5 className='text-xs'>{moment(reply.replied_on).format('MMMM DD, YYYY [at] hh:mm A')}</h5>
-                                <h4 className='font-normal' title={reply.reply_email}><span className="font-bold text-furry">{reply.reply_person}</span> replied:</h4>
-                            </div>
-                        </div>
-                        <p className='ml-11 mb-1'>{reply.reply_body}</p>
-                        <div className="text-xs ml-11 flex items-center gap-2 mb-2 font-semibold">
-                            {
-                                user.email === reply.reply_email && <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => handleDeleteReply(reply._id)}>Delete</button>
-                            }
-                            <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => setShowReplyBox(showReplyBox => !showReplyBox)}>Reply</button>
-                        </div>
+                    replies?.map(reply => (<div key={reply._id}>
+                        <Reply
+                            reply={reply}
+                            handleDeleteReply={handleDeleteReply}
+                            setShowReplyBox={setShowReplyBox}
+                            replyRefetch={refetch}
+                            commenter_name={commenter_name}
+                        ></Reply>
                         {
                             replies.indexOf(reply) !== replies?.length - 1 && <hr className='my-4' />
                         }
-                    </div>)
+                    </div>
+                    ))
                 }
             </div>
         </div>
@@ -222,7 +217,7 @@ const Comment = ({ comment, handleDeleteComment, refetch: commentsRefetch }) => 
 Comment.propTypes = {
     comment: PropTypes.object,
     handleDeleteComment: PropTypes.func,
-    refetch: PropTypes.func,
+    commentsRefetch: PropTypes.func,
 }
 
 export default Comment;
