@@ -10,14 +10,17 @@ import pacman from '../../assets/red-pacman.svg';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from 'sweetalert2';
+import { Tooltip } from 'react-tooltip';
 
-const Comment = ({ comment, handleDeleteComment }) => {
+const Comment = ({ comment, handleDeleteComment, refetch: commentsRefetch }) => {
     const { user } = useAuth();
     const [showReplyBox, setShowReplyBox] = useState(false);
+    const [editable, setEditable] = useState(false);
+    const [showUpdateTime, setShowUpdateTime] = useState(false);
     const replyRef = useRef(null);
     const axiosSecure = useAxiosSecure();
 
-    const { _id, comment_body, commenter_email, commenter_name, commenter_photo, commented_on } = comment;
+    const { _id, comment_body, commenter_email, commenter_name, commenter_photo, commented_on, updated_on } = comment;
     const commentTime = moment(commented_on).format('MMMM DD, YYYY [at] hh:mm A');
 
     const { isPending, isError, error, data: replies, refetch } = useQuery({
@@ -90,6 +93,34 @@ const Comment = ({ comment, handleDeleteComment }) => {
         })
     }
 
+    const handleEditComment = (e) => {
+        e.preventDefault();
+        const commentData = e.target.edit_comment.value;
+        if (commentData === "") {
+            toast.error('Please, Write Something!', { duration: 1500 })
+            return;
+        }
+        const editedComment = {
+            comment_body: commentData,
+            updated_on: moment().format("YYYY-MM-DD HH:mm:ss")
+        }
+
+        axiosSecure.patch(`https://furry-friends-server-nhb.vercel.app/comment/${_id}`, { ...editedComment })
+            .then(res => {
+                // console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    e.target.reset();
+                    commentsRefetch();
+                    toast.success('Comment Updated!');
+                    setEditable(false);
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                toast.error("Error Occurred!");
+            })
+    }
+
     // Focus Reply Box
     useEffect(() => {
         if (showReplyBox && replyRef.current) {
@@ -124,13 +155,31 @@ const Comment = ({ comment, handleDeleteComment }) => {
                     <h4 className='font-normal text-base' title={commenter_email}><span className="font-bold text-furry">{commenter_name}</span> commented:</h4>
                 </div>
             </div>
-            <p className='ml-12 mb-2'>{comment_body}</p>
+            {/* Edit Comment */}
+            {
+                editable ? <form className="ml-12 mb-2 flex flex-col items-start gap-4" onSubmit={handleEditComment}>
+                    <textarea defaultValue={comment_body} className="w-full lg:w-3/5 h-32 border border-furry rounded-lg p-2 outline-none focus:border-2" name="edit_comment" id="edit_comment" placeholder="Edit Your Comment"></textarea>
+                    <Button buttonText={'Comment'} buttonType={'submit'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} className={'border rounded-xl px-3 py-1 font-medium'}></Button>
+                </form>
+                    : <p className='ml-12 mb-2'>{comment_body}</p>
+            }
             <div className="text-xs ml-12 flex items-center gap-2 mb-2 font-semibold">
+                {/* Edit & Delete Buttons */}
                 {
-                    user.email === commenter_email && <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => handleDeleteComment(_id)}>Delete</button>
+                    user.email === commenter_email && <div className='flex gap-2'>
+                        <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => setEditable(!editable)}>Edit</button>
+                        <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => handleDeleteComment(_id)}>Delete</button>
+                        <Tooltip anchorSelect=".comment-time" place="top">
+                            Edited on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm A')}
+                        </Tooltip>
+                        {updated_on && <button className='comment-time cursor-pointer text-blue-950 hover:text-furry' onClick={() => setShowUpdateTime(!showUpdateTime)}>Edited</button>}
+                    </div>
                 }
                 <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => setShowReplyBox(showReplyBox => !showReplyBox)}>Reply</button>
             </div>
+            {
+                showUpdateTime && <h5 className="ml-12 text-gray-500 text-sm">Edited on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm A')}</h5>
+            }
             {/* Reply Box */}
             <div className='ml-4 mb-1'>
                 {
@@ -173,6 +222,7 @@ const Comment = ({ comment, handleDeleteComment }) => {
 Comment.propTypes = {
     comment: PropTypes.object,
     handleDeleteComment: PropTypes.func,
+    refetch: PropTypes.func,
 }
 
 export default Comment;

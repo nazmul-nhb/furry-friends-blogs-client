@@ -134,7 +134,7 @@ const Comments = ({ blog }) => {
             <div className="my-4 border-t">
                 {
                     comments?.map(comment => (<div key={comment._id}>
-                        <Comment comment={comment} handleDeleteComment={handleDeleteComment}></Comment>
+                        <Comment comment={comment} handleDeleteComment={handleDeleteComment} refetch={refetch}></Comment>
                         {
                             comments.indexOf(comment) !== comments?.length - 1 && <hr className='my-4' />
                         }

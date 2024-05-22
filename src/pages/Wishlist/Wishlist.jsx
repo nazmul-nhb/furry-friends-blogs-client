@@ -15,9 +15,10 @@ import useWishlist from "../../hooks/useWishlist";
 
 const Wishlist = () => {
     const { user } = useAuth();
-    const [blogs, setBlogs] = useState([]);
+    const [wishedBlogs, setWishedBlogs] = useState([]);
     const axiosSecure = useAxiosSecure();
     const [loadingData, setLoadingData] = useState(false);
+    const { isPending, isError, error, wishlistBlogs, refetch } = useWishlist();
 
     // const { isPending, isError, error, data: wishlistBlogs, refetch } = useQuery({
     //     queryKey: ['wishlistBlogs'],
@@ -27,7 +28,6 @@ const Wishlist = () => {
     //     }, enabled: true,
     // });
 
-    const { isPending, isError, error, wishlistBlogs, refetch } = useWishlist();
 
     // console.log(wishlistBlogs);
 
@@ -39,7 +39,7 @@ const Wishlist = () => {
             axiosSecure.post(`/wishlist-blogs?`, [...wishlistBlogIDs])
                 .then(res => {
                     // console.log(res.data);
-                    setBlogs(res.data);
+                    setWishedBlogs(res.data);
                     refetch();
                     setLoadingData(false);
                 })
@@ -104,26 +104,30 @@ const Wishlist = () => {
             <Helmet>
                 <title>Wishlist - Furry Friends Blogs</title>
             </Helmet>
-            <h3 className="text-center text-furry font-bold text-3xl mb-4 md:mb-8">{user.displayName}&rsquo;s Wishlist </h3>
-            <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-8">Read the Blogs You kept in your Wishlist for Reading Later.</p>
-            {loadingData ?
-                < div className="flex items-center justify-center">
-                    <img src={interwind} alt="Loading..." />
-                </div>
-                : wishlistBlogs?.length <= 0 ? <div className="flex flex-col items-center justify-center text-furry font-jokeyOneSans text-2xl md:text-4xl gap-4">
-                    <img src={rain} alt="Raining..." />
-                    <p>Your Wishlist is Empty!</p>
-                </div>
-                    : <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {
-                            blogs?.map(blog => <Blog
-                                key={blog._id}
-                                blog={blog}
-                                wishlist={true}
-                                handleDeleteWishlist={handleDeleteWishlist}
-                            ></Blog>)
-                        }
+            <h3 className="text-center text-furry font-bold text-3xl mb-2 md:mb-4">{user.displayName}&rsquo;s Wishlist </h3>
+            <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-6">Read the Blogs You kept in your Wishlist for Reading Later.</p>
+            {
+                wishlistBlogs?.length > 0 && <h3 className="text-center text-furry font-kreonSerif font-bold text-3xl mb-4 md:mb-6">You have {wishlistBlogs?.length} {wishlistBlogs?.length > 1 ? 'Blogs' : 'Blog'} in Your Wishlist!</h3>
+            }
+            {
+                loadingData ?
+                    < div className="flex items-center justify-center">
+                        <img src={interwind} alt="Loading..." />
                     </div>
+                    : wishlistBlogs?.length <= 0 ? <div className="flex flex-col items-center justify-center text-furry font-jokeyOneSans text-2xl md:text-4xl gap-4">
+                        <img src={rain} alt="Raining..." />
+                        <p>Your Wishlist is Empty!</p>
+                    </div>
+                        : <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {
+                                wishedBlogs?.map(blog => <Blog
+                                    key={blog._id}
+                                    blog={blog}
+                                    wishlist={true}
+                                    handleDeleteWishlist={handleDeleteWishlist}
+                                ></Blog>)
+                            }
+                        </div>
             }
         </section>
     );
