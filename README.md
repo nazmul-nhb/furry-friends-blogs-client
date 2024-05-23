@@ -7,28 +7,26 @@
 - [Live Website Link (Vercel)](https://furry-friends-blogs-nhb.vercel.app)
 - [Live Website Link (Firebase)](https://furry-friends-dcbd4.web.app)
 
-### Mentioned NPM Utility Packages Used in this Project
+### NPM Utility Packages Used in this Project
 
-- [tanstack-table](https://tanstack.com/table/latest) for showing interactive table on featured blogs page
-- [tanstack-query](https://tanstack.com/query/latest) for data fetching (get)
-- [framer-motion](https://www.npmjs.com/package/framer-motion) for newsletter section animation
-- [react-photo-view](https://www.npmjs.com/package/react-photo-view) to view photos in full size on blog details page and in Tips & Advice Section
-- [material-ui](https://mui.com/material-ui/) to show accordion on FAQs section
-
-### Other NPM Utility Packages Used in this Project
-
-- [lottie-react](https://lottiereact.com/components/Lottie#getting-started) for Animation on ErrorPage
-- [react-hook-form](https://react-hook-form.com/) for Handling Forms
-- [react-simple-typewriter](https://www.npmjs.com/package/react-simple-typewriter) in blog details page for comment heading
+- [tanstack-table](https://tanstack.com/table/latest) for showing interactive table on **Featured Blogs** page
+- [tanstack-query](https://tanstack.com/query/latest) for managing states while fetching data (get)
+- [axios](https://axios-http.com/docs/intro) for fetching data (CRUD)
+- [framer-motion](https://www.npmjs.com/package/framer-motion) for *newsletter* section animation
+- [react-photo-view](https://www.npmjs.com/package/react-photo-view) to view photos in full size on **Blog Details** page and in *Tips & Advice* section
+- [material-ui](https://mui.com/material-ui/) to show accordion on *FAQs* section
+- [lottie-react](https://lottiereact.com/components/Lottie#getting-started) for Animation on **ErrorPage**
+- [react-hook-form](https://react-hook-form.com/) for handling forms
+- [react-simple-typewriter](https://www.npmjs.com/package/react-simple-typewriter) in **Blog Details** page for comment heading
 - [swiper](https://swiperjs.com/) for Slider/Swiper on Homepage Banner
-- [animate.css](https://animate.style/) for Animation Effects on Preview Blogs from Add & Update Page
-- [react-tooltip](https://react-tooltip.com/) on Navbar Profile Picture & Logout Button
+- [animate.css](https://animate.style/) for Animation Effects on Preview modals on **Add & Update Blog** pages
+- [react-tooltip](https://react-tooltip.com/) for showing tooltips
 - [react-helmet-async](https://www.npmjs.com/package/react-helmet-async) for Dynamic Page Titles
 - [react-icons](https://react-icons.github.io/react-icons/) for showing icons throughout the site
 - [react-hot-toast](https://react-hot-toast.com/) for Showing Toasts
 - [sweetalert2](https://sweetalert2.github.io/) for Showing Sweet Alerts
 - [momentjs](https://momentjs.com/) to get time & handle time format
-- [react-tabs](https://www.npmjs.com/package/react-tabs) in tips & advice section to show tabs
+- [react-tabs](https://www.npmjs.com/package/react-tabs) in *Tips & Advice* section to show tabs
 
 ### Notable Features of the Website
 
@@ -57,7 +55,9 @@
 - Users can comment and reply on blog details page
 - Users can edit and delete their comments & replies
 - If a user is the blog author, s/he cannot comment but can reply to others' comments
-- If a user is the blog author s/he can click Update button, it will open a new page where s/he can update the blog that s/he added, they can preview the blog before clicking update button
+- If a user is the blog author s/he can click Update button, it will open a new page where s/he can update the blog that s/he added
+- User can preview the blog before clicking update button
+- On clicking time fields or "Edited" button, users can see updated time for blog, comments or replies
 
 #### User Profile Page
 
@@ -66,6 +66,7 @@
 #### Wishlist Page
 
 - On Wishlist Page, a user can find the blogs s/he has added for reading later, users can remove any blog from their wishlist
+- If a blog in wishlist is deleted by the blog author, user will see that info in wishlist page and can remove that blog from the wishlist
 
 #### Add Blog Page
 
@@ -92,5 +93,5 @@
 - ReactJS
 - Javascript
 - TailwindCSS
-- MongoDB (Server Side)
 - Express.js (Server Side)
+- MongoDB (Server Side)
