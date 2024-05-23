@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 const Button = (props) => {
     const [hovered, setHovered] = useState(false);
-    const { buttonType, className, buttonText, color, hoverColor, hoverBgColor, onClick } = props;
+    const { buttonType, className, buttonText, color, hoverColor, hoverBgColor, onClick, icon } = props;
 
     const buttonStyles = {
         borderColor: color,
@@ -14,7 +14,7 @@ const Button = (props) => {
     }
     
     return (
-        <button onClick={onClick} type={buttonType} className={className} style={buttonStyles} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>{buttonText}</button>
+        <button onClick={onClick} type={buttonType} className={className} style={buttonStyles} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>{icon}{buttonText}</button>
     );
 };
 
@@ -25,6 +25,7 @@ Button.propTypes = {
     hoverBgColor: PropTypes.string,
     className: PropTypes.string,
     buttonType: PropTypes.string,
+    icon: PropTypes.string,
     onClick: PropTypes.func
 }
 

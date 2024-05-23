@@ -8,8 +8,7 @@ import { Tooltip } from "react-tooltip";
 import useAuth from "../../hooks/useAuth";
 import logo from '../../assets/paw.png'
 import { FaPaw, FaSignOutAlt } from "react-icons/fa";
-import { IoHome } from "react-icons/io5";
-import { FaBookBookmark } from "react-icons/fa6";
+import { IoBookmarksOutline, IoHome } from "react-icons/io5";
 import { BsListStars } from "react-icons/bs";
 import loadingRipple from "../../assets/ripple-blue-thick.svg";
 import useWishlist from "../../hooks/useWishlist";
@@ -85,7 +84,7 @@ const Navbar = () => {
                             user?.email && <>
                                 <NavLink className={'flex gap-0.5 items-center'} to={'/add-blog'}><MdOutlinePostAdd className="pb-[2px] text-2xl" />Add Blog</NavLink>
                                 <NavLink className={'flex gap-0.5 items-center'} to={'/wishlist'}>
-                                    <FaBookBookmark className="pb-[2px] text-xl" />Wishlist
+                                    <IoBookmarksOutline className="pb-[2px] text-xl" />Wishlist
                                     <sup>{wishlistBlogs?.length > 0 && wishlistBlogs?.length}</sup>
                                 </NavLink>
                             </>

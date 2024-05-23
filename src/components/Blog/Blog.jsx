@@ -10,6 +10,9 @@ import { PiBirdFill, PiCatFill, PiDogFill, PiRabbitFill } from 'react-icons/pi';
 import { GiFrog } from 'react-icons/gi';
 import useWishlist from '../../hooks/useWishlist';
 import Swal from 'sweetalert2';
+import { RiDeleteBin5Fill } from 'react-icons/ri';
+import { LuFileEdit } from 'react-icons/lu';
+import { IoBookmarks, IoDocumentTextOutline } from 'react-icons/io5';
 // import { useState } from 'react';
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
 
@@ -89,16 +92,16 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
             <div className=" rounded-b-xl flex justify-between items-center">
                 {
                     profile
-                        ? <Button onClick={() => handleDeleteBlog(_id)} className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Delete Blog'}></Button>
-                        : <Link to={`/blog-details/${_id}`}><Button className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Read Blog'}></Button></Link>
+                        ? <Button onClick={() => handleDeleteBlog(_id, blog_title)} className={'border px-3 md:px-4 lg:px-3 xl:px-6 py-2 rounded-3xl text-xs md:text-sm lg:text-xs xl:text-base font-bold flex items-center gap-1'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} icon={<RiDeleteBin5Fill />} buttonText={'Delete Blog'}></Button>
+                        : <Link to={`/blog-details/${_id}`}><Button className={'border px-3 md:px-4 lg:px-3 xl:px-6 py-2 rounded-3xl text-xs md:text-sm lg:text-xs xl:text-base font-bold flex items-center gap-1'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Read Blog'} icon={<IoDocumentTextOutline />}></Button></Link>
                 }
                 {wishlist
-                    ? <Button onClick={() => handleDeleteWishlist(_id, blog_title)} className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Remove'}></Button>
+                    ? <Button onClick={() => handleDeleteWishlist(_id, blog_title)} className={'border px-3 md:px-4 lg:px-3 xl:px-6 py-2 rounded-3xl text-xs md:text-sm lg:text-xs xl:text-base font-bold flex items-center gap-1'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Remove Wishlist'} icon={<RiDeleteBin5Fill />}></Button>
                     : profile ? <Link to={`/update-blog/${_id}`}><Button
                         buttonText={'Update Blog'} hoverBgColor={'transparent'} hoverColor={'white'} color={'#1e40ad'}
-                        className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'}
+                        className={'border px-3 md:px-4 lg:px-3 xl:px-6 py-2 rounded-3xl text-xs md:text-sm lg:text-xs xl:text-base font-bold flex items-center gap-1'} icon={<LuFileEdit />}
                     ></Button></Link>
-                        : <Button onClick={handleAddToWishlist} className={'border px-3 md:px-6 py-2 rounded-3xl text-sm md:text-base font-bold'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Add to Wishlist'}></Button>
+                        : <Button onClick={handleAddToWishlist} className={'border px-3 md:px-4 lg:px-3 xl:px-6 py-2 rounded-3xl text-xs md:text-sm lg:text-xs xl:text-base font-bold flex items-center gap-1'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Add to Wishlist'} icon={<IoBookmarks />}></Button>
                 }
             </div>
         </div>

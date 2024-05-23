@@ -13,12 +13,15 @@ import 'react-photo-view/dist/react-photo-view.css';
 import { MdPets } from "react-icons/md";
 import { PiBirdFill, PiCatFill, PiDogFill, PiRabbitFill } from "react-icons/pi";
 import { GiFrog } from "react-icons/gi";
+import { Tooltip } from "react-tooltip";
+import { useState } from "react";
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const BlogDetails = () => {
     const { id } = useParams();
     const { user } = useAuth();
     const navigate = useNavigate();
+    const [showPostUpdateTime, setShowPostUpdateTime] = useState(false);
     // const axiosSecure = useAxiosSecure();
 
     const { isPending, isError, error, data: blog } = useQuery({
@@ -46,7 +49,7 @@ const BlogDetails = () => {
         )
     }
 
-    const { blog_title, category, image, short_description, long_description, posted_on, posted_by, blogger_email, blogger_photo } = blog;
+    const { blog_title, category, image, short_description, long_description, posted_on, posted_by, blogger_email, blogger_photo, updated_on } = blog;
     const formattedDate = moment(posted_on).format('MMMM DD, YYYY [at] hh:mm:ss A');
 
     return (
@@ -66,7 +69,15 @@ const BlogDetails = () => {
                                 user.email === blogger_email ? 'You' : posted_by
                             }
                         </span></p>
-                        <p className="text-gray-500">{formattedDate}</p>
+                        {
+                            updated_on ? <Tooltip anchorSelect=".post-update-time" place="top">
+                                Updated on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm A')}
+                            </Tooltip>
+                                : <Tooltip anchorSelect=".post-update-time" place="top">
+                                    Posted on: {moment(posted_on).format('MMMM DD, YYYY [at] hh:mm A')}
+                                </Tooltip>
+                        }
+                        <p onClick={() => setShowPostUpdateTime(!showPostUpdateTime)} className="text-gray-500 cursor-pointer post-update-time">{formattedDate}</p>
                     </div>
                 </figure>
                 <h3 className="text-black text-xl font-semibold flex items-center gap-1">Posted in <MdPets />Category:  <span className="flex text-furry font-jokeyOneSans tracking-wider items-center gap-1">{
@@ -77,6 +88,9 @@ const BlogDetails = () => {
                                     : <span className='flex items-center gap-1'><GiFrog /> {category}</span>
                 }</span></h3>
             </div>
+            {
+                showPostUpdateTime && updated_on && <h5 className="ml-14 -mt-3 text-gray-500">Updated on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm A')}</h5>
+            }
             <hr className="mb-6 mt-2" />
             {/* Blog Image & Short Description */}
             <div className="flex flex-col xl:flex-row gap-6 mb-6">

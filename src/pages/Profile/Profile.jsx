@@ -16,6 +16,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import cloud from "../../assets/cloud.svg";
 import { useState } from "react";
+import { Tooltip } from "react-tooltip";
 
 const Profile = () => {
     const { user } = useAuth();
@@ -30,10 +31,10 @@ const Profile = () => {
         }, enabled: true,
     })
 
-    const handleDeleteBlog = (id) => {
+    const handleDeleteBlog = (id, blog_title) => {
         Swal.fire({
             title: 'Are You Sure?',
-            text: `Delete the Blog Permanently?`,
+            text: `Delete "${blog_title}" Permanently?`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#ff0000',
@@ -48,7 +49,7 @@ const Profile = () => {
                             refetch();
                             Swal.fire(
                                 'Removed!',
-                                'Permanently Deleted the Blog!',
+                                `Permanently Deleted "${blog_title}"!`,
                                 'success'
                             )
                             toast.success('Permanently Deleted the Blog!');
@@ -94,10 +95,19 @@ const Profile = () => {
             <div className="flex flex-col xl:flex-row justify-between gap-10 items-center mb-8 xl:mb-16">
                 <div className="w-full lg:w-2/3 flex-1 bg-gradient-to-l from-[#829ae8fa] to-[#7690e5fa] flex flex-col gap-6 p-6 shadow-lg shadow-[#3c3939]">
                     <div className="flex flex-col lg:flex-row gap-2 items-center md:justify-start justify-center my-4">
-                        <img className="border p-1 border-furry w-24 md:w-36 h-24 md:h-36" src={user.photoURL} alt={user.displayName} title={user.displayName} />
+                        <Tooltip anchorSelect=".user-name" place="top">
+                            {user.displayName}
+                        </Tooltip>
+                        <Tooltip anchorSelect=".user-email" place="bottom">
+                            {user.email}
+                        </Tooltip>
+                        <img className="user-name user-email border p-1 border-furry w-24 md:w-36 h-24 md:h-36" src={user.photoURL} alt={user.displayName} />
                         <div className="flex flex-col justify-center items-center md:items-start md:justify-start gap-3">
                             <h4 className="text-lg md:text-2xl font-bold">{user.displayName}</h4>
-                            <h4 className="font-semibold flex items-center gap-1">{user.email} {user.emailVerified ? <MdVerified className="text-furry" title="Verified!" /> : <VscUnverified className="text-red-700" title="Not Verified!" />}</h4>
+                            <Tooltip anchorSelect=".verification-status" place="top">
+                                {user.emailVerified ? "Verified!" : "Not Verified!"}
+                            </Tooltip>
+                            <h4 className="verification-status font-semibold flex items-center gap-1">{user.email} {user.emailVerified ? <MdVerified className="text-furry" /> : <VscUnverified className="text-red-700" />}</h4>
                             <div className="flex flex-col items-center md:flex-row gap-1 md:text-xl">
                                 <h4 className="font-semibold">Account Created on:</h4>
                                 <h4>{moment(user.metadata.creationTime).format('MMMM DD, YYYY [at] hh:mm:ss A')}</h4>
