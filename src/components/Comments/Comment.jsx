@@ -27,7 +27,7 @@ const Comment = ({ comment, handleDeleteComment, commentsRefetch }) => {
     const { isPending, isError, error, data: replies, refetch } = useQuery({
         queryKey: ['replies', _id],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/replies/${_id}`);
+            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/replies/${_id}`);
             return res.data;
         }, enabled: true,
     })
@@ -109,7 +109,7 @@ const Comment = ({ comment, handleDeleteComment, commentsRefetch }) => {
             updated_on: moment().format("YYYY-MM-DD HH:mm:ss")
         }
 
-        axiosSecure.patch(`https://furry-friends-server-nhb.vercel.app/comment/${_id}`, { ...editedComment })
+        axiosSecure.patch(`/comment/${_id}`, { ...editedComment })
             .then(res => {
                 // console.log(res.data);
                 if (res.data.modifiedCount > 0) {

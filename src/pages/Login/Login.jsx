@@ -14,9 +14,12 @@ const Login = () => {
     const { user, userLogin, googleLogin, facebookLogin, githubLogin } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
-    if(user){
-        navigate(location?.state ? location.state : '/');
+    if (user) {
+        // navigate(location?.state ? location.state : '/');
+        navigate(from, { replace: true });
+        // navigate('/');
     }
 
     useEffect(() => {
@@ -35,7 +38,8 @@ const Login = () => {
         userLogin(email, password)
             .then(() => {
                 toast.success("Successfully Logged in!");
-                navigate(location?.state ? location.state : '/');
+                // navigate(location?.state ? location.state : '/');
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 if (error.message === "Firebase: Error (auth/invalid-credential).") {
@@ -60,7 +64,8 @@ const Login = () => {
         googleLogin()
             .then(() => {
                 toast.success("Successfully Logged in!");
-                navigate(location?.state ? location.state : '/');
+                // navigate(location?.state ? location.state : '/');
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 if (error.message === "Firebase: Error (auth/popup-closed-by-user).") {
@@ -92,7 +97,8 @@ const Login = () => {
         facebookLogin()
             .then(() => {
                 toast.success("Successfully Logged in!");
-                navigate(location?.state ? location.state : '/');
+                // navigate(location?.state ? location.state : '/');
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 if (error.message === "Firebase: Error (auth/popup-closed-by-user).") {
@@ -124,7 +130,8 @@ const Login = () => {
         githubLogin()
             .then(() => {
                 toast.success("Successfully Logged in!");
-                navigate(location?.state ? location.state : '/');
+                // navigate(location?.state ? location.state : '/');
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 if (error.message === "Firebase: Error (auth/popup-closed-by-user).") {

@@ -1,25 +1,25 @@
 import PropTypes from 'prop-types';
 import Button from '../Button/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import moment from 'moment';
-// import axios from 'axios';
+import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
 import { MdAccessTime, MdPets } from 'react-icons/md';
 import { PiBirdFill, PiCatFill, PiDogFill, PiRabbitFill } from 'react-icons/pi';
 import { GiFrog } from 'react-icons/gi';
-// import useWishlist from '../../hooks/useWishlist';
+import useWishlist from '../../hooks/useWishlist';
 import Swal from 'sweetalert2';
 // import { useState } from 'react';
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+// import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog }) => {
     const { user } = useAuth();
     const navigate = useNavigate();
-    // const location = useLocation();
+    const location = useLocation();
     // const [countClick, setCountClick] = useState(0);
-    const axiosSecure = useAxiosSecure();
-    // const { refetch } = useWishlist();
+    // const axiosSecure = useAxiosSecure();
+    const { refetch } = useWishlist();
 
     const { blog_title, category, image, short_description, posted_on, posted_by, _id } = blog;
     const formattedDate = moment(posted_on).format('MMMM DD, YYYY [at] hh:mm A');
@@ -27,7 +27,7 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
 
     const handleAddToWishlist = () => {
         if (user && user?.email) {
-            axiosSecure.post('/wishlist', { blog_id: _id, user_email: user.email, time_added: moment().format("YYYY-MM-DD HH:mm:ss") })
+            axios.post('https://furry-friends-server-nhb.vercel.app/wishlist', { blog_id: _id, user_email: user.email, time_added: moment().format("YYYY-MM-DD HH:mm:ss") })
                 .then(res => {
                     // console.log(res.data);
                     if (res.data.insertedId) {
@@ -35,7 +35,7 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
                     } else {
                         toast.error(res.data?.message);
                     }
-                    // refetch();
+                    refetch();
                 })
                 .catch(error => {
                     // console.log(error);
@@ -58,7 +58,8 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
                 confirmButtonText: "Yes, Log Me in!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    navigate("/login");
+                    // navigate("/login");
+                    navigate('/login', { state: { from: location } })
                 }
             })
         }

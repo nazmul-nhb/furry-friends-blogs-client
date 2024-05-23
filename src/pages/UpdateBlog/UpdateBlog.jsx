@@ -24,12 +24,12 @@ const UpdateBlog = () => {
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
 
-    const { isPending, isError, error, data: blog } = useQuery({
+    const { isPending, isError, error, data: blog, refetch } = useQuery({
         queryKey: ['blog', id],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/blog/${id}`);
+            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/blog/${id}`);
             return res.data;
-        },
+        }, enabled: true
     })
 
     const closeModal = () => {
@@ -52,7 +52,7 @@ const UpdateBlog = () => {
             ...modifiedBlog, updated_on: moment().format("YYYY-MM-DD HH:mm:ss"), blogger_photo: user.photoURL
         }
 
-        axios.patch(`https://furry-friends-server-nhb.vercel.app/blog/${id}`, { ...updatedBlog })
+        axiosSecure.patch(`/blog/${id}`, { ...updatedBlog })
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
@@ -61,6 +61,7 @@ const UpdateBlog = () => {
                         icon: 'success',
                         confirmButtonText: 'Okay!'
                     })
+                    refetch();
                     // navigate(`/blog-details/${id}`);
                     navigate(-1);
                 }

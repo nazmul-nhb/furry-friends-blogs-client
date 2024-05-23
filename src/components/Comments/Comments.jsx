@@ -23,7 +23,7 @@ const Comments = ({ blog }) => {
     const { isPending, isError, error, data: comments, refetch } = useQuery({
         queryKey: ['comments', _id],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/comments/${_id}`);
+            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/comments/${_id}`);
             return res.data;
         }, enabled: true,
     })
