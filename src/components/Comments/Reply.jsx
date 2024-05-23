@@ -49,7 +49,7 @@ const Reply = ({ reply, handleDeleteReply, setShowReplyBox, replyRefetch, commen
             <div className="flex items-center gap-1">
                 <img src={reply_photo} alt={reply_person} className='w-10 h-10 rounded-full p-[2px] border' />
                 <div className='flex flex-col gap-0 leading-4'>
-                    <h5 className='text-xs'>{moment(replied_on).format('MMMM DD, YYYY [at] hh:mm A')}</h5>
+                    <h5 className='text-gray-500 text-xs'>{moment(replied_on).format('MMMM DD, YYYY [at] hh:mm:ss A')}</h5>
                     <h4 className='font-normal' title={reply_email}><span className="font-bold text-furry">{reply_person}</span> replied:</h4>
                 </div>
             </div>
@@ -71,14 +71,16 @@ const Reply = ({ reply, handleDeleteReply, setShowReplyBox, replyRefetch, commen
                         <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => handleDeleteReply(_id)}>Delete</button>
                     </div>
                 }
-                <Tooltip anchorSelect=".reply-edit-time" place="top">
-                    Edited on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm A')}
-                </Tooltip>
+                {
+                    updated_on && <Tooltip anchorSelect=".reply-edit-time" place="top">
+                        Edited on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm:ss A')}
+                    </Tooltip>
+                }
                 {updated_on && <button className='reply-edit-time cursor-pointer text-blue-950 hover:text-furry' onClick={() => setShowReplyUpdateTime(!showReplyUpdateTime)}>Edited</button>}
                 <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => setShowReplyBox(showReplyBox => !showReplyBox)}>Reply</button>
             </div>
             {
-                showReplyUpdateTime && <h5 className="ml-11 text-gray-500 text-sm">Edited on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm A')}</h5>
+                showReplyUpdateTime && updated_on && <h5 className="ml-11 text-gray-500 text-sm">Edited on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm:ss A')}</h5>
             }
         </div>
     );

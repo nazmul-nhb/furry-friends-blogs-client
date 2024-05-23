@@ -22,7 +22,7 @@ const Comment = ({ comment, handleDeleteComment, commentsRefetch }) => {
     const axiosSecure = useAxiosSecure();
 
     const { _id, comment_body, commenter_email, commenter_name, commenter_photo, commented_on, updated_on } = comment;
-    const commentTime = moment(commented_on).format('MMMM DD, YYYY [at] hh:mm A');
+    const commentTime = moment(commented_on).format('MMMM DD, YYYY [at] hh:mm:ss A');
 
     const { isPending, isError, error, data: replies, refetch } = useQuery({
         queryKey: ['replies', _id],
@@ -174,14 +174,16 @@ const Comment = ({ comment, handleDeleteComment, commentsRefetch }) => {
                         <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => handleDeleteComment(_id)}>Delete</button>
                     </div>
                 }
-                <Tooltip anchorSelect=".comment-edit-time" place="top">
-                    Edited on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm A')}
-                </Tooltip>
+                {updated_on &&
+                    <Tooltip anchorSelect=".comment-edit-time" place="top">
+                        Edited on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm:ss A')}
+                    </Tooltip>
+                }
                 {updated_on && <button className='comment-edit-time cursor-pointer text-blue-950 hover:text-furry' onClick={() => setShowCommentUpdateTime(!showCommentUpdateTime)}>Edited</button>}
                 <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => setShowReplyBox(showReplyBox => !showReplyBox)}>Reply</button>
             </div>
             {
-                showCommentUpdateTime && <h5 className="ml-12 text-gray-500 text-sm">Edited on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm A')}</h5>
+                showCommentUpdateTime && updated_on && <h5 className="ml-12 text-gray-500 text-sm">Edited on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm:ss A')}</h5>
             }
             {/* Reply Box */}
             <div className='ml-4 mb-1'>

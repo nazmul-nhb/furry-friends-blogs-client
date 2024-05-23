@@ -71,10 +71,10 @@ const BlogDetails = () => {
                         </span></p>
                         {
                             updated_on ? <Tooltip anchorSelect=".post-update-time" place="top">
-                                Updated on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm A')}
+                                Updated on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm:ss A')}
                             </Tooltip>
                                 : <Tooltip anchorSelect=".post-update-time" place="top">
-                                    Posted on: {moment(posted_on).format('MMMM DD, YYYY [at] hh:mm A')}
+                                    Posted on: {moment(posted_on).format('MMMM DD, YYYY [at] hh:mm:ss A')}
                                 </Tooltip>
                         }
                         <p onClick={() => setShowPostUpdateTime(!showPostUpdateTime)} className="text-gray-500 cursor-pointer post-update-time">{formattedDate}</p>
@@ -89,7 +89,7 @@ const BlogDetails = () => {
                 }</span></h3>
             </div>
             {
-                showPostUpdateTime && updated_on && <h5 className="ml-14 -mt-3 text-gray-500">Updated on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm A')}</h5>
+                showPostUpdateTime && updated_on && <h5 className="md:ml-14 md:-mt-3 text-gray-500">Updated on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm:ss A')}</h5>
             }
             <hr className="mb-6 mt-2" />
             {/* Blog Image & Short Description */}
