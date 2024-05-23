@@ -25,7 +25,7 @@ Button.propTypes = {
     hoverBgColor: PropTypes.string,
     className: PropTypes.string,
     buttonType: PropTypes.string,
-    icon: PropTypes.string,
+    icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.node]),
     onClick: PropTypes.func
 }
 

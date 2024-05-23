@@ -55,7 +55,7 @@
 
 - On Blog Details, users can click on Go Back button to navigate to the page they came from
 - Users can comment and reply on blog details page
-- Users can delete their comments & replies
+- Users can edit and delete their comments & replies
 - If a user is the blog author, s/he cannot comment but can reply to others' comments
 - If a user is the blog author s/he can click Update button, it will open a new page where s/he can update the blog that s/he added, they can preview the blog before clicking update button
 

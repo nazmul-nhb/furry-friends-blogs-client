@@ -13,14 +13,12 @@ import Swal from 'sweetalert2';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { LuFileEdit } from 'react-icons/lu';
 import { IoBookmarks, IoDocumentTextOutline } from 'react-icons/io5';
-// import { useState } from 'react';
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog }) => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
-    // const [countClick, setCountClick] = useState(0);
     // const axiosSecure = useAxiosSecure();
     const { refetch } = useWishlist();
 
@@ -30,7 +28,7 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
 
     const handleAddToWishlist = () => {
         if (user && user?.email) {
-            axios.post('https://furry-friends-server-nhb.vercel.app/wishlist', { blog_id: _id, user_email: user.email, time_added: moment().format("YYYY-MM-DD HH:mm:ss") })
+            axios.post('https://furry-friends-server-nhb.vercel.app/wishlist', { blog_id: _id, blog_title, user_email: user.email, time_added: moment().format("YYYY-MM-DD HH:mm:ss") })
                 .then(res => {
                     // console.log(res.data);
                     if (res.data.insertedId) {
@@ -46,11 +44,6 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
                 })
         } else {
             toast.error('You should login first!');
-            // setCountClick(count => count + 1);
-            // if (countClick === 2) {
-            //     navigate('/login');
-            // }
-            // return;
             Swal.fire({
                 title: "Oops! You're Not Logged in!",
                 text: "Do You Want to Log in Now?",

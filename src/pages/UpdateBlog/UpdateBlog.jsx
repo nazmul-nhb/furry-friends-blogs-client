@@ -191,7 +191,7 @@ const UpdateBlog = () => {
             </form>
             {
                 showModal && (
-                    <dialog open className="w-[96%] xl:w-auto max-h-dvh mt-20 md:mt-24 bg-opacity-95 bg-[#d9dff3c3] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg z-20 overflow-y-auto">
+                    <dialog open className="w-[96%] xl:w-auto h-[90%] bg-opacity-95 bg-[#d9dff3c3] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg z-50 overflow-y-auto">
                         <Preview previewBlog={previewBlog}></Preview>
                         <button onClick={closeModal} className='absolute top-1 right-1 text-5xl text-red-700 hover:text-furry hover:opacity-80 transition-all duration-500' title='Close'><IoIosCloseCircle /></button>
                     </dialog>
