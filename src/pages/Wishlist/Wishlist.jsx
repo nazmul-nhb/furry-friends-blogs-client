@@ -117,6 +117,7 @@ const Wishlist = () => {
             </Helmet>
             <h3 className="text-center text-furry font-bold text-3xl mb-2 md:mb-4">{user.displayName}&rsquo;s Wishlist </h3>
             <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-6">Read the Blogs You kept in your Wishlist for Reading Later.</p>
+            {/* Show Loading Spinner */}
             {
                 loadingData ?
                     < div className="flex items-center justify-center">
@@ -129,7 +130,7 @@ const Wishlist = () => {
                         : <div>
                             {/* Show Total Wishlist Blog Count */}
                             {
-                                wishlistBlogs?.length > 0 && <h3 className="text-center text-furry font-kreonSerif font-bold text-3xl mb-4 md:mb-6">You have {wishlistBlogs?.length} {wishlistBlogs?.length > 1 ? 'Blogs' : 'Blog'} in YourWishlist!</h3>
+                                wishlistBlogs?.length > 0 && <h3 className="text-center text-furry font-kreonSerif font-bold text-3xl mb-4 md:mb-6">You have {wishlistBlogs?.length} {wishlistBlogs?.length > 1 ? 'Blogs' : 'Blog'} in Your Wishlist!</h3>
                             }
                             {/* Handling Deleted Blogs in Wishlist */}
                             {wishlistBlogs?.length > wishedBlogs?.length && <div>
