@@ -62,18 +62,21 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
     }
 
     return (
-
         <div className='border p-3 flex flex-col shadow-md shadow-blue-950'>
             <Link to={`/blog-details/${_id}`}>
                 <figure className='relative border p-1 mb-2 hover:scale-[1.03] transition-all duration-700'>
                     <img className='aspect-[2/1]' src={image} alt={blog_title} />
-                    <h3 className="absolute bottom-1 left-1 pb-1 pt-[2px] pl-2 w-full bg-gradient-to-r from-furry via-[#1e3fada3] to-[#1e3fad01] font-jokeyOneSans tracking-wider text-lg flex items-center gap-1 text-white"><MdPets /> Category: {
-                        category === "Cats" ? <span className='flex items-center gap-1'><PiCatFill />{category}</span>
-                            : category === "Dogs" ? <span className='flex items-center gap-1'><PiDogFill /> {category}</span>
-                                : category === "Birds" ? <span className='flex items-center gap-1'><PiBirdFill />{category}</span>
-                                    : category === "Rabbits" ? <span className='flex items-center gap-1'><PiRabbitFill /> {category}</span>
-                                        : <span className='flex items-center gap-1'><GiFrog /> {category}</span>
-                    }</h3>
+                    <h3 className="absolute bottom-1 left-1 pb-1 pt-[2px] pl-2 w-full bg-gradient-to-r from-furry via-[#1e3fada3] to-[#1e3fad01] font-jokeyOneSans tracking-wider text-lg flex items-center gap-1 text-white"><MdPets /> Category:
+                        {
+                            <span className='flex items-center gap-1'>{
+                                category === "Cats" ? <PiCatFill />
+                                    : category === "Dogs" ? <PiDogFill />
+                                        : category === "Birds" ? <PiBirdFill />
+                                            : category === "Rabbits" ? <PiRabbitFill />
+                                                : <GiFrog />}{category}
+                            </span>
+                        }
+                    </h3>
                 </figure>
             </Link>
             {/* <hr className="my-2" /> */}

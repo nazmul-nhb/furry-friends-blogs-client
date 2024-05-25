@@ -140,7 +140,7 @@ const AllBlogs = () => {
                     <button className="border py-2 px-4 rounded-lg font-bold tracking-wider border-furry bg-furry text-white hover:bg-transparent hover:text-furry transition-all duration-700" type="submit">Search</button>
                 </form>
             </div>
-            {blogCount > 0 && !searchText && <h3 className="text-furry font-jokeyOneSans text-3xl mb-8 flex items-center justify-center">{blogCount} {blogCount > 1 ? 'Blogs' : 'Blog'}</h3>}
+            {blogCount > 0 && !searchText && <h3 className="text-furry font-kreonSerif text-3xl mb-8 flex items-center justify-center">{blogCount} {blogCount > 1 ? 'Blogs' : 'Blog'}</h3>}
             {/* Show Search Count */}
             {
                 searchText && blogs?.length > 0 && (<div className="mb-8 flex items-center justify-center text-furry font-kreonSerif text-2xl">
@@ -148,7 +148,7 @@ const AllBlogs = () => {
                 </div>)
             }
             {
-                blogs?.length <= 0 ? <div className="flex flex-col items-center justify-center text-furry font-jokeyOneSans text-4xl">
+                blogs?.length <= 0 ? <div className="flex flex-col items-center justify-center text-furry font-kreonSerif text-4xl">
                     <img src={rain} alt="Raining..." />
                     <p>No Blogs Found!</p>
                 </div>

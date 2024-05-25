@@ -80,13 +80,17 @@ const BlogDetails = () => {
                         <p onClick={() => setShowPostUpdateTime(!showPostUpdateTime)} className="text-gray-500 cursor-pointer post-update-time">{formattedDate}</p>
                     </div>
                 </figure>
-                <h3 className="text-black text-xl font-semibold flex items-center gap-1">Posted in <MdPets />Category:  <span className="flex text-furry font-jokeyOneSans tracking-wider items-center gap-1">{
-                    category === "Cats" ? <span className='flex items-center gap-1'><PiCatFill />{category}</span>
-                        : category === "Dogs" ? <span className='flex items-center gap-1'><PiDogFill /> {category}</span>
-                            : category === "Birds" ? <span className='flex items-center gap-1'><PiBirdFill />{category}</span>
-                                : category === "Rabbits" ? <span className='flex items-center gap-1'><PiRabbitFill /> {category}</span>
-                                    : <span className='flex items-center gap-1'><GiFrog /> {category}</span>
-                }</span></h3>
+                <h3 className="font-kreonSerif text-black text-xl font-semibold flex items-center gap-1">Posted in <MdPets />Category:  <span className="flex text-furry tracking-wider items-center gap-1">
+                    {
+                        <span className='flex items-center gap-1'>{
+                            category === "Cats" ? <PiCatFill />
+                                : category === "Dogs" ? <PiDogFill />
+                                    : category === "Birds" ? <PiBirdFill />
+                                        : category === "Rabbits" ? <PiRabbitFill />
+                                            : <GiFrog />}{category}
+                        </span>
+                    }
+                </span></h3>
             </div>
             {
                 showPostUpdateTime && updated_on && <h5 className="md:ml-14 md:-mt-3 text-gray-500">Updated on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm:ss A')}</h5>
