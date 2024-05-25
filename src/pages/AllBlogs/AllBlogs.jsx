@@ -33,7 +33,7 @@ const AllBlogs = () => {
     const pages = [...Array(totalPages).keys()];
 
     // Fetch Blogs
-    const { isPending, isError, error, data: blogs } = useQuery({
+    const { isLoading, isError, error, data: blogs } = useQuery({
         queryKey: ['blogs', sortByTime, currentPage, itemsPerPage, category, searchText],
         queryFn: async () => {
             const res = await
@@ -84,6 +84,22 @@ const AllBlogs = () => {
         inputRef.current.value = '';
     }
 
+    let loadingSpinner = null;
+
+    if (isLoading && searchText) {
+        loadingSpinner = (
+            <div className="flex items-center justify-center">
+                <img className="w-48 h-48" src={searchLoading} alt="Loading..." />
+            </div>
+        );
+    } else if (isLoading || isFetching) {
+        loadingSpinner = (
+            <div className="flex items-center justify-center">
+                <img className="w-48 h-48" src={loadingRipple} alt="Loading..." />
+            </div>
+        );
+    }
+
     if (isError || isCountError) {
         return (
             <div className="flex flex-col items-center justify-center mt-8 gap-2">
@@ -132,21 +148,8 @@ const AllBlogs = () => {
                 </form>
             </div>
 
-            {/* Loading Spinners */}
-            {
-                isPending && searchText
-                    ? (
-                        <div className="flex items-center justify-center">
-                            <img className="w-48 h-48" src={searchLoading} alt="Loading..." />
-                        </div>
-                    )
-                    : isPending || isFetching ? (
-                        <div className="flex items-center justify-center">
-                            <img className="w-48 h-48" src={loadingRipple} alt="Loading..." />
-                        </div>
-                    )
-                        : null
-            }
+            {/* Loading Spinner */}
+            {loadingSpinner}
 
             {/* Total Blog Count */}
             {blogCount > 0 && !searchText && <h3 className="text-center text-furry font-kreonSerif text-xl md:text-3xl mb-6 flex items-center justify-center">Total {blogCount} {blogCount > 1 ? 'Blogs' : 'Blog'} Posted {category && category !== 'All' && `in "${category}" Category`} Till Now</h3>}
@@ -173,7 +176,7 @@ const AllBlogs = () => {
 
             {blogs?.length > 0 && <>
                 {/* Top Pagination */}
-                { blogs?.length > 5 &&
+                {blogs?.length > 5 &&
                     <div className="hidden md:flex gap-4 flex-col lg:flex-row justify-center items-center font-semibold my-6 lg:my-8">
                         <div className="flex gap-2 items-center justify-center">
                             <p className="text-furry px-3 py-1 border border-furry">Page: {currentPage} of {totalPages}</p>
