@@ -10,7 +10,7 @@ import loadingRipple from "../../assets/ripple-blue-thick.svg";
 import pacman from '../../assets/red-pacman.svg';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
-import { MdPets } from "react-icons/md";
+import { MdAccessTime, MdOutlineUpdate, MdPets } from "react-icons/md";
 import { PiBirdFill, PiCatFill, PiDogFill, PiRabbitFill } from "react-icons/pi";
 import { GiFrog } from "react-icons/gi";
 import { Tooltip } from "react-tooltip";
@@ -77,10 +77,10 @@ const BlogDetails = () => {
                                     Posted on: {moment(posted_on).format('MMMM DD, YYYY [at] hh:mm:ss A')}
                                 </Tooltip>
                         }
-                        <p onClick={() => setShowPostUpdateTime(!showPostUpdateTime)} className="text-gray-500 cursor-pointer post-update-time">{formattedDate}</p>
+                        <p onClick={() => setShowPostUpdateTime(!showPostUpdateTime)} className="text-gray-500 cursor-pointer post-update-time flex items-center gap-1"><MdAccessTime /> {formattedDate}</p>
                     </div>
                 </figure>
-                <h3 className="font-kreonSerif text-black text-xl font-semibold flex items-center gap-1">Posted in <MdPets />Category:  <span className="flex text-furry tracking-wider items-center gap-1">
+                <h3 className="font-kreonSerif text-xl font-semibold flex items-center gap-1">Posted in <MdPets />Category:  <span className="flex text-furry tracking-wider items-center gap-1">
                     {
                         <span className='flex items-center gap-1'>{
                             category === "Cats" ? <PiCatFill />
@@ -93,7 +93,7 @@ const BlogDetails = () => {
                 </span></h3>
             </div>
             {
-                showPostUpdateTime && updated_on && <h5 className="md:ml-14 md:-mt-3 text-gray-500">Updated on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm:ss A')}</h5>
+                showPostUpdateTime && updated_on && <h5 className="md:ml-14 md:-mt-3 text-gray-500 flex items-center gap-1"><MdOutlineUpdate /> {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm:ss A')}</h5>
             }
             <hr className="mb-6 mt-2" />
             {/* Blog Image & Short Description */}

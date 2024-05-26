@@ -12,6 +12,7 @@ import { IoBookmarksOutline, IoHome } from "react-icons/io5";
 import { BsListStars } from "react-icons/bs";
 import loadingRipple from "../../assets/ripple-blue-thick.svg";
 import useWishlist from "../../hooks/useWishlist";
+import ToggleTheme from "../ToggleTheme/ToggleTheme";
 
 const Navbar = () => {
     const { user, userLoading, logOut } = useAuth();
@@ -92,26 +93,29 @@ const Navbar = () => {
                     </ul>
                 </div>
 
-                {userLoading ? <div className="flex items-center justify-center space-x-2">
-                    <img className="w-9 md:w-14 h-9 md:h-14" src={loadingRipple} alt="User Loading..." />
-                </div>
-                    : user
-                        ? <div className="flex items-center gap-2 md:gap-3">
-                            <Tooltip anchorSelect=".nameIcon" place="bottom">
-                                {userName}
-                            </Tooltip>
-                            <Link to={'/profile'}><img className="nameIcon w-9 md:w-14 h-9 md:h-14 rounded-full border-2 p-[2px] border-furry hover:opacity-70 transition-all duration-1000" src={profilePicture} alt={userName} /></Link>
-                            <Tooltip anchorSelect=".logOutIcon" place="bottom">
-                                Log out
-                            </Tooltip>
-                            <div className="logOutIcon font-bold flex items-center justify-center w-9 md:w-14 h-9 md:h-14 rounded-full border-2 border-furry pl-1 md:pl-1 cursor-pointer text-2xl md:text-3xl hover:text-[28px] hover:md:text-4xl bg-furry text-[#ffffff] hover:text-furry hover:bg-transparent transform transition-all duration-1000" onClick={handleLogout}>
-                                <FaSignOutAlt />
+                <ToggleTheme/>
+
+                {
+                    userLoading ? <div className="flex items-center justify-center space-x-2">
+                        <img className="w-9 md:w-14 h-9 md:h-14" src={loadingRipple} alt="User Loading..." />
+                    </div>
+                        : user
+                            ? <div className="flex items-center gap-2 md:gap-3">
+                                <Tooltip anchorSelect=".nameIcon" place="bottom">
+                                    {userName}
+                                </Tooltip>
+                                <Link to={'/profile'}><img className="nameIcon w-9 md:w-14 h-9 md:h-14 rounded-full border-2 p-[2px] border-furry hover:opacity-70 transition-all duration-1000" src={profilePicture} alt={userName} /></Link>
+                                <Tooltip anchorSelect=".logOutIcon" place="bottom">
+                                    Log out
+                                </Tooltip>
+                                <div className="logOutIcon font-bold flex items-center justify-center w-9 md:w-14 h-9 md:h-14 rounded-full border-2 border-furry pl-1 md:pl-1 cursor-pointer text-2xl md:text-3xl hover:text-[28px] hover:md:text-4xl bg-furry text-[#ffffff] hover:text-furry hover:bg-transparent transform transition-all duration-1000" onClick={handleLogout}>
+                                    <FaSignOutAlt />
+                                </div>
                             </div>
-                        </div>
-                        : <ul className="font-jokeyOneSans flex items-center gap-1 md:gap-3 text-base md:text-xl font-medium md:pt-0 pt-1">
-                            <NavLink to={'/login'}>Login</NavLink>
-                            <NavLink to={'/register'}>Register</NavLink>
-                        </ul>
+                            : <ul className="font-jokeyOneSans flex items-center gap-1 md:gap-3 text-base md:text-xl font-medium md:pt-0 pt-1">
+                                <NavLink to={'/login'}>Login</NavLink>
+                                <NavLink to={'/register'}>Register</NavLink>
+                            </ul>
                 }
             </div>
         </nav>

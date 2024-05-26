@@ -93,7 +93,7 @@ const Profile = () => {
                 <title>Profile : {user.displayName} - Furry Friends Blogs</title>
             </Helmet>
             <div className="flex flex-col xl:flex-row justify-between gap-10 items-center mb-8 xl:mb-16">
-                <div className="w-full lg:w-2/3 flex-1 bg-gradient-to-l from-[#829ae8fa] to-[#7690e5fa] flex flex-col gap-6 p-6 shadow-lg shadow-[#3c3939]">
+                <div className="w-full lg:w-2/3 flex-1 border bg-gradient-to-l from-[#2e50bc62] to-[#033eff37]  border-furry flex flex-col gap-6 p-6 shadow-lg shadow-[#8689ee]">
                     <div className="flex flex-col lg:flex-row gap-2 items-center md:justify-start justify-center my-4">
                         <Tooltip anchorSelect=".user-name" place="top">
                             {user.displayName}
@@ -119,8 +119,8 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-full lg:w-1/3 border lg:border-0 border-furry p-2 lg:text-left justify-between flex flex-col items-center gap-2 text-center">
-                    <h3 className="text-furry font-kreonSerif text-2xl md:text-3xl">You have Posted {usersBlogs?.length} {usersBlogs?.length > 1 ? 'Blogs' : 'Blog'}!</h3>
+                <div className="w-full lg:w-1/3 bg-gradient-to-l from-[#2e50bc62] to-[#033eff37] border border-furry shadow-lg shadow-[#8689ee] p-4 lg:text-left justify-between flex flex-col items-center gap-2 text-center">
+                    <h3 className="text-furry font-kreonSerif text-2xl md:text-3xl">You have Posted {usersBlogs?.length} {usersBlogs?.length > 1 ? 'Blogs' : 'Blog'} So Far!</h3>
                     <Link to={`/add-blog`}><Button buttonText={'Add A New Blog'} hoverBgColor={'transparent'} hoverColor={'white'} color={'#1e40ad'} className={'my-2 border px-4 py-1 font-bold text-xl'}></Button></Link>
                 </div>
             </div>

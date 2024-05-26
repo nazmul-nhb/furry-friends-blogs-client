@@ -79,7 +79,7 @@ const AddBlog = () => {
                                 required: { value: true, message: "You must provide a valid Title for Your Blog." },
                                 maxLength: { value: 96, message: "Blog Title should not exceed 96 characters!" }
                             })}
-                            className="focus:bg-[#dce1f5] p-2 rounded-lg border border-furry transition duration-500 focus:outline-0" type="text" name="blog_title" id="blog_title" placeholder=" Title for Your Blog (Max: 96 Characters)" />
+                            className="bg-transparent focus:border-2 p-2 rounded-lg border border-furry transition duration-500 focus:outline-0" type="text" name="blog_title" id="blog_title" placeholder=" Title for Your Blog (Max: 96 Characters)" />
                         {
                             errors.blog_title && <p className="text-red-700">{errors.blog_title.message}</p>
                         }
@@ -92,7 +92,7 @@ const AddBlog = () => {
                                 required:
                                     { value: true, message: "You must provide a valid link." }
                             })}
-                            className="focus:bg-[#dce1f5] p-2 rounded-lg border border-furry transition duration-500 focus:outline-0" type="text" name="image" id="image" placeholder="Image Link for Your Blog/Pet" />
+                            className="bg-transparent focus:border-2 p-2 rounded-lg border border-furry transition duration-500 focus:outline-0" type="text" name="image" id="image" placeholder="Image Link for Your Blog/Pet" />
                         {
                             errors.image && <p className="text-red-700">{errors.image.message}</p>
                         }
@@ -105,7 +105,7 @@ const AddBlog = () => {
                                 required:
                                     { value: true, message: "You must select a Category." }
                             })}
-                            className="focus:bg-[#dce1f5] p-2 rounded-lg border border-furry transition duration-500 focus:outline-0" name="category" id="category" placeholder="Select A Category">
+                            className="bg-transparent focus:border-2 p-2 rounded-lg border border-furry transition duration-500 focus:outline-0" name="category" id="category" placeholder="Select A Category">
                             <option value={""}>Select A Category</option>
                             <option value="Cats">Cats</option>
                             <option value="Dogs">Dogs</option>
@@ -125,7 +125,7 @@ const AddBlog = () => {
                                 required: { value: true, message: "You must write something." },
                                 maxLength: { value: 120, message: "Short Description should not exceed 120 characters!" }
                             })}
-                            className="focus:bg-[#dce1f5] p-2 rounded-lg border border-furry transition duration-500 focus:outline-0" type="text" name="short_description" id="short_description" placeholder="Write a Short Description for Your Blog (Max: 120 Characters)" />
+                            className="bg-transparent focus:border-2 p-2 rounded-lg border border-furry transition duration-500 focus:outline-0" type="text" name="short_description" id="short_description" placeholder="Write a Short Description for Your Blog (Max: 120 Characters)" />
                         {
                             errors.short_description && <p className="text-red-700">{errors.short_description.message}</p>
                         }
@@ -138,14 +138,16 @@ const AddBlog = () => {
                                 required:
                                     { value: true, message: "You must write something." }
                             })}
-                            className="h-44 focus:bg-[#dce1f5] p-2 rounded-lg border border-furry transition duration-500 focus:outline-0" type="text" name="long_description" id="long_description" placeholder="Write a Long Description/Blog Post" />
+                            className="h-44 bg-transparent focus:border-2 p-2 rounded-lg border border-furry transition duration-500 focus:outline-0" type="text" name="long_description" id="long_description" placeholder="Write a Long Description/Blog Post" />
                         {
                             errors.long_description && <p className="text-red-700">{errors.long_description.message}</p>
                         }
                     </div>
                 </div>
-                <Button onClick={handleSubmit(handlePreview)} buttonType={'button'} className={'border !border-furry w-full text-xl font-semibold p-2 rounded-3xl'} color={'white'} hoverColor={'#1e40ad'} hoverBgColor={'#1e40ad'} buttonText={'Preview Your Post'}></Button>
-                <Button buttonType={'submit'} className={'border w-full text-xl font-semibold p-2 rounded-3xl'} buttonText={'Submit'} color={'#1e40ad'} hoverColor={'white'} hoverBgColor={'transparent'}></Button>
+                <div className="flex gap-6 flex-col md:flex-row items-center justify-center">
+                    <Button onClick={handleSubmit(handlePreview)} buttonType={'button'} className={'border !border-furry w-full text-xl font-semibold p-2 rounded-3xl !bg-transparent hover:!bg-furry focus:border-2'} color={'white'} hoverColor={'#1e40ad'} hoverBgColor={'#1e40ad'} buttonText={'Preview Your Post'}></Button>
+                    <Button buttonType={'submit'} className={'border w-full text-xl font-semibold p-2 rounded-3xl'} buttonText={'Submit'} color={'#1e40ad'} hoverColor={'white'} hoverBgColor={'transparent'}></Button>
+                </div>
             </form>
             {
                 showModal && (

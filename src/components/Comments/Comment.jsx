@@ -12,6 +12,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from 'sweetalert2';
 import { Tooltip } from 'react-tooltip';
 import Reply from './Reply';
+import { MdOutlineUpdate } from 'react-icons/md';
 
 const Comment = ({ comment, handleDeleteComment, commentsRefetch }) => {
     const { user } = useAuth();
@@ -183,13 +184,13 @@ const Comment = ({ comment, handleDeleteComment, commentsRefetch }) => {
                 <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => setShowReplyBox(showReplyBox => !showReplyBox)}>Reply</button>
             </div>
             {
-                showCommentUpdateTime && updated_on && <h5 className="ml-12 text-gray-500 text-sm">Edited on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm:ss A')}</h5>
+                showCommentUpdateTime && updated_on && <h5 className="ml-12 mb-2 text-gray-500 text-sm flex items-center gap-1"><MdOutlineUpdate /> {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm:ss A')}</h5>
             }
             {/* Reply Box */}
             <div className='ml-4 mb-1'>
                 {
                     showReplyBox && <form className="ml-6 mb-2 flex items-start flex-col gap-4" onSubmit={handlePostReply}>
-                        <textarea ref={replyRef} className="w-full lg:w-2/5 h-28 border border-furry rounded-lg p-2 outline-none focus:border-2" name="reply" id="reply" placeholder={`Reply to ${commenter_name}'s Comment`}></textarea>
+                        <textarea ref={replyRef} className="w-full lg:w-2/5 h-28 bg-transparent border border-furry rounded-lg p-2 outline-none focus:border-2" name="reply" id="reply" placeholder={`Reply to ${commenter_name}'s Comment`}></textarea>
 
                         <Button buttonText={'Reply'} buttonType={'submit'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} className={'text-sm border rounded-xl px-3 py-1 font-medium'}></Button>
                     </form>

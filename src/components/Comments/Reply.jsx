@@ -6,6 +6,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
 import Button from '../Button/Button';
 import { Tooltip } from 'react-tooltip';
+import { MdOutlineUpdate } from 'react-icons/md';
 
 const Reply = ({ reply, handleDeleteReply, setShowReplyBox, replyRefetch, commenter_name }) => {
     const { user } = useAuth();
@@ -80,7 +81,7 @@ const Reply = ({ reply, handleDeleteReply, setShowReplyBox, replyRefetch, commen
                 <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => setShowReplyBox(showReplyBox => !showReplyBox)}>Reply</button>
             </div>
             {
-                showReplyUpdateTime && updated_on && <h5 className="ml-11 text-gray-500 text-sm">Edited on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm:ss A')}</h5>
+                showReplyUpdateTime && updated_on && <h5 className="ml-11 text-gray-500 text-sm flex items-center gap-1"><MdOutlineUpdate />{moment(updated_on).format('MMMM DD, YYYY [at] hh:mm:ss A')}</h5>
             }
         </div>
     );

@@ -14,12 +14,14 @@
     border-left: 1px solid #1e40ad
 }
 
+/* 
 .featured-table tr:nth-child(odd) {
     background-color: #fff
 }
+*/
 
 .featured-table tr:nth-child(even) {
-    background-color: #d5ddf6
+    background-color: #ebedf4
 }
 
 .featured-table th {

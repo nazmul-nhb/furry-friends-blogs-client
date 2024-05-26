@@ -128,7 +128,7 @@ const AllBlogs = () => {
                     <select
                         onChange={handleFilter}
                         value={category}
-                        className="focus:bg-[#dce1f5] p-2 rounded-lg outline outline-none border border-furry"
+                        className="bg-transparent focus:border-2 p-2 rounded-lg outline outline-none border border-furry"
                         name="category" id="category">
                         <option value="">Filter by Category</option>
                         <option value="All">All</option>
@@ -143,7 +143,7 @@ const AllBlogs = () => {
                 {/* Search */}
                 <form onSubmit={handleSearchBlog} className="flex gap-2 items-center text-furry">
                     <div className="flex gap-2 items-center relative">
-                        <input ref={inputRef} defaultValue={searchText} className="text-left p-2 rounded-lg outline outline-none border focus:bg-[#dce1f5] text-furry border-furry" placeholder="Search by Blog Title" type="text" name="search" id="search" />
+                        <input ref={inputRef} defaultValue={searchText} className="text-left p-2 rounded-lg outline outline-none border bg-transparent focus:border-2 text-furry border-furry" placeholder="Search by Blog Title" type="text" name="search" id="search" />
                         {
                             searchText !== '' && <button title="Clear Search Field" onClick={clearSearchText} className="absolute right-2 text-3xl hover:text-red-900"><FaDeleteLeft /></button>
                         }
@@ -156,7 +156,7 @@ const AllBlogs = () => {
             {loadingSpinner}
 
             {/* Total Blog Count */}
-            {blogCount > 0 && !searchText && <h3 className="text-center text-furry font-kreonSerif text-xl md:text-3xl mb-6 flex items-center justify-center">Total {blogCount} {blogCount > 1 ? 'Blogs' : 'Blog'} Posted {category && category !== 'All' && `in "${category}" Category`} Till Now</h3>}
+            {blogCount > 0 && !searchText && <h3 className="text-center text-furry font-kreonSerif text-xl md:text-3xl mb-6 flex items-center justify-center">Total {blogCount} {blogCount > 1 ? 'Blogs' : 'Blog'} Posted {category && category !== 'All' && `in "${category}" Category`} So Far!</h3>}
 
             {/* Show Search Count */}
             {
@@ -184,7 +184,7 @@ const AllBlogs = () => {
                     <div className="hidden md:flex gap-4 flex-col lg:flex-row justify-center items-center font-semibold my-6 lg:my-8">
                         <div className="flex gap-2 items-center justify-center">
                             <p className="text-furry px-3 py-1 border border-furry">Page: {currentPage} of {totalPages}</p>
-                            <select className="border px-2 py-1 focus:text-furry outline-furry border-furry text-furry focus:bg-[#1e3fad26]" value={itemsPerPage} onChange={handleItemsPerPage} name="" id="">
+                            <select className="border px-2 py-1 focus:text-furry outline-furry border-furry text-furry bg-transparent focus:border-2" value={itemsPerPage} onChange={handleItemsPerPage} name="" id="">
                                 <option value="6">Blogs Per Page: 6</option>
                                 <option value="12">Blogs Per Page: 12</option>
                                 <option value="24">Blogs Per Page: 24</option>
@@ -242,7 +242,7 @@ const AllBlogs = () => {
 
                         <button className={"px-3 border disabled:text-gray-500 disabled:border-gray-500 disabled:hover:text-gray-500 disabled:hover:bg-transparent text-furry border-furry hover:bg-furry hover:text-white"} disabled={currentPage === pages?.length || totalPages === 0} onClick={handleNextPage}>Next</button>
                     </div>
-                    <select className="border px-2 py-1 focus:text-furry outline-furry border-furry text-furry focus:bg-[#1e3fad26]" value={itemsPerPage} onChange={handleItemsPerPage} name="blogs" id="blogs">
+                    <select className="border px-2 py-1 focus:text-furry outline-furry border-furry text-furry bg-transparent focus:border-2" value={itemsPerPage} onChange={handleItemsPerPage} name="blogs" id="blogs">
                         <option value="6">Blogs Per Page: 6</option>
                         <option value="12">Blogs Per Page: 12</option>
                         <option value="24">Blogs Per Page: 24</option>
