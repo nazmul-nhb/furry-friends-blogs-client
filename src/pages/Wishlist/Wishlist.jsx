@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async";
 import loadingRipple from "../../assets/ripple-blue-thick.svg";
-// import { useQuery } from "@tanstack/react-query";
 // import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
@@ -14,6 +13,7 @@ import interwind from '../../assets/interwind-blue.svg';
 import useWishlist from "../../hooks/useWishlist";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { IoIosCloseCircle } from "react-icons/io";
+import SectionInfo from "../../components/SectionInfo/SectionInfo";
 
 const Wishlist = () => {
     const { user } = useAuth();
@@ -26,15 +26,6 @@ const Wishlist = () => {
     const closeModal = () => {
         setShowModal(false);
     };
-    // const { isPending, isError, error, data: wishlistBlogs, refetch } = useQuery({
-    //     queryKey: ['wishlistBlogs'],
-    //     queryFn: async () => {
-    //         const res = await axiosSecure.get(`/wishlist?email=${user.email}`);
-    //         return res.data;
-    //     }, enabled: true,
-    // });
-    // moved into useWishlist hook
-
 
     // console.log(wishlistBlogs);
 
@@ -115,8 +106,12 @@ const Wishlist = () => {
             <Helmet>
                 <title>Wishlist - Furry Friends Blogs</title>
             </Helmet>
-            <h3 className="text-center text-furry font-bold text-3xl mb-2 md:mb-4">{user.displayName}&rsquo;s Wishlist </h3>
-            <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-6">Read the Blogs You kept in your Wishlist for Reading Later.</p>
+
+            <SectionInfo
+                heading={`${user.displayName}’s Wishlist`}
+                info={"Read the Blogs You kept in your Wishlist for Reading Later."}
+            />
+
             {/* Show Loading Spinner */}
             {
                 loadingData ?

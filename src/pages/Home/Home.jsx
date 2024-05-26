@@ -5,6 +5,7 @@ import Newsletter from "../../components/Newsletter/Newsletter";
 import FAQs from "../../components/FAQs/FAQs";
 import PetTips from "../../components/PetTips/PetTips";
 import { useTypewriter } from "react-simple-typewriter";
+import SectionInfo from "../../components/SectionInfo/SectionInfo";
 
 const Home = () => {
 
@@ -18,14 +19,17 @@ const Home = () => {
             <Helmet>
                 <title>Home - Furry Friends Blogs</title>
             </Helmet>
-            <h3 className="text-center text-furry font-bold max-[430px]:text-xl text-2xl md:text-6xl">{text}</h3>
-            <p className="text-gray-600 mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-6 md:mt-6 md:text-xl">The Home of Pet Lovers who enjoy writing and reading about pets!</p>
+            <SectionInfo
+                heading={text}
+                info={"The Home of Pet Lovers who enjoy writing and reading about pets!"}
+            />
             <Slider />
+            <hr className="mt-8 md:mt-16" />
             <RecentBlogs />
             <hr />
-            <PetTips/>
+            <PetTips />
             <hr />
-            <FAQs/>
+            <FAQs />
             <hr />
             <Newsletter />
         </section>

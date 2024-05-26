@@ -9,13 +9,16 @@ import behave from '../../assets/tips/behave.jpeg';
 import nutrition from '../../assets/tips/nutrition.jpeg';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
+import SectionInfo from '../SectionInfo/SectionInfo';
 
 const PetTips = () => {
     const [tabIndex, setTabIndex] = useState(0);
     return (
-        <section className="my-8 md:my-20">
-            <h3 className="text-center text-furry font-bold max-[430px]:text-2xl text-3xl md:text-4xl mb-4">Pet Tips & Advice</h3>
-            <p className="text-gray-600 text-center mx-auto w-4/5 md:w-3/5 font-semibold mb-6 max-[430px]:text-sm md:text-lg">In the pursuit of providing the best care for your beloved furry friends, understanding their health, behavior, and nutritional needs is paramount. Here at &ldquo;Furry Friends,&rdquo; we&rsquo;ve curated a comprehensive guide to help you navigate through these crucial aspects of pet ownership</p>
+        <section className="my-8 md:my-16">
+            <SectionInfo
+                heading={"Pet Tips & Advice"}
+                info={`In the pursuit of providing the best care for your beloved furry friends, understanding their health, behavior, and nutritional needs is paramount. Here at “Furry Friends”, we've curated a comprehensive guide to help you navigate through these crucial aspects of pet ownership!`}
+            />
             <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <div className="font-kreonSerif text-sm md:text-2xl text-furry flex justify-center">
                     <TabList>

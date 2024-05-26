@@ -5,6 +5,7 @@ import Fade from '@mui/material/Fade';
 import { useState } from 'react';
 import { MdOutlineExpandCircleDown } from 'react-icons/md';
 import faq from '../../assets/faq.png';
+import SectionInfo from '../SectionInfo/SectionInfo';
 
 const FAQs = () => {
     const [expanded, setExpanded] = useState(false);
@@ -14,10 +15,12 @@ const FAQs = () => {
     }
 
     return (
-        <section className='my-8 md:my-20'>
-            <h3 className="text-center text-furry font-bold max-[430px]:text-xl text-3xl md:text-4xl mb-4">Frequently Asked Questions</h3>
-            <div className="flex flex-col items-center">
-                <p className="text-gray-600 text-center mx-auto w-4/5 md:w-3/5 font-semibold mb-6 max-[430px]:text-base md:text-lg">Here are some common questions and answers to help you better understand our site.</p>
+        <section className='my-8 md:my-16'>
+            <SectionInfo
+                heading={"Frequently Asked Questions"}
+                info={"Here are some common questions and answers to help you better understand our site."}
+            />
+            <div className="flex flex-col items-center mb-4">
                 <img className='w-4/5 md:w-[480px]' src={faq} alt="FAQs" />
             </div>
             <Accordion

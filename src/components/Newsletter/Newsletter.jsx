@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Button from "../Button/Button";
 import { toast } from "react-hot-toast";
 import newsletter from '../../assets/newsletter.png'
+import SectionInfo from "../SectionInfo/SectionInfo";
 
 const Newsletter = () => {
     const { scrollYProgress } = useScroll()
@@ -19,14 +20,16 @@ const Newsletter = () => {
     }
 
     return (
-        <motion.section style={{ scale }} className="text-center my-12">
+        <motion.section style={{ scale }} className="text-center my-8 md:my-16">
             <motion.div
                 style={{
                     scaleY: scrollYProgress
                 }}>
-                <h3 className="text-furry font-bold max-[430px]:text-xl text-2xl md:text-4xl mb-4">Subscribe to Our Newsletter</h3>
-                <h4 className="text-furry md:text-xl mb-2 font-kreonSerif">Join Our Furry Friends Family</h4>
-                <p className="text-gray-600 mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-6 max-[430px]:text-base md:text-lg">Subscribe to our newsletter today and unlock a world of exclusive pet content, personalized recommendations, and get early access to our latest blogs!</p>
+                <SectionInfo
+                    heading={"Subscribe to Our Newsletter"}
+                    subHeading={"Join Our Furry Friends Family"}
+                    info={"Subscribe to our newsletter today and unlock a world of exclusive pet content, personalized recommendations, and get early access to our latest blogs"}
+                />
             </motion.div>
             <figure>
                 <img className="w-4/5 md:w-1/4 block mx-auto" src={newsletter} alt="Newsletter" />

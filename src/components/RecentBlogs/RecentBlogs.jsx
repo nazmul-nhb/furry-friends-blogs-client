@@ -5,6 +5,7 @@ import pacman from '../../assets/red-pacman.svg';
 import Blog from "../Blog/Blog";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
+import SectionInfo from "../SectionInfo/SectionInfo";
 
 const RecentBlogs = () => {
     const { isPending, isError, error, data: blogs } = useQuery({
@@ -27,9 +28,11 @@ const RecentBlogs = () => {
     }
 
     return (
-        <section className="my-16 flex flex-col justify-center items-center gap-4">
-            <h3 className="text-center font-bold max-[430px]:text-2xl text-3xl md:text-4xl text-furry">Recent Blog Posts</h3>
-            <p className="text-gray-600 mx-auto w-4/5 md:w-3/5 text-center font-semibold mb-6 max-[430px]:text-base md:text-lg">Explore our recent blogs about pets. You can add it to your Wishlist for reading it later!</p>
+        <section className="my-8 md:my-16 flex flex-col justify-center items-center gap-4">
+            <SectionInfo
+                heading={"Recent Blog Posts"}
+                info={"Explore our recent blogs about pets. You can add it to your Wishlist for reading it later!"}
+                 />
 
             {isPending && (
                 <div className="flex items-center justify-center">

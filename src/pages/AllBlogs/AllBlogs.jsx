@@ -9,6 +9,7 @@ import { FaDeleteLeft } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import loadingRipple from "../../assets/ripple-blue-thick.svg";
 import pacman from '../../assets/red-pacman.svg';
+import SectionInfo from "../../components/SectionInfo/SectionInfo";
 
 const AllBlogs = () => {
     const [itemsPerPage, setItemsPerPage] = useState(6);
@@ -114,8 +115,11 @@ const AllBlogs = () => {
             <Helmet>
                 <title>All Blogs - Furry Friends Blogs</title>
             </Helmet>
-            <h3 className="text-center text-furry font-bold text-3xl mb-4 md:mb-6">All Blogs</h3>
-            <p className="mx-auto w-4/5 md:w-3/5 text-center font-semibold">Explore All the Blogs about Your Favorite Pets</p>
+
+            <SectionInfo
+                heading={"All Blogs"}
+                info={"Explore All the Blogs about Your Favorite Pets"}
+            />
 
             {/* Filter & Search */}
             <div className="my-6 text-sm md:text-base flex flex-col md:flex-row justify-start md:justify-center items-center gap-3 md:gap-6">
