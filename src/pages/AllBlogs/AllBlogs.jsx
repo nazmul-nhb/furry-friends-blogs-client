@@ -118,7 +118,7 @@ const AllBlogs = () => {
 
             <SectionInfo
                 heading={"All Blogs"}
-                info={"Explore All the Blogs about Your Favorite Pets"}
+                info={"Explore All Blogs Available on Our Site"}
             />
 
             {/* Filter & Search */}
@@ -160,10 +160,10 @@ const AllBlogs = () => {
 
             {/* Show Search Count */}
             {
-                searchText && blogs?.length > 0 ? (<div className="mb-8 flex items-center justify-center text-furry font-kreonSerif text-2xl">
+                searchText && blogs?.length > 0 ? (<div className="mb-8 flex items-center justify-center text-furry font-kreonSerif max-[430px]:text-xl text-2xl">
                     {blogs?.length} {blogs?.length > 1 ? 'Matches' : 'Match'} Found {category && category !== 'All' && `in "${category}" Category`}!
                 </div>)
-                    : searchText && blogs?.length <= 0 ? (<div className="text-center flex flex-col items-center justify-center text-furry font-kreonSerif text-xl md:text-4xl">
+                    : searchText && blogs?.length <= 0 ? (<div className="text-center flex flex-col items-center justify-center text-furry font-kreonSerif max-[430px]:text-xl text-2xl md:text-3xl">
                         <img src={rain} alt="Raining..." />
                         <p>No Blogs Found!</p>
                     </div>)
@@ -172,7 +172,7 @@ const AllBlogs = () => {
 
             {/* Show this if there is no posts on the whole site! */}
             {
-                !searchText && blogs?.length <= 0 && <div className="text-center flex flex-col items-center justify-center text-furry font-kreonSerif text-xl md:text-4xl">
+                !searchText && blogs?.length <= 0 && <div className="text-center flex flex-col items-center justify-center text-furry font-kreonSerif max-[430px]:text-xl text-2xl md:text-3xl">
                     <img src={rain} alt="Raining..." />
                     <p>No One Ever Posted Any Blog Yet!!</p>
                 </div>

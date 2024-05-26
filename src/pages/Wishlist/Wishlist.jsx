@@ -125,16 +125,16 @@ const Wishlist = () => {
                         : <div>
                             {/* Show Total Wishlist Blog Count */}
                             {
-                                wishlistBlogs?.length > 0 && <h3 className="text-center text-furry font-kreonSerif font-bold text-3xl mb-4 md:mb-6">You have {wishlistBlogs?.length} {wishlistBlogs?.length > 1 ? 'Blogs' : 'Blog'} in Your Wishlist!</h3>
+                                wishlistBlogs?.length > 0 && <h3 className="text-center text-furry font-kreonSerif font-bold max-[430px]:text-xl text-2xl md:text-3xl mb-4 md:mb-6">You have {wishlistBlogs?.length} {wishlistBlogs?.length > 1 ? 'Blogs' : 'Blog'} in Your Wishlist!</h3>
                             }
                             {/* Handling Deleted Blogs in Wishlist */}
                             {wishlistBlogs?.length > wishedBlogs?.length && <div>
-                                <h3 className="text-center text-red-700 font-kreonSerif font-bold text-2xl mb-4 md:mb-6">{deletedBlogCount} {deletedBlogCount > 1 ? 'Blogs were' : 'Blog was'} Deleted by the {deletedBlogCount > 1 ? 'Authors' : 'Author'}! <button className="hover:text-red-700 text-furry hover:opacity-80 transition-all duration-500 cursor-pointer" onClick={() => setShowModal(!showModal)}>View</button></h3>
+                                <h3 className="text-center text-red-700 font-kreonSerif font-bold max-[430px]:text-xl text-2xl mb-4 md:mb-6">{deletedBlogCount} {deletedBlogCount > 1 ? 'Blogs were' : 'Blog was'} Deleted by the {deletedBlogCount > 1 ? 'Authors' : 'Author'}! <button className="hover:text-red-700 text-furry hover:opacity-80 transition-all duration-500 cursor-pointer" onClick={() => setShowModal(!showModal)}>View</button></h3>
                                 {/* Deleted Blogs List */}
                                 {showModal &&
                                     <dialog open className="w-[96%] xl:w-auto h-3/4 bg-opacity-95 p-6 bg-[#ffffff] border shadow-lg fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg z-50 overflow-y-auto">
                                         <IoIosCloseCircle onClick={closeModal} className='absolute top-1 right-1 text-5xl text-red-700 hover:text-furry hover:opacity-80 transition-all duration-500 cursor-pointer' title='Close' />
-                                        <h3 className="text-center text-red-700 font-kreonSerif font-bold text-2xl mb-4 md:mb-6">List of Deleted Blogs in Your Wishlist:</h3>
+                                        <h3 className="text-center text-red-700 font-kreonSerif font-bold max-[430px]:text-xl text-2xl mb-4 md:mb-6">List of Deleted Blogs in Your Wishlist:</h3>
                                         {
                                             deletedBlogs?.map((blog, index) => <div className="animate__animated animate__fadeInUp" key={blog._id}>
                                                 <div className="flex gap-2 items-center justify-between text-lg font-kreonSerif text-furry">

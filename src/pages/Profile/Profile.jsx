@@ -119,20 +119,20 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-full lg:w-1/3 border lg:border-0 border-furry p-2 lg:text-left justify-between flex flex-col items-center gap-2">
-                    <h3 className="text-furry font-kreonSerif text-3xl">You have Posted {usersBlogs?.length} {usersBlogs?.length > 1 ? 'Blogs' : 'Blog'}!</h3>
+                <div className="w-full lg:w-1/3 border lg:border-0 border-furry p-2 lg:text-left justify-between flex flex-col items-center gap-2 text-center">
+                    <h3 className="text-furry font-kreonSerif text-2xl md:text-3xl">You have Posted {usersBlogs?.length} {usersBlogs?.length > 1 ? 'Blogs' : 'Blog'}!</h3>
                     <Link to={`/add-blog`}><Button buttonText={'Add A New Blog'} hoverBgColor={'transparent'} hoverColor={'white'} color={'#1e40ad'} className={'my-2 border px-4 py-1 font-bold text-xl'}></Button></Link>
                 </div>
             </div>
 
             {
-                usersBlogs?.length <= 0 ? <div className="flex flex-col items-center justify-center text-furry font-kreonSerif text-2xl md:text-4xl gap-4">
+                usersBlogs?.length <= 0 ? <div className="flex flex-col items-center justify-center text-furry font-kreonSerif max-[430px]:text-xl text-2xl md:text-4xl gap-4">
                     <img src={rain} alt="Raining..." />
                     <p>You haven&rsquo;t Posted Any Blog Yet!</p>
                     <Link to={`/add-blog`}><Button buttonText={'Add A Blog'} hoverBgColor={'transparent'} hoverColor={'white'} color={'#1e40ad'} className={'my-2 border px-4 py-1 font-bold text-xl'}></Button></Link>
                 </div>
                     : <div>
-                        <h3 className="text-furry font-kreonSerif text-3xl mb-6">Your Blogs:</h3>
+                        <h3 className="text-furry font-kreonSerif text-2xl md:text-3xl mb-6">Your Blogs:</h3>
                         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             {
                                 usersBlogs?.map(blog => <Blog
