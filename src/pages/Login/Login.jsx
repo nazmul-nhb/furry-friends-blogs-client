@@ -80,7 +80,7 @@ const Login = () => {
                         <hr className="w-full dark:text-gray-600" />
                     </div>
                     {/* Email Password Login */}
-                    <form onSubmit={handleSubmit(handleLogin)} className="w-full flex flex-col gap-6 px-4 lg:px-8 py-4 lg:py-6 shadow-lg shadow-[#8689ee] border border-[#d3d0d0] rounded-md">
+                    <form onSubmit={handleSubmit(handleLogin)} className="w-full flex flex-col gap-6 px-4 lg:px-8 py-4 lg:py-6 shadow-lg shadow-[#8689ee] border border-furry rounded-md">
                         <h2 className="text-xl md:text-2xl font-medium font-kreonSerif">Login with Email & Password</h2>
                         <div className="flex flex-col gap-3">
                             <label htmlFor="email">Your Email</label>

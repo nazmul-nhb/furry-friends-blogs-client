@@ -99,7 +99,7 @@ const Register = () => {
                         <hr className="w-full dark:text-gray-600" />
                     </div>
                     {/* Email Password Login */}
-                    <form onSubmit={handleSubmit(handleRegister)} className="w-full flex flex-col gap-6 px-4 lg:px-8 py-4 lg:py-6 shadow-lg shadow-[#8689ee] border border-[#d3d0d0] rounded-md">
+                    <form onSubmit={handleSubmit(handleRegister)} className="w-full flex flex-col gap-6 px-4 lg:px-8 py-4 lg:py-6 shadow-lg shadow-[#8689ee] border border-furry rounded-md">
                         <h3 className='text-lg md:text-xl font-medium text-center'>Register with Email & Password</h3>
                         <div className="flex flex-col gap-3">
                             <label className="font-medium" htmlFor="name">Your Name *</label>

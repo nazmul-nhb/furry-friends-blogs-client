@@ -107,7 +107,7 @@ const UpdateBlog = () => {
 
             <Button onClick={() => navigate(-1)} className={'border mx-auto block mb-8 text-xl font-bold py-2 px-4 rounded-3xl'} buttonText={'Go Back'} color={'#1e40ad'} hoverColor={'white'} hoverBgColor={'transparent'}></Button>
 
-            <form onSubmit={handleSubmit(handleUpdateBlog)} className="flex flex-col gap-6 mx-auto px-4 lg:px-16 py-6 lg:py-10 shadow-[#363538] border rounded-lg">
+            <form onSubmit={handleSubmit(handleUpdateBlog)} className="flex flex-col gap-6 mx-auto px-4 lg:px-16 py-6 lg:py-10 shadow-md shadow-[#8689ee] border border-furry rounded-lg">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     {/* Blog Title */}
                     <div className="lg:col-span-2 w-full flex flex-col gap-3">
