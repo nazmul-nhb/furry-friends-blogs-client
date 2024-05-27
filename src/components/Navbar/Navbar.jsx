@@ -112,9 +112,9 @@ const Navbar = () => {
                                     <FaSignOutAlt />
                                 </div>
                             </div>
-                            : <ul className="font-jokeyOneSans flex items-center gap-1 md:gap-3 text-base md:text-xl font-medium md:pt-0 pt-1">
+                            : <ul className="font-jokeyOneSans flex items-center gap-1 md:gap-3 text-lg md:text-xl xl:text-2xl font-medium md:pt-0 pt-1">
                                 <NavLink to={'/login'}>Login</NavLink>
-                                <NavLink to={'/register'}>Register</NavLink>
+                                {/* <NavLink to={'/register'}>Register</NavLink> */}
                             </ul>
                 }
             </div>

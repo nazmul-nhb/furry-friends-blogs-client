@@ -62,7 +62,7 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
     }
 
     return (
-        <div className='border p-3 flex flex-col shadow-md shadow-blue-950'>
+        <div className='border p-3 flex flex-col shadow-md shadow-[#8689ee]'>
             <Link to={`/blog-details/${_id}`}>
                 <figure className='relative border p-1 mb-2 hover:scale-[1.03] transition-all duration-700'>
                     <img className='aspect-[2/1]' src={image} alt={blog_title} />

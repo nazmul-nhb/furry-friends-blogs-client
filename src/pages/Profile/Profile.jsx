@@ -119,8 +119,9 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-full lg:w-1/3 bg-gradient-to-l from-[#2e50bc62] to-[#033eff37] border border-furry shadow-lg shadow-[#8689ee] p-4 lg:text-left justify-between flex flex-col items-center gap-2 text-center">
-                    <h3 className="text-furry font-kreonSerif text-2xl md:text-3xl">You have Posted {usersBlogs?.length} {usersBlogs?.length > 1 ? 'Blogs' : 'Blog'} So Far!</h3>
+                {/* User's Total Blog Count */}
+                <div className={`w-full lg:w-1/3 bg-gradient-to-l from-[#2e50bc62] to-[#033eff37] border border-furry shadow-lg shadow-[#8689ee] p-4 justify-between ${usersBlogs?.length > 0 ? 'flex flex-col items-center' : 'hidden'} gap-2 text-center`}>
+                    <h3 className="text-furry font-kreonSerif text-xl md:text-2xl">You have Posted {usersBlogs?.length} {usersBlogs?.length > 1 ? 'Blogs' : 'Blog'} So Far!</h3>
                     <Link to={`/add-blog`}><Button buttonText={'Add A New Blog'} hoverBgColor={'transparent'} hoverColor={'white'} color={'#1e40ad'} className={'my-2 border px-4 py-1 font-bold text-xl'}></Button></Link>
                 </div>
             </div>

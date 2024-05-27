@@ -118,7 +118,7 @@ const Wishlist = () => {
                     < div className="flex items-center justify-center">
                         <img src={interwind} alt="Loading..." />
                     </div>
-                    : wishlistBlogs?.length <= 0 ? <div className="flex flex-col items-center justify-center text-furry font-kreonSerif text-2xl md:text-4xl gap-4">
+                    : wishlistBlogs?.length <= 0 ? <div className="flex flex-col items-center justify-center text-furry font-kreonSerif max-[430px]:text-xl text-2xl md:text-4xl gap-4">
                         <img src={rain} alt="Raining..." />
                         <p>Your Wishlist is Empty!</p>
                     </div>
