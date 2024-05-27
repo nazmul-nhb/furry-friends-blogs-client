@@ -15,6 +15,8 @@ import { PiBirdFill, PiCatFill, PiDogFill, PiRabbitFill } from "react-icons/pi";
 import { GiFrog } from "react-icons/gi";
 import { Tooltip } from "react-tooltip";
 import { useState } from "react";
+import { LuFileEdit } from "react-icons/lu";
+import { IoChevronBackCircleOutline } from "react-icons/io5";
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const BlogDetails = () => {
@@ -107,13 +109,13 @@ const BlogDetails = () => {
                     <h3 className="text-xl font-kreonSerif text-justify">{short_description}</h3>
                     <div className="flex justify-between">
                         <Button onClick={() => navigate(-1)}
-                            buttonText={'Go Back'} hoverBgColor={'transparent'} hoverColor={'white'} color={'#1e40ad'}
-                            className={'my-2 border px-4 py-1 font-bold text-xl'}
+                            buttonText={'Go Back'} hoverBgColor={'transparent'} hoverColor={'white'} color={'#1e40ad'} icon={<IoChevronBackCircleOutline />}
+                            className={'my-2 border px-3 py-1 font-bold  text-lg md:text-xl flex items-center gap-2'}
                         ></Button>
                         {
                             user.email === blogger_email && <Link to={`/update-blog/${id}`}><Button
-                                buttonText={'Update Blog'} hoverBgColor={'transparent'} hoverColor={'white'} color={'#1e40ad'}
-                                className={'my-2 border px-4 py-1 font-bold text-xl'}
+                                buttonText={'Update Blog'} hoverBgColor={'transparent'} hoverColor={'white'} color={'#1e40ad'} icon={<LuFileEdit />}
+                                className={'my-2 border px-3 py-1 font-bold text-lg md:text-xl flex items-center gap-2'}
                             ></Button></Link>
                         }
                     </div>

@@ -60,16 +60,19 @@ const Reply = ({ reply, handleDeleteReply, setShowReplyBox, replyRefetch, commen
                 <form className="ml-11 mb-2 flex items-start flex-col gap-4" onSubmit={handleEditReply}>
                     <textarea defaultValue={reply_body} className="w-full lg:w-2/5 h-28 border border-furry rounded-lg p-2 outline-none focus:border-2" name="edit_reply" id="edit_reply" placeholder={`Edit Your Reply to ${commenter_name}'s Comment`}></textarea>
 
-                    <Button buttonText={'Reply'} buttonType={'submit'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} className={'text-sm border rounded-xl px-3 py-1 font-medium'}></Button>
+                    <div className='flex gap-6 items-center'>
+                        <Button buttonText={'Reply'} buttonType={'submit'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} className={'text-sm border rounded-xl px-3 py-1 font-medium'}></Button>
+                        <Button onClick={() => setEditableReply(!editableReply)} buttonText={'Cancel'} color={'gray'} hoverBgColor={'transparent'} hoverColor={'white'} className={'text-sm border rounded-xl px-3 py-1 font-medium'}></Button>
+                    </div>
                 </form>
                 : <p className='ml-11 mb-1'>{reply_body}</p>
             }
             {/* Edit & Delete Buttons */}
-            <div className="text-xs ml-11 flex items-center gap-2 mb-2 font-semibold">
+            <div className="text-xs ml-11 flex items-center gap-2 mb-2 font-semibold text-blue-500">
                 {
                     user.email === reply_email && <div className='flex gap-2'>
-                        <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => setEditableReply(!editableReply)}>Edit</button>
-                        <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => handleDeleteReply(_id)}>Delete</button>
+                        <button className='cursor-pointer hover:text-furry' onClick={() => setEditableReply(!editableReply)}>Edit</button>
+                        <button className='cursor-pointer hover:text-furry' onClick={() => handleDeleteReply(_id)}>Delete</button>
                     </div>
                 }
                 {
@@ -77,8 +80,8 @@ const Reply = ({ reply, handleDeleteReply, setShowReplyBox, replyRefetch, commen
                         Edited on: {moment(updated_on).format('MMMM DD, YYYY [at] hh:mm:ss A')}
                     </Tooltip>
                 }
-                {updated_on && <button className='reply-edit-time cursor-pointer text-blue-950 hover:text-furry' onClick={() => setShowReplyUpdateTime(!showReplyUpdateTime)}>Edited</button>}
-                <button className='cursor-pointer text-blue-950 hover:text-furry' onClick={() => setShowReplyBox(showReplyBox => !showReplyBox)}>Reply</button>
+                {updated_on && <button className='reply-edit-time cursor-pointer hover:text-furry' onClick={() => setShowReplyUpdateTime(!showReplyUpdateTime)}>Edited</button>}
+                <button className='cursor-pointer hover:text-furry' onClick={() => setShowReplyBox(showReplyBox => !showReplyBox)}>Reply</button>
             </div>
             {
                 showReplyUpdateTime && updated_on && <h5 className="ml-11 text-gray-500 text-sm flex items-center gap-1"><MdOutlineUpdate />{moment(updated_on).format('MMMM DD, YYYY [at] hh:mm:ss A')}</h5>
