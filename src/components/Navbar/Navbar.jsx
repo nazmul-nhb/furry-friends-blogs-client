@@ -13,15 +13,18 @@ import { BsListStars } from "react-icons/bs";
 import loadingRipple from "../../assets/ripple-blue-thick.svg";
 import useWishlist from "../../hooks/useWishlist";
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
+import { ImProfile } from "react-icons/im";
 
 const Navbar = () => {
     const { user, userLoading, logOut } = useAuth();
-    const [open, setOpen] = useState(false);
+    const [openNavbar, setOpenNavbar] = useState(false);
     const [userName, setUserName] = useState('');
     const [profilePicture, setProfilePicture] = useState('');
+    const [profileOpen, setProfileOpen] = useState(false);
     const { wishlistBlogs } = useWishlist();
 
     const sidebarRef = useRef(null);
+    const dropdownRef = useRef(null);
 
     useEffect(() => {
         if (user) {
@@ -36,7 +39,7 @@ const Navbar = () => {
     useEffect(() => {
         const handleClickOutside = (e) => {
             if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
-                setOpen(false);
+                setOpenNavbar(false);
             }
         };
 
@@ -46,6 +49,19 @@ const Navbar = () => {
             document.removeEventListener("mouseup", handleClickOutside);
         };
     }, [sidebarRef]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setProfileOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [dropdownRef]);
 
     const handleLogout = () => {
         logOut()
@@ -59,9 +75,9 @@ const Navbar = () => {
 
     return (
         <nav className="max-w-[1920px] flex items-center gap-0 md:gap-4 mx-auto shadow-md px-3 py-4 md:px-10 xl:px-20 sticky top-0 bg-gradient-to-l from-[#829ae8fa] to-[#7690e5fa] bg-opacity-100 z-50 text-[#1e4080]">
-            <div ref={sidebarRef} className="min-[1170px]:hidden max-[430px]:text-3xl text-5xl cursor-pointer" onClick={() => setOpen(!open)}>
+            <div ref={sidebarRef} className="min-[1170px]:hidden max-[430px]:text-3xl text-5xl cursor-pointer" onClick={() => setOpenNavbar(!openNavbar)}>
                 {
-                    open
+                    openNavbar
                         ? <MdOutlineClose className="text-[#fff] hover:text-furry transform transition-all duration-2000"></MdOutlineClose>
                         : <MdMenuOpen className="text-furry hover:text-[#fff] transform transition-all duration-2000"></MdMenuOpen>
                 }
@@ -77,7 +93,7 @@ const Navbar = () => {
                 </div>
                 {/* Navbar Items/NavLinks/Routes */}
                 <div className="text-sm xl:text-base">
-                    <ul className={`w-3/5 min-[1170px]:w-full flex flex-col min-[1170px]:flex-row justify-start min-[1170px]:justify-center gap-2 text-lg md:text-xl font-semibold duration-500 absolute min-[1170px]:static shadow-lg shadow-slate-700 min-[1170px]:shadow-none h-screen min-[1170px]:h-auto p-4 min-[1170px]:p-0 ${open ? 'left-0 min-[430px]:top-20 top-[68px] md:top-[88px] bg-gradient-to-t from-[#7690e5fa] to-[#829ae8fa] bg-opacity-100 flex z-10' : '-left-full min-[430px]:top-20 top-[68px] md:top-[88px]'}`}>
+                    <ul className={`w-3/5 min-[1170px]:w-full flex flex-col min-[1170px]:flex-row justify-start min-[1170px]:justify-center gap-2 text-lg md:text-xl font-semibold duration-500 absolute min-[1170px]:static shadow-lg shadow-slate-700 min-[1170px]:shadow-none h-screen min-[1170px]:h-auto p-4 min-[1170px]:p-0 ${openNavbar ? 'left-0 min-[430px]:top-20 top-[68px] md:top-[88px] bg-gradient-to-t from-[#7690e5fa] to-[#829ae8fa] bg-opacity-100 flex z-10' : '-left-full min-[430px]:top-20 top-[68px] md:top-[88px]'}`}>
                         <NavLink className={'flex gap-0.5 items-center'} to={'/'}><IoHome className="pb-[2px] text-xl" /> Home</NavLink>
                         <NavLink className={'flex gap-0.5 items-center'} to={'/all-blogs'}><FaPaw className="pb-[2px] text-xl" /> All Blogs</NavLink>
                         <NavLink className={'flex gap-0.5 items-center'} to={'/featured-blogs'}><BsListStars className="text-xl" />Featured Blogs</NavLink>
@@ -93,7 +109,7 @@ const Navbar = () => {
                     </ul>
                 </div>
 
-                <ToggleTheme/>
+                <ToggleTheme />
 
                 {
                     userLoading ? <div className="flex items-center justify-center space-x-2">
@@ -101,15 +117,21 @@ const Navbar = () => {
                     </div>
                         : user
                             ? <div className="flex items-center gap-2 md:gap-3">
-                                <Tooltip anchorSelect=".nameIcon" place="bottom">
+                                <Tooltip anchorSelect=".nameIcon" place="right">
                                     {userName}
                                 </Tooltip>
-                                <Link to={'/profile'}><img className="nameIcon w-9 md:w-14 h-9 md:h-14 rounded-full border-2 p-[2px] border-furry hover:opacity-70 transition-all duration-1000" src={profilePicture} alt={userName} /></Link>
-                                <Tooltip anchorSelect=".logOutIcon" place="bottom">
-                                    Log out
-                                </Tooltip>
-                                <div className="logOutIcon font-bold flex items-center justify-center w-9 md:w-14 h-9 md:h-14 rounded-full border-2 border-furry pl-1 md:pl-1 cursor-pointer text-2xl md:text-3xl hover:text-[28px] hover:md:text-4xl bg-furry text-[#ffffff] hover:text-furry hover:bg-transparent transform transition-all duration-1000" onClick={handleLogout}>
-                                    <FaSignOutAlt />
+                                <div className="relative" ref={dropdownRef}>
+                                    <img
+                                        className="nameIcon w-9 md:w-14 h-9 md:h-14 rounded-full border-2 p-[2px] border-furry hover:opacity-70 transition-all duration-1000 cursor-pointer"
+                                        src={profilePicture} alt={userName}
+                                        onClick={() => setProfileOpen(!profileOpen)}
+                                    />
+                                    {profileOpen && (
+                                        <ul className="dropdown-arrow absolute md:right-[16%] right-[1%] mt-2 w-48 overflow-x-auto-auto rounded-md shadow-md z-10 bg-[#1e3fadde] shadow-[#8689ee] px-4 py-2 flex flex-col gap-2 animate__animated animate__bounceIn">
+                                            <NavLink className={'flex gap-2 items-center text-white'} to={'/profile'}><ImProfile />{userName}</NavLink>
+                                            <Link to={''} className={'flex gap-2 items-center text-white'} onClick={handleLogout}><FaSignOutAlt /> Logout</Link>
+                                        </ul>
+                                    )}
                                 </div>
                             </div>
                             : <ul className="font-jokeyOneSans flex items-center gap-1 md:gap-3 text-lg md:text-xl xl:text-2xl font-medium md:pt-0 pt-1">

@@ -117,7 +117,7 @@ const SocialLogin = () => {
                     <FaGoogle />
                     <p>Google</p>
                 </button>
-                <button onClick={handleGithubLogin} aria-label="Login with GitHub" role="button" className="flex items-center justify-center w-full p-2 gap-2 border rounded-md border-[#010409] bg-[#010409] text-[#fff] hover:text-[#010409] hover:bg-transparent transition-all duration-500">
+                <button onClick={handleGithubLogin} aria-label="Login with GitHub" role="button" className="flex items-center justify-center w-full p-2 gap-2 border rounded-md border-[#29903b] bg-[#29903b] text-[#fff] hover:text-[#29903b] hover:bg-transparent transition-all duration-500">
                     <FaGithub />
                     <p>GitHub</p>
                 </button>
