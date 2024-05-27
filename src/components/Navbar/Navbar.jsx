@@ -4,7 +4,7 @@ import defaultPP from '../../assets/user.png';
 import { Link, NavLink } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { MdMenuOpen, MdOutlineClose, MdOutlinePostAdd } from "react-icons/md";
-import { Tooltip } from "react-tooltip";
+// import { Tooltip } from "react-tooltip";
 import useAuth from "../../hooks/useAuth";
 import logo from '../../assets/paw.png'
 import { FaPaw, FaSignOutAlt } from "react-icons/fa";
@@ -117,9 +117,9 @@ const Navbar = () => {
                     </div>
                         : user
                             ? <div className="flex items-center gap-2 md:gap-3">
-                                <Tooltip anchorSelect=".nameIcon" place="right">
+                                {/* <Tooltip anchorSelect=".nameIcon" place="right">
                                     {userName}
-                                </Tooltip>
+                                </Tooltip> */}
                                 <div className="relative" ref={dropdownRef}>
                                     <img
                                         className="nameIcon w-9 md:w-14 h-9 md:h-14 rounded-full border-2 p-[2px] border-furry hover:opacity-70 transition-all duration-1000 cursor-pointer"
