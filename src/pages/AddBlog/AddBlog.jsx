@@ -9,12 +9,15 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useTypewriter } from "react-simple-typewriter";
+import { useNavigate } from "react-router-dom";
+import { GiCancel } from "react-icons/gi";
 
 const AddBlog = () => {
     const { user } = useAuth();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [showModal, setShowModal] = useState(false);
     const [previewBlog, setPreviewBlog] = useState("");
+    const navigate = useNavigate();
 
     const closeModal = () => {
         setShowModal(false);
@@ -68,6 +71,9 @@ const AddBlog = () => {
                 <title>Add Blog - Furry Friends Blogs</title>
             </Helmet>
             <h2 className="text-lg md:text-3xl text-furry font-bold text-center mb-8">Hi, {user.displayName}, {text}</h2>
+
+            <Button onClick={() => navigate(-1)} className={'border mx-auto mb-8 text-xl font-bold py-2 px-4 rounded-3xl flex items-center gap-2'} icon={<GiCancel />} buttonText={'Cancel'} color={'#1e40ad'} hoverColor={'white'} hoverBgColor={'transparent'}></Button>
+
             {/* Form */}
             <form onSubmit={handleSubmit(handleAddBlog)} className="flex flex-col gap-6 mx-auto px-4 lg:px-16 py-6 lg:py-10 shadow-md shadow-[#8689ee] border border-furry rounded-lg">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

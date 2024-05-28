@@ -98,9 +98,9 @@ const Profile = () => {
                         <Tooltip anchorSelect=".user-name" place="top">
                             {user.displayName}
                         </Tooltip>
-                        <Tooltip anchorSelect=".user-email" place="bottom">
+                        {/* <Tooltip anchorSelect=".user-email" place="bottom">
                             {user.email}
-                        </Tooltip>
+                        </Tooltip> */}
                         <img className="user-name user-email border p-1 border-furry w-24 md:w-36 h-24 md:h-36" src={user.photoURL} alt={user.displayName} />
                         <div className="flex flex-col justify-center items-center md:items-start md:justify-start gap-3">
                             <h4 className="text-lg md:text-2xl font-bold">{user.displayName}</h4>

@@ -14,6 +14,7 @@ import pacman from '../../assets/red-pacman.svg';
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { GiCancel } from "react-icons/gi";
 
 const UpdateBlog = () => {
     const { id } = useParams();
@@ -105,7 +106,7 @@ const UpdateBlog = () => {
             </Helmet>
             <h2 className="text-lg md:text-2xl text-furry font-semibold text-center mb-6">Hello, {user.displayName}, <br /> Update Your Blog: &ldquo;{blog_title}&rdquo;</h2>
 
-            <Button onClick={() => navigate(-1)} className={'border mx-auto block mb-8 text-xl font-bold py-2 px-4 rounded-3xl'} buttonText={'Go Back'} color={'#1e40ad'} hoverColor={'white'} hoverBgColor={'transparent'}></Button>
+            <Button onClick={() => navigate(-1)} className={'border mx-auto mb-8 text-xl font-bold py-2 px-4 rounded-3xl flex items-center gap-2'} icon={<GiCancel />} buttonText={'Cancel'} color={'#1e40ad'} hoverColor={'white'} hoverBgColor={'transparent'}></Button>
 
             <form onSubmit={handleSubmit(handleUpdateBlog)} className="flex flex-col gap-6 mx-auto px-4 lg:px-16 py-6 lg:py-10 shadow-md shadow-[#8689ee] border border-furry rounded-lg">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

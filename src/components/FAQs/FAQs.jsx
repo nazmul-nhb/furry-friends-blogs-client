@@ -1,9 +1,11 @@
 import SectionInfo from '../SectionInfo/SectionInfo';
 import faq from '../../assets/faq.png';
 import faqData from './faq-data.json';
+import { useContext } from 'react';
+import { ThemeContext } from '../../providers/ThemeProvider';
 
 const FAQs = () => {
-
+const {theme} = useContext(ThemeContext);
     return (
         <section className='my-8 md:my-16'>
             <SectionInfo
@@ -22,7 +24,7 @@ const FAQs = () => {
                         <summary className="px-4 py-6 focus:outline-none cursor-pointer text-lg md:text-xl font-semibold">
                             {faq.question}
                         </summary>
-                        <p className="px-4 py-6 pt-0 ml-4 -mt-4 text-gray-700">
+                        <p className={`px-4 py-6 pt-0 ml-4 -mt-4 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-700'}`}>
                             {faq.answer}
                         </p>
                     </details>

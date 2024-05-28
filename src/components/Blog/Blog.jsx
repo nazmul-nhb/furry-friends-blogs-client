@@ -13,6 +13,8 @@ import Swal from 'sweetalert2';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { LuFileEdit } from 'react-icons/lu';
 import { IoBookmarks, IoDocumentTextOutline } from 'react-icons/io5';
+import { useContext } from 'react';
+import { ThemeContext } from '../../providers/ThemeProvider';
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog }) => {
@@ -21,6 +23,7 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
     const location = useLocation();
     // const axiosSecure = useAxiosSecure();
     const { refetch } = useWishlist();
+    const { theme } = useContext(ThemeContext)
 
     const { blog_title, category, image, short_description, posted_on, posted_by, _id } = blog;
     const formattedDate = moment(posted_on).format('MMMM DD, YYYY [at] hh:mm A');
@@ -81,9 +84,9 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
             </Link>
             {/* <hr className="my-2" /> */}
             <Link to={`/blog-details/${_id}`}><h3 className="font-kreonSerif hover:text-furry transition-all duration-700 text-xl md:text-2xl">{blog_title}</h3></Link>
-            <p className='text-gray-500'>Posted by <span className="text-furry font-semibold">{posted_by}</span></p>
-            <p className="text-gray-700 flex-grow my-2">{short_description}</p>
-            <p className='text-gray-500 text-sm flex items-center gap-1'><MdAccessTime /> {formattedDate}</p>
+            <p className={theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}>Posted by <span className="text-furry font-semibold">{posted_by}</span></p>
+            <p className={`${theme === 'dark' ? 'text-gray-500' : 'text-gray-700'} flex-grow my-2`}>{short_description}</p>
+            <p className={`${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'} text-sm flex items-center gap-1`}><MdAccessTime /> {formattedDate}</p>
             <hr className="my-4" />
             <div className=" rounded-b-xl flex justify-between items-center">
                 {
