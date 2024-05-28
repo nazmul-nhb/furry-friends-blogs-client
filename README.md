@@ -2,10 +2,10 @@
 
 - The Home of Pet Lovers who enjoy writing and reading blogs about pets
 
-### Live Website Link
+### Live Link
 
-- [Live Website Link (Vercel)](https://furry-friends-blogs-nhb.vercel.app)
-- [Live Website Link (Firebase)](https://furry-friends-dcbd4.web.app)
+- [Live Link (Vercel)](https://furry-friends-blogs-nhb.vercel.app)
+- [Live Link (Firebase)](https://furry-friends-dcbd4.web.app)
 
 ### NPM Utility Packages Used in this Project
 
@@ -14,7 +14,6 @@
 - [axios](https://axios-http.com/docs/intro) for fetching data (CRUD)
 - [framer-motion](https://www.npmjs.com/package/framer-motion) for *newsletter* section animation
 - [react-photo-view](https://www.npmjs.com/package/react-photo-view) to view photos in full size on **Blog Details** page and in *Tips & Advice* section
-- [material-ui](https://mui.com/material-ui/) to show accordion on *FAQs* section
 - [lottie-react](https://lottiereact.com/components/Lottie#getting-started) for Animation on **ErrorPage**
 - [react-hook-form](https://react-hook-form.com/) for handling forms
 - [react-simple-typewriter](https://www.npmjs.com/package/react-simple-typewriter) in **Blog Details** page for comment heading
@@ -66,7 +65,7 @@
 #### Wishlist Page
 
 - On Wishlist Page, a user can find the blogs s/he has added for reading later, users can remove any blog from their wishlist
-- If a blog in wishlist is deleted by the blog author, user will see that info in wishlist page and can remove that blog from the wishlist
+- If a blog in wishlist is deleted by the blog author, user will see that info in wishlist page and can remove that deleted blog from the wishlist
 
 #### Add Blog Page
 
@@ -85,7 +84,8 @@
 
 #### Others
 
-- On **Navbar** beside your profile picture, you can see a logout icon. You can simply log out by clicking this icon
+- On **Navbar** beside user's profile picture, there is a theme toggler icon. Users can change theme from dark to light mode and vice versa by clicking this icon
+- If user clicks on the profile picture, it will open a menu containing user profile name with link to visit profile page and a logout button to log out from the site
 - If you enter any invalid URL suffix, you'll see a **404 Error Page**. This page has special animation effects
 
 ### Technologies used in this Project

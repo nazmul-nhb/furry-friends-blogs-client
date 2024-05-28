@@ -82,7 +82,7 @@ const AddBlog = () => {
                         <label className="font-medium" htmlFor="blog_title">Blog Title*</label>
                         <input
                             {...register("blog_title", {
-                                required: { value: true, message: "You must provide a valid Title for Your Blog." },
+                                required: { value: true, message: "You must provide a Title for Your Blog." },
                                 maxLength: { value: 96, message: "Blog Title should not exceed 96 characters!" }
                             })}
                             className="bg-transparent focus:border-2 p-2 rounded-lg border border-furry transition duration-500 focus:outline-0" type="text" name="blog_title" id="blog_title" placeholder=" Title for Your Blog (Max: 96 Characters)" />

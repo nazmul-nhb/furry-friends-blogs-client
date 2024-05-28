@@ -25,7 +25,7 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
     const { refetch } = useWishlist();
     const { theme } = useContext(ThemeContext)
 
-    const { blog_title, category, image, short_description, posted_on, posted_by, _id } = blog;
+    const { blog_title, category, image, short_description, posted_on, blogger_email, posted_by, _id } = blog;
     const formattedDate = moment(posted_on).format('MMMM DD, YYYY [at] hh:mm A');
     // console.log(blog);
 
@@ -33,7 +33,6 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
         if (user && user?.email) {
             axios.post('https://furry-friends-server-nhb.vercel.app/wishlist', { blog_id: _id, blog_title, user_email: user.email, time_added: moment().format("YYYY-MM-DD HH:mm:ss") })
                 .then(res => {
-                    // console.log(res.data);
                     if (res.data.insertedId) {
                         toast.success('Blog Added to Wishlist!');
                     } else {
@@ -57,7 +56,6 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
                 confirmButtonText: "Yes, Log Me in!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // navigate("/login");
                     navigate('/login', { state: { from: location } })
                 }
             })
@@ -84,7 +82,11 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
             </Link>
             {/* <hr className="my-2" /> */}
             <Link to={`/blog-details/${_id}`}><h3 className="font-kreonSerif hover:text-furry transition-all duration-700 text-xl md:text-2xl">{blog_title}</h3></Link>
-            <p className={theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}>Posted by <span className="text-furry font-semibold">{posted_by}</span></p>
+            <p className={theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}>Posted by <span className="text-furry font-semibold">
+                {
+                    user.email === blogger_email ? 'You' : posted_by
+                }
+            </span></p>
             <p className={`${theme === 'dark' ? 'text-gray-500' : 'text-gray-700'} flex-grow my-2`}>{short_description}</p>
             <p className={`${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'} text-sm flex items-center gap-1`}><MdAccessTime /> {formattedDate}</p>
             <hr className="my-4" />
