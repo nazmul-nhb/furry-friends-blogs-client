@@ -68,7 +68,7 @@ const BlogDetails = () => {
                     <div className="leading-4 flex flex-col gap-1">
                         <p className="font-kreonSerif">Posted by <span className="font-semibold text-furry">
                             {
-                                user.email === blogger_email ? 'You' : posted_by
+                                user?.email === blogger_email ? 'You' : posted_by
                             }
                         </span></p>
                         {

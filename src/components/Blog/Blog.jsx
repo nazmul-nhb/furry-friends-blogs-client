@@ -84,7 +84,7 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
             <Link to={`/blog-details/${_id}`}><h3 className="font-kreonSerif hover:text-furry transition-all duration-700 text-xl md:text-2xl">{blog_title}</h3></Link>
             <p className={theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}>Posted by <span className="text-furry font-semibold">
                 {
-                    user.email === blogger_email ? 'You' : posted_by
+                    user?.email === blogger_email ? 'You' : posted_by
                 }
             </span></p>
             <p className={`${theme === 'dark' ? 'text-gray-500' : 'text-gray-700'} flex-grow my-2`}>{short_description}</p>
