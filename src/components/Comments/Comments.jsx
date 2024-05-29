@@ -2,7 +2,7 @@ import useAuth from "../../hooks/useAuth";
 import PropTypes from 'prop-types';
 import Comment from "./Comment";
 import Button from "../Button/Button";
-import axios from "axios";
+// import axios from "axios";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
@@ -11,6 +11,7 @@ import loadingRipple from "../../assets/ripple-blue-thick.svg";
 import pacman from '../../assets/red-pacman.svg';
 import { useTypewriter } from "react-simple-typewriter";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 import Swal from "sweetalert2";
 
 const Comments = ({ blog }) => {
@@ -19,11 +20,12 @@ const Comments = ({ blog }) => {
     const { user } = useAuth();
     const { _id, blogger_email } = blog;
     const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
 
     const { isPending, isError, error, data: comments, refetch } = useQuery({
         queryKey: ['comments', _id],
         queryFn: async () => {
-            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/comments/${_id}`);
+            const res = await axiosPublic.get(`/comments/${_id}`);
             return res.data;
         }, enabled: true,
     })
@@ -51,7 +53,7 @@ const Comments = ({ blog }) => {
             commented_on: moment().format("YYYY-MM-DD HH:mm:ss")
         }
 
-        axios.post(`https://furry-friends-server-nhb.vercel.app/comments`, { ...commentData })
+        axiosSecure.post(`/comments`, { ...commentData })
             .then(res => {
                 // console.log(res.data);
                 if (res.data.insertedId) {

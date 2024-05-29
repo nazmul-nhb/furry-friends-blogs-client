@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+// import axios from "axios";
 import { Helmet } from "react-helmet-async";
 import searchLoading from '../../assets/search-blue.svg';
 import rain from '../../assets/rain.svg';
@@ -9,6 +9,7 @@ import { FaDeleteLeft } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import loadingRipple from "../../assets/ripple-blue-thick.svg";
 import pacman from '../../assets/red-pacman.svg';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 import SectionInfo from "../../components/SectionInfo/SectionInfo";
 
 const AllBlogs = () => {
@@ -18,13 +19,14 @@ const AllBlogs = () => {
     const [searchText, setSearchText] = useState('');
     const [sortByTime, setSortByTime] = useState(false);
     const inputRef = useRef(null);
+    const axiosPublic = useAxiosPublic();
 
     // Fetch Blog Count
     const { isFetching, isError: isCountError, error: countError, data: blogCount = 0 } = useQuery({
         queryKey: ['blogCount', category, searchText],
         queryFn: async () => {
             const res = await
-                axios.get(`https://furry-friends-server-nhb.vercel.app/blogs-count?category=${category === "All" ? " " : category}&search=${searchText}`)
+                axiosPublic.get(`/blogs-count?category=${category === "All" ? " " : category}&search=${searchText}`)
             return res.data.count;
         }
     })
@@ -38,7 +40,7 @@ const AllBlogs = () => {
         queryKey: ['blogs', sortByTime, currentPage, itemsPerPage, category, searchText],
         queryFn: async () => {
             const res = await
-                axios.get(`https://furry-friends-server-nhb.vercel.app/blogs?sort=${sortByTime ? -1 : 1}&page=${currentPage - 1}&size=${itemsPerPage}&category=${category === "All" ? " " : category}&search=${searchText}`);
+                axiosPublic.get(`/blogs?sort=${sortByTime ? -1 : 1}&page=${currentPage - 1}&size=${itemsPerPage}&category=${category === "All" ? " " : category}&search=${searchText}`);
             return res.data;
         }
     })
@@ -161,7 +163,7 @@ const AllBlogs = () => {
             {/* Show Search Count */}
             {
                 searchText && blogs?.length > 0 ? (<div className="mb-8 flex items-center justify-center text-furry font-kreonSerif max-[430px]:text-xl text-2xl">
-                    {blogs?.length} {blogs?.length > 1 ? 'Matches' : 'Match'} Found {category && category !== 'All' && `in "${category}" Category`}!
+                    {blogs?.length} {blogs?.length > 1 ? 'Matches' : 'Match'} Found{category && category !== 'All' && ` in "${category}" Category`}!
                 </div>)
                     : searchText && blogs?.length <= 0 ? (<div className="text-center flex flex-col items-center justify-center text-furry font-kreonSerif max-[430px]:text-xl text-2xl md:text-3xl">
                         <img src={rain} alt="Raining..." />
@@ -174,13 +176,13 @@ const AllBlogs = () => {
             {
                 !searchText && blogs?.length <= 0 && <div className="text-center flex flex-col items-center justify-center text-furry font-kreonSerif max-[430px]:text-xl text-2xl md:text-3xl">
                     <img src={rain} alt="Raining..." />
-                    <p>No One Ever Posted Any Blog Yet!!</p>
+                    <p>No One Ever Posted Any Blog Yet!</p>
                 </div>
             }
 
             {blogs?.length > 0 && <>
                 {/* Top Pagination */}
-                {blogs?.length > 5 &&
+                {(blogs?.length < 6 && totalPages <= 1) ||
                     <div className="hidden md:flex gap-4 flex-col lg:flex-row justify-center items-center font-semibold my-6 lg:my-8">
                         <div className="flex gap-2 items-center justify-center">
                             <p className="text-furry px-3 py-1 border border-furry">Page: {currentPage} of {totalPages}</p>

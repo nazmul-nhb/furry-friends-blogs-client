@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+// import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import moment from 'moment';
 import Comments from "../../components/Comments/Comments";
@@ -18,6 +18,7 @@ import { useState } from "react";
 import { LuFileEdit } from "react-icons/lu";
 import { IoChevronBackCircleOutline } from "react-icons/io5";
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const BlogDetails = () => {
     const { id } = useParams();
@@ -25,11 +26,12 @@ const BlogDetails = () => {
     const navigate = useNavigate();
     const [showPostUpdateTime, setShowPostUpdateTime] = useState(false);
     // const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
 
     const { isPending, isError, error, data: blog } = useQuery({
         queryKey: ['blog', id],
         queryFn: async () => {
-            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/blog/${id}`);
+            const res = await axiosPublic.get(`/blog/${id}`);
             return res.data;
         }
     })

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+// import axios from "axios";
 import { Helmet } from "react-helmet-async";
 import loadingRipple from "../../assets/ripple-blue-thick.svg";
 import pacman from '../../assets/red-pacman.svg';
@@ -7,12 +7,15 @@ import TableFeatured from "../../components/TableFeatured/TableFeatured";
 import { useMemo } from 'react';
 import { Link } from "react-router-dom";
 import SectionInfo from "../../components/SectionInfo/SectionInfo";
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const FeaturedBlogs = () => {
+     const axiosPublic = useAxiosPublic();
+
     const { isPending, isError, error, data: featuredBlogs } = useQuery({
         queryKey: ['featuredBlogs'],
         queryFn: async () => {
-            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/featured-blogs`);
+            const res = await axiosPublic.get(`/featured-blogs`);
             return res.data;
         }
     })

@@ -29,7 +29,7 @@ const Reply = ({ reply, handleDeleteReply, setShowReplyBox, replyRefetch, commen
             updated_on: moment().format("YYYY-MM-DD HH:mm:ss")
         }
 
-        axiosSecure.patch(`https://furry-friends-server-nhb.vercel.app/reply/${_id}`, { ...editedReply })
+        axiosSecure.patch(`/reply/${_id}`, { ...editedReply })
             .then(res => {
                 // console.log(res.data);
                 if (res.data.modifiedCount > 0) {

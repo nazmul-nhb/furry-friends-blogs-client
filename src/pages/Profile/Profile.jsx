@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import moment from 'moment';
 import loadingRipple from "../../assets/ripple-blue-thick.svg";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+// import axios from "axios";
 import Blog from "../../components/Blog/Blog";
 import rain from '../../assets/rain.svg';
 import pacman from '../../assets/red-pacman.svg';
@@ -17,16 +17,18 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import cloud from "../../assets/cloud.svg";
 import { useState } from "react";
 import { Tooltip } from "react-tooltip";
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const Profile = () => {
     const { user } = useAuth();
     const [deleting, setDeleting] = useState(false);
     const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
 
     const { isPending, isError, error, data: usersBlogs, refetch } = useQuery({
         queryKey: ['usersBlogs', user],
         queryFn: async () => {
-            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/blogs?currentUser=${user.email}&sort=-1`);
+            const res = await axiosPublic.get(`/blogs?currentUser=${user.email}&sort=-1`);
             return res.data;
         }, enabled: true,
     })

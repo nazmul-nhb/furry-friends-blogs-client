@@ -6,7 +6,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 import Preview from "../../components/Preview/Preview";
 import moment from "moment";
 import useAuth from "../../hooks/useAuth";
-import axios from "axios";
+// import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
 import loadingRipple from "../../assets/ripple-blue-thick.svg";
@@ -15,6 +15,7 @@ import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { GiCancel } from "react-icons/gi";
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const UpdateBlog = () => {
     const { id } = useParams();
@@ -24,11 +25,12 @@ const UpdateBlog = () => {
     const [previewBlog, setPreviewBlog] = useState("");
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
 
     const { isPending, isError, error, data: blog, refetch } = useQuery({
         queryKey: ['blog', id],
         queryFn: async () => {
-            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/blog/${id}`);
+            const res = await axiosPublic.get(`/blog/${id}`);
             return res.data;
         }, enabled: true
     })

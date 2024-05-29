@@ -6,11 +6,12 @@ import { IoIosCloseCircle } from "react-icons/io";
 import Preview from "../../components/Preview/Preview";
 import moment from "moment";
 import useAuth from "../../hooks/useAuth";
-import axios from "axios";
+// import axios from "axios";
 import Swal from "sweetalert2";
 import { useTypewriter } from "react-simple-typewriter";
 import { useNavigate } from "react-router-dom";
 import { GiCancel } from "react-icons/gi";
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const AddBlog = () => {
     const { user } = useAuth();
@@ -18,6 +19,7 @@ const AddBlog = () => {
     const [showModal, setShowModal] = useState(false);
     const [previewBlog, setPreviewBlog] = useState("");
     const navigate = useNavigate();
+    const axiosSecure = useAxiosSecure();
 
     const closeModal = () => {
         setShowModal(false);
@@ -35,7 +37,7 @@ const AddBlog = () => {
         }
         // console.log(finalBlog);
 
-        axios.post(`https://furry-friends-server-nhb.vercel.app/blogs`, { ...finalBlog })
+        axiosSecure.post(`/blogs`, { ...finalBlog })
             .then(res => {
                 if (res.data.insertedId) {
                     Swal.fire({

@@ -11,9 +11,10 @@ import { FaPaw, FaSignOutAlt } from "react-icons/fa";
 import { IoBookmarksOutline, IoHome } from "react-icons/io5";
 import { BsListStars } from "react-icons/bs";
 import loadingRipple from "../../assets/ripple-blue-thick.svg";
-import useWishlist from "../../hooks/useWishlist";
+// import useWishlist from "../../hooks/useWishlist";
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
 import { ImProfile } from "react-icons/im";
+import useWishlistCount from "../../hooks/useWishListCount";
 
 const Navbar = () => {
     const { user, userLoading, logOut } = useAuth();
@@ -21,7 +22,8 @@ const Navbar = () => {
     const [userName, setUserName] = useState('');
     const [profilePicture, setProfilePicture] = useState('');
     const [profileOpen, setProfileOpen] = useState(false);
-    const { wishlistBlogs } = useWishlist();
+    // const { wishlistBlogs } = useWishlist();
+    const { wishlistCount } = useWishlistCount();
 
     const sidebarRef = useRef(null);
     const dropdownRef = useRef(null);
@@ -102,7 +104,7 @@ const Navbar = () => {
                                 <NavLink className={'flex gap-0.5 items-center'} to={'/add-blog'}><MdOutlinePostAdd className="pb-[2px] text-2xl" />Add Blog</NavLink>
                                 <NavLink className={'flex gap-0.5 items-center'} to={'/wishlist'}>
                                     <IoBookmarksOutline className="pb-[2px] text-xl" />Wishlist
-                                    <sup>{wishlistBlogs?.length > 0 && wishlistBlogs?.length}</sup>
+                                    <sup>{wishlistCount > 0 && wishlistCount}</sup>
                                 </NavLink>
                             </>
                         }

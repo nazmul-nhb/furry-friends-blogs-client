@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Button from '../Button/Button';
 import { useEffect, useRef, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
-import axios from 'axios';
+// import axios from 'axios';
 import toast from 'react-hot-toast';
 import moment from 'moment';
 import interwind from '../../assets/interwind-blue.svg';
@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 import { Tooltip } from 'react-tooltip';
 import Reply from './Reply';
 import { MdOutlineUpdate } from 'react-icons/md';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const Comment = ({ comment, handleDeleteComment, commentsRefetch }) => {
     const { user } = useAuth();
@@ -21,6 +22,7 @@ const Comment = ({ comment, handleDeleteComment, commentsRefetch }) => {
     const [showCommentUpdateTime, setShowCommentUpdateTime] = useState(false);
     const replyRef = useRef(null);
     const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
 
     const { _id, comment_body, commenter_email, commenter_name, commenter_photo, commented_on, updated_on } = comment;
     const commentTime = moment(commented_on).format('MMMM DD, YYYY [at] hh:mm:ss A');
@@ -28,7 +30,7 @@ const Comment = ({ comment, handleDeleteComment, commentsRefetch }) => {
     const { isPending, isError, error, data: replies, refetch } = useQuery({
         queryKey: ['replies', _id],
         queryFn: async () => {
-            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/replies/${_id}`);
+            const res = await axiosPublic.get(`/replies/${_id}`);
             return res.data;
         }, enabled: true,
     })
@@ -50,7 +52,7 @@ const Comment = ({ comment, handleDeleteComment, commentsRefetch }) => {
             replied_on: moment().format("YYYY-MM-DD HH:mm:ss")
         }
 
-        axios.post(`https://furry-friends-server-nhb.vercel.app/replies`, { ...replyData })
+        axiosSecure.post(`/replies`, { ...replyData })
             .then(res => {
                 // console.log(res.data);
                 if (res.data.insertedId) {

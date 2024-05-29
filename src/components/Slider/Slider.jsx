@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useQuery } from "@tanstack/react-query";
 import { Link } from 'react-router-dom';
-import axios from "axios";
+// import axios from "axios";
 import blocks from '../../assets/blocks.svg';
 import pacman from '../../assets/red-pacman.svg';
 
@@ -15,13 +15,15 @@ import 'swiper/css/thumbs';
 import './Slider.css';
 
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const Slider = () => {
+    const axiosPublic = useAxiosPublic();
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    const { isPending, isError, error, data: bannerBlogs } = useQuery({
+    const { isPending, isError, error, data: bannerBlogs} = useQuery({
         queryKey: ['bannerBlogs'],
         queryFn: async () => {
-            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/featured-blogs`);
+            const res = await axiosPublic.get(`/featured-blogs`);
             return res.data;
         }
     })

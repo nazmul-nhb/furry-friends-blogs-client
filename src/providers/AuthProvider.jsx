@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import { useState, createContext, useEffect } from "react";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, GithubAuthProvider } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
-import axios from 'axios';
+// import axios from 'axios';
+import useAxiosPublic from '../hooks/useAxiosPublic';
 
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
@@ -11,6 +12,7 @@ const githubProvider = new GithubAuthProvider();
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
+    const axiosPublic = useAxiosPublic();
     const [user, setUser] = useState(null);
     const [userLoading, setUserLoading] = useState(true);
 
@@ -59,13 +61,13 @@ const AuthProvider = ({ children }) => {
             setUserLoading(false);
 
             if (currentUser) {
-                axios.post('https://furry-friends-server-nhb.vercel.app/jwt', loggedUser, { withCredentials: true })
+                axiosPublic.post('/jwt', loggedUser, { withCredentials: true })
                     .then(() => { })
                     .catch(error => {
                         console.error(error);
                     })
             } else {
-                axios.post('https://furry-friends-server-nhb.vercel.app/logout', loggedUser, { withCredentials: true })
+                axiosPublic.post('/logout', loggedUser, { withCredentials: true })
                     .then(() => { })
                     .catch(error => {
                         console.error(error);
@@ -76,7 +78,7 @@ const AuthProvider = ({ children }) => {
         return () => {
             unsubscribe();
         }
-    }, [user])
+    }, [axiosPublic, user])
 
     const authInfo = { user, createUser, userLogin, googleLogin, facebookLogin, githubLogin, logOut, userLoading, setUserLoading };
 

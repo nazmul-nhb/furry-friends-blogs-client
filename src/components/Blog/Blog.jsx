@@ -3,26 +3,29 @@ import Button from '../Button/Button';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import moment from 'moment';
-import axios from 'axios';
+// import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
 import { MdAccessTime, MdPets } from 'react-icons/md';
 import { PiBirdFill, PiCatFill, PiDogFill, PiRabbitFill } from 'react-icons/pi';
 import { GiFrog } from 'react-icons/gi';
-import useWishlist from '../../hooks/useWishlist';
+// import useWishlist from '../../hooks/useWishlist';
 import Swal from 'sweetalert2';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { LuFileEdit } from 'react-icons/lu';
 import { IoBookmarks, IoDocumentTextOutline } from 'react-icons/io5';
 import { useContext } from 'react';
 import { ThemeContext } from '../../providers/ThemeProvider';
-// import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useWishlistCount from '../../hooks/useWishListCount';
 
 const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog }) => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
-    // const axiosSecure = useAxiosSecure();
-    const { refetch } = useWishlist();
+    const axiosSecure = useAxiosSecure();
+    // const { refetch } = useWishlist();
+    const { countRefetch } = useWishlistCount();
+
     const { theme } = useContext(ThemeContext)
 
     const { blog_title, category, image, short_description, posted_on, blogger_email, posted_by, _id } = blog;
@@ -31,14 +34,15 @@ const Blog = ({ blog, wishlist, profile, handleDeleteWishlist, handleDeleteBlog 
 
     const handleAddToWishlist = () => {
         if (user && user?.email) {
-            axios.post('https://furry-friends-server-nhb.vercel.app/wishlist', { blog_id: _id, blog_title, user_email: user.email, time_added: moment().format("YYYY-MM-DD HH:mm:ss") })
+            axiosSecure.post('/wishlist', { blog_id: _id, blog_title, user_email: user.email, time_added: moment().format("YYYY-MM-DD HH:mm:ss") })
                 .then(res => {
                     if (res.data.insertedId) {
                         toast.success('Blog Added to Wishlist!');
                     } else {
                         toast.error(res.data?.message);
                     }
-                    refetch();
+                    // refetch();
+                    countRefetch();
                 })
                 .catch(error => {
                     // console.log(error);

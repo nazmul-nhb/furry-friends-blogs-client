@@ -1,17 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+// import axios from "axios";
 import loadingRipple from "../../assets/ripple-blue-thick.svg";
 import pacman from '../../assets/red-pacman.svg';
 import Blog from "../Blog/Blog";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
 import SectionInfo from "../SectionInfo/SectionInfo";
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const RecentBlogs = () => {
+        const axiosPublic = useAxiosPublic();
+
     const { isPending, isError, error, data: blogs } = useQuery({
         queryKey: ['blogs'],
         queryFn: async () => {
-            const res = await axios.get(`https://furry-friends-server-nhb.vercel.app/blogs?size=6&sort=-1`);
+            const res = await axiosPublic.get(`/blogs?size=6&sort=-1`);
             return res.data;
         }
     })

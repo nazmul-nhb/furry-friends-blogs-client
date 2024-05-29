@@ -14,6 +14,7 @@ import useWishlist from "../../hooks/useWishlist";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { IoIosCloseCircle } from "react-icons/io";
 import SectionInfo from "../../components/SectionInfo/SectionInfo";
+import useWishlistCount from "../../hooks/useWishListCount";
 
 const Wishlist = () => {
     const { user } = useAuth();
@@ -22,6 +23,7 @@ const Wishlist = () => {
     const [loadingData, setLoadingData] = useState(false);
     const { isPending, isError, error, wishlistBlogs, refetch } = useWishlist();
     const [showModal, setShowModal] = useState(false);
+    const { countRefetch } = useWishlistCount();
 
     const closeModal = () => {
         setShowModal(false);
@@ -39,13 +41,14 @@ const Wishlist = () => {
                     // console.log(res.data);
                     setWishedBlogs(res.data);
                     refetch();
+                    countRefetch();
                     setLoadingData(false);
                 })
                 .catch(error => {
                     console.error(error);
                 })
         }
-    }, [axiosSecure, refetch, wishlistBlogs])
+    }, [axiosSecure, countRefetch, refetch, wishlistBlogs])
 
     const deletedBlogCount = wishlistBlogs?.length - wishedBlogs?.length;
     const deletedBlogs = wishlistBlogs?.filter(blog1 => !wishedBlogs?.some(blog2 => blog1.blog_id === blog2._id));
@@ -67,6 +70,7 @@ const Wishlist = () => {
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             refetch();
+                            countRefetch();
                             Swal.fire(
                                 'Removed!',
                                 `"${blog_title}" Removed from Your Wishlist!`,
