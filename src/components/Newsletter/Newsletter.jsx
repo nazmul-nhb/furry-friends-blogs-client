@@ -20,7 +20,7 @@ const Newsletter = () => {
     }
 
     return (
-        <motion.section style={{ scale }} className="text-center my-8 md:my-16">
+        <motion.section style={{ scale }} className="w-[88%] md:w-[95%] text-center my-8 md:my-16 mx-auto">
             <motion.div
                 style={{
                     scaleY: scrollYProgress

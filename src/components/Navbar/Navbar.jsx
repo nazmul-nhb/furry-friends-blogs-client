@@ -95,7 +95,7 @@ const Navbar = () => {
                 </div>
                 {/* Navbar Items/NavLinks/Routes */}
                 <div className="text-sm xl:text-base">
-                    <ul className={`w-3/5 min-[1170px]:w-full flex flex-col min-[1170px]:flex-row justify-start min-[1170px]:justify-center gap-2 text-lg md:text-xl font-semibold duration-500 absolute min-[1170px]:static shadow-lg shadow-slate-700 min-[1170px]:shadow-none h-screen min-[1170px]:h-auto p-4 min-[1170px]:p-0 ${openNavbar ? 'left-0 min-[430px]:top-20 top-[68px] md:top-[88px] bg-gradient-to-t from-[#7690e5fa] to-[#829ae8fa] bg-opacity-100 flex z-10' : '-left-full min-[430px]:top-20 top-[68px] md:top-[88px]'}`}>
+                    <ul className={`w-3/5 min-[1170px]:w-full flex flex-col min-[1170px]:flex-row justify-start min-[1170px]:justify-center gap-2 text-lg md:text-xl font-semibold duration-500 absolute min-[1170px]:static shadow-lg shadow-slate-700 min-[1170px]:shadow-none h-screen min-[1170px]:h-auto p-4 min-[1170px]:p-0 ${openNavbar ? 'left-0 min-[430px]:top-20 top-[68px] md:top-[88px] bg-gradient-to-t from-[#7690e5fa] to-[#829ae8fa] bg-opacity-100 flex z-30' : '-left-full min-[430px]:top-20 top-[68px] md:top-[88px]'}`}>
                         <NavLink className={'flex gap-0.5 items-center'} to={'/'}><IoHome className="pb-[2px] text-xl" /> Home</NavLink>
                         <NavLink className={'flex gap-0.5 items-center'} to={'/all-blogs'}><FaPaw className="pb-[2px] text-xl" /> All Blogs</NavLink>
                         <NavLink className={'flex gap-0.5 items-center'} to={'/featured-blogs'}><BsListStars className="text-xl" />Featured Blogs</NavLink>
@@ -129,7 +129,7 @@ const Navbar = () => {
                                         onClick={() => setProfileOpen(!profileOpen)}
                                     />
                                     {profileOpen && (
-                                        <ul className="dropdown-arrow absolute md:right-[16%] right-[1%] mt-2 w-48 overflow-x-auto-auto rounded-md shadow-md z-10 bg-[#1e3fadea] shadow-[#8689ee] p-2 flex flex-col gap-2 animate__animated animate__bounceIn">
+                                        <ul className="dropdown-arrow absolute md:right-[16%] right-[1%] mt-2 w-48 overflow-x-auto-auto rounded-md shadow-md z-30 bg-[#1e3fadea] shadow-[#8689ee] p-2 flex flex-col gap-2 animate__animated animate__bounceIn">
                                             <NavLink className={'flex gap-2 items-center text-white'} to={'/profile'}><ImProfile />{userName}</NavLink>
                                             <Link to={''} className={'flex gap-2 items-center text-white'} onClick={handleLogout}><FaSignOutAlt />Logout</Link>
                                         </ul>
