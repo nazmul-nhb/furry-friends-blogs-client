@@ -38,9 +38,9 @@ const Newsletter = () => {
                 style={{
                     scaleY: scrollYProgress
                 }}
-                onSubmit={handleNewsletter} className="flex-1 flex flex-col items-center justify-center gap-2 px-8 lg:px-0">
-                <input placeholder="Enter Your Email Address" className="p-2 rounded-3xl text-center border border-furry focus:outline-0 w-4/5 md:3/5 lg:w-2/5 bg-transparent focus:border-2 transition duration-500 mb-4" type="email" name="email" id="email" />
-                <Button buttonType={'submit'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} className={'border !rounded-3xl font-bold md:text-xl !px-4 !py-2'} buttonText={"Subscribe to Newsletter"}></Button>
+                onSubmit={handleNewsletter} className="flex-1 flex flex-col items-center justify-center gap-1 md:gap-2 px-6 lg:px-0">
+                <input placeholder="Enter Your Email Address" className="px-2 py-1 rounded-3xl text-center border border-furry focus:outline-0 w-full md:w-3/5 lg:w-2/5 bg-transparent focus:border-2 transition duration-500 mb-4 text-sm md:text-lg" type="email" name="email" id="email" />
+                <Button buttonType={'submit'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} className={'border !rounded-3xl font-bold text-sm md:text-xl px-3 md:px-4 py-1 md:py-2'} buttonText={"Subscribe to Newsletter"}></Button>
             </motion.form>
         </motion.section>
     );
