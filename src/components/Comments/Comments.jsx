@@ -27,7 +27,7 @@ const Comments = ({ blog }) => {
         queryFn: async () => {
             const res = await axiosPublic.get(`/comments/${_id}`);
             return res.data;
-        }, enabled: true,
+        }
     })
 
     // console.log(comments);

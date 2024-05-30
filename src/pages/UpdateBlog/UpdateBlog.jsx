@@ -32,7 +32,7 @@ const UpdateBlog = () => {
         queryFn: async () => {
             const res = await axiosPublic.get(`/blog/${id}`);
             return res.data;
-        }, enabled: true
+        }
     })
 
     const closeModal = () => {

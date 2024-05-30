@@ -17,7 +17,7 @@ const ScrollIndicator = () => {
                 setVisible(false);
             } else {
                 setVisible(true);
-                document.getElementById("scroll-percentage").textContent = Math.round(scrolled) + "%";
+                document.getElementById("scroll-percentage").textContent = ""; // Math.round(scrolled) + "%";
             }
         };
 

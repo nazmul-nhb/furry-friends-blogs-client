@@ -9,10 +9,11 @@ const useWishlist = () => {
 
     const { isPending, isError, error, data: wishlistBlogs, refetch } = useQuery({
         queryKey: ['wishlistBlogs', user?.email, userLoading],
+        enabled: !!user?.email && !userLoading,
         queryFn: async () => {
             const res = await axiosSecure.get(`/wishlist?email=${user?.email}`);
             return res.data;
-        }, enabled: !!user?.email && !userLoading,
+        }
     });
 
     return { isPending, isError, error, wishlistBlogs, refetch }

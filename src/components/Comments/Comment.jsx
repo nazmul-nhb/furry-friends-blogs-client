@@ -32,7 +32,7 @@ const Comment = ({ comment, handleDeleteComment, commentsRefetch }) => {
         queryFn: async () => {
             const res = await axiosPublic.get(`/replies/${_id}`);
             return res.data;
-        }, enabled: true,
+        }
     })
 
     const handlePostReply = (e) => {

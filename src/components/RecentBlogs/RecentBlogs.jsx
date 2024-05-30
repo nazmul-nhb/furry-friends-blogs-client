@@ -9,7 +9,7 @@ import SectionInfo from "../SectionInfo/SectionInfo";
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const RecentBlogs = () => {
-        const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiosPublic();
 
     const { isPending, isError, error, data: blogs } = useQuery({
         queryKey: ['blogs'],
@@ -35,7 +35,7 @@ const RecentBlogs = () => {
             <SectionInfo
                 heading={"Recent Blog Posts"}
                 info={"Explore our recent blogs about pets. You can add it to your Wishlist for reading it later!"}
-                 />
+            />
 
             {isPending && (
                 <div className="flex items-center justify-center">
@@ -51,7 +51,7 @@ const RecentBlogs = () => {
                 }
             </div>
 
-            <Link className="mt-6" to={'/all-blogs'}><Button className={'border px-4 md:px-6 py-2 rounded-3xl font-bold text-lg md:text-2xl'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Explore All Blogs'}></Button></Link>
+            <Link className="mt-6" to={'/all-blogs'}><Button className={'border px-4 md:px-6 py-1 md:py-2 rounded-3xl font-bold text-lg md:text-2xl'} color={'#1e40ad'} hoverBgColor={'transparent'} hoverColor={'white'} buttonText={'Explore All Blogs'}></Button></Link>
         </section>
     );
 };

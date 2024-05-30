@@ -30,7 +30,7 @@ const Profile = () => {
         queryFn: async () => {
             const res = await axiosPublic.get(`/blogs?currentUser=${user.email}&sort=-1`);
             return res.data;
-        }, enabled: true,
+        }
     })
 
     const handleDeleteBlog = (id, blog_title) => {

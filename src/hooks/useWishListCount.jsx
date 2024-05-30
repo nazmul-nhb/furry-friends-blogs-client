@@ -8,10 +8,11 @@ const useWishlistCount = () => {
 
     const { data: wishlistCount = 0, refetch: countRefetch } = useQuery({
         queryKey: ['wishlistCount', user?.email, userLoading],
+        enabled: !!user?.email && !userLoading,
         queryFn: async () => {
             const res = await axiosPublic.get(`/wishlist-count?email=${user?.email}`);
             return res.data?.wishlistCount;
-        }, enabled: !!user?.email && !userLoading,
+        }
     });
 
     return { wishlistCount, countRefetch }

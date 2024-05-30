@@ -27,9 +27,7 @@
 - [momentjs](https://momentjs.com/) to get time & handle time format
 - [react-tabs](https://www.npmjs.com/package/react-tabs) in *Tips & Advice* section to show tabs
 
-### Notable Features of the Website
-
-- **[Extra:]** On Homepage & Blog Details page, there is a horizontal bar below the navbar to see the progress of how much of the page is scrolled so far (No Third Party Package Used)
+### Notable Features & Description of the Project
 
 #### Homepage
 
@@ -43,8 +41,8 @@
 
 - On All Blogs page, users will find all the blogs posted by all users
 - Users can filter blogs by category or search for a particular blog title
-- **[Extra:]** Users can also control pagination (i.e. how many blogs there should be in a page)
-- **[Extra:]** Users can sort blogs on this page by latest or oldest posts (posting time)
+- Users can also control pagination (i.e. how many blogs there should be in a page)
+- Users can sort blogs on this page by latest or oldest posts (posting time)
 
 #### Featured Blogs Page
 
@@ -54,26 +52,26 @@
 #### Blog Details Page
 
 - Blog Details is private route, meaning users should login first to navigate to this page, there is a *Go Back* button to navigate to the page they came from
-- Users can comment on blogs and (**[extra:]**) reply to the comments
-- **[Extra:]** Users can edit and delete their comments & replies
+- Users can comment on blogs and reply to the comments
+- Users can edit and delete their comments & replies
 - If a user is the blog author, s/he cannot comment but can reply to others' comments
 - If a user is the blog author s/he can click Update button, it will open a new page where s/he can update the blog that s/he added, there is a cancel button to go back
-- **[Extra:]** Users can preview the blog before clicking update button
-- **[Extra:]** On clicking time fields or "Edited" button, users can see updated time for blog, comments or replies
+- Users can preview the blog before clicking update button
+- On clicking time fields or "Edited" button, users can see updated time for blog, comments or replies
 
 #### User Profile Page
 
-- **[Extra:]** Users can update/delete their blogs from their profile page
+- Users can update/delete their blogs from their profile page
 
 #### Wishlist Page
 
 - On Wishlist Page, a user can find the blogs s/he has added for reading later, users can remove any blog from their wishlist
-- **[Extra:]** If a blog in wishlist is deleted by the blog author, user will see that info in wishlist page and can remove that deleted blog from the wishlist
+- If a blog in wishlist is deleted by the blog author, user will see that info in wishlist page and can remove that deleted blog from the wishlist
 
 #### Add Blog Page
 
 - On Add Blog page, users can add/post blogs, there is a cancel button to go back
-- **[Extra:]** Users can preview the blog before posting to see how it will look after posting
+- Users can preview the blog before posting to see how it will look after posting
 
 #### Register Page
 
@@ -82,17 +80,19 @@
 
 #### Login Page
 
-- On Login page, users can login using email and password or with Google, Facebook or Github account. - There is also a redirect link to navigate to the Register page if users need a new account
+- On Login page, users can login using email and password or with Google, Facebook or Github account.
+- There is also a redirect link to navigate to the Register page if users need a new account
 - After successful login, a toast will popup
 - If the password and email do not match, users will see an error message as toast
 
-#### Others
+#### Navbar & Others
 
-- **[Extra:]** On **Navbar** beside user's profile picture, there is a theme toggler icon. Users can change theme from dark to light mode and vice versa by clicking this icon (**No Package was used for this**)
+- On **Navbar** beside user's profile picture, there is a theme toggler icon. Users can change theme from dark to light mode and vice versa by clicking this icon (No Third Party Package Used)
 - If user clicks on the profile picture, it will open a menu containing user profile name with link to visit profile page and a logout button to log out from the site
-- **[Extra:]** On **Navbar** beside Wishlist nav link, users can see the number of blogs in their wishlist
+- On **Navbar** beside Wishlist nav link, users can see the number of blogs in their wishlist
+- On Homepage & Blog Details page, there is a horizontal bar below the navbar to see the progress of how much of the page is scrolled so far (No Third Party Package Used)
+- There is a pair of scroll buttons on every page to scroll to top or bottom (No Third Party Package Used)
 - If you enter any invalid URL suffix, you'll see a **404 Error Page**. This page has special animation effects
-- **[Extra:]** There is a pair of scroll buttons on every page to scroll to top or bottom
 
 ### Technologies used in this Project
 
