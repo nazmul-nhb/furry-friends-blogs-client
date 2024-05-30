@@ -19,6 +19,7 @@ import { LuFileEdit } from "react-icons/lu";
 import { IoChevronBackCircleOutline } from "react-icons/io5";
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import ScrollIndicator from "../../components/ScrollIndicator/ScrollIndicator";
 
 const BlogDetails = () => {
     const { id } = useParams();
@@ -58,6 +59,7 @@ const BlogDetails = () => {
 
     return (
         <section className="mx-2 md:mx-8 my-2 md:my-8 p-2 md:px-4">
+            <ScrollIndicator/>
             <Helmet>
                 <title>{blog_title} - Furry Friends Blogs</title>
             </Helmet>

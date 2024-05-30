@@ -29,19 +29,22 @@
 
 ### Notable Features of the Website
 
+- **[Extra:]** On Homepage & Blog Details page, there is a horizontal bar below the navbar to see the progress of how much of the page is scrolled so far (No Third Party Package Used)
+
 #### Homepage
 
-- A slider with thumbnails in the hero section
+- A slider with thumbnails in the hero section, clicking on Read Blog will redirect to the blog details page
 - In Recent Blogs section, there are 6 recent blog posts, users can either read the full blog on clicking read blog button or add to your wishlist (if you're a logged in user)
 - Pet Tips & Advice section provides some tips & advice about pets
 - FAQs section has Accordion to expand/collapse questions & answers
-- Then there is our Newsletter section where users can subscribe to our latest updates via email
+- There is Newsletter section where users can subscribe to the latest updates via email (Not Fully Functional)
 
 #### All Blogs Page
 
 - On All Blogs page, users will find all the blogs posted by all users
 - Users can filter blogs by category or search for a particular blog title
-- User can also control pagination
+- **[Extra:]** Users can also control pagination (i.e. how many blogs there should be in a page)
+- **[Extra:]** Users can sort blogs on this page by latest or oldest posts (posting time)
 
 #### Featured Blogs Page
 
@@ -50,26 +53,27 @@
 
 #### Blog Details Page
 
-- On Blog Details, users can click on Go Back button to navigate to the page they came from
-- Users can comment and reply on blog details page
-- Users can edit and delete their comments & replies
+- Blog Details is private route, meaning users should login first to navigate to this page, there is a *Go Back* button to navigate to the page they came from
+- Users can comment on blogs and (**[extra:]**) reply to the comments
+- **[Extra:]** Users can edit and delete their comments & replies
 - If a user is the blog author, s/he cannot comment but can reply to others' comments
-- If a user is the blog author s/he can click Update button, it will open a new page where s/he can update the blog that s/he added
-- User can preview the blog before clicking update button
-- On clicking time fields or "Edited" button, users can see updated time for blog, comments or replies
+- If a user is the blog author s/he can click Update button, it will open a new page where s/he can update the blog that s/he added, there is a cancel button to go back
+- **[Extra:]** Users can preview the blog before clicking update button
+- **[Extra:]** On clicking time fields or "Edited" button, users can see updated time for blog, comments or replies
 
 #### User Profile Page
 
-- Users can update/delete their blogs from their profile page
+- **[Extra:]** Users can update/delete their blogs from their profile page
 
 #### Wishlist Page
 
 - On Wishlist Page, a user can find the blogs s/he has added for reading later, users can remove any blog from their wishlist
-- If a blog in wishlist is deleted by the blog author, user will see that info in wishlist page and can remove that deleted blog from the wishlist
+- **[Extra:]** If a blog in wishlist is deleted by the blog author, user will see that info in wishlist page and can remove that deleted blog from the wishlist
 
 #### Add Blog Page
 
-- On Add Blog page, a user can add/post blogs, s/he can preview her/his blog before posting to see how it will look after posting
+- On Add Blog page, users can add/post blogs, there is a cancel button to go back
+- **[Extra:]** Users can preview the blog before posting to see how it will look after posting
 
 #### Register Page
 
@@ -84,9 +88,11 @@
 
 #### Others
 
-- On **Navbar** beside user's profile picture, there is a theme toggler icon. Users can change theme from dark to light mode and vice versa by clicking this icon
+- **[Extra:]** On **Navbar** beside user's profile picture, there is a theme toggler icon. Users can change theme from dark to light mode and vice versa by clicking this icon (**No Package was used for this**)
 - If user clicks on the profile picture, it will open a menu containing user profile name with link to visit profile page and a logout button to log out from the site
+- **[Extra:]** On **Navbar** beside Wishlist nav link, users can see the number of blogs in their wishlist
 - If you enter any invalid URL suffix, you'll see a **404 Error Page**. This page has special animation effects
+- **[Extra:]** There is a pair of scroll buttons on every page to scroll to top or bottom
 
 ### Technologies used in this Project
 

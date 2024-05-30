@@ -6,6 +6,7 @@ import FAQs from "../../components/FAQs/FAQs";
 import PetTips from "../../components/PetTips/PetTips";
 import { useTypewriter } from "react-simple-typewriter";
 import SectionInfo from "../../components/SectionInfo/SectionInfo";
+import ScrollIndicator from "../../components/ScrollIndicator/ScrollIndicator";
 
 const Home = () => {
 
@@ -16,6 +17,7 @@ const Home = () => {
 
     return (
         <section className="mx-2 md:mx-8 my-2 md:my-8 p-2 md:px-4">
+            <ScrollIndicator/>
             <Helmet>
                 <title>Home - Furry Friends Blogs</title>
             </Helmet>
