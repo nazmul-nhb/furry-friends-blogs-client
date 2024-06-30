@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-// import axios from "axios";
 import { Helmet } from "react-helmet-async";
 import searchLoading from '../../assets/search-blue.svg';
 import rain from '../../assets/rain.svg';
@@ -22,7 +21,7 @@ const AllBlogs = () => {
     const axiosPublic = useAxiosPublic();
 
     // Fetch Blog Count
-    const { isFetching, isError: isCountError, error: countError, data: blogCount = 0 } = useQuery({
+    const { isLoading: isCountLoading, isError: isCountError, error: countError, data: blogCount = 0 } = useQuery({
         queryKey: ['blogCount', category, searchText],
         queryFn: async () => {
             const res = await
@@ -95,7 +94,7 @@ const AllBlogs = () => {
                 <img className="w-48 h-48" src={searchLoading} alt="Loading..." />
             </div>
         );
-    } else if (isLoading || isFetching) {
+    } else if (isLoading || isCountLoading) {
         loadingSpinner = (
             <div className="flex items-center justify-center">
                 <img className="w-48 h-48" src={loadingRipple} alt="Loading..." />
