@@ -1,13 +1,63 @@
-## Furry Friends Blogs
+# Furry Friends Blogs
 
-- The Home of Pet Lovers who enjoy writing and reading blogs about pets
+## Project Overview
 
-### Live Link
+### The Home of Pet Lovers who enjoy writing and reading blogs about pets
+
+Furry Friends Blogs is a feature-rich blogging platform designed for pet lovers who enjoy writing and reading about pets. The platform offers a seamless and engaging experience for users to share their pet stories, tips, and advice. It includes various functionalities such as adding blogs to a wishlist, filtering and searching for blogs, and interactive user profiles, ensuring dynamic interaction with the content. Additionally, it provides secure user authentication and a responsive design for an optimal experience across devices.
+
+## Live Link
 
 - [Live Link (Vercel)](https://furry-friends-blogs-nhb.vercel.app)
 - [Live Link (Firebase)](https://furry-friends-dcbd4.web.app)
 
-### NPM Utility Packages Used in this Project
+## Notable Features of the Website
+
+- **Advanced Blog Filtering & Search**: Users can effortlessly filter blogs by category or search for specific titles, with robust pagination control to enhance browsing experience.
+
+- **Comprehensive User Management**: Users can efficiently manage (edit and delete) their blogs, comments, and replies, ensuring full control over their content and interactions.
+
+- **Interactive Featured Blogs Display**: The Featured Blogs page showcases the top 10 posts in an interactive table, allowing users to sort by column headers for easy navigation and discovery of popular content.
+
+- **Personalized Wishlist Management**: Users can save blogs for later reading, remove blogs from their wishlist, and receive notifications if a blog has been deleted by its author.
+
+### Technologies used in this Project
+
+- ReactJS
+- Javascript
+- TailwindCSS
+- Express.js (Server Side)
+- MongoDB (Server Side)
+
+## Run the Project Locally
+
+1. **Clone the Repository**:
+
+    ```sh
+    git clone https://github.com/nazmul-nhb/furry-friends-blogs-client.git
+    cd furry-friends-blogs-client
+    ```
+
+2. **Install Dependencies**:
+
+    ```sh
+    npm install
+    ```
+
+3. **Set Up Environment Variables**: Create a `.env.local` file in the root directory and add the necessary environment variables. (**Important!**)
+
+4. **Run the Application**:
+
+    ```sh
+    npm run dev -- --host
+    ```
+
+5. **Access the Site**: Open your browser and go to `http://localhost:5173/` or `http://192.168.1.12:5173/` from other devices on the same network to view the application.
+
+### Utility Packages Used in this Project
+<!-- markdownlint-disable MD033 -->
+<details>
+<summary>Click to Expand</summary>
 
 - [tanstack-table](https://tanstack.com/table/latest) for showing interactive table on **Featured Blogs** page
 - [tanstack-query](https://tanstack.com/query/latest) for managing states while fetching data (get)
@@ -27,6 +77,10 @@
 - [momentjs](https://momentjs.com/) to get time & handle time format
 - [react-tabs](https://www.npmjs.com/package/react-tabs) in *Tips & Advice* section to show tabs
 
+</details>
+<!-- markdownlint-enable MD033 -->
+
+<!-- 
 ### Notable Features & Description of the Project
 
 #### Homepage
@@ -93,11 +147,4 @@
 - On Homepage & Blog Details page, there is a horizontal bar below the navbar to see the progress of how much of the page is scrolled so far (No Third Party Package Used)
 - There is a pair of scroll buttons on every page to scroll to top or bottom (No Third Party Package Used)
 - If you enter any invalid URL suffix, you'll see a **404 Error Page**. This page has special animation effects
-
-### Technologies used in this Project
-
-- ReactJS
-- Javascript
-- TailwindCSS
-- Express.js (Server Side)
-- MongoDB (Server Side)
+-->
