@@ -21,7 +21,7 @@ Furry Friends Blogs is a feature-rich blogging platform designed for pet lovers 
 
 - **Personalized Wishlist Management**: Users can save blogs for later reading, remove blogs from their wishlist, and receive notifications if a blog has been deleted by its author.
 
-### Technologies used in this Project
+## Technologies used in this Project
 
 - ReactJS
 - Javascript
@@ -54,7 +54,7 @@ Furry Friends Blogs is a feature-rich blogging platform designed for pet lovers 
 
 5. **Access the Site**: Open your browser and go to `http://localhost:5173/` or `http://192.168.1.12:5173/` from other devices on the same network to view the application.
 
-### Utility Packages Used in this Project
+## Utility Packages Used in this Project
 <!-- markdownlint-disable MD033 -->
 <details>
 <summary>Click to Expand</summary>
