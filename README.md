@@ -15,7 +15,7 @@ Furry Friends Blogs is a feature-rich blogging platform designed for pet lovers 
 
 - **Advanced Blog Filtering & Search**: Users can effortlessly filter blogs by category or search for specific titles, with robust pagination control to enhance browsing experience.
 
-- **Comprehensive User Management**: Users can efficiently manage (edit and delete) their blogs, comments, and replies, ensuring full control over their content and interactions.
+- **Comprehensive Content Management**: Users can efficiently manage (edit and delete) their blogs, comments, and replies, ensuring full control over their content and interactions.
 
 <!-- - **Interactive Featured Blogs Display**: The Featured Blogs page showcases the top 10 posts in an interactive table, allowing users to sort by column headers for easy navigation and discovery of popular content. -->
 
