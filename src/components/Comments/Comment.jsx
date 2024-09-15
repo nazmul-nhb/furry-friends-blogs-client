@@ -15,7 +15,11 @@ import Reply from "./Reply";
 import { MdOutlineUpdate } from "react-icons/md";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
-const Comment = ({ comment, handleDeleteComment, commentsRefetch }) => {
+const Comment = ({
+	comment,
+	handleDeleteComment,
+	commentsRefetch,
+}) => {
 	const { user } = useAuth();
 	const [showReplyBox, setShowReplyBox] = useState(false);
 	const [editableComment, setEditableComment] = useState(false);
@@ -201,14 +205,28 @@ const Comment = ({ comment, handleDeleteComment, commentsRefetch }) => {
 						id="edit_comment"
 						placeholder="Edit Your Comment"
 					></textarea>
-					<Button
-						buttonText={"Comment"}
-						buttonType={"submit"}
-						color={"#1e40ad"}
-						hoverBgColor={"transparent"}
-						hoverColor={"white"}
-						className={"border rounded-xl px-3 py-1 font-medium"}
-					></Button>
+					<div className="flex gap-6 items-center">
+						<Button
+							buttonText={"Comment"}
+							buttonType={"submit"}
+							color={"#1e40ad"}
+							hoverBgColor={"transparent"}
+							hoverColor={"white"}
+							className={
+								"border rounded-xl px-3 py-1 font-medium"
+							}
+						></Button>
+						<Button
+							onClick={() => setEditableComment(false)}
+							buttonText={"Cancel"}
+							color={"gray"}
+							hoverBgColor={"transparent"}
+							hoverColor={"white"}
+							className={
+								"border rounded-xl px-3 py-1 font-medium"
+							}
+						></Button>
+					</div>
 				</form>
 			) : (
 				<p className="ml-12 mb-2">{comment_body}</p>

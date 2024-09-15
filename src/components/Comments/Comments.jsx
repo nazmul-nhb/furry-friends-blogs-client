@@ -47,7 +47,7 @@ const Comments = ({ blog }) => {
 		}
 		if (user?.email === blogger_email) {
 			toast.error("Cannot comment on Own Blog!", { duration: 3000 });
-			setHideCommentBox(!hideCommentBox);
+			setHideCommentBox(true);
 			return;
 		}
 		const commentData = {
