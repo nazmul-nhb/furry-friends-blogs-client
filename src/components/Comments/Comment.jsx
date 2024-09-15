@@ -38,7 +38,7 @@ const Comment = ({ comment, handleDeleteComment, commentsRefetch }) => {
 	);
 
 	const {
-		isPending,
+		isLoading: isRepliesLoading,
 		isError,
 		error,
 		data: replies,
@@ -149,7 +149,7 @@ const Comment = ({ comment, handleDeleteComment, commentsRefetch }) => {
 		}
 	}, [showReplyBox]);
 
-	if (isPending) {
+	if (isRepliesLoading) {
 		return (
 			<div className="flex items-center justify-center">
 				<img src={interwind} alt="Loading..." />

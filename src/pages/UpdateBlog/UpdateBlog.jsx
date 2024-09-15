@@ -32,7 +32,7 @@ const UpdateBlog = () => {
 	const axiosPublic = useAxiosPublic();
 
 	const {
-		isPending,
+		isLoading: isBlogLoading,
 		isError,
 		error,
 		data: blog,
@@ -95,7 +95,7 @@ const UpdateBlog = () => {
 			});
 	};
 
-	if (isPending) {
+	if (isBlogLoading) {
 		return (
 			<div className="flex items-center justify-center">
 				<img src={loadingRipple} alt="Loading..." />

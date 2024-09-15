@@ -26,7 +26,7 @@ const Profile = () => {
 	const axiosPublic = useAxiosPublic();
 
 	const {
-		isPending,
+		isLoading: isUserBlogsLoading,
 		isError,
 		error,
 		data: usersBlogs,
@@ -82,7 +82,7 @@ const Profile = () => {
 		);
 	}
 
-	if (isPending) {
+	if (isUserBlogsLoading) {
 		return (
 			<div className="flex items-center justify-center">
 				<img src={loadingRipple} alt="Loading..." />

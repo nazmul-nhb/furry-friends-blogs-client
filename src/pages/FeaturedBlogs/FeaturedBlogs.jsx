@@ -12,13 +12,18 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 const FeaturedBlogs = () => {
      const axiosPublic = useAxiosPublic();
 
-    const { isPending, isError, error, data: featuredBlogs } = useQuery({
-        queryKey: ['featuredBlogs'],
-        queryFn: async () => {
-            const res = await axiosPublic.get(`/featured-blogs`);
-            return res.data;
-        }
-    })
+    const {
+		isLoading: isFeaturedBlogsLoading,
+		isError,
+		error,
+		data: featuredBlogs,
+	} = useQuery({
+		queryKey: ["featuredBlogs"],
+		queryFn: async () => {
+			const res = await axiosPublic.get(`/featured-blogs`);
+			return res.data;
+		},
+	});
 
     const data = useMemo(() => featuredBlogs, [featuredBlogs]);
 
@@ -56,7 +61,7 @@ const FeaturedBlogs = () => {
         }
     ]
 
-    if (isPending) {
+    if (isFeaturedBlogsLoading) {
         return (
             <div className="flex items-center justify-center">
                 <img src={loadingRipple} alt="Loading..." />

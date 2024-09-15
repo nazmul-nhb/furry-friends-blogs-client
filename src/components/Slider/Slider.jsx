@@ -20,15 +20,20 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 const Slider = () => {
     const axiosPublic = useAxiosPublic();
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    const { isPending, isError, error, data: bannerBlogs} = useQuery({
-        queryKey: ['bannerBlogs'],
-        queryFn: async () => {
-            const res = await axiosPublic.get(`/featured-blogs`);
-            return res.data;
-        }
-    })
+    const {
+		isLoading: isBannerBlogsLoading,
+		isError,
+		error,
+		data: bannerBlogs,
+	} = useQuery({
+		queryKey: ["bannerBlogs"],
+		queryFn: async () => {
+			const res = await axiosPublic.get(`/featured-blogs`);
+			return res.data;
+		},
+	});
 
-    if (isPending) {
+    if (isBannerBlogsLoading) {
         return (
             <div className="flex items-center justify-center">
                 <img src={blocks} alt="Loading..." />

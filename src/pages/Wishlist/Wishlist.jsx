@@ -21,7 +21,7 @@ const Wishlist = () => {
 	const [wishedBlogs, setWishedBlogs] = useState([]);
 	const axiosSecure = useAxiosSecure();
 	const [loadingData, setLoadingData] = useState(false);
-	const { isPending, isError, error, wishlistBlogs, refetch } = useWishlist();
+	const { isWishlistLoading, isError, error, wishlistBlogs, refetch } = useWishlist();
 	const [showModal, setShowModal] = useState(false);
 	const { countRefetch } = useWishlistCount();
 
@@ -94,7 +94,7 @@ const Wishlist = () => {
 		});
 	};
 
-	if (isPending) {
+	if (isWishlistLoading) {
 		return (
 			<div className="flex items-center justify-center">
 				<img src={loadingRipple} alt="Loading..." />

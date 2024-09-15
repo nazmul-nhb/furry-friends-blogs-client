@@ -23,7 +23,7 @@ const Comments = ({ blog }) => {
 	const axiosPublic = useAxiosPublic();
 
 	const {
-		isPending,
+		isLoading: isCommentsLoading,
 		isError,
 		error,
 		data: comments,
@@ -113,7 +113,7 @@ const Comments = ({ blog }) => {
 		loop: true,
 	});
 
-	if (isPending) {
+	if (isCommentsLoading) {
 		return (
 			<div className="flex items-center justify-center">
 				<img src={loadingRipple} alt="Loading..." />

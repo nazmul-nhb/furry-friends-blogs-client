@@ -7,16 +7,22 @@ const useWishlist = () => {
     const axiosSecure = useAxiosSecure();
     const { user, userLoading } = useAuth();
 
-    const { isPending, isError, error, data: wishlistBlogs, refetch } = useQuery({
-        queryKey: ['wishlistBlogs', user?.email, userLoading],
-        enabled: !!user?.email && !userLoading,
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/wishlist?email=${user?.email}`);
-            return res.data;
-        }
-    });
+    const {
+		isLoading: isWishlistLoading,
+		isError,
+		error,
+		data: wishlistBlogs,
+		refetch,
+	} = useQuery({
+		queryKey: ["wishlistBlogs", user?.email, userLoading],
+		enabled: !!user?.email && !userLoading,
+		queryFn: async () => {
+			const res = await axiosSecure.get(`/wishlist?email=${user?.email}`);
+			return res.data;
+		},
+	});
 
-    return { isPending, isError, error, wishlistBlogs, refetch }
+    return { isWishlistLoading, isError, error, wishlistBlogs, refetch }
 };
 
 export default useWishlist;
