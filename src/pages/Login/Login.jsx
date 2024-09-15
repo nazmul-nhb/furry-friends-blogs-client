@@ -18,9 +18,7 @@ const Login = () => {
     const from = location.state?.from?.pathname || "/";
 
     if (user) {
-        // navigate(location?.state ? location.state : '/');
         navigate(from, { replace: true });
-        // navigate('/');
     }
 
     useEffect(() => {

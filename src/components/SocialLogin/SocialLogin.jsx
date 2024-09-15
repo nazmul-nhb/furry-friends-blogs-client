@@ -1,50 +1,17 @@
 import useAuth from '../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
+import { FaGoogle, FaGithub } from "react-icons/fa";
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
 
 const SocialLogin = () => {
-    const { googleLogin, facebookLogin, githubLogin } = useAuth();
+    const { googleLogin, githubLogin } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
     const handleGoogleLogin = () => {
         googleLogin()
-            .then(() => {
-                toast.success("Successfully Logged in!");
-                // navigate(location?.state ? location.state : '/');
-                navigate(from, { replace: true });
-            })
-            .catch(error => {
-                if (error.message === "Firebase: Error (auth/popup-closed-by-user).") {
-                    Swal.fire({
-                        title: 'Login Failed!',
-                        text: "Popup Closed by User!",
-                        icon: 'warning',
-                        confirmButtonText: 'Close'
-                    });
-                } else if (error.message === "Firebase: Error (auth/account-exists-with-different-credential).") {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: "Account Exists for this Email with Different Credential!",
-                        icon: 'error',
-                        confirmButtonText: 'Close'
-                    });
-                } else {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: error.message.split(': ')[1] || error.message,
-                        icon: 'error',
-                        confirmButtonText: 'Close'
-                    });
-                }
-            })
-    }
-
-    const handleFacebookLogin = () => {
-        facebookLogin()
             .then(() => {
                 toast.success("Successfully Logged in!");
                 // navigate(location?.state ? location.state : '/');
@@ -121,10 +88,10 @@ const SocialLogin = () => {
                     <FaGithub />
                     <p>GitHub</p>
                 </button>
-                <button onClick={handleFacebookLogin} aria-label="Login with Facebook" role="button" className="flex items-center justify-center w-full p-2 gap-2 border rounded-md border-[#0866ff] bg-[#0866ff] text-[#fff] hover:text-[#0866ff] hover:bg-transparent transition-all duration-500">
+                {/* <button onClick={handleFacebookLogin} aria-label="Login with Facebook" role="button" className="flex items-center justify-center w-full p-2 gap-2 border rounded-md border-[#0866ff] bg-[#0866ff] text-[#fff] hover:text-[#0866ff] hover:bg-transparent transition-all duration-500">
                     <FaFacebook />
                     <p>Facebook</p>
-                </button>
+                </button> */}
             </div>
         </div>
     );
