@@ -65,9 +65,6 @@ importers:
       react-icons:
         specifier: ^5.2.1
         version: 5.5.0(react@18.3.1)
-      react-loading-skeleton:
-        specifier: ^3.5.0
-        version: 3.5.0(react@18.3.1)
       react-photo-view:
         specifier: ^1.2.4
         version: 1.2.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2147,11 +2144,6 @@ packages:
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-
-  react-loading-skeleton@3.5.0:
-    resolution: {integrity: sha512-gxxSyLbrEAdXTKgfbpBEFZCO/P153DnqSCQau2+o6lNy1jgMRr2MmRmOzMmyrwSaSYLRB8g7b0waYPmUjz7IhQ==}
-    peerDependencies:
-      react: '>=16.8.0'
 
   react-photo-view@1.2.7:
     resolution: {integrity: sha512-MfOWVPxuibncRLaycZUNxqYU8D9IA+rbGDDaq6GM8RIoGJal592hEJoRAyRSI7ZxyyJNJTLMUWWL3UIXHJJOpw==}
@@ -4913,10 +4905,6 @@ snapshots:
       react: 18.3.1
 
   react-is@16.13.1: {}
-
-  react-loading-skeleton@3.5.0(react@18.3.1):
-    dependencies:
-      react: 18.3.1
 
   react-photo-view@1.2.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
